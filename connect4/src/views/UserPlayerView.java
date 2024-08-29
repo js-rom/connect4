@@ -2,12 +2,15 @@ package views;
 
 import models.Coordinate;
 import models.Player;
+import models.UserPlayer;
 import utils.console.Console;
 
 public class UserPlayerView extends PlayerView {
 
-    public UserPlayerView(Player player) {
-        super(player);
+    private UserPlayer player;
+
+    public UserPlayerView(UserPlayer player) {
+        this.player = player;
     }
 
     public int getColumn() {
@@ -15,18 +18,22 @@ public class UserPlayerView extends PlayerView {
         boolean valid;
         do {
             Message.TURN.write();
-            Console.getInstance().writeln(this.getActivePlayer().getColor().toString());
+            Console.getInstance().writeln(this.player.getColor().toString());
             column = Console.getInstance().readInt(Message.ENTER_COLUMN_TO_DROP.toString()) - 1;
             valid = Coordinate.isColumnValid(column);
             if (!valid) {
                 Message.INVALID_COLUMN.writeln();
             } else {
-                valid = !this.getActivePlayer().isComplete(column);
+                valid = !this.player.isComplete(column);
                 if (!valid) {
                     Message.COMPLETED_COLUMN.writeln();
                 }
             }
         } while (!valid);
         return column;
+    }
+
+    public void dropToken() {
+        this.player.dropToken(this.getColumn());
     }
 }
