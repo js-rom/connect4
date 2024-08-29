@@ -1,22 +1,8 @@
 package views;
 
-import models.Player;
+public interface PlayerView {
 
-public abstract class PlayerView {
+    public int getColumn();
+    public void dropToken();
 
-    private Player player;
-
-    PlayerView(Player player) {
-        this.player = player;
-    }
-
-    public void dropToken() {
-        this.player.dropToken(this.getColumn());
-    }
-
-    public abstract int getColumn();
-
-    public Player getActivePlayer() {
-        return this.player;
-    }
 }
