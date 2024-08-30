@@ -11,7 +11,7 @@ class UserPlayerView
 class ClosedInterval
 enum Color
 class Coordinate
-class Direction
+enum Direction
 class Message
 class Line
 class Board
@@ -114,8 +114,8 @@ Player : -color: Color
 Player : -board: Board
 Player : -Player(Color, Board)
 Player : +getColor(): Color
-Player : +isCompleted(int column)
-Player : +dropToken(int column)
+Player : +isCompleted(column: int): boolean
+Player : +dropToken(column: int)
 Player : +{abstract}accept(Turnview)
 
 UserPlayer : +UserPlayer(Color, Board)
@@ -143,17 +143,6 @@ Board : +isOccupied(Coordinate, Color): boolean
 Board : +isEmpty(Coordinate): boolean
 Board : +getColor(Coordinate): Color
 
-
-
-Line : {static} +LENGTH
-Line : -origin
-Line : -coordinates
-Line : -oppositeDirection
-Line : +constructor(coordinate{})
-Line : +set(direction)
-Line : +shift()
-Line : +getCoordinates()
-
 Message : {static} +TITLE
 Message : {static} +HORIZONTAL_LINE
 Message : {static} +VERTICAL_LINE
@@ -169,6 +158,23 @@ Message : +constructor(string)
 Message : +write()
 Message : +writeln()
  
+Color : {static} +RED
+Color : {static} +YELLOW
+Color : {static} +NULL
+Color : -color: String
+Color : +Color(color: String)
+Color : {static} +get(ordinal: int): Color
+Color : +toString(): String
+
+Line : {static} +LENGTH: int
+Line : -origin: Coordinate
+Line : -coordinates: Coordinate[ ]
+Line : -oppositeDirection: Direction
+Line : +Line(coordinate: Coordinate)
+Line : +set(direction: Direction)
+Line : +shift()
+Line : +getCoordinates(): Coordinate[ ]
+
 Direction : {static} +NORTH
 Direction : {static} +NORTH_EAST
 Direction : {static} +EAST
@@ -177,38 +183,28 @@ Direction : {static} +SOUTH
 Direction : {static} +SOUTH_WEST
 Direction : {static} +WEST
 Direction : {static} +NORTH_WEST
-Direction : -coordinate{}
-Direction : +constructor(row, column)
-Direction : +getOpposite()
-Direction : {static} +values()
-Direction : +getCoordinate()
-Direction : +halfValues()
+Direction : -coordinate: Coordinate
+Direction : +Direction(row: int, column: int)
+Direction : +getOpposite(): Direction
+Direction : +getCoordinate(): Coordenate
+Direction : +{static}getHalfDirections(): Direction[ ]
 
-Coordinate : {static} +ORIGIN
-Coordinate : {static} +NUMBER_ROWS
-Coordinate : {static} -ROWS
-Coordinate : {static} +NUMBER_COLUMNS
-Coordinate : {static} -COLUMNS
-Coordinate : -row
-Coordinate : -column
-Coordinate : +constructor(row, column)
-Coordinate : +shifted(coordinate)
-Coordinate : +isValid()
-Coordinate : {static} +isColumnValid(column)
-Coordinate : {static} -isRowValid(row)
-Coordinate : +getRow()
-Coordinate : +getColumn()
-Coordinate : +equals(coordinate)
-Coordinate : +toString()
-
-Color : {static} +RED
-Color : {static} +YELLOW
-Color : {static} +NULL
-Color : -string
-Color : +constructor(string)
-Color : {static} +get(ordinal)
-Color : {static} -values()
-Color : +toString()
+Coordinate : {static} +ORIGIN: Coordinate
+Coordinate : {static} +NUMBER_ROWS: int
+Coordinate : {static} -ROWS: ClosedInterval
+Coordinate : {static} +NUMBER_COLUMNS: int
+Coordinate : {static} -COLUMNS: ClosedInterval
+Coordinate : -row: int
+Coordinate : -column: int
+Coordinate : +Coordinate(row: int, column: int)
+Coordinate : +shifted(coordinate): Coordinate
+Coordinate : +isValid(): boolean
+Coordinate : {static} +isColumnValid(column): boolean
+Coordinate : {static} -isRowValid(row): boolean
+Coordinate : +getRow(): int
+Coordinate : +getColumn(): int
+Coordinate : +equals(coordinate): boolean
+Coordinate : +toString(): boolean
 
 ClosedInterval : -min: int
 ClosedInterval : -max: int
