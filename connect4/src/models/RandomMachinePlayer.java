@@ -1,6 +1,8 @@
 package models;
 
+import types.Color;
 import views.TurnView;
+import utils.Coordinate;
 
 public class RandomMachinePlayer extends MachinePlayer {
     
@@ -13,12 +15,11 @@ public class RandomMachinePlayer extends MachinePlayer {
     }
 
     public int getColumn(){
-/*         int column;
+        int column;
         do {
-            column = Math.floor(Math.random() * Coordinate.NUMBER_COLUMNS);
+            column = ((int)Math.floor(Math.random() * Coordinate.NUMBER_COLUMNS ));
         } while (this.isComplete(column));
-        return column; */
-        return 1;
+        return column;
     }
 
 }

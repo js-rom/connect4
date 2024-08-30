@@ -3,7 +3,7 @@ package views;
 import models.Game;
 import models.RandomMachinePlayer;
 import models.UserPlayer;
-import utils.console.Console;
+import utils.Console;
 
 public class TurnView {
     private Game game;

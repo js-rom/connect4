@@ -1,6 +1,6 @@
 package views;
 
-import utils.console.Console;
+import utils.Console;
 
 public class Message {
 

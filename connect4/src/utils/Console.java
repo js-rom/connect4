@@ -1,4 +1,4 @@
-package utils.console;
+package utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

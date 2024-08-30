@@ -5,11 +5,11 @@ class Game
 class GameView
 class BoardView
 class TurnView
-class PlayerView
+interface PlayerView
 class MachinePlayerView
 class UserPlayerView
 class ClosedInterval
-class Color
+enum Color
 class Coordinate
 class Direction
 class Message
@@ -17,7 +17,7 @@ class Line
 class Board
 abstract class Player
 class UserPlayer
-Interface MachinePlayer
+abstract class MachinePlayer
 class RandomMachinePlayer 
 class Turn
 class YesNoDialog
@@ -41,6 +41,7 @@ BoardView ..> Message
 
 Turn --> Board
 Turn o-- Player
+Turn ..> Color
 Player --> Color
 Player --> Board
 Player <|-- UserPlayer
@@ -79,17 +80,15 @@ BoardView : -BoardView(Game)
 BoardView : +writeln()
 BoardView : -writeHorizontal()
 
-PlayerView : -player: Player
-PlayerView : -PlayerView(Player)
-PlayerView : +dropToken()
-PlayerView : +{abstract} getColumn(): int
-PlayerView : +getActivePlayer(): Player
+PlayerView : +{abstract}dropToken()
 
-MachinePlayerView : MachinePlayerView(Player)
-MachinePlayerView : getColumn()
+MachinePlayerView : -player: MachinePlayer
+MachinePlayerView : +MachinePlayerView(MachinePlayer)
+MachinePlayerView : -getColumn()
 
-UserPlayerView : MachinePlayerView(Player)
-UserPlayerView : getColumn()
+UserPlayerView : -player: UserPlayer
+UserPlayerView : +UserPlayerView(UserPlayer)
+UserPlayerView : -getColumn()
 
 Game : -board: Board
 Game : -turn: Turn
@@ -211,10 +210,10 @@ Color : {static} +get(ordinal)
 Color : {static} -values()
 Color : +toString()
 
-ClosedInterval : -min
-ClosedInterval : -max
-ClosedInterval : +constructor(min, max)
-ClosedInterval : +isIncluded(value)
+ClosedInterval : -min: int
+ClosedInterval : -max: int
+ClosedInterval : +ClosedInterval(int min, int max)
+ClosedInterval : +isIncluded(int): boolean
 
 YesNoDialog : {static} -AFFIRMATIVE
 YesNoDialog : {static} -NEGATIVE

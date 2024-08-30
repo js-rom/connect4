@@ -1,8 +1,8 @@
 package views;
 
-import models.Coordinate;
+import utils.Coordinate;
 import models.Game;
-import utils.console.Console;
+import utils.Console;
 
 public class BoardView {
     private Game game;
@@ -16,7 +16,7 @@ public class BoardView {
         for (int i = Coordinate.NUMBER_ROWS - 1; i >= 0; i--) {
             Message.VERTICAL_LINE.write();
             for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
-                Console.getInstance().write(" " + this.game.getColor(new Coordinate(i, j)).toString()[0] + " ");
+                Console.getInstance().write(" " + this.game.getColor(new Coordinate(i, j)).toString().charAt(0) + " ");
                 Message.VERTICAL_LINE.write();
             }
             Console.getInstance().writeln();

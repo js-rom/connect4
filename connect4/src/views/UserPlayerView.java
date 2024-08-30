@@ -1,11 +1,10 @@
 package views;
 
-import models.Coordinate;
-import models.Player;
+import utils.Coordinate;
 import models.UserPlayer;
-import utils.console.Console;
+import utils.Console;
 
-public class UserPlayerView extends PlayerView {
+public class UserPlayerView implements PlayerView {
 
     private UserPlayer player;
 
@@ -13,7 +12,7 @@ public class UserPlayerView extends PlayerView {
         this.player = player;
     }
 
-    public int getColumn() {
+    private int getColumn() {
         int column;
         boolean valid;
         do {

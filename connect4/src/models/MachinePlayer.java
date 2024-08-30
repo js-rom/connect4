@@ -1,5 +1,6 @@
 package models;
 
+import types.Color;
 import views.TurnView;
 
 public abstract class MachinePlayer extends Player {

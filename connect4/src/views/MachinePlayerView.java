@@ -1,7 +1,7 @@
 package views;
 
 import models.MachinePlayer;
-import utils.console.Console;
+import utils.Console;
 
 public class MachinePlayerView implements PlayerView {
 
@@ -11,9 +11,9 @@ public class MachinePlayerView implements PlayerView {
         this.player = player;
     }
 
-    public int getColumn() {
+    private int getColumn() {
         int column = this.player.getColumn();
-        Console.getInstance().writeln("Columna escogida aleatoriamente: " + column);
+        Console.getInstance().writeln("Columna escogida aleatoriamente: " + (column + 1));
         return column;
     }
 

@@ -1,5 +1,9 @@
 package models;
 
+import types.Color;
+import utils.Coordinate;
+import utils.Direction;
+
 public class Board {
 
     private Color[][] colors;
@@ -54,14 +58,14 @@ public class Board {
         return this.isComplete() || this.isWinner();
     }
 
-    public boolean isWinner() { //TODO
+    public boolean isWinner() { //TODO me parece que el Board tiene demasiado conocimiento de como se implmenta line, analizar crear clase que integre a line y direction
         if (this.lastDrop == null) {
             return false;
         }
         Line line = new Line(this.lastDrop);
-        for (let direction of Direction.values().splice(0, 3)) {
+        for (Direction direction : Direction.getHalfDirections()) {
             line.set(direction);
-            for (let i = 0; i < Line.LENGTH; i++) {
+            for (int i = 0; i < Line.LENGTH; i++) {
                 if (this.isConnect4(line)) {
                     return true;
                 }

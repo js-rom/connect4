@@ -1,5 +1,8 @@
 package models;
 
+import types.Color;
+import utils.Coordinate;
+
 public class Game {
 
     private Board board;
@@ -15,7 +18,7 @@ public class Game {
         this.turn.reset(userplayers);
     }
 
-    public Color getColor (coordinate coordinate) {
+    public Color getColor (Coordinate coordinate) {
 
         return this.board.getColor(coordinate);
     }
@@ -28,7 +31,7 @@ public class Game {
         return this.board.isFinished();
     }
 
-    public Player getActivePlayer(){ // OJO que cabrón polimorfico es este
+    public Player getActivePlayer(){
         return this.turn.getActivePlayer();
     }
 

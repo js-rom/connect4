@@ -1,5 +1,7 @@
 package models;
 
+import types.Color;
+
 public class Turn {
     private static int NUMBER_PLAYERS = 2;
     private Player[] players;
@@ -9,7 +11,7 @@ public class Turn {
     public Turn(Board board) {
         this.board = board;
         this.players = new Player[Turn.NUMBER_PLAYERS];
-        this.reset(); //TOTO calling without parameter
+        //this.reset(); //TODO calling without parameter, creo que sobra
     }
 
     public void reset(int userPlayers) {

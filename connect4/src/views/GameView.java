@@ -34,7 +34,6 @@ public class GameView {
         YesNoDialog yesNoDialog = new YesNoDialog();
         yesNoDialog.read(Message.RESUME.toString());
         if (yesNoDialog.isAffirmative()) {
-            this.game.reset();
         }
         return yesNoDialog.isAffirmative();
     }

@@ -1,5 +1,6 @@
 package models;
 
+import types.Color;
 import views.TurnView;
 
 public class UserPlayer extends Player {
