@@ -18,12 +18,12 @@ public class Coordinate {
 
     public Coordinate shifted(Coordinate coordinate) {
         return new Coordinate(this.row + coordinate.row,
-            this.column + coordinate.column);
+                this.column + coordinate.column);
     }
 
     public boolean isValid() {
         return Coordinate.isRowValid(this.getRow())
-            && Coordinate.isColumnValid(this.getColumn());
+                && Coordinate.isColumnValid(this.getColumn());
     }
 
     public static boolean isColumnValid(int column) {
