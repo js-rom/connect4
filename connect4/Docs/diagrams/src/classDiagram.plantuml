@@ -173,7 +173,7 @@ Line : -coordinates: Coordinate[ ]
 Line : -oppositeDirection: Direction
 Line : +Line(coordinate: Coordinate)
 Line : +set(direction: Direction)
-Line : +shift()
+Line : +shiftOpposite()
 Line : +getCoordinates(): Coordinate[ ]
 
 Direction : +NORTH

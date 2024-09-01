@@ -71,7 +71,7 @@ public class Board {
                 if (this.isConnect4(line)) {
                     return true;
                 }
-                line.shift(); // TODO renombrar este metodo a shiftOpposite?
+                line.shiftOpposite();
             }
         }
         return false;

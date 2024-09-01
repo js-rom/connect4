@@ -27,7 +27,7 @@ public class Line {
         this.oppositeDirection = direction.getOpposite();
     }
 
-    public void shift() {
+    public void shiftOpposite() {
         for (int i = 0; i < Line.LENGTH; i++) {
             this.coordinates[i] = this.coordinates[i].shifted(this.oppositeDirection.getCoordinate());
         }
