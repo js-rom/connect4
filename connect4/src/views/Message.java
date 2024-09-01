@@ -10,7 +10,7 @@ enum Message {
     VERTICAL_LINE("|"),
     TURN("Turn: "),
     ENTER_COLUMN_TO_DROP("Enter a column to drop a token: "),
-    INVALID_COLUMN("Invalid columnn!!! Values [1-7]"), // TODO reemplzar 1 y 7 por // valor de las constantes
+    INVALID_COLUMN("Invalid columnn!!! Values [1-#maxColumns]"),
     COMPLETED_COLUMN("Invalid column!!! It's completed"),
     PLAYER_WIN("#colorS WIN!!! : -)"),
     PLAYERS_TIED("TIED!!!"),
