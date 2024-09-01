@@ -8,6 +8,7 @@ public class GameView {
     private TurnView turnView;
 
     public GameView(Game game) {
+        assert game != null;
         this.game = game;
         this.boardView = new BoardView(this.game);
         this.turnView = new TurnView(this.game);

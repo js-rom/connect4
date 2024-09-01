@@ -11,7 +11,7 @@ public class MachinePlayerView implements PlayerView {
         this.player = player;
     }
 
-    private int getColumn() {
+    public int getColumn() {
         int column = this.player.getColumn();
         Console.getInstance().writeln("Columna escogida aleatoriamente: " + (column + 1));
         return column;

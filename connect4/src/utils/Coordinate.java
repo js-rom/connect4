@@ -2,10 +2,10 @@ package utils;
 
 public class Coordinate {
 
-    public static Coordinate ORIGIN = new Coordinate(0, 0);
-    public static int NUMBER_ROWS = 6;
+    public static final Coordinate ORIGIN = new Coordinate(0, 0);
+    public static final int NUMBER_ROWS = 6;
     private static ClosedInterval ROWS = new ClosedInterval(0, Coordinate.NUMBER_ROWS - 1);
-    public static int NUMBER_COLUMNS = 7;
+    public static final int NUMBER_COLUMNS = 7;
     private static ClosedInterval COLUMNS = new ClosedInterval(0, Coordinate.NUMBER_COLUMNS - 1);
 
     private int row;

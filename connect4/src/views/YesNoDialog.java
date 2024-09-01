@@ -9,7 +9,7 @@ public class YesNoDialog {
     private static String SUFFIX = "? (" +
         YesNoDialog.AFFIRMATIVE + "/" +
         YesNoDialog.NEGATIVE + "): ";
-    private static String MESSAGE = "The value must be ${YesNoDialog.#AFFIRMATIVE} or ${YesNoDialog.#NEGATIVE}";
+    private static String MESSAGE = "The value must be ${YesNoDialog.#AFFIRMATIVE} or ${YesNoDialog.#NEGATIVE}"; //TODO bug
     private String answer;
 
     public YesNoDialog() {

@@ -8,6 +8,7 @@ public class BoardView {
     private Game game;
 
     public BoardView(Game game) {
+        assert game != null;
         this.game = game;
     }
 

@@ -2,7 +2,7 @@ package views;
 
 import utils.Console;
 
-public class Message {
+public class Message {//TODO esta clase debe de ser un enum
 
     public static Message TITLE = new Message("--- CONNECT 4 ---");
     public static Message NUM_PLAYERS = new Message("Enter number of users: ");
@@ -10,7 +10,7 @@ public class Message {
     public static Message VERTICAL_LINE = new Message("|");
     public static Message TURN = new Message("Turn: ");
     public static Message ENTER_COLUMN_TO_DROP = new Message("Enter a column to drop a token: ");
-    public static Message INVALID_COLUMN = new Message("Invalid columnn!!! Values [1-7]");
+    public static Message INVALID_COLUMN = new Message("Invalid columnn!!! Values [1-7]"); //TODO reemplzar 1 y 7 por valor de las constantes
     public static Message COMPLETED_COLUMN = new Message("Invalid column!!! It's completed");
     public static Message PLAYER_WIN = new Message("#colorS WIN!!! : -)");
     public static Message PLAYERS_TIED = new Message("TIED!!!");

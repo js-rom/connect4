@@ -14,12 +14,13 @@ public class Game {
     }
 
     public void reset(int userplayers) {
+        assert 0 <= userplayers && userplayers <= Turn.NUMBER_PLAYERS;
         this.board.reset();
         this.turn.reset(userplayers);
     }
 
-    public Color getColor (Coordinate coordinate) {
-
+    public Color getColor(Coordinate coordinate) {
+        assert coordinate != null;
         return this.board.getColor(coordinate);
     }
 
@@ -31,15 +32,15 @@ public class Game {
         return this.board.isFinished();
     }
 
-    public Player getActivePlayer(){
+    public Player getActivePlayer() {
         return this.turn.getActivePlayer();
     }
 
-    public Color getActiveColor(){
+    public Color getActiveColor() {
         return this.getActivePlayer().getColor();
     }
 
-    public void next(){
+    public void next() {
         this.turn.next();
     }
 

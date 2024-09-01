@@ -12,7 +12,7 @@ public class UserPlayerView implements PlayerView {
         this.player = player;
     }
 
-    private int getColumn() {
+    public int getColumn() {
         int column;
         boolean valid;
         do {

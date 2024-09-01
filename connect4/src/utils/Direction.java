@@ -19,7 +19,7 @@ public enum Direction {
 
     public Direction getOpposite() {
         Direction opposite = null;
-        for (Direction direction : this.values()) {
+        for (Direction direction : Direction.values()) {
             if (direction.coordinate.shifted(this.coordinate).equals(Coordinate.ORIGIN)) {
                 opposite = direction;
             }
@@ -32,7 +32,7 @@ public enum Direction {
         return this.coordinate;
     }
 
-    public static Direction[] getHalfDirections() {
+    public static Direction[] halfValues() {
         return new Direction[] {Direction.NORTH, Direction.NORTH_EAST, Direction.EAST, Direction.SOUTH_EAST};
     }
 
