@@ -9,7 +9,7 @@ public class RandomMachinePlayer extends MachinePlayer {
         super(color, board);
     }
 
-    public void accept(PlayerVisitor visitor){ //OJOO el modelo se está acoplando a la vista
+    public void accept(PlayerVisitor visitor){
         visitor.visit(this);
     }
 

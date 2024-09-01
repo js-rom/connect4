@@ -8,7 +8,7 @@ public abstract class MachinePlayer extends Player {
         super(color, board);
     }
 
-    public abstract void accept(PlayerVisitor visitor); //OJOO el modelo se está acoplando a la vista
+    public abstract void accept(PlayerVisitor visitor);
 
     public abstract int getColumn();
 }
