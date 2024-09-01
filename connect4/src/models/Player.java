@@ -32,5 +32,5 @@ public abstract class Player {
         this.board.dropToken(column, this.color);
     }
 
-    public abstract void accept(TurnView visitor); //OJOO el modelo se está acoplando a la vista
+    public abstract void accept(PlayerVisitor visitor); //OJOO el modelo se está acoplando a la vista
 }

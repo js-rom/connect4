@@ -2,7 +2,7 @@ package views;
 
 import utils.Console;
 
-enum Message {
+public enum Message {
 
     TITLE("--- CONNECT 4 ---"),
     NUM_PLAYERS("Enter number of users: "),

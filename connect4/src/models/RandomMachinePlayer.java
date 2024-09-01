@@ -1,7 +1,6 @@
 package models;
 
 import types.Color;
-import views.TurnView;
 import utils.Coordinate;
 
 public class RandomMachinePlayer extends MachinePlayer {
@@ -10,7 +9,7 @@ public class RandomMachinePlayer extends MachinePlayer {
         super(color, board);
     }
 
-    public void accept(TurnView visitor){ //OJOO el modelo se está acoplando a la vista
+    public void accept(PlayerVisitor visitor){ //OJOO el modelo se está acoplando a la vista
         visitor.visit(this);
     }
 

@@ -1,11 +1,12 @@
 package views;
 
 import models.Game;
+import models.PlayerVisitor;
 import models.RandomMachinePlayer;
 import models.UserPlayer;
 import utils.Console;
 
-public class TurnView {
+public class TurnView implements PlayerVisitor {
     private Game game;
 
     TurnView(Game game) {

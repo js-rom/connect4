@@ -4,6 +4,7 @@ class Connect4
 class Game
 class GameView
 class BoardView
+interface PlayerVisitor
 class TurnView
 interface PlayerView
 class MachinePlayerView
@@ -30,6 +31,7 @@ Game *-- Board
 Game *-- Turn
 GameView *-- TurnView
 GameView *-- BoardView
+PlayerVisitor <|-- TurnView
 TurnView --> Game
 TurnView ..> Message
 TurnView ..> PlayerView
@@ -46,6 +48,7 @@ Player --> Color
 Player --> Board
 Player <|-- UserPlayer
 Player <|-- MachinePlayer
+Player ..> PlayerVisitor
 MachinePlayer <|-- RandomMachinePlayer
 Board ..> Coordinate
 Board ..> Line
@@ -109,7 +112,8 @@ Turn : +reset(int userPlayers)
 Turn : +next()
 Turn : +getActivePlayer(): Player
 
-
+PlayerVisitor : +visit(UserPlayer)
+PlayerVisitor : +visit(RandomMachinePlayer)
 
 Player : -color: Color
 Player : -board: Board
@@ -117,7 +121,7 @@ Player : -Player(Color, Board)
 Player : +getColor(): Color
 Player : +isCompleted(column: int): boolean
 Player : +dropToken(column: int)
-Player : +{abstract}accept(Turnview)
+Player : +{abstract}accept(PlayerVisitor)
 
 UserPlayer : +UserPlayer(Color, Board)
 UserPlayer : +accept(Turnview)

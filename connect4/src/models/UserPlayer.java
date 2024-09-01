@@ -1,7 +1,6 @@
 package models;
 
 import types.Color;
-import views.TurnView;
 
 public class UserPlayer extends Player {
 
@@ -9,7 +8,7 @@ public class UserPlayer extends Player {
         super(color, board);
     }
 
-    public void accept(TurnView visitor){ //OJOO el modelo se está acoplando a la vista
+    public void accept(PlayerVisitor visitor){ //OJOO el modelo se está acoplando a la vista
         visitor.visit(this);
     }
 
