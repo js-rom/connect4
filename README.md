@@ -5,7 +5,7 @@
 | basic  | domainModel - basic|
 | machine | domainModel - machine |
 | basic | documentView - basic |
-| machine | [documentView - machine - doubleDispatching]() |
+| machine | [documentView - machine - doubleDispatching](https://github.com/js-rom/connect4/tree/v.1.0) |
 | machine | documentView - machine - Menu |
 | machine | documentView - machine - IA Player Open Close |
 | machine | documentView - machine - prototype |
