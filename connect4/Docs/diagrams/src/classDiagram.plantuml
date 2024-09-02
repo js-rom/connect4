@@ -1,0 +1,231 @@
+@startuml
+
+class Connect4
+class Game
+class GameView
+class BoardView
+interface PlayerVisitor
+class TurnView
+interface PlayerView
+class MachinePlayerView
+class UserPlayerView
+class ClosedInterval
+enum Color
+class Coordinate
+enum Direction
+class Message
+class Line
+class Board
+abstract class Player
+class UserPlayer
+abstract class MachinePlayer
+class RandomMachinePlayer 
+class Turn
+class YesNoDialog
+class Console
+
+Connect4 *-- Game
+Connect4 *-- GameView
+GameView --> Game
+Game *-- Board
+Game *-- Turn
+GameView *-- TurnView
+GameView *-- BoardView
+PlayerVisitor <|-- TurnView
+TurnView --> Game
+
+TurnView ..> PlayerView
+PlayerView <|-- MachinePlayerView
+PlayerView <|-- UserPlayerView
+BoardView --> Game
+BoardView ..> Coordinate
+
+
+Turn --> Board
+Turn o-- Player
+Turn ..> Color
+Player --> Color
+Player --> Board
+Player <|-- UserPlayer
+Player <|-- MachinePlayer
+
+MachinePlayer <|-- RandomMachinePlayer
+Board --> Coordinate
+Board ..> Line
+Board ..> Direction
+Direction --> Coordinate
+Direction ..> Coordinate
+Coordinate *-- ClosedInterval
+
+Connect4 : -game{}
+Connect4 : -gameView{}
+Connect4 : +Connect4()
+Connect4 : + main(String[])
+Connect4 : +playGames()
+
+GameView : -game: Game
+GameView : -boardView: BoardView
+GameView : -turnView: TurnView
+GameView : +GameView(Game)
+GameView : +playGame()
+GameView : -isResumed()
+
+TurnView : -game: Game
+TurnView : -TurnView(Game)
+TurnView : +resetPlayers()
+TurnView : +dropToken()
+TurnView : +visit(UserPlayer)
+TurnView : +visit(RandomMachinePlayer)
+TurnView : +writeResult()
+
+BoardView : -game: Game
+BoardView : -BoardView(Game)
+BoardView : +writeln()
+BoardView : -writeHorizontal()
+
+PlayerView : +{abstract}dropToken()
+PlayerView : +{abstract}getColumn(): int
+
+MachinePlayerView : -player: MachinePlayer
+MachinePlayerView : +MachinePlayerView(MachinePlayer)
+MachinePlayerView : -getColumn(): int
+
+UserPlayerView : -player: UserPlayer
+UserPlayerView : +UserPlayerView(UserPlayer)
+UserPlayerView : -getColumn(): int
+
+Game : -board: Board
+Game : -turn: Turn
+Game : +Game()
+Game : +reset()
+Game : +getColor(): Color
+Game : +isWinner(): boolean
+Game : +isFinished(): boolean
+Game : +getActivePlayer(): Player
+
+Turn : {static} +NUMBER_PLAYERS: int
+Turn : -players: Player
+Turn : -activePlayer: int
+Turn : -board: Board
+Turn : -Turn(Board)
+Turn : +reset(int userPlayers)
+Turn : +next()
+Turn : +getActivePlayer(): Player
+
+PlayerVisitor : +visit(UserPlayer)
+PlayerVisitor : +visit(RandomMachinePlayer)
+
+Player : -color: Color
+Player : -board: Board
+Player : -Player(Color, Board)
+Player : +getColor(): Color
+Player : +isCompleted(column: int): boolean
+Player : +dropToken(column: int)
+Player : +{abstract}accept(PlayerVisitor)
+
+UserPlayer : +UserPlayer(Color, Board)
+UserPlayer : +accept(Turnview)
+
+MachinePlayer : +MachinePlayer(Color, Board)
+MachinePlayer : +{abstract}accept(TurnView)
+MachinePlayer : +{abstract}getColumn(): int
+
+RandomMachinePlayer : +RandomMachinePlayer(Color, Board)
+RandomMachinePlayer : +accept(TurnView)
+RandomMachinePlayer : +getColumn(): int
+
+Board : -colors[][]: Color
+Board : -lastDrop: Coordinate
+Board : +Board()
+Board : +reset()
+Board : +dropToken(int column, Color)
+Board : +isComplete(int column): boolean
+Board : +isComplete(): boolean
+Board : +isFinished(): boolean
+Board : +isWinner(): boolean
+Board : +isConnect4(line): boolean
+Board : +isOccupied(Coordinate, Color): boolean
+Board : +isEmpty(Coordinate): boolean
+Board : +getColor(Coordinate): Color
+
+Message : {static} +TITLE
+Message : {static} +HORIZONTAL_LINE
+Message : {static} +VERTICAL_LINE
+Message : {static} +TURN
+Message : {static} +ENTER_COLUMN_TO_DROP
+Message : {static} +INVALID_COLUMN
+Message : {static} +COMPLETED_COLUMN
+Message : {static} +PLAYER_WIN
+Message : {static} +PLAYERS_TIED
+Message : {static} +RESUME
+Message : -string
+Message : +constructor(string)
+Message : +write()
+Message : +writeln()
+ 
+Color : +RED
+Color : +YELLOW
+Color : +NULL
+Color : -color: String
+Color : +Color(color: String)
+Color : {static} +get(ordinal: int): Color
+Color : +toString(): String
+
+Line : {static} +LENGTH: int
+Line : -origin: Coordinate
+Line : -coordinates: Coordinate[ ]
+Line : -oppositeDirection: Direction
+Line : +Line(coordinate: Coordinate)
+Line : +set(direction: Direction)
+Line : +shiftOpposite()
+Line : +getCoordinates(): Coordinate[ ]
+
+Direction : +NORTH
+Direction : +NORTH_EAST
+Direction : +EAST
+Direction : +SOUTH_EAST
+Direction : +SOUTH
+Direction : +SOUTH_WEST
+Direction : +WEST
+Direction : +NORTH_WEST
+Direction : -coordinate: Coordinate
+Direction : +Direction(row: int, column: int)
+Direction : +getOpposite(): Direction
+Direction : +getCoordinate(): Coordenate
+Direction : +{static}halfValues(): Direction[ ]
+
+Coordinate : {static} +ORIGIN: Coordinate
+Coordinate : {static} +NUMBER_ROWS: int
+Coordinate : {static} -ROWS: ClosedInterval
+Coordinate : {static} +NUMBER_COLUMNS: int
+Coordinate : {static} -COLUMNS: ClosedInterval
+Coordinate : -row: int
+Coordinate : -column: int
+Coordinate : +Coordinate(row: int, column: int)
+Coordinate : +shifted(coordinate): Coordinate
+Coordinate : +isValid(): boolean
+Coordinate : {static} +isColumnValid(column): boolean
+Coordinate : {static} -isRowValid(row): boolean
+Coordinate : +getRow(): int
+Coordinate : +getColumn(): int
+Coordinate : +equals(coordinate): boolean
+Coordinate : +toString(): boolean
+
+ClosedInterval : -min: int
+ClosedInterval : -max: int
+ClosedInterval : +ClosedInterval(int min, int max)
+ClosedInterval : +isIncluded(int): boolean
+
+YesNoDialog : {static} -AFFIRMATIVE
+YesNoDialog : {static} -NEGATIVE
+YesNoDialog : {static} -SUFFIX
+YesNoDialog : {static} -MESSAGE
+YesNoDialog : -answer
+YesNoDialog : +read()
+YesNoDialog : +isAffirmative()
+YesNoDialog : +isNegative()
+YesNoDialog : +getAnswer()
+
+@enduml
+
+
