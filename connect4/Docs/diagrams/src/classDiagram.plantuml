@@ -33,13 +33,13 @@ GameView *-- TurnView
 GameView *-- BoardView
 PlayerVisitor <|-- TurnView
 TurnView --> Game
-TurnView ..> Message
+
 TurnView ..> PlayerView
 PlayerView <|-- MachinePlayerView
 PlayerView <|-- UserPlayerView
 BoardView --> Game
 BoardView ..> Coordinate
-BoardView ..> Message
+
 
 Turn --> Board
 Turn o-- Player
@@ -48,9 +48,9 @@ Player --> Color
 Player --> Board
 Player <|-- UserPlayer
 Player <|-- MachinePlayer
-Player ..> PlayerVisitor
+
 MachinePlayer <|-- RandomMachinePlayer
-Board ..> Coordinate
+Board --> Coordinate
 Board ..> Line
 Board ..> Direction
 Direction --> Coordinate
