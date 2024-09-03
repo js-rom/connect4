@@ -1,0 +1,123 @@
+@startuml views
+
+class views.GameView
+class views.BoardView
+interface views.PlayerVisitor
+class views.TurnView
+interface views.PlayerView
+class views.MachinePlayerView
+class views.UserPlayerView
+class views.TurnMenu
+abstract class views.TurnOption
+class views.SetRandomMachinePlayerOption
+class views.SetUserPlayerOption
+enum views.Message
+class views.YesNoDialog
+
+GameView *-- TurnView
+GameView *-- BoardView
+TurnView ..> PlayerView
+PlayerView <|-- UserPlayerView
+PlayerView <|-- MachinePlayerView
+TurnOption <|-- SetRandomMachinePlayerOption
+TurnOption <|-- SetUserPlayerOption
+PlayerVisitor <|-- TurnView
+TurnView ..> TurnMenu
+GameView ..> YesNoDialog
+TurnMenu o-- TurnOption
+
+
+class Option as "utils.menu.Option"
+class SecuentialMenu as "utils.menu.SecuentialMenu"
+class Game as "models.Game"
+class Turn as "models.Turn"
+class Coordinate as "Utils.Coordinate"
+class Console as "utils.Console"
+class Player as "models.Player"
+
+TurnOption --|> Option
+TurnMenu --|> SecuentialMenu
+BoardView --> Game
+BoardView ..> Coordinate
+GameView --> Game
+MachinePlayerView *-- Player
+UserPlayerView *-- Player
+TurnView --> Game
+TurnMenu --> Turn
+TurnOption --> Turn
+
+
+GameView : -game: Game
+GameView : -boardView: BoardView
+GameView : -turnView: TurnView
+GameView : +GameView(Game)
+GameView : +playGame()
+GameView : -isResumed()
+
+TurnView : -game: Game
+TurnView : -TurnView(Game)
+TurnView : +resetPlayers()
+TurnView : +dropToken()
+TurnView : +visit(UserPlayer)
+TurnView : +visit(RandomMachinePlayer)
+TurnView : +writeResult()
+
+BoardView : -game: Game
+BoardView : -BoardView(Game)
+BoardView : +writeln()
+BoardView : -writeHorizontal()
+
+PlayerView : +{abstract}dropToken()
+PlayerView : +{abstract}getColumn(): int
+
+MachinePlayerView : -player: MachinePlayer
+MachinePlayerView : +MachinePlayerView(MachinePlayer)
+MachinePlayerView : -getColumn(): int
+
+UserPlayerView : -player: UserPlayer
+UserPlayerView : +UserPlayerView(UserPlayer)
+UserPlayerView : -getColumn(): int
+
+PlayerVisitor : +visit(UserPlayer)
+PlayerVisitor : +visit(RandomMachinePlayer)
+
+Message : {static} +TITLE
+Message : {static} +HORIZONTAL_LINE
+Message : {static} +VERTICAL_LINE
+Message : {static} +TURN
+Message : {static} +ENTER_COLUMN_TO_DROP
+Message : {static} +INVALID_COLUMN
+Message : {static} +COMPLETED_COLUMN
+Message : {static} +PLAYER_WIN
+Message : {static} +PLAYERS_TIED
+Message : {static} +RESUME
+Message : -string
+Message : +constructor(string)
+Message : +write()
+Message : +writeln()
+
+
+YesNoDialog : {static} -AFFIRMATIVE
+YesNoDialog : {static} -NEGATIVE
+YesNoDialog : {static} -SUFFIX
+YesNoDialog : {static} -MESSAGE
+YesNoDialog : -answer
+YesNoDialog : +read()
+YesNoDialog : +isAffirmative()
+YesNoDialog : +isNegative()
+YesNoDialog : +getAnswer()
+
+TurnMenu : +TurnMenu(model: Turn, maxSecuences: int)
+TurnMenu : +addOptions()
+
+TurnOption : -turn: Turn
+TurnOption : +TurnOption(title: String, model: Turn)
+
+SetRandomMachinePlayerOption : +SetRandomMachinePlayerOption(Turn)
+SetRandomMachinePlayerOption : +interact()
+
+SetUserPlayerOption : +SetUserPlayerOption(Turn)
+SetUserPlayerOption : +interact()
+
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml connect4
+
+class connect4.Connect4
+class Game as "models.Game"
+class GameView as "views.GameView"
+
+Connect4 *-- Game
+Connect4 *-- GameView
+
+Connect4 : -game: Game
+Connect4 : -gameView: GameView
+Connect4 : +Connect4()
+Connect4 : + main(String[])
+Connect4 : -playGames()
+
+@enduml

@@ -3,8 +3,10 @@ package views;
 import models.Game;
 import models.PlayerVisitor;
 import models.RandomMachinePlayer;
+import models.Turn;
 import models.UserPlayer;
 import utils.Console;
+import views.menus.TurnMenu;
 
 public class TurnView implements PlayerVisitor {
     private Game game;
@@ -14,8 +16,8 @@ public class TurnView implements PlayerVisitor {
     }
 
     public void resetPlayers() {
-        int userPlayers = Console.getInstance().readInt(Message.NUM_PLAYERS.toString());
-        this.game.reset(userPlayers);
+        this.game.reset();
+        new TurnMenu(this.game.getTurn(), Turn.NUMBER_PLAYERS).interact();
     }
 
     public void dropToken() {

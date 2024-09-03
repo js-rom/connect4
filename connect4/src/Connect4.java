@@ -11,7 +11,7 @@ public class Connect4 {
         this.gameView = new GameView(this.game);
     }
 
-    public void playGames() {
+    private void playGames() {
         this.gameView.playGames();
     }
 
