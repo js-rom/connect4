@@ -2,7 +2,6 @@ package models;
 
 import types.Color;
 import utils.Coordinate;
-import views.TurnView;
 
 public abstract class Player {
     private Color color;
