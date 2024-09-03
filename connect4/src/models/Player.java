@@ -18,6 +18,10 @@ public abstract class Player {
         return this.color;
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
     public boolean isComplete(int column){
         assert 0 <= column && column < Coordinate.NUMBER_COLUMNS;
 
