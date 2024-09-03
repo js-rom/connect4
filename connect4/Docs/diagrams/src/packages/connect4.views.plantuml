@@ -2,7 +2,6 @@
 
 class views.GameView
 class views.BoardView
-interface views.PlayerVisitor
 class views.TurnView
 interface views.PlayerView
 class views.MachinePlayerView
@@ -21,7 +20,7 @@ PlayerView <|-- UserPlayerView
 PlayerView <|-- MachinePlayerView
 TurnOption <|-- SetRandomMachinePlayerOption
 TurnOption <|-- SetUserPlayerOption
-PlayerVisitor <|-- TurnView
+
 TurnView ..> TurnMenu
 GameView ..> YesNoDialog
 TurnMenu o-- TurnOption
@@ -34,6 +33,7 @@ class Turn as "models.Turn"
 class Coordinate as "Utils.Coordinate"
 class Console as "utils.Console"
 class Player as "models.Player"
+interface PlayerVisitor as "models.PlayerVisitor"
 
 TurnOption --|> Option
 TurnMenu --|> SecuentialMenu
@@ -45,6 +45,7 @@ UserPlayerView *-- Player
 TurnView --> Game
 TurnMenu --> Turn
 TurnOption --> Turn
+PlayerVisitor <|-- TurnView
 
 
 GameView : -game: Game

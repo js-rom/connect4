@@ -8,6 +8,7 @@ abstract class models.Player
 class models.UserPlayer
 abstract class models.MachinePlayer
 class models.RandomMachinePlayer
+interface models.PlayerVisitor
 
 enum Color as "types.Color"
 class Direction as "utils.Direction"
@@ -22,6 +23,7 @@ Turn o-- Player
 Turn ..> Color
 Player --> Color
 Player --> Board
+Player ..> PlayerVisitor
 Player <|-- UserPlayer
 Player <|-- MachinePlayer
 MachinePlayer <|-- RandomMachinePlayer
