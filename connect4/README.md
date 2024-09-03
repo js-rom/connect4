@@ -15,23 +15,23 @@
 
 ## connect4 Package
 
-![Package_connect4](./out\Docs\diagrams\src\packages\connect4\connect4.svg)
+![Package_connect4](./out/Docs/diagrams/src/packages/connect4/connect4.svg)
 
 ## connect4.views Package
 
-![Package_connect4.views](./out\Docs\diagrams\src\packages\connect4.views\views.svg)
+![Package_connect4.views](./out/Docs/diagrams/src/packages/connect4.views/views.svg)
 
 ## connect4.models Package
 
-![Package_connect4.models](./out\Docs\diagrams\src\packages\connect4.models\connect4.models.svg)
+![Package_connect4.models](./out/Docs/diagrams/src/packages/connect4.models/connect4.models.svg)
 
 ## connect4.types Package
 
-![Package_connect4.types](./out\Docs\diagrams\src\packages\connect4.types\types.svg)
+![Package_connect4.types](./out/Docs/diagrams/src/packages/connect4.types/types.svg)
 
 ## connect4.views utils
 
-![Package_connect4.utils](./out\Docs\diagrams\src\packages\connect4.utils\utils.svg)
+![Package_connect4.utils](./out/Docs/diagrams/src/packages/connect4.utils/utils.svg)
 
 # Vista de Desarrollo/Implementación
 
