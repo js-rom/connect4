@@ -1,0 +1,99 @@
+@startuml connect4.models
+
+class models.Game
+class models.Board
+class models.Turn
+class models.Line
+abstract class models.Player
+class models.UserPlayer
+abstract class models.MachinePlayer
+class models.RandomMachinePlayer
+
+enum Color as "types.Color"
+class Direction as "utils.Direction"
+class Coordinate as "utils.Coordinate"
+class Coordinate as "utils.Coordinate"
+
+
+Game *-- Board
+Game *-- Turn
+Turn --> Board
+Turn o-- Player
+Turn ..> Color
+Player --> Color
+Player --> Board
+Player <|-- UserPlayer
+Player <|-- MachinePlayer
+MachinePlayer <|-- RandomMachinePlayer
+Board --> Coordinate
+Board ..> Line
+Board ..> Direction
+Direction --> Coordinate
+Direction ..> Coordinate
+Coordinate *-- ClosedInterval
+
+Game : -board: Board
+Game : -turn: Turn
+Game : +Game()
+Game : +reset()
+Game : +getColor(): Color
+Game : +isWinner(): boolean
+Game : +isFinished(): boolean
+Game : +getActivePlayer(): Player
+Game : +getTurn(): Turn
+
+Turn : {static} +NUMBER_PLAYERS: int
+Turn : -players: Player
+Turn : -activePlayer: int
+Turn : -board: Board
+Turn : -Turn(Board)
+Turn : +reset(int userPlayers)
+Turn : +next()
+Turn : +getActivePlayer(): Player
+Turn : +setUserPlayer()
+Turn : +setRandomMachinePlayer()
+Turn : -addPlayer(Player)
+
+Player : -color: Color
+Player : -board: Board
+Player : -Player(Color, Board)
+Player : +getColor(): Color
+Player : +isCompleted(column: int): boolean
+Player : +dropToken(column: int)
+Player : +{abstract}accept(PlayerVisitor)
+
+UserPlayer : +UserPlayer(Color, Board)
+UserPlayer : +accept(Turnview)
+
+MachinePlayer : +MachinePlayer(Color, Board)
+MachinePlayer : +{abstract}accept(TurnView)
+MachinePlayer : +{abstract}getColumn(): int
+
+RandomMachinePlayer : +RandomMachinePlayer(Color, Board)
+RandomMachinePlayer : +accept(TurnView)
+RandomMachinePlayer : +getColumn(): int
+
+Board : -colors[][]: Color
+Board : -lastDrop: Coordinate
+Board : +Board()
+Board : +reset()
+Board : +dropToken(int column, Color)
+Board : +isComplete(int column): boolean
+Board : +isComplete(): boolean
+Board : +isFinished(): boolean
+Board : +isWinner(): boolean
+Board : +isConnect4(line): boolean
+Board : +isOccupied(Coordinate, Color): boolean
+Board : +isEmpty(Coordinate): boolean
+Board : +getColor(Coordinate): Color
+
+Line : {static} +LENGTH: int
+Line : -origin: Coordinate
+Line : -coordinates: Coordinate[ ]
+Line : -oppositeDirection: Direction
+Line : +Line(coordinate: Coordinate)
+Line : +set(direction: Direction)
+Line : +shiftOpposite()
+Line : +getCoordinates(): Coordinate[ ]
+
+@enduml

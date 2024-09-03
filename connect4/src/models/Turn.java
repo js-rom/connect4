@@ -7,25 +7,37 @@ public class Turn {
     private Player[] players;
     private int activePlayer;
     private Board board;
+    private int playersSize;
 
     public Turn(Board board) {
         this.board = board;
         this.players = new Player[Turn.NUMBER_PLAYERS];
+        this.playersSize = 0;
     }
 
-    public void reset(int userPlayers) {
-        assert 0 <= userPlayers && userPlayers <= Turn.NUMBER_PLAYERS;
-
-        for (int i = 0; i < Turn.NUMBER_PLAYERS; i++) {
-            this.players[i] = i < userPlayers ? new UserPlayer(Color.get(i), this.board)
-                    : new RandomMachinePlayer(Color.get(i), this.board);
-        }
+    public void reset() {
+        this.playersSize = 0;
         this.activePlayer = 0;
 
     }
 
+    public void setUserPlayer() {
+        this.addPlayer(new UserPlayer(Color.get(playersSize), this.board));
+    }
+
+    public void setRandomMachinePlayer() {
+        this.addPlayer(new RandomMachinePlayer(Color.get(playersSize), this.board));
+    }
+
+    private void addPlayer(Player player) {
+        assert this.playersSize < Turn.NUMBER_PLAYERS;
+        this.players[playersSize] = player;
+        playersSize++;
+    }
+
     public void next() {
         assert !this.board.isFinished();
+        assert this.playersSize == Turn.NUMBER_PLAYERS;
 
         this.activePlayer = (this.activePlayer + 1) % Turn.NUMBER_PLAYERS;
 

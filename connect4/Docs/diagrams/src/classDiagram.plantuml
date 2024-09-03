@@ -1,28 +1,55 @@
 @startuml
-
-class Connect4
-class Game
-class GameView
-class BoardView
-interface PlayerVisitor
-class TurnView
-interface PlayerView
-class MachinePlayerView
-class UserPlayerView
-class ClosedInterval
+class models.Game
 enum Color
-class Coordinate
-enum Direction
-class Message
-class Line
-class Board
-abstract class Player
-class UserPlayer
-abstract class MachinePlayer
-class RandomMachinePlayer 
-class Turn
-class YesNoDialog
-class Console
+@enduml
+
+@startuml
+
+class models.Game
+class models.Board
+class models.Turn
+class models.Line
+abstract class models.Player
+class models.UserPlayer
+abstract class models.MachinePlayer
+class models.RandomMachinePlayer
+
+class views.Connect4
+class views.GameView
+class views.BoardView
+interface views.PlayerVisitor
+class views.TurnView
+interface views.PlayerView
+class views.MachinePlayerView
+class views.UserPlayerView
+class views.TurnMenu
+class views.TurnOption
+class views.setRandomMachinePlayerOption
+class views.setUserPlayerOption
+enum views.Message
+class views.YesNoDialog
+enum types.Color
+enum utils.Direction
+class utils.ClosedInterval
+class utils.Coordinate
+class utils.Console
+
+abstract class utils.menu.Option
+abstract class utils.menu.DynamicMenu
+abstract class utils.menu.IterativeMenu
+abstract class utils.menu.Menu
+abstract class utils.menu.QuitMenu
+abstract class utils.menu.SecuentialMenu
+
+utils.menu.Menu <|-- utils.menu.SecuentialMenu
+utils.menu.Menu <|-- utils.menu.QuitMenu
+utils.menu.IterativeMenu  <|-- utils.menu.DynamicMenu
+utils.menu.QuitMenu <|-- utils.menu.IterativeMenu
+
+utils.menu.SecuentialMenu <|-- views.TurnMenu
+utils.menu.Option <|-- views.TurnOption
+views.TurnOption <|-- views.SetRandomMachinePlayerOption
+views.TurnOption <|-- views.SetUserPlayerOption
 
 Connect4 *-- Game
 Connect4 *-- GameView
@@ -35,6 +62,7 @@ PlayerVisitor <|-- TurnView
 TurnView --> Game
 
 TurnView ..> PlayerView
+TurnView ..> TurnMenu
 PlayerView <|-- MachinePlayerView
 PlayerView <|-- UserPlayerView
 BoardView --> Game
@@ -48,7 +76,6 @@ Player --> Color
 Player --> Board
 Player <|-- UserPlayer
 Player <|-- MachinePlayer
-
 MachinePlayer <|-- RandomMachinePlayer
 Board --> Coordinate
 Board ..> Line
@@ -57,11 +84,12 @@ Direction --> Coordinate
 Direction ..> Coordinate
 Coordinate *-- ClosedInterval
 
+
 Connect4 : -game{}
 Connect4 : -gameView{}
 Connect4 : +Connect4()
 Connect4 : + main(String[])
-Connect4 : +playGames()
+Connect4 : -playGames()
 
 GameView : -game: Game
 GameView : -boardView: BoardView
@@ -102,6 +130,7 @@ Game : +getColor(): Color
 Game : +isWinner(): boolean
 Game : +isFinished(): boolean
 Game : +getActivePlayer(): Player
+Game : +getTurn(): Turn
 
 Turn : {static} +NUMBER_PLAYERS: int
 Turn : -players: Player
@@ -111,6 +140,9 @@ Turn : -Turn(Board)
 Turn : +reset(int userPlayers)
 Turn : +next()
 Turn : +getActivePlayer(): Player
+Turn : +setUserPlayer()
+Turn : +setRandomMachinePlayer()
+Turn : -addPlayer(Player)
 
 PlayerVisitor : +visit(UserPlayer)
 PlayerVisitor : +visit(RandomMachinePlayer)
@@ -162,7 +194,7 @@ Message : -string
 Message : +constructor(string)
 Message : +write()
 Message : +writeln()
- 
+
 Color : +RED
 Color : +YELLOW
 Color : +NULL
@@ -225,6 +257,8 @@ YesNoDialog : +read()
 YesNoDialog : +isAffirmative()
 YesNoDialog : +isNegative()
 YesNoDialog : +getAnswer()
+
+
 
 @enduml
 

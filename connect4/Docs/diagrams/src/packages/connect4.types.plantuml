@@ -1,0 +1,13 @@
+@startuml types
+
+enum types.Color
+
+Color : +RED
+Color : +YELLOW
+Color : +NULL
+Color : -color: String
+Color : +Color(color: String)
+Color : {static} +get(ordinal: int): Color
+Color : +toString(): String
+
+@enduml

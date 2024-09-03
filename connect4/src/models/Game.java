@@ -13,10 +13,9 @@ public class Game {
         this.turn = new Turn(this.board);
     }
 
-    public void reset(int userplayers) {
-        assert 0 <= userplayers && userplayers <= Turn.NUMBER_PLAYERS;
+    public void reset() {
         this.board.reset();
-        this.turn.reset(userplayers);
+        this.turn.reset();
     }
 
     public Color getColor(Coordinate coordinate) {
@@ -42,6 +41,10 @@ public class Game {
 
     public void next() {
         this.turn.next();
+    }
+
+    public Turn getTurn() {
+        return this.turn;
     }
 
 }

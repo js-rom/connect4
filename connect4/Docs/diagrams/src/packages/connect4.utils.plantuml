@@ -1,0 +1,99 @@
+@startuml utils
+
+enum utils.Direction
+class utils.ClosedInterval
+class utils.Coordinate
+class utils.Console
+
+abstract class utils.menu.Option
+abstract class utils.menu.DynamicMenu
+abstract class utils.menu.IterativeMenu
+abstract class utils.menu.Menu
+abstract class utils.menu.QuitMenu
+abstract class utils.menu.SecuentialMenu
+class utils.menu.QuitOption
+
+Menu <|-- SecuentialMenu
+Menu <|-- QuitMenu
+Menu *-- Option
+IterativeMenu  <|-- DynamicMenu
+QuitMenu <|-- IterativeMenu
+Option <|-- QuitOption
+QuitMenu *-- QuitOption
+
+Option : #title
+Option : Option(title)
+Option : {abstract} +interact()
+Option : #showTitle(index)
+Option : #getTitle()
+
+QuitOption : -executed
+QuitOption : +QuitOption()
+QuitOption : +interact() 
+QuitOption : #isExecuted()
+
+Menu : -title
+Menu : -options
+Menu : -MAX
+Menu : +Menu(title)
+Menu : +interact()
+Menu : {abstract} #addOptions()
+Menu : #interact_()
+Menu : #showTitles()
+Menu : -showTitle()
+Menu : #execChoosedOption()
+Menu : #add(option)
+Menu : #removeOptions()
+Menu : #hasOption(option)
+
+QuitMenu : #quitOption;
+QuitMenu : +QuitMenu(title)
+QuitMenu : #showTitles()
+QuitMenu : #isExecutedquitOption()
+
+IterativeMenu : +IterativeMenu(title) 
+IterativeMenu : +interact()
+
+DynamicMenu : +DynamicMenu(title) 
+DynamicMenu : +interact()
+
+SecuentialMenu : +SecuentialMenu(title) 
+SecuentialMenu : #interact_()
+
+Direction : +NORTH
+Direction : +NORTH_EAST
+Direction : +EAST
+Direction : +SOUTH_EAST
+Direction : +SOUTH
+Direction : +SOUTH_WEST
+Direction : +WEST
+Direction : +NORTH_WEST
+Direction : -coordinate: Coordinate
+Direction : +Direction(row: int, column: int)
+Direction : +getOpposite(): Direction
+Direction : +getCoordinate(): Coordenate
+Direction : +{static}halfValues(): Direction[ ]
+
+Coordinate : {static} +ORIGIN: Coordinate
+Coordinate : {static} +NUMBER_ROWS: int
+Coordinate : {static} -ROWS: ClosedInterval
+Coordinate : {static} +NUMBER_COLUMNS: int
+Coordinate : {static} -COLUMNS: ClosedInterval
+Coordinate : -row: int
+Coordinate : -column: int
+Coordinate : +Coordinate(row: int, column: int)
+Coordinate : +shifted(coordinate): Coordinate
+Coordinate : +isValid(): boolean
+Coordinate : {static} +isColumnValid(column): boolean
+Coordinate : {static} -isRowValid(row): boolean
+Coordinate : +getRow(): int
+Coordinate : +getColumn(): int
+Coordinate : +equals(coordinate): boolean
+Coordinate : +toString(): boolean
+
+ClosedInterval : -min: int
+ClosedInterval : -max: int
+ClosedInterval : +ClosedInterval(int min, int max)
+ClosedInterval : +isIncluded(int): boolean
+
+@enduml
