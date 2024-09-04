@@ -77,9 +77,9 @@ BoardView : -writeHorizontal()
 PlayerView : +{abstract}dropToken()
 PlayerView : {abstract} #getColumn(): int
 
-MachinePlayerView : #title: String
+MachinePlayerView : -title: String
 MachinePlayerView : -player: MachinePlayer
-MachinePlayerView : +MachinePlayerView(MachinePlayer)
+MachinePlayerView : +MachinePlayerView(MachinePlayer, title: String)
 MachinePlayerView : -getColumn(): int
 MachinePlayerView : +writeChoosenColumn()
 MachinePlayerView : +dropToken()

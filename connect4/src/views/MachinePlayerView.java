@@ -4,11 +4,12 @@ import models.MachinePlayer;
 import utils.Console;
 
 public abstract class MachinePlayerView extends PlayerView {
-    protected String title;
+    private String title;
     private MachinePlayer player;
 
-    public MachinePlayerView(MachinePlayer player) {
+    public MachinePlayerView(MachinePlayer player, String title) {
         this.player = player;
+        this.title = title;
     }
 
     public int getColumn() {
