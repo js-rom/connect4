@@ -2,7 +2,6 @@ package models;
 
 import types.Color;
 import utils.Coordinate;
-import views.TurnView;
 
 public abstract class Player {
     private Color color;
@@ -17,6 +16,10 @@ public abstract class Player {
 
     public Color getColor(){
         return this.color;
+    }
+
+    public Board getBoard() {
+        return this.board;
     }
 
     public boolean isComplete(int column){

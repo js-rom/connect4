@@ -1,15 +1,17 @@
-@startuml views
+@startuml connect4.views
 
 class views.GameView
 class views.BoardView
-interface views.PlayerVisitor
 class views.TurnView
-interface views.PlayerView
-class views.MachinePlayerView
+abstract class views.PlayerView
+abstract class views.MachinePlayerView
+class views.MinMaxMachinePlayerView
+class views.RandomMachinePlayerView
 class views.UserPlayerView
 class views.TurnMenu
 abstract class views.TurnOption
 class views.SetRandomMachinePlayerOption
+class views.SetMinMaxMachinePlayerOption
 class views.SetUserPlayerOption
 enum views.Message
 class views.YesNoDialog
@@ -19,11 +21,13 @@ GameView *-- BoardView
 TurnView ..> PlayerView
 PlayerView <|-- UserPlayerView
 PlayerView <|-- MachinePlayerView
+MachinePlayerView <|-- MinMaxMachinePlayerView
+MachinePlayerView <|-- RandomMachinePlayerView
 TurnOption <|-- SetRandomMachinePlayerOption
+TurnOption <|-- SetMinMaxMachinePlayerOption
 TurnOption <|-- SetUserPlayerOption
-PlayerVisitor <|-- TurnView
+
 TurnView ..> TurnMenu
-GameView ..> YesNoDialog
 TurnMenu o-- TurnOption
 
 
@@ -34,6 +38,7 @@ class Turn as "models.Turn"
 class Coordinate as "Utils.Coordinate"
 class Console as "utils.Console"
 class Player as "models.Player"
+interface PlayerVisitor as "models.PlayerVisitor"
 
 TurnOption --|> Option
 TurnMenu --|> SecuentialMenu
@@ -45,6 +50,7 @@ UserPlayerView *-- Player
 TurnView --> Game
 TurnMenu --> Turn
 TurnOption --> Turn
+PlayerVisitor <|-- TurnView
 
 
 GameView : -game: Game
@@ -60,6 +66,7 @@ TurnView : +resetPlayers()
 TurnView : +dropToken()
 TurnView : +visit(UserPlayer)
 TurnView : +visit(RandomMachinePlayer)
+TurnView : +visit(MinMaxMachinePlayer)
 TurnView : +writeResult()
 
 BoardView : -game: Game
@@ -68,18 +75,22 @@ BoardView : +writeln()
 BoardView : -writeHorizontal()
 
 PlayerView : +{abstract}dropToken()
-PlayerView : +{abstract}getColumn(): int
+PlayerView : {abstract} #getColumn(): int
 
+MachinePlayerView : #title: String
 MachinePlayerView : -player: MachinePlayer
 MachinePlayerView : +MachinePlayerView(MachinePlayer)
 MachinePlayerView : -getColumn(): int
+MachinePlayerView : +writeChoosenColumn()
+MachinePlayerView : +dropToken()
+
+MinMaxMachinePlayerView : +MinMaxMachinePlayerView(MachinePlayer)
+
+RandomMachinePlayerView : +RandomMachinePlayerView(MachinePlayer)
 
 UserPlayerView : -player: UserPlayer
 UserPlayerView : +UserPlayerView(UserPlayer)
 UserPlayerView : -getColumn(): int
-
-PlayerVisitor : +visit(UserPlayer)
-PlayerVisitor : +visit(RandomMachinePlayer)
 
 Message : {static} +TITLE
 Message : {static} +HORIZONTAL_LINE
@@ -91,6 +102,7 @@ Message : {static} +COMPLETED_COLUMN
 Message : {static} +PLAYER_WIN
 Message : {static} +PLAYERS_TIED
 Message : {static} +RESUME
+Message : {static} +CHOOSEN_COLUMN
 Message : -string
 Message : +constructor(string)
 Message : +write()

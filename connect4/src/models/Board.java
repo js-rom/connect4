@@ -1,6 +1,7 @@
 package models;
 
 import types.Color;
+import utils.Console;
 import utils.Coordinate;
 import utils.Direction;
 
@@ -54,14 +55,13 @@ public class Board {
     }
 
     public boolean isFinished() {
-
         return this.isComplete() || this.isWinner();
     }
 
     public boolean isWinner() { // TODO me parece que el Board tiene demasiado conocimiento de como se implmenta
                                 // line, analizar crear clase que integre a line y direction
 
-        if (this.lastDrop == null) {
+        if (this.lastDrop == null ) {
             return false;
         }
         Line line = new Line(this.lastDrop);
@@ -85,6 +85,9 @@ public class Board {
             if (!coordinates[i].isValid()) {
                 return false;
             }
+            if (!Color.isValid(this.getColor(coordinates[i]))) {
+                return false;
+            }
             if (i > 0 && this.getColor(coordinates[i - 1]) != this.getColor(coordinates[i])) {
                 return false;
             }
@@ -100,13 +103,58 @@ public class Board {
 
     public boolean isEmpty(Coordinate coordinate) {
         assert coordinate != null;
-
         return this.isOccupied(coordinate, Color.NULL);
+    }
+
+    public boolean isEmpty(int Column) {
+        assert 0 <= Column && Column <= Coordinate.NUMBER_COLUMNS;
+        return this.isEmpty(new Coordinate(0, Column));
     }
 
     public Color getColor(Coordinate coordinate) {
         assert coordinate != null;
 
         return this.colors[coordinate.getRow()][coordinate.getColumn()];
+    }
+
+    public Color getLastDropColor() {
+        return this.getColor(this.lastDrop);
+    }
+
+    private void setColor(Coordinate coordinate, Color color) {
+        this.colors[coordinate.getRow()][coordinate.getColumn()] = color;
+    }
+
+    public int[] getUncompletedColumns() {
+        assert !this.isComplete();
+
+        int numberImcopletedColumns = 0;
+        for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
+            if (!this.isComplete(j)) {
+                numberImcopletedColumns++;
+            }
+        }
+        int[] uncompletedColumns = new int[numberImcopletedColumns];
+        int index = 0;
+        for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
+            if (!this.isComplete(j)) {
+                uncompletedColumns[index] = j;
+                index++;
+            }
+        }
+        return uncompletedColumns;
+    }
+
+    public void removeTop(int column) {
+        this.setColor(this.getTop(column), Color.NULL);
+    }
+
+    private Coordinate getTop(int column) {
+        Coordinate coordinate = new Coordinate(Coordinate.NUMBER_ROWS - 1, column);
+        while (this.isEmpty(coordinate)) {
+            coordinate = coordinate.shifted(Direction.SOUTH.getCoordinate());
+            //coordinate = Direction.SOUTH.next(coordinate);
+        }
+        return coordinate;
     }
 }

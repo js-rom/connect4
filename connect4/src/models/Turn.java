@@ -29,6 +29,10 @@ public class Turn {
         this.addPlayer(new RandomMachinePlayer(Color.get(playersSize), this.board));
     }
 
+    public void setMinMaxMachinePlayer() {
+        this.addPlayer(new MinMaxMachinePlayer(Color.get(playersSize), this.board));
+    }
+
     private void addPlayer(Player player) {
         assert this.playersSize < Turn.NUMBER_PLAYERS;
         this.players[playersSize] = player;

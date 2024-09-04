@@ -40,6 +40,7 @@ public class Game {
     }
 
     public void next() {
+        assert !this.isFinished();
         this.turn.next();
     }
 

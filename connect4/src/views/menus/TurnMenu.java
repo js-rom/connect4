@@ -2,6 +2,7 @@ package views.menus;
 
 import models.Turn;
 import utils.menu.SecuentialMenu;
+import views.menus.options.SetMinMaxMachinePlayerOption;
 import views.menus.options.SetRandomMachinePlayerOption;
 import views.menus.options.SetUserPlayerOption;
 
@@ -18,6 +19,7 @@ public class TurnMenu extends SecuentialMenu {
     public void addOptions() {
         this.add(new SetUserPlayerOption(this.model));
         this.add(new SetRandomMachinePlayerOption(this.model));
+        this.add(new SetMinMaxMachinePlayerOption(this.model));
     }
 
     

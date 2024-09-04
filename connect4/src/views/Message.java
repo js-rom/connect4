@@ -14,7 +14,8 @@ public enum Message {
     COMPLETED_COLUMN("Invalid column!!! It's completed"),
     PLAYER_WIN("#colorS WIN!!! : -)"),
     PLAYERS_TIED("TIED!!!"),
-    RESUME("Do you want to continue");
+    RESUME("Do you want to continue"),
+    CHOOSEN_COLUMN("#METHOD choosen column: #COLUMN");
 
     private String string;
 

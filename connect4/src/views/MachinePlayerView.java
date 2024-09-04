@@ -3,8 +3,8 @@ package views;
 import models.MachinePlayer;
 import utils.Console;
 
-public class MachinePlayerView implements PlayerView {
-
+public abstract class MachinePlayerView extends PlayerView {
+    protected String title;
     private MachinePlayer player;
 
     public MachinePlayerView(MachinePlayer player) {
@@ -13,12 +13,18 @@ public class MachinePlayerView implements PlayerView {
 
     public int getColumn() {
         int column = this.player.getColumn();
-        Console.getInstance().writeln("Columna escogida aleatoriamente: " + (column + 1));
+        this.writeChoosenColumn(column);
         return column;
     }
+
+    private void  writeChoosenColumn(int column) {
+        String message = Message.CHOOSEN_COLUMN.toString();
+        message = message.replace("#METHOD", this.title);
+        message = message.replace("#COLUMN", String.valueOf(column + 1));
+        Console.getInstance().writeln(message);
+    };
 
     public void dropToken() {
         this.player.dropToken(this.getColumn());
     }
-
 }

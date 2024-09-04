@@ -1,6 +1,7 @@
 package views;
 
 import models.Game;
+import models.MinMaxMachinePlayer;
 import models.PlayerVisitor;
 import models.RandomMachinePlayer;
 import models.Turn;
@@ -24,7 +25,9 @@ public class TurnView implements PlayerVisitor {
         assert !this.game.isFinished();
 
         this.game.getActivePlayer().accept(this);
-        this.game.next();
+        if (!this.game.isFinished()) {
+            this.game.next();
+        }
 
     }
 
@@ -37,7 +40,13 @@ public class TurnView implements PlayerVisitor {
     public void visit(RandomMachinePlayer randomMachinePlayer) {
         assert randomMachinePlayer != null;
         
-        new MachinePlayerView(randomMachinePlayer).dropToken();
+        new RandomMachinePlayerView(randomMachinePlayer).dropToken();
+    }
+
+    public void visit(MinMaxMachinePlayer minMaxMachinePlayer) {
+        assert minMaxMachinePlayer != null;
+        
+        new MinMaxMachinePlayerView(minMaxMachinePlayer).dropToken();
     }
 
     public void writeResult() {

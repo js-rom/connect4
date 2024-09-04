@@ -4,7 +4,7 @@ import utils.Coordinate;
 import models.UserPlayer;
 import utils.Console;
 
-public class UserPlayerView implements PlayerView {
+public class UserPlayerView extends PlayerView {
 
     private UserPlayer player;
 
