@@ -7,7 +7,7 @@
 | basic | documentView - basic |
 | machine | [documentView - machine - doubleDispatching](https://github.com/js-rom/connect4/tree/v.1.0) |
 | machine | [documentView - machine - Menu](https://github.com/js-rom/connect4/tree/v.1.1) |
-| machine | documentView - machine - IA Player Open Close |
+| machine | [documentView - machine - IA Player Open Close](https://github.com/js-rom/connect4/tree/v.1.2) |
 | machine | documentView - machine - prototype |
 | graphics | documentView - withoutFactoryMethod |
 | graphics | documentView - withFactoryMethod |

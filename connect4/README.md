@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.1 documentView - machine - Menu
+# Connect 4. Solution v.1.2 documentView - machine - IA Player Open Close
 
 # Requisitos 1. *Machine*
 
