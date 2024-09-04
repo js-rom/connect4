@@ -1,7 +1,6 @@
 package views;
 
 import models.MachinePlayer;
-import utils.Console;
 
 public class RandomMachinePlayerView extends MachinePlayerView {
 

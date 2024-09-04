@@ -3,7 +3,7 @@ package views;
 import models.MachinePlayer;
 import utils.Console;
 
-public abstract class MachinePlayerView implements PlayerView {
+public abstract class MachinePlayerView extends PlayerView {
     protected String title;
     private MachinePlayer player;
 
@@ -17,7 +17,7 @@ public abstract class MachinePlayerView implements PlayerView {
         return column;
     }
 
-    public void  writeChoosenColumn(int column) {
+    private void  writeChoosenColumn(int column) {
         String message = Message.CHOOSEN_COLUMN.toString();
         message = message.replace("#METHOD", this.title);
         message = message.replace("#COLUMN", String.valueOf(column + 1));

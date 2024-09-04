@@ -1,8 +1,8 @@
 package views;
 
-public interface PlayerView {
+public abstract class PlayerView {
 
-    public int getColumn();
-    public void dropToken();
+    protected abstract int getColumn();
+    public abstract void dropToken();
 
 }
