@@ -19,7 +19,7 @@
 
 ## connect4.views Package
 
-![Package_connect4.views](./out/Docs/diagrams/src/packages/connect4.views/views.svg)
+![Package_connect4.views](./out/Docs/diagrams/src/packages/connect4.views/connect4.views.svg)
 
 ## connect4.models Package
 
@@ -27,7 +27,7 @@
 
 ## connect4.types Package
 
-![Package_connect4.types](./out/Docs/diagrams/src/packages/connect4.types/types.svg)
+![Package_connect4.types](./out/Docs/diagrams/src/packages/connect4.types/connect4.types.svg)
 
 ## connect4.views utils
 
