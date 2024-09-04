@@ -9,26 +9,29 @@ class models.UserPlayer
 abstract class models.MachinePlayer
 class models.RandomMachinePlayer
 interface models.PlayerVisitor
-
-enum Color as "types.Color"
-class Direction as "utils.Direction"
-class Coordinate as "utils.Coordinate"
-class Coordinate as "utils.Coordinate"
-
+class models.MinMaxMachinePlayer
 
 Game *-- Board
 Game *-- Turn
 Turn --> Board
 Turn o-- Player
-Turn ..> Color
-Player --> Color
 Player --> Board
 Player ..> PlayerVisitor
 Player <|-- UserPlayer
 Player <|-- MachinePlayer
 MachinePlayer <|-- RandomMachinePlayer
-Board --> Coordinate
+MachinePlayer <|-- MinMaxMachinePlayer
 Board ..> Line
+
+enum Color as "types.Color"
+class Direction as "utils.Direction"
+class Coordinate as "utils.Coordinate"
+class Coordinate as "utils.Coordinate"
+class ClosedInterval as "utils.ClosedInterval"
+
+Turn ..> Color
+Player --> Color
+Board --> Coordinate
 Board ..> Direction
 Direction --> Coordinate
 Direction ..> Coordinate
@@ -54,12 +57,18 @@ Turn : +next()
 Turn : +getActivePlayer(): Player
 Turn : +setUserPlayer()
 Turn : +setRandomMachinePlayer()
+Turn : +setMinMaxPlayer()
 Turn : -addPlayer(Player)
+
+PlayerVisitor : +visit(UserPlayer)
+PlayerVisitor : +visit(RandomMachinelayer)
+PlayerVisitor : +visit(MinMaxMachinePlayer)
 
 Player : -color: Color
 Player : -board: Board
 Player : -Player(Color, Board)
 Player : +getColor(): Color
+Player : +getBoard(): Board
 Player : +isCompleted(column: int): boolean
 Player : +dropToken(column: int)
 Player : +{abstract}accept(PlayerVisitor)
@@ -75,6 +84,18 @@ RandomMachinePlayer : +RandomMachinePlayer(Color, Board)
 RandomMachinePlayer : +accept(TurnView)
 RandomMachinePlayer : +getColumn(): int
 
+MinMaxMachinePlayer : {static} -MAX_STEPS
+MinMaxMachinePlayer : {static} -MAX_COST
+MinMaxMachinePlayer : {static} -OTHER_COST
+MinMaxMachinePlayer : {static} -MIN_COST
+MinMaxMachinePlayer : +MinMaxMachinePlayer(Color, Board)
+MinMaxMachinePlayer : +accept(PlayerVisitor)
+MinMaxMachinePlayer : +getColumn(): int
+MinMaxMachinePlayer : -getMinCost(steps: int): int
+MinMaxMachinePlayer : -getMaxCost(steps: int): int
+MinMaxMachinePlayer : -isEnd(steps: int): boolean
+MinMaxMachinePlayer : -getCost(): int
+
 Board : -colors[][]: Color
 Board : -lastDrop: Coordinate
 Board : +Board()
@@ -87,7 +108,14 @@ Board : +isWinner(): boolean
 Board : +isConnect4(line): boolean
 Board : +isOccupied(Coordinate, Color): boolean
 Board : +isEmpty(Coordinate): boolean
+Board : +isEmpty(column: int): boolean
 Board : +getColor(Coordinate): Color
+Board : +getLastDropColor(): Color
+Board : -setColor(Coordinate, Color)
+Board : +getUncompletedColumn(): int[ ]
+Board : +removeTop(column: int)
+Board : -getTop(column: int): Coordinate
+
 
 Line : {static} +LENGTH: int
 Line : -origin: Coordinate
