@@ -2,13 +2,13 @@ package connect4.views;
 
 import connect4.models.Game;
 
-public class GameView {
+public class GameView extends utils.framework.View<Game> {
     private Game game;
     private BoardView boardView;
     private TurnView turnView;
 
     public GameView(Game game) {
-        assert game != null;
+        super(game);
         this.game = game;
         this.boardView = new BoardView(this.game);
         this.turnView = new TurnView(this.game);
@@ -31,7 +31,7 @@ public class GameView {
         this.turnView.writeResult();
     }
 
-    private boolean isResumed() {
+    public boolean isResumed() {
         YesNoDialog yesNoDialog = new YesNoDialog();
         yesNoDialog.read(Message.RESUME.toString());
         if (yesNoDialog.isAffirmative()) {

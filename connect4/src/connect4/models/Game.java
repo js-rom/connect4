@@ -3,7 +3,7 @@ package connect4.models;
 import connect4.types.Color;
 import utils.Coordinate;
 
-public class Game {
+public class Game implements utils.framework.Game {
 
     private Board board;
     private Turn turn;

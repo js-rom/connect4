@@ -1,22 +1,16 @@
 package connect4;
 import connect4.models.Game;
 import connect4.views.GameView;
+import utils.framework.App;
 
-public class Connect4 {
-
-    private Game game;
-    private GameView gameView;
+public class Connect4 extends App<Game, GameView> {
 
     public Connect4() {
-        this.game = new Game();
-        this.gameView = new GameView(this.game);
-    }
-
-    private void playGames() {
-        this.gameView.playGames();
+        this.game = new Game();;
+        this.view = new GameView(this.game);
     }
 
     public static void main(String[] args) throws Exception {
-        new Connect4().playGames();
+        new Connect4().play();
     }
 }
