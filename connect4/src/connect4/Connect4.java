@@ -6,7 +6,7 @@ import utils.framework.App;
 public class Connect4 extends App<Game, GameView> {
 
     public Connect4() {
-        this.game = new Game();;
+        this.game = new Game();
         this.view = new GameView(this.game);
     }
 
