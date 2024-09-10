@@ -6,12 +6,14 @@ public class GameView {
     private Game game;
     private BoardView boardView;
     private TurnView turnView;
+    PlayerViewPrototypeRegistry playerViewRegistry;
 
     public GameView(Game game) {
         assert game != null;
         this.game = game;
         this.boardView = new BoardView(this.game);
-        this.turnView = new TurnView(this.game);
+        this.playerViewRegistry = new PlayerViewPrototypeRegistry();
+        this.turnView = new TurnView(this.game, this.playerViewRegistry);
     }
 
     public void playGames() {

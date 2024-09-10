@@ -33,9 +33,9 @@ public abstract class MachinePlayerView extends PlayerView {
         this.player.dropToken(this.getColumn());
     }
 
-    protected String getTitle() {
+ /*    protected String getTitle() {
         return title;
-    }
+    } */
 
     protected MachinePlayer getPlayer() {
         return player;

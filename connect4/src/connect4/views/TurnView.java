@@ -9,9 +9,11 @@ import connect4.views.menus.TurnMenu;
 
 public class TurnView  {
     private Game game;
+    private PlayerViewPrototypeRegistry playerViewPrototypeRegistry;
 
-    TurnView(Game game) {
+    TurnView(Game game, PlayerViewPrototypeRegistry playerViewPrototypeRegistry) {
         this.game = game;
+        this.playerViewPrototypeRegistry = playerViewPrototypeRegistry;
     }
 
     public void resetPlayers() {
@@ -22,11 +24,10 @@ public class TurnView  {
     public void dropToken() {
         assert !this.game.isFinished();
 
-        PlayerViewPrototypeRegistry playerViewRegistry = new PlayerViewPrototypeRegistry(); //crear vista sin player
         Player activePlayer =  this.game.getActivePlayer();
         PlayerType playerType =  activePlayer.getType();
-        PlayerView playerView = new PlayerViewPrototypeDirector().get(playerViewRegistry, playerType);
-        playerView.setPlayer(activePlayer);  // setear player a la vista antes de usarla
+        PlayerView playerView = new PlayerViewPrototypeDirector().get(this.playerViewPrototypeRegistry, playerType);
+        playerView.setPlayer(activePlayer);
         Message.TURN.write();
         Console.getInstance().writeln(activePlayer.getColor().toString());
         playerView.dropToken();
