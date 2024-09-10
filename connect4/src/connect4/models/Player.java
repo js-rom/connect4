@@ -1,6 +1,7 @@
 package connect4.models;
 
 import connect4.types.Color;
+import connect4.types.PlayerType;
 import utils.Coordinate;
 
 public abstract class Player {
@@ -35,5 +36,5 @@ public abstract class Player {
         this.board.dropToken(column, this.color);
     }
 
-    public abstract void accept(PlayerVisitor visitor);
+    public abstract PlayerType getType();
 }

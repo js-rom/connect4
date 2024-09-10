@@ -8,7 +8,5 @@ public abstract class MachinePlayer extends Player {
         super(color, board);
     }
 
-    public abstract void accept(PlayerVisitor visitor);
-
     public abstract int getColumn();
 }

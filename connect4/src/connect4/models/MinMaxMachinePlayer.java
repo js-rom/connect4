@@ -1,6 +1,7 @@
 package connect4.models;
 
 import connect4.types.Color;
+import connect4.types.PlayerType;
 
 public class MinMaxMachinePlayer extends MachinePlayer {
 
@@ -13,8 +14,8 @@ public class MinMaxMachinePlayer extends MachinePlayer {
         super(color, board);
     }
 
-    public void accept(PlayerVisitor visitor) {
-        visitor.visit(this);
+    public PlayerType getType() {
+        return PlayerType.MIN_MAX_MACHINE_PLAYER;
     }
 
     public int getColumn() {
@@ -30,7 +31,6 @@ public class MinMaxMachinePlayer extends MachinePlayer {
                 bestColumn = column;
             }
         }
-        // console.writeln(`Inteligentemente en la columna: ${bestColumn}`);
         return bestColumn;
     }
 

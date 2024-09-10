@@ -4,7 +4,16 @@ import connect4.models.MachinePlayer;
 
 public class MinMaxMachinePlayerView extends MachinePlayerView {
 
+    public MinMaxMachinePlayerView() {
+        super("IA");
+    }
+
     public MinMaxMachinePlayerView(MachinePlayer player) {
-        super(player, "IA");
+        this();
+        this.setPlayer(player);
+    }
+
+    public PlayerView copy() {
+        return new MinMaxMachinePlayerView(this.getPlayer());
     }
 }
