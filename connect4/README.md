@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.2 documentView - machine - IA Player Open Close
+# Connect 4. Solution v.1.3 documentView - machine - prototype
 
 # Requisitos 1. *Machine*
 
@@ -9,25 +9,25 @@
 
 # Vista de Lógica/Diseño
 
-- Arquitectura Document/View mediante **Model-View Separation Principle** y **Double Dispatching Pattern**
+- Arquitectura Document/View mediante **Model-View Separation Principle** y **Prototype Pattern**
 
 ## Arquitectura
 
 ## connect4 Package
 
-![Package_connect4](./out/Docs/diagrams/src/packages/connect4/connect4.svg)
+![Package_connect4](./out/Docs/diagrams/src/packages/connect4.connect4/connect4.connect4.svg)
 
 ## connect4.views Package
 
-![Package_connect4.views](./out/Docs/diagrams/src/packages/connect4.views/connect4.views.svg)
+![Package_connect4.views](./out/Docs/diagrams/src/packages/connect4.connect4.views/connect4.connect4.views.svg)
 
 ## connect4.models Package
 
-![Package_connect4.models](./out/Docs/diagrams/src/packages/connect4.models/connect4.models.svg)
+![Package_connect4.models](./out/Docs/diagrams/src/packages/connect4.connect4.models/connect4.connect4.models.svg)
 
 ## connect4.types Package
 
-![Package_connect4.types](./out/Docs/diagrams/src/packages/connect4.types/connect4.types.svg)
+![Package_connect4.types](./out/Docs/diagrams/src/packages/connect4.connect4.types/connect4.connect4.types.svg)
 
 ## connect4.views utils
 
