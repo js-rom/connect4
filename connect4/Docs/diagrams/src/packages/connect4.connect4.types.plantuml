@@ -1,6 +1,7 @@
-@startuml connect4.types
+@startuml connect4.connect4.types
 
 enum types.Color
+enum types.PlayerType
 
 Color : +RED
 Color : +YELLOW
@@ -12,5 +13,9 @@ Color : {static} +get(ordinal: int): Color
 Color : +toString(): String
 Color : +getOpposite(): Color
 Color : {static} +isValid(Color): boolean
+
+PlayerType : +USER_PLAYER
+PlayerType : +RANDOM_MACHINE_PLAYER
+PlayerType : +MIN_MAX_MACHINE_PLAYER
 
 @enduml

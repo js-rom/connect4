@@ -1,19 +1,19 @@
 package connect4.views;
 
 import connect4.models.Game;
-import connect4.models.MinMaxMachinePlayer;
-import connect4.models.PlayerVisitor;
-import connect4.models.RandomMachinePlayer;
+import connect4.models.Player;
 import connect4.models.Turn;
-import connect4.models.UserPlayer;
+import connect4.types.PlayerType;
 import utils.Console;
 import connect4.views.menus.TurnMenu;
 
-public class TurnView implements PlayerVisitor {
+public class TurnView  {
     private Game game;
+    private PlayerViewPrototypeRegistry playerViewPrototypeRegistry;
 
-    TurnView(Game game) {
+    TurnView(Game game, PlayerViewPrototypeRegistry playerViewPrototypeRegistry) {
         this.game = game;
+        this.playerViewPrototypeRegistry = playerViewPrototypeRegistry;
     }
 
     public void resetPlayers() {
@@ -24,29 +24,17 @@ public class TurnView implements PlayerVisitor {
     public void dropToken() {
         assert !this.game.isFinished();
 
-        this.game.getActivePlayer().accept(this);
+        Player activePlayer =  this.game.getActivePlayer();
+        PlayerType playerType =  activePlayer.getType();
+        PlayerView playerView = new PlayerViewPrototypeDirector().get(this.playerViewPrototypeRegistry, playerType);
+        playerView.setPlayer(activePlayer);
+        Message.TURN.write();
+        Console.getInstance().writeln(activePlayer.getColor().toString());
+        playerView.dropToken();
         if (!this.game.isFinished()) {
             this.game.next();
         }
 
-    }
-
-    public void visit(UserPlayer userPlayer) {
-        assert userPlayer != null;
-
-        new UserPlayerView(userPlayer).dropToken();
-    }
-
-    public void visit(RandomMachinePlayer randomMachinePlayer) {
-        assert randomMachinePlayer != null;
-        
-        new RandomMachinePlayerView(randomMachinePlayer).dropToken();
-    }
-
-    public void visit(MinMaxMachinePlayer minMaxMachinePlayer) {
-        assert minMaxMachinePlayer != null;
-        
-        new MinMaxMachinePlayerView(minMaxMachinePlayer).dropToken();
     }
 
     public void writeResult() {

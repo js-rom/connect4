@@ -1,4 +1,4 @@
-@startuml connect4
+@startuml connect4.connect4
 
 class connect4.Connect4
 class Game as "models.Game"

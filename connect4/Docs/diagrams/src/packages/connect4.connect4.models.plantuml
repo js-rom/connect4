@@ -1,4 +1,4 @@
-@startuml connect4.models
+@startuml connect4.connect4.models
 
 class models.Game
 class models.Board
@@ -8,7 +8,6 @@ abstract class models.Player
 class models.UserPlayer
 abstract class models.MachinePlayer
 class models.RandomMachinePlayer
-interface models.PlayerVisitor
 class models.MinMaxMachinePlayer
 
 Game *-- Board
@@ -16,18 +15,17 @@ Game *-- Turn
 Turn --> Board
 Turn o-- Player
 Player --> Board
-Player ..> PlayerVisitor
 Player <|-- UserPlayer
 Player <|-- MachinePlayer
 MachinePlayer <|-- RandomMachinePlayer
 MachinePlayer <|-- MinMaxMachinePlayer
 Board ..> Line
 
-enum Color as "types.Color"
-class Direction as "utils.Direction"
-class Coordinate as "utils.Coordinate"
-class Coordinate as "utils.Coordinate"
-class ClosedInterval as "utils.ClosedInterval"
+enum Color as "connect4.connect4.\ntypes.Color"
+class Direction as "connect4.utils.\nDirection"
+class Coordinate as "connect4.utils.\nCoordinate"
+class Coordinate as "connect4.utils.\nCoordinate"
+class ClosedInterval as "connect4.utils.\nClosedInterval"
 
 Turn ..> Color
 Player --> Color
@@ -60,10 +58,6 @@ Turn : +setRandomMachinePlayer()
 Turn : +setMinMaxPlayer()
 Turn : -addPlayer(Player)
 
-PlayerVisitor : +visit(UserPlayer)
-PlayerVisitor : +visit(RandomMachinelayer)
-PlayerVisitor : +visit(MinMaxMachinePlayer)
-
 Player : -color: Color
 Player : -board: Board
 Player : -Player(Color, Board)
@@ -71,26 +65,25 @@ Player : +getColor(): Color
 Player : +getBoard(): Board
 Player : +isCompleted(column: int): boolean
 Player : +dropToken(column: int)
-Player : +{abstract}accept(PlayerVisitor)
+Player : +{abstract}getType(): PlayerType
 
 UserPlayer : +UserPlayer(Color, Board)
-UserPlayer : +accept(Turnview)
+UserPlayer : +getType(): PlayerType
 
 MachinePlayer : +MachinePlayer(Color, Board)
-MachinePlayer : +{abstract}accept(TurnView)
 MachinePlayer : +{abstract}getColumn(): int
 
 RandomMachinePlayer : +RandomMachinePlayer(Color, Board)
-RandomMachinePlayer : +accept(TurnView)
 RandomMachinePlayer : +getColumn(): int
+RandomMachinePlayer : +getType(): PlayerType
 
 MinMaxMachinePlayer : {static} -MAX_STEPS
 MinMaxMachinePlayer : {static} -MAX_COST
 MinMaxMachinePlayer : {static} -OTHER_COST
 MinMaxMachinePlayer : {static} -MIN_COST
 MinMaxMachinePlayer : +MinMaxMachinePlayer(Color, Board)
-MinMaxMachinePlayer : +accept(PlayerVisitor)
 MinMaxMachinePlayer : +getColumn(): int
+MinMaxMachinePlayer : +getType(): PlayerType
 MinMaxMachinePlayer : -getMinCost(steps: int): int
 MinMaxMachinePlayer : -getMaxCost(steps: int): int
 MinMaxMachinePlayer : -isEnd(steps: int): boolean

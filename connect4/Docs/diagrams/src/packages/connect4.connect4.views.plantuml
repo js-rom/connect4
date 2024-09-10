@@ -1,4 +1,4 @@
-@startuml connect4.views
+@startuml connect4.connect4.views
 
 class views.GameView
 class views.BoardView
@@ -15,9 +15,12 @@ class views.SetMinMaxMachinePlayerOption
 class views.SetUserPlayerOption
 enum views.Message
 class views.YesNoDialog
+class views.PlayerViewPrototypeDirector <<Director>>
+class views.PlayerViewPrototypeRegistry <<PrototypeRegistry>>
 
 GameView *-- TurnView
 GameView *-- BoardView
+GameView *-- PlayerViewPrototypeRegistry
 TurnView ..> PlayerView
 PlayerView <|-- UserPlayerView
 PlayerView <|-- MachinePlayerView
@@ -26,19 +29,23 @@ MachinePlayerView <|-- RandomMachinePlayerView
 TurnOption <|-- SetRandomMachinePlayerOption
 TurnOption <|-- SetMinMaxMachinePlayerOption
 TurnOption <|-- SetUserPlayerOption
-
 TurnView ..> TurnMenu
 TurnMenu o-- TurnOption
+TurnView ..> PlayerViewPrototypeDirector
+
+PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
+PlayerViewPrototypeRegistry o-- PlayerView
 
 
-class Option as "utils.menu.Option"
-class SecuentialMenu as "utils.menu.SecuentialMenu"
-class Game as "models.Game"
-class Turn as "models.Turn"
-class Coordinate as "Utils.Coordinate"
-class Console as "utils.Console"
-class Player as "models.Player"
-interface PlayerVisitor as "models.PlayerVisitor"
+
+class Option as "connect4.utils.menu.Option"
+class SecuentialMenu as "connect4.utils.menu.SecuentialMenu"
+class Game as "connect4.connect4.\nmodels.Game"
+class Turn as "connect4.connect4.\nmodels.Turn"
+class Coordinate as "connect4.Utils.Coordinate"
+class Console as "connect4.utils.Console"
+class Player as "connect4.connect4.\nmodels.Player"
+enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
 
 TurnOption --|> Option
 TurnMenu --|> SecuentialMenu
@@ -50,7 +57,7 @@ UserPlayerView *-- Player
 TurnView --> Game
 TurnMenu --> Turn
 TurnOption --> Turn
-PlayerVisitor <|-- TurnView
+PlayerViewPrototypeDirector ..> PlayerType
 
 
 GameView : -game: Game
@@ -61,12 +68,10 @@ GameView : +playGame()
 GameView : -isResumed()
 
 TurnView : -game: Game
-TurnView : -TurnView(Game)
+TurnView : -PlayerViewPrototypeRegistry: \nPlayerViewPrototypeRegistry
+TurnView : -TurnView(Game, PlayerViewPrototypeRegistry)
 TurnView : +resetPlayers()
 TurnView : +dropToken()
-TurnView : +visit(UserPlayer)
-TurnView : +visit(RandomMachinePlayer)
-TurnView : +visit(MinMaxMachinePlayer)
 TurnView : +writeResult()
 
 BoardView : -game: Game
@@ -74,19 +79,34 @@ BoardView : -BoardView(Game)
 BoardView : +writeln()
 BoardView : -writeHorizontal()
 
+PlayerViewPrototypeDirector : +get(PlayerViewPrototypeRegistry, \nPlayerType): PlayerView
+
+PlayerViewPrototypeRegistry : -playerViews: HashMap<PlayerType, PlayerView>
+PlayerViewPrototypeRegistry : +PlayerViewPrototypeRegistry()
+PlayerViewPrototypeRegistry : -addPlayerView(PlayerType, PlayerView)
+PlayerViewPrototypeRegistry : +getPlayerView(PlayerType)
+
 PlayerView : +{abstract}dropToken()
 PlayerView : {abstract} #getColumn(): int
+PlayerView : +{abstract}setPlayer(Player)
+PlayerView : +{abstract}copy(): PlayerView
 
 MachinePlayerView : -title: String
 MachinePlayerView : -player: MachinePlayer
-MachinePlayerView : +MachinePlayerView(MachinePlayer, title: String)
+MachinePlayerView : +MachinePlayerView(title: String)
+MachinePlayerView : -setPlayer(Player)
 MachinePlayerView : -getColumn(): int
 MachinePlayerView : +writeChoosenColumn()
 MachinePlayerView : +dropToken()
+MachinePlayerView : #getplayer(): Player
 
+MinMaxMachinePlayerView : +MinMaxMachinePlayerView()
 MinMaxMachinePlayerView : +MinMaxMachinePlayerView(MachinePlayer)
+MinMaxMachinePlayerView : +copy(): PlayerView
 
+RandomMachinePlayerView : +RandomMachinePlayerView()
 RandomMachinePlayerView : +RandomMachinePlayerView(MachinePlayer)
+RandomMachinePlayerView : +copy(): PlayerView
 
 UserPlayerView : -player: UserPlayer
 UserPlayerView : +UserPlayerView(UserPlayer)
