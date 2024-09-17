@@ -1,8 +1,8 @@
 package connect4.views;
 
 import utils.Coordinate;
+import utils.views.Console;
 import connect4.models.Game;
-import utils.Console;
 
 public class BoardView {
     private Game game;

@@ -4,8 +4,8 @@ import connect4.models.Game;
 import connect4.models.Player;
 import connect4.models.Turn;
 import connect4.types.PlayerType;
-import utils.Console;
 import connect4.views.menus.TurnMenu;
+import utils.views.Console;
 
 public class TurnView  {
     private Game game;

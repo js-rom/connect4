@@ -1,9 +1,9 @@
 package connect4.views;
 
 import utils.Coordinate;
+import utils.views.Console;
 import connect4.models.Player;
 import connect4.models.UserPlayer;
-import utils.Console;
 
 public class UserPlayerView extends PlayerView {
 

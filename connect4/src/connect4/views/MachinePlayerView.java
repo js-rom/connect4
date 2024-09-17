@@ -2,7 +2,7 @@ package connect4.views;
 
 import connect4.models.MachinePlayer;
 import connect4.models.Player;
-import utils.Console;
+import utils.views.Console;
 
 public abstract class MachinePlayerView extends PlayerView {
     private String title;

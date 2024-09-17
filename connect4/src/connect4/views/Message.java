@@ -1,6 +1,6 @@
 package connect4.views;
 
-import utils.Console;
+import utils.views.Console;
 
 public enum Message {
 

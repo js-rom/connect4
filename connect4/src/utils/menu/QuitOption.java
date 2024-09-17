@@ -1,6 +1,6 @@
 package utils.menu;
 
-import utils.Console;
+import utils.views.Console;
 
 public class QuitOption extends Option {
 

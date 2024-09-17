@@ -1,4 +1,4 @@
-package utils;
+package utils.views;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

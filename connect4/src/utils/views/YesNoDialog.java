@@ -1,7 +1,5 @@
 package utils.views;
 
-import utils.Console;
-
 public class YesNoDialog {
 
     private static char AFFIRMATIVE = 'y';
