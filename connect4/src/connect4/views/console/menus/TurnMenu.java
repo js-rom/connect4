@@ -1,9 +1,9 @@
-package connect4.views.menus;
+package connect4.views.console.menus;
 
 import connect4.models.Turn;
-import connect4.views.menus.options.SetMinMaxMachinePlayerOption;
-import connect4.views.menus.options.SetRandomMachinePlayerOption;
-import connect4.views.menus.options.SetUserPlayerOption;
+import connect4.views.console.menus.options.SetMinMaxMachinePlayerOption;
+import connect4.views.console.menus.options.SetRandomMachinePlayerOption;
+import connect4.views.console.menus.options.SetUserPlayerOption;
 import utils.models.menu.SecuentialMenu;
 
 public class TurnMenu extends SecuentialMenu {

@@ -1,6 +1,6 @@
 package connect4;
 import connect4.models.Game;
-import connect4.views.GameView;
+import connect4.views.console.GameView;
 
 public class Connect4 {
 

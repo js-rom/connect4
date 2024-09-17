@@ -1,4 +1,4 @@
-package connect4.views.menus.options;
+package connect4.views.console.menus.options;
 
 import connect4.models.Turn;
 

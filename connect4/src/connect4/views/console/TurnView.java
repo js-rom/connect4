@@ -1,10 +1,10 @@
-package connect4.views;
+package connect4.views.console;
 
 import connect4.models.Game;
 import connect4.models.Player;
 import connect4.models.Turn;
 import connect4.types.PlayerType;
-import connect4.views.menus.TurnMenu;
+import connect4.views.console.menus.TurnMenu;
 import utils.views.Console;
 
 public class TurnView  {

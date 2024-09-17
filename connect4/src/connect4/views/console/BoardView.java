@@ -1,4 +1,4 @@
-package connect4.views;
+package connect4.views.console;
 
 import utils.models.Coordinate;
 import utils.views.Console;

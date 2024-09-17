@@ -1,4 +1,4 @@
-package connect4.views;
+package connect4.views.console;
 
 import connect4.types.PlayerType;
 
