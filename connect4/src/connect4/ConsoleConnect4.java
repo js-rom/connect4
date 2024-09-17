@@ -2,12 +2,12 @@ package connect4;
 import connect4.models.Game;
 import connect4.views.console.GameView;
 
-public class Connect4 {
+public class ConsoleConnect4 {
 
     private Game game;
     private GameView gameView;
 
-    public Connect4() {
+    public ConsoleConnect4() {
         this.game = new Game();
         this.gameView = new GameView(this.game);
     }
@@ -17,6 +17,6 @@ public class Connect4 {
     }
 
     public static void main(String[] args) throws Exception {
-        new Connect4().playGames();
+        new ConsoleConnect4().playGames();
     }
 }
