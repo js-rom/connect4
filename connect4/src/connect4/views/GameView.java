@@ -1,6 +1,7 @@
 package connect4.views;
 
 import connect4.models.Game;
+import utils.views.YesNoDialog;
 
 public class GameView {
     private Game game;
