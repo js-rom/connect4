@@ -1,5 +1,7 @@
 package utils;
 
+import utils.models.ClosedInterval;
+
 public class Coordinate {
 
     public static final Coordinate ORIGIN = new Coordinate(0, 0);
