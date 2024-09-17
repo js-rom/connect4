@@ -1,4 +1,4 @@
-package utils.menu;
+package utils.models.menu;
 
 import utils.views.Console;
 

@@ -1,7 +1,7 @@
 package connect4.views.menus.options;
 
 import connect4.models.Turn;
-import utils.menu.Option;
+import utils.models.menu.Option;
 
 public abstract class TurnOption extends Option {
     protected Turn model;

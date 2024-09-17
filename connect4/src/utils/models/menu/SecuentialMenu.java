@@ -1,4 +1,4 @@
-package utils.menu;
+package utils.models.menu;
 
 public abstract class SecuentialMenu extends Menu{
     private int maxSecuences;
