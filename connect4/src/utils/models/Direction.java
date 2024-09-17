@@ -1,6 +1,4 @@
-package utils;
-
-import utils.models.Coordinate;
+package utils.models;
 
 public enum Direction {
 
