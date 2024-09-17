@@ -1,8 +1,8 @@
 package connect4.models;
 
 import connect4.types.Color;
-import utils.Coordinate;
 import utils.Direction;
+import utils.models.Coordinate;
 
 public class Board {
 

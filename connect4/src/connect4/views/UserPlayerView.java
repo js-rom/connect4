@@ -1,6 +1,6 @@
 package connect4.views;
 
-import utils.Coordinate;
+import utils.models.Coordinate;
 import utils.views.Console;
 import connect4.models.Player;
 import connect4.models.UserPlayer;

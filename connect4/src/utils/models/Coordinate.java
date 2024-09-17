@@ -1,6 +1,4 @@
-package utils;
-
-import utils.models.ClosedInterval;
+package utils.models;
 
 public class Coordinate {
 

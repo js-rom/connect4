@@ -2,7 +2,7 @@ package connect4.models;
 
 import connect4.types.Color;
 import connect4.types.PlayerType;
-import utils.Coordinate;
+import utils.models.Coordinate;
 
 public class RandomMachinePlayer extends MachinePlayer {
     

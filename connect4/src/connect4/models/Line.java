@@ -1,7 +1,7 @@
 package connect4.models;
 
 import utils.Direction;
-import utils.Coordinate;
+import utils.models.Coordinate;
 
 public class Line {
 

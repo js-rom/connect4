@@ -1,5 +1,7 @@
 package utils;
 
+import utils.models.Coordinate;
+
 public enum Direction {
 
     NORTH(1, 0),
