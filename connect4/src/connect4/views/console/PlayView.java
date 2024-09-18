@@ -7,6 +7,7 @@ public class PlayView extends WithGameView {
 
     public PlayView(Game game) {
         super(game);
+        assert this.game != null;
     }
 
     public void interact() {

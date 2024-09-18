@@ -9,7 +9,6 @@ public class ConsoleConnect4 {
 
     public ConsoleConnect4() {
         this.game = new Game();
-        assert this.game != null;
         this.consoleView = new ConsoleView(this.game);
     }
 

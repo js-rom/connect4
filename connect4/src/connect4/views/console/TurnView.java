@@ -12,6 +12,8 @@ public class TurnView  {
     private PlayerViewPrototypeRegistry playerViewPrototypeRegistry;
 
     TurnView(Game game, PlayerViewPrototypeRegistry playerViewPrototypeRegistry) {
+        assert game != null;
+        assert playerViewPrototypeRegistry != null;
         this.game = game;
         this.playerViewPrototypeRegistry = playerViewPrototypeRegistry;
     }
@@ -21,7 +23,6 @@ public class TurnView  {
     }
 
     public void resetPlayers() {
-        assert this.game != null;
         this.game.reset();
         new TurnMenu(this.game.getTurn(), Turn.NUMBER_PLAYERS).interact();
     }

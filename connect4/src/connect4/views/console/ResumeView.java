@@ -8,6 +8,7 @@ public class ResumeView extends WithGameView {
 
     public ResumeView(Game game) {
         super(game);
+        assert this.game != null;
     }
 
     public boolean interact() {
