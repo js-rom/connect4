@@ -1,19 +1,23 @@
 package connect4;
 import connect4.models.Game;
-import connect4.views.console.GameView;
+import connect4.views.console.ConsoleView;
 
 public class ConsoleConnect4 {
 
     private Game game;
-    private GameView gameView;
+    private ConsoleView consoleView;
 
     public ConsoleConnect4() {
         this.game = new Game();
-        this.gameView = new GameView(this.game);
+        assert this.game != null;
+        this.consoleView = new ConsoleView(this.game);
     }
 
     private void playGames() {
-        this.gameView.playGames();
+        do {
+            this.consoleView.start();
+            this.consoleView.play();
+        } while (this.consoleView.resume());
     }
 
     public static void main(String[] args) throws Exception {

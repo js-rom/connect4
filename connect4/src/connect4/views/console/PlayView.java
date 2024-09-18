@@ -11,6 +11,11 @@ public class PlayView extends WithGameView {
 
     public void interact() {
 
+        do {
+            new TurnView(game).dropToken();
+            new BoardView(game).writeln();
+        } while (!this.game.isFinished());
+        new TurnView(game).writeResult();
     }
 
 }
