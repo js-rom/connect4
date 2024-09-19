@@ -51,4 +51,7 @@ public class Turn {
         return this.players[this.activePlayer];
     }
 
+    public boolean isReset() {
+        return this.playersSize == 0;
+    }
 }

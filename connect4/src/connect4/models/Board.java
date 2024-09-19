@@ -110,6 +110,19 @@ public class Board {
         return this.isEmpty(new Coordinate(0, Column));
     }
 
+    public boolean isEmpty() {
+        for (int column = 0; column < Coordinate.NUMBER_COLUMNS; column++) {
+            if (!this.isEmpty(new Coordinate(0, column))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isReset() {
+        return this.isEmpty();
+    }
+
     public Color getColor(Coordinate coordinate) {
         assert coordinate != null;
 

@@ -18,6 +18,10 @@ public class Game {
         this.turn.reset();
     }
 
+    public boolean isReset() {
+        return this.board.isReset() & this.turn.isReset();
+    }
+
     public Color getColor(Coordinate coordinate) {
         assert coordinate != null;
         return this.board.getColor(coordinate);

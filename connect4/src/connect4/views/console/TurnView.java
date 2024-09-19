@@ -22,8 +22,7 @@ public class TurnView  {
         this(game, new PlayerViewPrototypeRegistry());
     }
 
-    public void resetPlayers() {
-        this.game.reset();
+    public void selectPlayers() {
         new TurnMenu(this.game.getTurn(), Turn.NUMBER_PLAYERS).interact();
     }
 

@@ -15,7 +15,8 @@ public class ResumeView extends WithGameView {
         YesNoDialog isResumed = new YesNoDialog();
         isResumed.read(Message.RESUME.toString());
         if (isResumed.isAffirmative()) {
-        } // OJOOO fix smellcode no sorprises, resetGame should be in ResumeView
+            this.game.reset();
+        }
         return isResumed.isAffirmative();
     }
 

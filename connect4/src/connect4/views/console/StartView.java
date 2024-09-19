@@ -11,7 +11,8 @@ public class StartView extends WithGameView {
     }
 
     public void interact() {
-        new TurnView(this.game).resetPlayers(); // OJOOO
+        assert this.game.isReset();
+        new TurnView(this.game).selectPlayers();
         Message.TITLE.writeln();
         new BoardView(this.game).writeln();
     }
