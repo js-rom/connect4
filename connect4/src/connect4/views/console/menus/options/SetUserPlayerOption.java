@@ -1,6 +1,7 @@
 package connect4.views.console.menus.options;
 
 import connect4.models.Turn;
+import connect4.types.PlayerType;
 
 public class SetUserPlayerOption extends TurnOption {
 
@@ -9,7 +10,7 @@ public class SetUserPlayerOption extends TurnOption {
     }
 
     public void interact() {
-        this.model.setUserPlayer();
+        this.model.addPlayer(PlayerType.USER_PLAYER);
     }
 
 }

@@ -15,12 +15,24 @@ public abstract class Player {
         this.board = board;        
     }
 
+    Player() {
+
+    }
+
     public Color getColor(){
         return this.color;
     }
 
     public Board getBoard() {
         return this.board;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public boolean isComplete(int column){

@@ -9,6 +9,10 @@ public class UserPlayer extends Player {
         super(color, board);
     }
 
+    public UserPlayer() {
+        
+    }
+
     public PlayerType getType() {
         return PlayerType.USER_PLAYER;
     }

@@ -1,6 +1,7 @@
 package connect4.models;
 
 import connect4.types.Color;
+import connect4.types.PlayerType;
 
 public class Turn {
     public static final int NUMBER_PLAYERS = 2;
@@ -21,20 +22,12 @@ public class Turn {
 
     }
 
-    public void setUserPlayer() {
-        this.addPlayer(new UserPlayer(Color.get(playersSize), this.board));
-    }
-
-    public void setRandomMachinePlayer() {
-        this.addPlayer(new RandomMachinePlayer(Color.get(playersSize), this.board));
-    }
-
-    public void setMinMaxMachinePlayer() {
-        this.addPlayer(new MinMaxMachinePlayer(Color.get(playersSize), this.board));
-    }
-
-    private void addPlayer(Player player) {
+    public void addPlayer(PlayerType playerType) {
         assert this.playersSize < Turn.NUMBER_PLAYERS;
+        PlayerPrototype playerProtoype = new PlayerPrototype();
+        Player player = playerProtoype.getPlayer(playerType);
+        player.setColor(Color.get(playersSize));
+        player.setBoard(this.board);
         this.players[playersSize] = player;
         playersSize++;
     }

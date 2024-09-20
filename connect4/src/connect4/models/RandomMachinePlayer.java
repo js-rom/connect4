@@ -10,6 +10,10 @@ public class RandomMachinePlayer extends MachinePlayer {
         super(color, board);
     }
 
+    public RandomMachinePlayer() {
+    
+    }
+
     public int getColumn(){
         int column;
         do {
