@@ -9,8 +9,8 @@ public abstract class View extends WithGameView {
         super(game);
     } 
 
-    protected abstract void start();
-    protected abstract void play();
-    protected abstract boolean resume();
+    public abstract void start();
+    public abstract void play();
+    public abstract boolean resume();
 
 }

@@ -18,6 +18,10 @@ public class MinMaxMachinePlayer extends MachinePlayer {
 
     }    
 
+    public void accept(PlayerVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public PlayerType getType() {
         return PlayerType.MIN_MAX_MACHINE_PLAYER;
     }

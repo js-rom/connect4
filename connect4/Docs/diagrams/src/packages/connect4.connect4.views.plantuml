@@ -1,155 +1,18 @@
 @startuml connect4.connect4.views
 
-class views.GameView
-class views.BoardView
-class views.TurnView
-abstract class views.PlayerView
-abstract class views.MachinePlayerView
-class views.MinMaxMachinePlayerView
-class views.RandomMachinePlayerView
-class views.UserPlayerView
-class views.TurnMenu
-abstract class views.TurnOption
-class views.SetRandomMachinePlayerOption
-class views.SetMinMaxMachinePlayerOption
-class views.SetUserPlayerOption
-enum views.Message
-class views.YesNoDialog
-class views.PlayerViewPrototypeDirector <<Director>>
-class views.PlayerViewPrototypeRegistry <<PrototypeRegistry>>
-
-GameView *-- TurnView
-GameView *-- BoardView
-GameView *-- PlayerViewPrototypeRegistry
-TurnView ..> PlayerView
-PlayerView <|-- UserPlayerView
-PlayerView <|-- MachinePlayerView
-MachinePlayerView <|-- MinMaxMachinePlayerView
-MachinePlayerView <|-- RandomMachinePlayerView
-TurnOption <|-- SetRandomMachinePlayerOption
-TurnOption <|-- SetMinMaxMachinePlayerOption
-TurnOption <|-- SetUserPlayerOption
-TurnView ..> TurnMenu
-TurnMenu o-- TurnOption
-TurnView ..> PlayerViewPrototypeDirector
-
-PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
-PlayerViewPrototypeRegistry o-- PlayerView
-
-
-
-class Option as "connect4.utils.menu.Option"
-class SecuentialMenu as "connect4.utils.menu.SecuentialMenu"
+abstract class views.WithGameView
+abstract class views.View
 class Game as "connect4.connect4.\nmodels.Game"
-class Turn as "connect4.connect4.\nmodels.Turn"
-class Coordinate as "connect4.Utils.Coordinate"
-class Console as "connect4.utils.Console"
-class Player as "connect4.connect4.\nmodels.Player"
-enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
 
-TurnOption --|> Option
-TurnMenu --|> SecuentialMenu
-BoardView --> Game
-BoardView ..> Coordinate
-GameView --> Game
-MachinePlayerView *-- Player
-UserPlayerView *-- Player
-TurnView --> Game
-TurnMenu --> Turn
-TurnOption --> Turn
-PlayerViewPrototypeDirector ..> PlayerType
+WithGameView <|-- View
+WithGameView --> Game
+View --> Game
 
 
-GameView : -game: Game
-GameView : -boardView: BoardView
-GameView : -turnView: TurnView
-GameView : +GameView(Game)
-GameView : +playGame()
-GameView : -isResumed()
-
-TurnView : -game: Game
-TurnView : -PlayerViewPrototypeRegistry: \nPlayerViewPrototypeRegistry
-TurnView : -TurnView(Game, PlayerViewPrototypeRegistry)
-TurnView : +resetPlayers()
-TurnView : +dropToken()
-TurnView : +writeResult()
-
-BoardView : -game: Game
-BoardView : -BoardView(Game)
-BoardView : +writeln()
-BoardView : -writeHorizontal()
-
-PlayerViewPrototypeDirector : +get(PlayerViewPrototypeRegistry, \nPlayerType): PlayerView
-
-PlayerViewPrototypeRegistry : -playerViews: HashMap<PlayerType, PlayerView>
-PlayerViewPrototypeRegistry : +PlayerViewPrototypeRegistry()
-PlayerViewPrototypeRegistry : -addPlayerView(PlayerType, PlayerView)
-PlayerViewPrototypeRegistry : +getPlayerView(PlayerType)
-
-PlayerView : +{abstract}dropToken()
-PlayerView : {abstract} #getColumn(): int
-PlayerView : +{abstract}setPlayer(Player)
-PlayerView : +{abstract}copy(): PlayerView
-
-MachinePlayerView : -title: String
-MachinePlayerView : -player: MachinePlayer
-MachinePlayerView : +MachinePlayerView(title: String)
-MachinePlayerView : -setPlayer(Player)
-MachinePlayerView : -getColumn(): int
-MachinePlayerView : +writeChoosenColumn()
-MachinePlayerView : +dropToken()
-MachinePlayerView : #getplayer(): Player
-
-MinMaxMachinePlayerView : +MinMaxMachinePlayerView()
-MinMaxMachinePlayerView : +MinMaxMachinePlayerView(MachinePlayer)
-MinMaxMachinePlayerView : +copy(): PlayerView
-
-RandomMachinePlayerView : +RandomMachinePlayerView()
-RandomMachinePlayerView : +RandomMachinePlayerView(MachinePlayer)
-RandomMachinePlayerView : +copy(): PlayerView
-
-UserPlayerView : -player: UserPlayer
-UserPlayerView : +UserPlayerView(UserPlayer)
-UserPlayerView : -getColumn(): int
-
-Message : {static} +TITLE
-Message : {static} +HORIZONTAL_LINE
-Message : {static} +VERTICAL_LINE
-Message : {static} +TURN
-Message : {static} +ENTER_COLUMN_TO_DROP
-Message : {static} +INVALID_COLUMN
-Message : {static} +COMPLETED_COLUMN
-Message : {static} +PLAYER_WIN
-Message : {static} +PLAYERS_TIED
-Message : {static} +RESUME
-Message : {static} +CHOOSEN_COLUMN
-Message : -string
-Message : +constructor(string)
-Message : +write()
-Message : +writeln()
-
-
-YesNoDialog : {static} -AFFIRMATIVE
-YesNoDialog : {static} -NEGATIVE
-YesNoDialog : {static} -SUFFIX
-YesNoDialog : {static} -MESSAGE
-YesNoDialog : -answer
-YesNoDialog : +read()
-YesNoDialog : +isAffirmative()
-YesNoDialog : +isNegative()
-YesNoDialog : +getAnswer()
-
-TurnMenu : +TurnMenu(model: Turn, maxSecuences: int)
-TurnMenu : +addOptions()
-
-TurnOption : -turn: Turn
-TurnOption : +TurnOption(title: String, model: Turn)
-
-SetRandomMachinePlayerOption : +SetRandomMachinePlayerOption(Turn)
-SetRandomMachinePlayerOption : +interact()
-
-SetUserPlayerOption : +SetUserPlayerOption(Turn)
-SetUserPlayerOption : +interact()
+WithGameView : #game
+View : {abstract} +start()
+View : {abstract} +play()
+View : {abstract} +resume()
 
 
 @enduml

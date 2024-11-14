@@ -48,5 +48,7 @@ public abstract class Player {
         this.board.dropToken(column, this.color);
     }
 
+    public abstract void accept(PlayerVisitor playerVisitor);
+
     public abstract PlayerType getType();
 }

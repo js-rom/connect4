@@ -1,17 +1,31 @@
 package connect4.views.graphics;
 
 import connect4.models.Game;
-import connect4.views.WithGameView;
+import javax.swing.*;
 
-public class StartView extends WithGameView {
+public class StartView extends JFrameView {
+
+    private Game game;
+    private JPanel panel;
+   
 
     public StartView(Game game) {
-        super(game);
         assert this.game != null;
+        this.game = game;
+        
+        //this.panel = new PlayerSelectionView(this.game);
+        this.setSize(900, 600);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 
     public void interact() {
-        assert this.game.isReset();
+        this.setVisible(true);
     }
-    
+
+    public void setPanel(PanelView panel) {
+        this.getContentPane().add(panel);
+    }
+
 }

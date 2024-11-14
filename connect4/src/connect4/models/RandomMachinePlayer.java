@@ -14,6 +14,10 @@ public class RandomMachinePlayer extends MachinePlayer {
     
     }
 
+    public void accept(PlayerVisitor visitor){
+        visitor.visit(this);
+    }
+
     public int getColumn(){
         int column;
         do {

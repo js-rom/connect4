@@ -14,10 +14,15 @@ public class GraphicsConnect4 {
     }
 
     private void playGames() {
-        do {
+
+/*         do {
             this.graphicsView.start();
             this.graphicsView.play();
-        } while (this.graphicsView.resume());
+        } while (this.graphicsView.resume()); */
+
+         this.graphicsView.start();
+
+
     }
 
     public static void main(String[] args) throws Exception {
