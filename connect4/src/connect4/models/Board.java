@@ -1,8 +1,8 @@
 package connect4.models;
 
 import connect4.types.Color;
-import utils.Coordinate;
-import utils.Direction;
+import utils.models.Coordinate;
+import utils.models.Direction;
 
 public class Board {
 
@@ -108,6 +108,19 @@ public class Board {
     public boolean isEmpty(int Column) {
         assert 0 <= Column && Column <= Coordinate.NUMBER_COLUMNS;
         return this.isEmpty(new Coordinate(0, Column));
+    }
+
+    public boolean isEmpty() {
+        for (int column = 0; column < Coordinate.NUMBER_COLUMNS; column++) {
+            if (!this.isEmpty(new Coordinate(0, column))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isReset() {
+        return this.isEmpty();
     }
 
     public Color getColor(Coordinate coordinate) {

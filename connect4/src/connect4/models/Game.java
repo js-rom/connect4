@@ -1,7 +1,7 @@
 package connect4.models;
 
 import connect4.types.Color;
-import utils.Coordinate;
+import utils.models.Coordinate;
 
 public class Game {
 
@@ -16,6 +16,10 @@ public class Game {
     public void reset() {
         this.board.reset();
         this.turn.reset();
+    }
+
+    public boolean isReset() {
+        return this.board.isReset() & this.turn.isReset();
     }
 
     public Color getColor(Coordinate coordinate) {
