@@ -31,7 +31,7 @@ public class JFrameViewFactory {
         PlayView playView = new PlayView(game);
         MacroCommand nextView = new MacroCommand();
         nextView.add(new MakeInvisibleCommand(playView));
-        nextView.add(new ResumeCommand(view)); // quitar logica de command y ponerla en View
+        nextView.add(new ResumeCommand(view));
         playView.setNextView(nextView);
         Command playNextTurn = new NextTurnCommand(playView);
         BoardViewPrototypeRegistry boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.game, playNextTurn);
@@ -40,9 +40,9 @@ public class JFrameViewFactory {
         return playView;
     }
 
-    public JFrameView createResumeView(View view) {
+    public JFrameView createResumeView() {
         PlayView playView = new PlayView(game);
-        PanelView gameView = new PauseGameView(this.game); // informative GameView
+        PanelView gameView = new PauseGameView(this.game);
         gameView.write();
         playView.setPanel(gameView);
         return playView;

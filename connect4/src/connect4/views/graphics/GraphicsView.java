@@ -27,28 +27,9 @@ public class GraphicsView extends View {
     @Override
     public boolean resume() {
 
-        JFrameView pauseView = this.factory.createResumeView(this);
+        PlayView resumeView = (PlayView) this.factory.createResumeView();
 
-        String message;
-        if (this.game.isWinner()) {
-            message = Message.PLAYER_WIN.toString();
-            message = message.replace("#color", this.game.getActiveColor().toString());
-        } else {
-            message = Message.PLAYERS_TIED.toString();
-        }
-
-        message += "\n";
-        message +=  Message.RESUME.toString();
-        int result = JOptionPane.showConfirmDialog(
-                //new InformativeBoardView(),
-                pauseView,
-                message,
-                "Select an Option",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE 
-        );
-        pauseView.setVisible(false);
-        return JOptionPane.YES_OPTION == result;
+        return resumeView.isResumed();
     }
 
 }
