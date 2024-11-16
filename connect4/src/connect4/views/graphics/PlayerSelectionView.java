@@ -3,8 +3,7 @@ package connect4.views.graphics;
 import connect4.models.Game;
 import connect4.models.Turn;
 import connect4.types.PlayerType;
-import connect4.views.graphics.commands.MacroCommand;
-
+import connect4.views.graphics.commands.Command;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,9 +15,9 @@ public class PlayerSelectionView extends PanelView implements ActionListener {
     private final JComboBox<PlayerType>[] CBoxPlayers;
     protected JButton button;
     private Game game;
-    private MacroCommand callback;
+    private Command callback;
 
-    public PlayerSelectionView(Game game, MacroCommand callback) {
+    public PlayerSelectionView(Game game, Command callback) {
 
         this.game = game;
         this.callback = callback;

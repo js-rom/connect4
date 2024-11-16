@@ -2,16 +2,18 @@ package connect4.views.graphics;
 
 import connect4.models.Game;
 import connect4.views.View;
+import connect4.views.graphics.commands.Command;
 import connect4.views.graphics.commands.MacroCommand;
 import connect4.views.graphics.commands.MakeInvisibleCommand;
+import connect4.views.graphics.commands.NextTurnCommand;
 import connect4.views.graphics.commands.PlayCommand;
 import connect4.views.graphics.commands.ResumeCommand;
 
-public class GameViewFactory {
+public class JFrameViewFactory {
 
     private Game game;
 
-    public GameViewFactory(Game game) {
+    public JFrameViewFactory(Game game) {
         this.game = game;
     }
 
@@ -29,10 +31,20 @@ public class GameViewFactory {
         PlayView playView = new PlayView(game);
         MacroCommand nextView = new MacroCommand();
         nextView.add(new MakeInvisibleCommand(playView));
-        nextView.add(new ResumeCommand(view));
-        playView.setCallback(nextView);
-        PanelView inGameView = new InGameView(this.game);
-        playView.setPanel(inGameView);
+        nextView.add(new ResumeCommand(view)); // quitar logica de command y ponerla en View
+        playView.setNextView(nextView);
+        Command playNextTurn = new NextTurnCommand(playView);
+        BoardViewPrototypeRegistry boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.game, playNextTurn);
+        PanelView gameView = new PlayGameView(this.game, boardViewPrototypeRegistry);
+        playView.setPanel(gameView);
+        return playView;
+    }
+
+    public JFrameView createResumeView(View view) {
+        PlayView playView = new PlayView(game);
+        PanelView gameView = new PauseGameView(this.game); // informative GameView
+        gameView.write();
+        playView.setPanel(gameView);
         return playView;
     }
 
