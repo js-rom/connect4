@@ -14,6 +14,14 @@ public class MinMaxMachinePlayer extends MachinePlayer {
         super(color, board);
     }
 
+    public MinMaxMachinePlayer() {
+
+    }    
+
+    public void accept(PlayerVisitor visitor) {
+        visitor.visit(this);
+    }
+
     public PlayerType getType() {
         return PlayerType.MIN_MAX_MACHINE_PLAYER;
     }

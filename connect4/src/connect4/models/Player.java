@@ -2,7 +2,7 @@ package connect4.models;
 
 import connect4.types.Color;
 import connect4.types.PlayerType;
-import utils.Coordinate;
+import utils.models.Coordinate;
 
 public abstract class Player {
     private Color color;
@@ -15,12 +15,24 @@ public abstract class Player {
         this.board = board;        
     }
 
+    Player() {
+
+    }
+
     public Color getColor(){
         return this.color;
     }
 
     public Board getBoard() {
         return this.board;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public boolean isComplete(int column){
@@ -35,6 +47,8 @@ public abstract class Player {
         
         this.board.dropToken(column, this.color);
     }
+
+    public abstract void accept(PlayerVisitor playerVisitor);
 
     public abstract PlayerType getType();
 }
