@@ -9,7 +9,7 @@
 | machine | [documentView - machine - Menu](https://github.com/js-rom/connect4/tree/v.1.1) |
 | machine | [documentView - machine - IA Player Open Close](https://github.com/js-rom/connect4/tree/v.1.2) |
 | machine | [documentView - machine - prototype](https://github.com/js-rom/connect4/tree/v.1.3) |
-| graphics | documentView - withoutFactoryMethod |
+| graphics | [documentView - withoutFactoryMethod](https://github.com/js-rom/connect4/tree/v.1.4) |
 | graphics | documentView - withFactoryMethod |
 | graphics | modelViewPresenter - presentationModel - basic |
 | graphics | modelViewPresenter - presentationModel - withFacade |

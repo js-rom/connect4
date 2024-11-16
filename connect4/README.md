@@ -1,9 +1,9 @@
-# Connect 4. Solution v.1.3 documentView - machine - prototype
+# Connect 4. Solution v.1.4 documentView - withoutFactoryMethod
 
 # Requisitos 1. *Machine*
 
 * Funcionalidad: **Básica**
-* Interfaz: **Texto**
+* Interfaz: **Gráfiva y Texto**
 * Distribución: **Standalone**
 * Persistencia: **No**
 
