@@ -1,17 +1,16 @@
 package connect4.views.graphics.commands;
 
 import connect4.views.View;
+import connect4.views.graphics.ViewCommand;
 
-public class PlayCommand implements Command {
+public class PlayCommand extends ViewCommand {
 
-    private View receiver;
-    
     public PlayCommand(View receiver) {
-        this.receiver = receiver;
+        super(receiver);
     }
 
     @Override
     public void execute() {
-       this.receiver.play();
+        this.getReceiver().play();
     }
 }

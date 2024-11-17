@@ -6,18 +6,17 @@ import javax.swing.ImageIcon;
 import connect4.models.Game;
 import connect4.models.Player;
 import connect4.models.UserPlayer;
-import connect4.views.graphics.commands.Command;
 import utils.models.Coordinate;
 
 public class UserPlayerBoardView extends PlayerBoardView implements ActionListener {
 
     private UserPlayer player;
 
-    public UserPlayerBoardView(Game game, Command callback) {
+    public UserPlayerBoardView(Game game, PanelViewCommand callback) {
         super(game, callback);
     }
 
-    public UserPlayerBoardView(Game game, Command callback, Player player) {
+    public UserPlayerBoardView(Game game, PanelViewCommand callback, Player player) {
         super(game, callback, player);
     }
 
@@ -31,13 +30,12 @@ public class UserPlayerBoardView extends PlayerBoardView implements ActionListen
     @Override
     public BoardView copy() {
         Game game = this.getGame();
-        Command callback = this.getCallback();
+        PanelViewCommand callback = this.getCallback();
         return new UserPlayerBoardView(game, callback, game.getActivePlayer());
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("user action performed");
         ClickableSquare square = (ClickableSquare) e.getSource();
         int column = square.getColumn();
         this.player.dropToken(column);

@@ -13,13 +13,11 @@ import java.util.HashMap;
 
 public abstract class BoardView extends PanelView {
 
-    private Game game;
     private HashMap<Color, ImageIcon> colors;
     private Command callback;
 
-    public BoardView(Game game, Command callback) {
-        this.game = game;
-        this.callback = callback;
+    public BoardView(Game game) {
+        super(game);
         this.setLayout(new GridLayout(Coordinate.NUMBER_ROWS, Coordinate.NUMBER_COLUMNS));
         this.colors = new HashMap<Color, ImageIcon>();
         for (Color color : Color.values()) {
@@ -32,7 +30,7 @@ public abstract class BoardView extends PanelView {
         this.write();
     }
 
-    protected void write() {
+   public void write() {
         this.removeAll();
         this.setLayout(new GridLayout(Coordinate.NUMBER_ROWS, Coordinate.NUMBER_COLUMNS));
         for (int i = Coordinate.NUMBER_ROWS - 1; i >= 0; i--) {
@@ -61,7 +59,7 @@ public abstract class BoardView extends PanelView {
         return this.colors;
     }
 
-    protected Command getCallback() {
+    public Command getCallback() {
         return this.callback;
     }
 

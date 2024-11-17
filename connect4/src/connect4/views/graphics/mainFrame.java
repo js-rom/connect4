@@ -1,46 +1,42 @@
 package connect4.views.graphics;
 
-import connect4.models.Game;
-import connect4.views.graphics.commands.Command;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class PlayView extends JFrameView {
+import connect4.models.Game;
+import connect4.views.graphics.commands.Command;
+
+public class mainFrame extends JFrame implements FrameView {
 
     private Game game;
-    private PanelView gameview;
-    private Command nextView;
+    private GameLoopView panel;
 
-    public PlayView(Game game) {
-        assert this.game != null;
+    public mainFrame(Game game) {
         this.game = game;
         this.setSize(900, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
     }
 
     public void interact() {
-        if (!this.game.isFinished()) {
-            this.gameview.write();
-            this.updateUI();
-        } else {
-            this.updateUI();
-            this.nextView.execute();
+        this.setVisible(true);
+    }
+
+    public void setPanel(GameLoopView panel) {
+        if (this.panel != null) {
+            this.remove(this.panel);
         }
+        this.panel = panel;
+        this.add(this.panel);
+        this.panel.write();
+        this.write();
     }
 
-    @Override
-    public void setPanel(PanelView panel) {
-        this.gameview = panel;
-        this.getContentPane().add(panel);
+    public void setPanelCallback(Command command) {
+        this.panel.setCallback(command);
     }
 
-    public void setNextView(Command callback) {
-        this.nextView = callback;
-    }
-
-    private void updateUI() {
+    public void write() {
         this.revalidate();
         this.repaint();
     }
@@ -55,16 +51,14 @@ public class PlayView extends JFrameView {
         }
 
         message += "\n";
-        message +=  Message.RESUME.toString();
+        message += Message.RESUME.toString();
         int result = JOptionPane.showConfirmDialog(
                 this,
                 message,
                 "Select an Option",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE 
-        );
+                JOptionPane.QUESTION_MESSAGE);
         this.setVisible(false);
         return JOptionPane.YES_OPTION == result;
     }
-
 }

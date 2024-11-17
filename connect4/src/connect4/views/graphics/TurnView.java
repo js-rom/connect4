@@ -1,8 +1,6 @@
 package connect4.views.graphics;
 
-import java.awt.GridLayout;
 import java.util.HashMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import connect4.models.Game;
@@ -11,12 +9,10 @@ import connect4.types.Color;
 
 public class TurnView extends PanelView {
 
-    Game game;
     private HashMap<Color, ImageIcon> colors;
 
     public TurnView(Game game) { // TODO DRY comun con BoardView
-        this.game = game;
-        // this.setLayout(new GridLayout(1, 1));
+        super(game);
         this.colors = new HashMap<Color, ImageIcon>();
         for (Color color : Color.values()) {
             String fileNamePrefix = "connect4\\src\\connect4\\views\\graphics\\assets\\";
@@ -33,7 +29,7 @@ public class TurnView extends PanelView {
     }
 
     @Override
-    protected void write() {
+    public void write() {
         this.removeAll();
         // this.setLayout(new GridLayout(1, Turn.NUMBER_PLAYERS));
         ImageIcon activeIcon = this.getColors().get(this.game.getActiveColor());
@@ -45,4 +41,5 @@ public class TurnView extends PanelView {
     protected HashMap<Color, ImageIcon> getColors() {
         return this.colors;
     }
+
 }

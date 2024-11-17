@@ -14,11 +14,11 @@ public class MachinePlayerBoardView extends PlayerBoardView {
 
     private MachinePlayer player;
 
-    public MachinePlayerBoardView(Game game, Command callback) {
+    public MachinePlayerBoardView(Game game, PanelViewCommand callback) {
         super(game, callback);
     }
 
-    public MachinePlayerBoardView(Game game, Command callback, Player player) {
+    public MachinePlayerBoardView(Game game, PanelViewCommand callback, Player player) {
         super(game, callback, player);
         this.setPlayer(player);
         this.dropToken();
@@ -54,7 +54,7 @@ public class MachinePlayerBoardView extends PlayerBoardView {
 
     public BoardView copy() {
         Game game = this.getGame();
-        Command callback = this.getCallback();
+        PanelViewCommand callback = this.getCallback();
         return new MachinePlayerBoardView(game, callback, game.getActivePlayer());
     }
 
