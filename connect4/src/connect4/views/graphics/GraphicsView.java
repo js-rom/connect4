@@ -1,6 +1,5 @@
 package connect4.views.graphics;
 
-import javax.swing.JOptionPane;
 import connect4.models.Game;
 import connect4.views.View;
 
