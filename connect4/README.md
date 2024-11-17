@@ -44,3 +44,7 @@
 # Vista de Procesos
 
 - No hay concurrencia
+
+# Calidad del Software
+
+
