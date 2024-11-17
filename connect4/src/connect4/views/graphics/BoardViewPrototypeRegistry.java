@@ -3,14 +3,13 @@ package connect4.views.graphics;
 import java.util.HashMap;
 import connect4.models.Game;
 import connect4.types.PlayerType;
-import connect4.views.graphics.commands.Command;
 
 public class BoardViewPrototypeRegistry {
 
     private Game game;
     private HashMap<PlayerType, BoardView> playerBoardViews;
 
-    public BoardViewPrototypeRegistry(Game game, Command callback) {
+    public BoardViewPrototypeRegistry(Game game, PanelViewCommand callback) {
         this.game = game;
         this.playerBoardViews = new HashMap<PlayerType, BoardView>();
 

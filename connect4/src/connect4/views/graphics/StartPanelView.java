@@ -4,29 +4,31 @@ import connect4.models.Game;
 import connect4.models.Turn;
 import connect4.types.PlayerType;
 import connect4.views.graphics.commands.Command;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
-public class PlayerSelectionView extends PanelView implements ActionListener {
+public class StartPanelView extends GameLoopView implements ActionListener {
 
     private final PlayerType[] players;
     private final JComboBox<PlayerType>[] CBoxPlayers;
     protected JButton button;
-    private Game game;
-    private Command callback;
 
-    public PlayerSelectionView(Game game, Command callback) {
-
-        this.game = game;
-        this.callback = callback;
+    public StartPanelView(Game game) {
+        super(game);
         this.players = PlayerType.values();
         this.CBoxPlayers = new JComboBox[Turn.NUMBER_PLAYERS];
-        this.write();
     }
 
-    protected void write() {
+    public StartPanelView(Game game, Command callback) {
+        this(game);
+        this.setCallback(callback);
+    }
+
+    public void write() {
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.add(new JLabel("SELECT PLAYERS:"));
         for (int i = 0; i < Turn.NUMBER_PLAYERS; i++) {
@@ -49,7 +51,7 @@ public class PlayerSelectionView extends PanelView implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.addPlayers();
-        callback.execute();
+        this.getCallback().execute();
     }
 
 }

@@ -8,8 +8,12 @@ import utils.models.Coordinate;
 
 public class PauseBoardView extends BoardView {
 
-    public PauseBoardView(Game game, Command callback) {
+/*     public PauseBoardView(Game game, Command callback) {
         super(game, callback);
+    } */
+
+    public PauseBoardView(Game game) {
+        super(game);
     }
 
     @Override
@@ -21,8 +25,8 @@ public class PauseBoardView extends BoardView {
     @Override
     public BoardView copy() {
         Game game = this.getGame();
-        Command callback = this.getCallback();
-        return new PauseBoardView(game, callback);
+        //Command callback = this.getCallback();
+        return new PauseBoardView(game);
     }
 
 }
