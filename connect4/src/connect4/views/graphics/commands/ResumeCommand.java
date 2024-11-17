@@ -1,20 +1,20 @@
 package connect4.views.graphics.commands;
 
 import connect4.views.View;
+import connect4.views.graphics.ViewCommand;
 
-public class ResumeCommand implements Command {
-    private View receiver;
-    
+public class ResumeCommand extends ViewCommand {
+
     public ResumeCommand(View receiver) {
-        this.receiver = receiver;
+        super(receiver);
     }
 
     @Override
     public void execute() {
-       if(this.receiver.resume()) {
-        this.receiver.start();
-       } else {
-        System.exit(0);
-       }
+        if (this.getReceiver().resume()) {
+            this.getReceiver().start();
+        } else {
+            System.exit(0);
+        }
     }
 }

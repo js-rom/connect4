@@ -1,99 +1,88 @@
 @startuml connect4.connect4.views.graphics
+interface graphics.FrameView
+class graphics.MainFrame
+interface graphics.GameLoopView
 abstract class graphics.BoardView
 class graphics.BoardViewPrototypeDirector
 class graphics.BoardViewPrototypeRegistry
 interface graphics.Command
-abstract class graphics.JFrameView
-class graphics.JFrameViewFactory
+abstract class graphics.PanelViewCommand
+abstract class graphics.ViewCommand
 class graphics.GraphicsView
 class graphics.MachinePlayerBoardView
-class graphics.MacroCommand
-class graphics.MakeInvisibleCommand
 class graphics.NextTurnCommand
 class graphics.PlayCommand
-class graphics.PlayerSelectionView
-class graphics.PlayView
-class graphics.ResumeView
+class graphics.PlayPanelView
+class graphics.ResumePanelView
 class graphics.ResumeCommand
 class graphics.Square
 class graphics.ClickableSquare
 class graphics.NonClickableSquare
-class graphics.StartView
+class graphics.StartPanelView
 class graphics.TurnView
 class graphics.UserPlayerBoardView
 class graphics.PauseBoardView
 abstract class graphics.PanelView
-class graphics.PauseGameView
-class graphics.PlayGameView
 abstract class graphics.PlayerBoardView
 
+class JFrame
+JFrame <|-- FrameView
+FrameView <|-- MainFrame
+GraphicsView *-- MainFrame
+class Game
 
-GraphicsView *-- JFrameViewFactory
 abstract class View
 View <|-- GraphicsView
-class Game
+
 class JOptionPane
-GraphicsView ..> JOptionPane
+MainFrame ..> JOptionPane
 
-JFrameView <|-- StartView
-JFrameView <|-- PlayView
-JFrameView <|-- ResumeView
-class JFrame
-JFrame <|-- JFrameView
-PlayView --> Game
-PlayView *-- PanelView
-PlayView ..> Command
-PlayView *-- MacroCommand
-PlayGameView ..> Player
-PlayGameView ..> PlayerType
+JPanel <|-- PanelView
+GameLoopView --|> PanelView
+GameLoopView <|-- StartPanelView
+ResumePanelView <|-- PlayPanelView
+GameLoopView <|-- ResumePanelView
+PanelView <|-- BoardView
+PanelView <|-- TurnView
 
-ResumeView *-- PanelView
+Game <-- MainFrame
+Game <-- PanelView
+Game <-- BoardViewPrototypeRegistry
 
-JFrameViewFactory --> Game
-View <..JFrameViewFactory
-JFrameViewFactory ..> Command
-JFrameViewFactory ..> PanelView
+GraphicsView ..> GameLoopView
+MainFrame --> GameLoopView
 
-Command <|-- MacroCommand
-Command <|-- MakeInvisibleCommand
-Command <|-- NextTurnCommand
-Command <|-- PlayCommand
-Command <|-- ResumeCommand
+PlayPanelView *-- PlayerBoardView
+PlayPanelView *-- TurnView
+PlayPanelView *-- BoardViewPrototypeRegistry
+PlayPanelView ..> BoardViewPrototypeDirector
+BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
+class Player
+class PlayerType
+PlayPanelView ..> Player
+PlayPanelView ..> PlayerType
+ResumePanelView *-- PauseBoardView
+ResumePanelView *-- TurnView
+
+StartPanelView --> ViewCommand
+PlayPanelView --> ViewCommand
+
+Command <|-- PanelViewCommand
+PanelViewCommand <|-- NextTurnCommand
+Command <|-- ViewCommand
+ViewCommand <|-- PlayCommand
+ViewCommand <|-- ResumeCommand
 
 BoardView <|-- PlayerBoardView
 PlayerBoardView <|-- MachinePlayerBoardView
 PlayerBoardView <|-- UserPlayerBoardView
 BoardView <|-- PauseBoardView
-
-JPanel <|-- PanelView
-PanelView <|-- BoardView
-PanelView <|-- PlayerSelectionView
-PanelView <|-- TurnView
-PanelView <|-- PauseGameView
-
-PauseGameView --> Game
-PauseGameView o-- BoardView
-PauseGameView *-- TurnView
-PauseGameView <|-- PlayGameView
-PlayGameView *-- BoardViewPrototypeRegistry
-PlayGameView ..> BoardViewPrototypeDirector
-
 MachinePlayerBoardView o-- NonClickableSquare
 UserPlayerBoardView o-- ClickableSquare
 PauseBoardView o-- NonClickableSquare
-
 Square <|-- ClickableSquare
 Square <|-- NonClickableSquare
 
-GraphicsView : +start()
-GraphicsView : +play()
-GraphicsView : +resume()
-
-JFrameView : +interact()
-JFrameView : +setPanel()
-
-PanelView : +write()
-
-Command : {abstract} +command()
+PlayerBoardView --> PanelViewCommand
 
 @enduml
