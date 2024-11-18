@@ -27,4 +27,21 @@
 | basic | modelViewController |
 
 
+## Problemas de diseño de la versión
+
+### DRY: clases principales
+Existen dos arranques diferentes de la aplicación, uno para cada vista:
+- ConsoleConnect4
+- GraphicsConnect4
+
+Cada una de estas clases de arranque repiten código:
+- Tienen el modelo
+- Tienen la vista
+- Asocian el modelo con la vista
+- Algoritmo general de entrada al juego (class Play)
+- Main de arranque que comienza el flujo de ejecución.
+
+Una solución a esta duplicación de código en el arranque es aplicar el patrón Factory method.
+
+
 

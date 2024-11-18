@@ -2,7 +2,7 @@
 
 # Requisitos 1. *Machine*
 
-* Funcionalidad: **Básica**
+* Funcionalidad: **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
 * Interfaz: **Gráfiva y Texto**
 * Distribución: **Standalone**
 * Persistencia: **No**
