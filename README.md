@@ -41,23 +41,23 @@ vamos a analizar el problema en tres dimensiones diferentes:
  - Crear módulo cohesivo que agrupe operaciones sobre entideades diferentes.
 
     ##### Reutilización de código por varias vistas diferentes (web, desktop, movil...):
-        imaginamos que tenemos 7 vistas diferentes y cada una de ellas se comunican con el Game. Ahora maginemos que lo que cada una de las vistas le dice al modelo se compone de unas 3 o 4 lineas. La naturaleza de estas lineas normalmente es para hacer altas, bajas, modificaciones y consultas. Estas operaciones se repetiran en todas las vistas: en la vista web, movil, consola... ya que si separamos vistas de modelos lo que la vista le dice al modelo serepiterá en cada una de las vistas.
+    imaginamos que tenemos 7 vistas diferentes y cada una de ellas se comunican con el Game. Ahora maginemos que lo que cada una de las vistas le dice al modelo se compone de unas 3 o 4 lineas. La naturaleza de estas lineas normalmente es para hacer altas, bajas, modificaciones y consultas. Estas operaciones se repetiran en todas las vistas: en la vista web, movil, consola... ya que si separamos vistas de modelos lo que la vista le dice al modelo serepiterá en cada una de las vistas.
 
-        Lo que se propone es reunir estas 3 o 4 lineas en un objeto controlador para así poder reutilizarlo, así las vistas ya no repiten código, solo necesitan una línea para llamar al  controlador de alta, contntrolador de baja, de modificacion, de consulta...
+     Lo que se propone es reunir estas 3 o 4 lineas en un objeto controlador para así poder reutilizarlo, así las vistas ya no repiten código, solo necesitan una línea para llamar al  controlador de alta, contntrolador de baja, de modificacion, de consulta...
     
     ##### Triturar una interfaz demasiado grande:
-        El problema ahora es de una naturaleza diferente. Ya no lo hacemos por reutilizar el código que relaciona a una vista con la operacion a realizar en una entidad del modelo. Sino que, el modelo a pasar a la vista tiene una interfaz demasiado grande.
+    El problema ahora es de una naturaleza diferente. Ya no lo hacemos por reutilizar el código que relaciona a una vista con la operacion a realizar en una entidad del modelo. Sino que, el modelo a pasar a la vista tiene una interfaz demasiado grande.
 
-        Imaginemos que estamos en un proyecto grande como por ejemplo la gestión de una universidad. Ahora resulta que tenemos un gran numero de entidades, por ejemplo 60. Cada una de estas entidades tendrá de media unos 4 operaciones a realizar sobre ellas, varias modificaciones o sonsultas, etc... lo que dan un total de 240 operaciones --demasiadas según métricas de calidad-- sobre la clase Universidad--interfaz del paquete models.
+    Imaginemos que estamos en un proyecto grande como por ejemplo la gestión de una universidad. Ahora resulta que tenemos un gran numero de entidades, por ejemplo 60. Cada una de estas entidades tendrá de media unos 4 operaciones a realizar sobre ellas, varias modificaciones o sonsultas, etc... lo que dan un total de 240 operaciones --demasiadas según métricas de calidad-- sobre la clase Universidad--interfaz del paquete models.
 
-        y, ¿qué hacemos con las clases inmensamente gordas?: las trituramos con el patrón Visitor. Cada uno de los 240 métodos los convertimos a una clase controlador. Pero en este caso no exisitirá métodos accept() y visit() por que aquí no se comparte ninguna estructura de datos que reccorrer. Entonces no es el patrón visitor... ya... pero, podemos decir que está muy cerca y que comparte parte del objetivo del visitor que es triturar una clase gorda en una clase por cada una de sus métodos.
+    y, ¿qué hacemos con las clases inmensamente gordas?: las trituramos con el patrón Visitor. Cada uno de los 240 métodos los convertimos a una clase controlador. Pero en este caso no exisitirá métodos accept() y visit() por que aquí no se comparte ninguna estructura de datos que reccorrer. Entonces no es el patrón visitor... ya... pero, podemos decir que está muy cerca y que comparte parte del objetivo del visitor que es triturar una clase gorda en una clase por cada una de sus métodos.
 
-        Es decir, los controladores son la cosificación de los métodos de una supuesta clase gordísima que no nos interesa hacer y los atributos de estas clases serían los modelitos que manejan los controladores (clases del paquete models), como un array de alumnos, profesores, etc...
+    Es decir, los controladores son la cosificación de los métodos de una supuesta clase gordísima que no nos interesa hacer y los atributos de estas clases serían los modelitos que manejan los controladores (clases del paquete models), como un array de alumnos, profesores, etc...
 
     ##### Crear módulo cohesivo que agrupe operaciones sobre entideades diferentes:
-        La tercera justificación consiste en modularizar procesos que tratan con varias entidades, por lo que no está claro en que modelo concreto debería de ir este código, por lo que finalmente lo mejor es situarlo en un controlador.
+    La tercera justificación consiste en modularizar procesos que tratan con varias entidades, por lo que no está claro en que modelo concreto debería de ir este código, por lo que finalmente lo mejor es situarlo en un controlador.
 
-        imaginemos que sobre el juego del Conecta 4 empiezan a pedirnos nuevos procesos que implican a varios modelos, por ejemplo incluir estadisticas de partidas y de campeonatos y que nos solicitan un informe para recuperar las peores partidas de los mejores campeonatos... ¿En qué modelo pondríamos este código? la responsabilidad de este proceso no está nada clara por lo que la mejor opcion es crear un módulo cohesivo que agrupe a este proceso, es decri un controlador.
+    imaginemos que sobre el juego del Conecta 4 empiezan a pedirnos nuevos procesos que implican a varios modelos, por ejemplo incluir estadisticas de partidas y de campeonatos y que nos solicitan un informe para recuperar las peores partidas de los mejores campeonatos... ¿En qué modelo pondríamos este código? la responsabilidad de este proceso no está nada clara por lo que la mejor opcion es crear un módulo cohesivo que agrupe a este proceso, es decri un controlador.
 
 
 ## Soluciones de diseño a la versión v.1.4
