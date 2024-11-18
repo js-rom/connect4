@@ -1,27 +1,36 @@
 @startuml connect4.connect4
 
-class connect4.ConsoleConnect4
-class connect4.GraphicsConnect4
+abstract class connect4.Connect4 <<Creator>>
+class connect4.ConsoleConnect4 <<ConcreteCreator>>
+class connect4.GraphicsConnect4 <<ConcreteCreator>>
 class Game as "models.Game"
-class ConsoleView as "views.ConsoleView"
-class GraphicsView as "views.GraphicsView"
+class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
+class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
+class View as "views.View" <<Product>>
 
-ConsoleConnect4 *-- Game
-ConsoleConnect4 *-- ConsoleView
+Connect4 <|-- ConsoleConnect4
+Connect4 <|-- GraphicsConnect4
+Connect4 *--> View
+Connect4 *--> Game
 
-GraphicsConnect4 *-- Game
-GraphicsConnect4 *-- GraphicsView
+ConsoleConnect4 ..> ConsoleView
+GraphicsConnect4 ..> GraphicsView
+ConsoleConnect4 ..> Game
+GraphicsConnect4 ..> Game
 
-ConsoleConnect4 : -game: Game
-ConsoleConnect4 : -ConsoleView: ConsoleView
-ConsoleConnect4 : +ConsoleConnect4()
-ConsoleConnect4 : + main(String[])
-ConsoleConnect4 : -playGames()
+View <|-- ConsoleView
+View <|-- GraphicsView
 
-GraphicsConnect4 : -game: Game
-GraphicsConnect4 : -GraphicsView: GraphicsView
-GraphicsConnect4 : +GraphicsConnect4()
-GraphicsConnect4 : + main(String[])
-GraphicsConnect4 : -playGames()
+Connect4 : #Connect4()
+Connect4 : {abstract}#createView(Game): View
+Connect4 : {abstract}#PlayGames()
+
+ConsoleConnect4 : #ConsoleConnect4()
+ConsoleConnect4 : #playGames()
+ConsoleConnect4 : {static}+main(String[])
+
+GraphicsConnect4 : #GraphicsConnect4()
+GraphicsConnect4 : #playGames()
+GraphicsConnect4 : {static}+main(String[])
 
 @enduml
