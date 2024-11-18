@@ -1,31 +1,27 @@
 package connect4;
 
 import connect4.models.Game;
+import connect4.views.View;
 import connect4.views.graphics.GraphicsView;
 
-public class GraphicsConnect4 {
+public class GraphicsConnect4 extends Connect4 {
 
-    private Game game;
-    private GraphicsView graphicsView;
+    protected void playGames() {
 
-    public GraphicsConnect4() {
-        this.game = new Game();
-        this.graphicsView = new GraphicsView(this.game);
+        this.getView().start();
+
     }
 
-    private void playGames() {
+    @Override
+    protected View createView(Game game) {
 
-/*         do {
-            this.graphicsView.start();
-            this.graphicsView.play();
-        } while (this.graphicsView.resume()); */
-
-         this.graphicsView.start();
-
+        return new GraphicsView(game);
 
     }
 
     public static void main(String[] args) throws Exception {
+
         new GraphicsConnect4().playGames();
+
     }
 }

@@ -1,25 +1,31 @@
 package connect4;
+
 import connect4.models.Game;
+import connect4.views.View;
 import connect4.views.console.ConsoleView;
 
-public class ConsoleConnect4 {
+public class ConsoleConnect4 extends Connect4 {
 
-    private Game game;
-    private ConsoleView consoleView;
+    @Override
+    protected View createView(Game game) {
 
-    public ConsoleConnect4() {
-        this.game = new Game();
-        this.consoleView = new ConsoleView(this.game);
+        return new ConsoleView(game);
+
     }
 
-    private void playGames() {
+    protected void playGames() {
+
         do {
-            this.consoleView.start();
-            this.consoleView.play();
-        } while (this.consoleView.resume());
+            this.getView().start();
+            this.getView().play();
+        } while (this.getView().resume());
+
     }
 
     public static void main(String[] args) throws Exception {
+
         new ConsoleConnect4().playGames();
+
     }
+
 }
