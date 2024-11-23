@@ -29,7 +29,19 @@ class JFrame
 JFrame <|-- FrameView
 FrameView <|-- MainFrame
 GraphicsView *-- MainFrame
-class Game
+class ResumeController as "controllers.\nResumeController"
+
+MainFrame --> ResumeController
+
+class StartController as "controllers.\nStartController"
+
+StartPanelView --> StartController
+
+class PlayController as "controllers.\nPlayController"
+
+PlayPanelView --> PlayController
+
+ResumePanelView --> PlayController
 
 abstract class View
 View <|-- GraphicsView
@@ -38,16 +50,12 @@ class JOptionPane
 MainFrame ..> JOptionPane
 
 JPanel <|-- PanelView
-GameLoopView --|> PanelView
+PanelView <|-- GameLoopView
 GameLoopView <|-- StartPanelView
 ResumePanelView <|-- PlayPanelView
 GameLoopView <|-- ResumePanelView
 PanelView <|-- BoardView
 PanelView <|-- TurnView
-
-Game <-- MainFrame
-Game <-- PanelView
-Game <-- BoardViewPrototypeRegistry
 
 GraphicsView ..> GameLoopView
 MainFrame --> GameLoopView
@@ -57,10 +65,7 @@ PlayPanelView *-- TurnView
 PlayPanelView *-- BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
 BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
-class Player
-class PlayerType
-PlayPanelView ..> Player
-PlayPanelView ..> PlayerType
+
 ResumePanelView *-- PauseBoardView
 ResumePanelView *-- TurnView
 

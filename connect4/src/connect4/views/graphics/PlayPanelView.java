@@ -1,29 +1,28 @@
 package connect4.views.graphics;
 
 import java.awt.BorderLayout;
-import connect4.models.Game;
-import connect4.models.Player;
-import connect4.types.PlayerType;
+import connect4.controllers.PlayController;
 import connect4.views.graphics.commands.NextTurnCommand;
 
-public class PlayPanelView extends ResumenPanelView {
+public class PlayPanelView extends ResumenPanelView implements PlayPanelViewVisitor {
 
     private BoardViewPrototypeRegistry boardViewPrototypeRegistry;
 
-    public PlayPanelView(Game game) {
-        super(game);
-        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.game, new NextTurnCommand(this));
+    public PlayPanelView(PlayController playController) {
+        super(playController);
+        assert (playController != null);
+        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.getPlayController(),
+                new NextTurnCommand(this));
     }
 
     @Override
     public void write() {
-        if (!this.game.isFinished()) {
-            Player activePlayer = this.game.getActivePlayer();
-            PlayerType playerType = activePlayer.getType();
+        if (!this.getPlayController().isFinished()) {
             this.removeBoard();
-            this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry, playerType);
+            this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry,
+                    this.getPlayController().getActivePlayerType());
             this.turnView.write();
-            this.boardView.write();
+            this.boardView.accept(this);
             this.removeAll();
             this.setLayout(new BorderLayout());
             this.add(this.turnView, BorderLayout.WEST);
@@ -39,6 +38,19 @@ public class PlayPanelView extends ResumenPanelView {
         if (this.boardView != null) {
             this.remove(this.boardView);
         }
+    }
+
+    public void visit(MachinePlayerBoardView machinePlayerBoardView) {
+        machinePlayerBoardView.write();
+        machinePlayerBoardView.dropToken();
+    }
+
+    public void visit(UserPlayerBoardView userPlayerBoardView) {
+        userPlayerBoardView.write();
+    }
+
+    public void visit(PauseBoardView pauseBoardView) {
+        pauseBoardView.write();
     }
 
 }

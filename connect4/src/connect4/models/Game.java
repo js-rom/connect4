@@ -1,6 +1,7 @@
 package connect4.models;
 
 import connect4.types.Color;
+import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
 public class Game {
@@ -39,6 +40,10 @@ public class Game {
         return this.turn.getActivePlayer();
     }
 
+    public PlayerType getActivePlayerType() {
+        return this.getActivePlayer().getType();
+    }
+
     public Color getActiveColor() {
         return this.getActivePlayer().getColor();
     }
@@ -48,8 +53,12 @@ public class Game {
         this.turn.next();
     }
 
-    public Turn getTurn() {
+/*     public Turn getTurn() {
         return this.turn;
+    } */
+
+    public void addPlayer(PlayerType playerType) {
+        this.turn.addPlayer(playerType);
     }
 
 }
