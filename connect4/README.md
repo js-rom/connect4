@@ -3,13 +3,15 @@
 # Requisitos 1. *Machine*
 
 * Funcionalidad: **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
-* Interfaz: **Gráfiva y Texto**
+* Interfaz: **Gráfica y Texto**
 * Distribución: **Standalone**
 * Persistencia: **No**
 
 # Vista de Lógica/Diseño
 
-- Arquitectura Document/View mediante **Model-View Separation Principle** y **Prototype Pattern**
+  - Arquitectura Documento/Vista mediante **Patrón de Vista Separada**  
+    * **Patrón Template Method (Factory Method)**, para clases principales  
+    * **Patrón Model View Presenter**, para incluir controllers 
 
 ## Arquitectura
 
