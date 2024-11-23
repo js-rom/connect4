@@ -2,31 +2,25 @@ package connect4.views.graphics;
 
 import javax.swing.ImageIcon;
 
-import connect4.models.Game;
-import connect4.views.graphics.commands.Command;
+import connect4.controllers.PlayController;
 import utils.models.Coordinate;
 
 public class PauseBoardView extends BoardView {
 
-/*     public PauseBoardView(Game game, Command callback) {
-        super(game, callback);
-    } */
-
-    public PauseBoardView(Game game) {
-        super(game);
+    public PauseBoardView(PlayController playController) {
+        super(playController);
     }
 
     @Override
-    protected Square createSquare(ImageIcon icon, Coordinate coordiante) {
+    protected Square createSquare(Coordinate coordiante) {
+        ImageIcon icon = this.getColors().get(this.playController.getColor(coordiante));
         NonClickableSquare square = new NonClickableSquare(icon, coordiante);
         return square;
     }
 
     @Override
     public BoardView copy() {
-        Game game = this.getGame();
-        //Command callback = this.getCallback();
-        return new PauseBoardView(game);
+        return new PauseBoardView(playController);
     }
 
 }

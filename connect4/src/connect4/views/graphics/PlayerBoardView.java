@@ -1,19 +1,22 @@
 package connect4.views.graphics;
 
-import connect4.models.Game;
+import connect4.controllers.PlayController;
 import connect4.models.Player;
 
 public abstract class PlayerBoardView extends BoardView {
 
     private PanelViewCommand callback;
 
-    public PlayerBoardView(Game game, PanelViewCommand callback) {
-        super(game);
+    public PlayerBoardView(PlayController playController, PanelViewCommand callback) {
+        super(playController);
+        assert (playController != null && callback != null);
         this.callback = callback;
+
     }
 
-    public PlayerBoardView(Game game, PanelViewCommand callback, Player player) {
-        this(game, callback);
+    public PlayerBoardView(PlayController playController, PanelViewCommand callback, Player player) {
+        this(playController, callback);
+        assert (player != null);
         this.setPlayer(player);
     }
 
@@ -22,4 +25,5 @@ public abstract class PlayerBoardView extends BoardView {
     public PanelViewCommand getCallback() {
         return this.callback;
     }
+
 }

@@ -1,6 +1,5 @@
 package connect4;
 
-import connect4.models.Game;
 import connect4.views.View;
 import connect4.views.graphics.GraphicsView;
 
@@ -13,14 +12,13 @@ public class GraphicsConnect4 extends Connect4 {
     }
 
     @Override
-    protected View createView(Game game) {
+    protected View createView() {
 
-        return new GraphicsView(game);
+        return new GraphicsView(this.startController, this.playController, this.resumeController);
 
     }
 
     public static void main(String[] args) throws Exception {
-
         new GraphicsConnect4().playGames();
 
     }

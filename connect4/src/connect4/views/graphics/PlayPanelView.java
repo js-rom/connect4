@@ -1,7 +1,7 @@
 package connect4.views.graphics;
 
 import java.awt.BorderLayout;
-import connect4.models.Game;
+import connect4.controllers.PlayController;
 import connect4.models.Player;
 import connect4.types.PlayerType;
 import connect4.views.graphics.commands.NextTurnCommand;
@@ -10,15 +10,16 @@ public class PlayPanelView extends ResumenPanelView {
 
     private BoardViewPrototypeRegistry boardViewPrototypeRegistry;
 
-    public PlayPanelView(Game game) {
-        super(game);
-        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.game, new NextTurnCommand(this));
+    public PlayPanelView(PlayController playController) {
+        super(playController);
+        assert(playController != null);
+        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.getPlayController(), new NextTurnCommand(this));
     }
 
     @Override
     public void write() {
-        if (!this.game.isFinished()) {
-            Player activePlayer = this.game.getActivePlayer();
+        if (!this.getPlayController().isFinished()) {
+            Player activePlayer = this.getPlayController().getActivePlayer();
             PlayerType playerType = activePlayer.getType();
             this.removeBoard();
             this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry, playerType);

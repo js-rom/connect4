@@ -4,28 +4,28 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
-import connect4.models.Game;
+import connect4.controllers.PlayController;
 import connect4.models.MachinePlayer;
 import connect4.models.Player;
-import connect4.views.graphics.commands.Command;
 import utils.models.Coordinate;
 
 public class MachinePlayerBoardView extends PlayerBoardView {
 
     private MachinePlayer player;
 
-    public MachinePlayerBoardView(Game game, PanelViewCommand callback) {
-        super(game, callback);
+    public MachinePlayerBoardView(PlayController playController, PanelViewCommand callback) {
+        super(playController, callback);
     }
 
-    public MachinePlayerBoardView(Game game, PanelViewCommand callback, Player player) {
-        super(game, callback, player);
+    public MachinePlayerBoardView(PlayController playController, PanelViewCommand callback, Player player) {
+        super(playController, callback, player);
         this.setPlayer(player);
         this.dropToken();
     }
 
     @Override
-    protected Square createSquare(ImageIcon icon, Coordinate coordiante) {
+    protected Square createSquare(Coordinate coordiante) {
+        ImageIcon icon = this.getColors().get(this.getPlayController().getColor(coordiante));
         NonClickableSquare square = new NonClickableSquare(icon, coordiante);
         return square;
     }
@@ -42,8 +42,8 @@ public class MachinePlayerBoardView extends PlayerBoardView {
             public void actionPerformed(ActionEvent e) {
                 player.dropToken(getColumn());
                 write();
-                if (!getGame().isFinished()) {
-                    getGame().next();
+                if (!getPlayController().isFinished()) {
+                    getPlayController().next();
                 }
                 getCallback().execute();
             }
@@ -53,14 +53,13 @@ public class MachinePlayerBoardView extends PlayerBoardView {
     }
 
     public BoardView copy() {
-        Game game = this.getGame();
         PanelViewCommand callback = this.getCallback();
-        return new MachinePlayerBoardView(game, callback, game.getActivePlayer());
+        return new MachinePlayerBoardView(this.getPlayController(), callback, this.getPlayController().getActivePlayer());
     }
 
     @Override
     public void setPlayer(Player player) {
-        this.player = (MachinePlayer) getGame().getActivePlayer();
+        this.player = (MachinePlayer) this.getPlayController().getActivePlayer();
     }
 
 }
