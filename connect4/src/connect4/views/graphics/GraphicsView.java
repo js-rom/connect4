@@ -1,8 +1,6 @@
 package connect4.views.graphics;
 
-import connect4.controllers.PlayController;
-import connect4.controllers.ResumeController;
-import connect4.controllers.StartController;
+import connect4.controllers.Logic;
 import connect4.views.View;
 import connect4.views.graphics.commands.Command;
 import connect4.views.graphics.commands.PlayCommand;
@@ -12,14 +10,14 @@ public class GraphicsView extends View {
 
     mainFrame frame;
 
-    public GraphicsView(StartController startController, PlayController playController, ResumeController resumeController) {
-        super(startController, playController, resumeController);
-        this.frame = new mainFrame(this.resumeController);
+    public GraphicsView(Logic logic) {
+        super(logic);
+        this.frame = new mainFrame(this.logic);
     }
 
     @Override
     public void start() {
-        this.frame.setPanel(new StartPanelView(this.startController));
+        this.frame.setPanel(new StartPanelView(this.logic));
         Command nextView = new PlayCommand(this);
         this.frame.setPanelCallback(nextView);
         this.frame.interact();
@@ -28,7 +26,7 @@ public class GraphicsView extends View {
 
     @Override
     public void play() {
-        GameLoopView gameView = new PlayPanelView(this.playController);
+        GameLoopView gameView = new PlayPanelView(this.logic);
         gameView.setCallback(new ResumeCommand(this));
         this.frame.setPanel(gameView);
         this.frame.write();
@@ -36,7 +34,7 @@ public class GraphicsView extends View {
 
     @Override
     public boolean resume() {
-        GameLoopView gameView = new ResumenPanelView(this.playController); // TODO hacer un facade PlayResumeController de ambos 
+        GameLoopView gameView = new ResumenPanelView(this.logic);
         this.frame.setPanel(gameView);
         this.frame.write();
         return this.frame.isResumed();

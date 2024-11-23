@@ -26,6 +26,7 @@
 | basic | modelViewPresenter - supervisorController |
 | basic | modelViewController |
 
+![Problema versión 1.6](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
 # Versión v.1.6
 

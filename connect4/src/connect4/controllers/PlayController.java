@@ -42,7 +42,4 @@ public class PlayController extends Controller {
         return machinePlayer.getColumn();
     }
 
-    public boolean isWinner() {
-        return this.game.isWinner();
-    }
 }

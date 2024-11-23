@@ -3,16 +3,16 @@ package connect4.views.graphics;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import connect4.controllers.ResumeController;
+import connect4.controllers.Logic;
 import connect4.views.graphics.commands.Command;
 
 public class mainFrame extends JFrame implements FrameView {
 
-    private ResumeController resumeController;
+    private Logic logic;
     private GameLoopView panel;
 
-    public mainFrame(ResumeController resumeController) {
-        this.resumeController = resumeController;
+    public mainFrame(Logic logic) {
+        this.logic = logic;
         this.setSize(900, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,9 +43,9 @@ public class mainFrame extends JFrame implements FrameView {
 
     public boolean isResumed() {
         String message;
-        if (this.resumeController.isWinner()) {
+        if (this.logic.isWinner()) {
             message = Message.PLAYER_WIN.toString();
-            message = message.replace("#color", this.resumeController.getActiveColor().toString());
+            message = message.replace("#color", this.logic.getActiveColor().toString());
         } else {
             message = Message.PLAYERS_TIED.toString();
         }

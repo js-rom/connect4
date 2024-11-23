@@ -1,14 +1,14 @@
 package connect4.views.graphics;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.Logic;
 
 public abstract class PlayerBoardView extends BoardView {
 
     private PanelViewCommand callback;
 
-    public PlayerBoardView(PlayController playController, PanelViewCommand callback) {
-        super(playController);
-        assert (playController != null && callback != null);
+    public PlayerBoardView(Logic logic, PanelViewCommand callback) {
+        super(logic);
+        assert (logic != null && callback != null);
         this.callback = callback;
 
     }

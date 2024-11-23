@@ -1,6 +1,7 @@
 package connect4.controllers;
 
 import connect4.models.Game;
+import connect4.models.Turn;
 import connect4.types.PlayerType;
 
 public class StartController extends Controller {
@@ -11,22 +12,36 @@ public class StartController extends Controller {
 
     }
 
+    public PlayerType[] getPlayerTypes() {
+        return PlayerType.values();
+    }
+
+    public int getNumberPlayers() {
+        return Turn.NUMBER_PLAYERS;
+    }
+
     public void reset() {
-
         this.game.reset();
-
     }
 
     public boolean isReset() {
-
         return this.game.isReset();
-
     }
 
     public void addPlayer(PlayerType playerType) {
-
         this.game.addPlayer(playerType);
+    }
 
+    public PlayerType getMinMaxMachinePlayerType() {
+        return PlayerType.MIN_MAX_MACHINE_PLAYER;
+    }
+
+    public PlayerType getRandomMachinePlayerType() {
+        return PlayerType.RANDOM_MACHINE_PLAYER;
+    }
+
+    public PlayerType getUserPlayerPlayerType() {
+        return PlayerType.USER_PLAYER;
     }
 
 }

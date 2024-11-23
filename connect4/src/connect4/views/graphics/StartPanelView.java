@@ -1,5 +1,6 @@
 package connect4.views.graphics;
 
+import connect4.controllers.Logic;
 import connect4.controllers.StartController;
 import connect4.models.Turn;
 import connect4.types.PlayerType;
@@ -13,20 +14,20 @@ import javax.swing.JLabel;
 
 public class StartPanelView extends GameLoopView implements ActionListener {
 
-    private StartController startController;
+    private Logic logic;
     private final PlayerType[] players;
     private final JComboBox<PlayerType>[] CBoxPlayers;
     protected JButton button;
 
-    public StartPanelView(StartController startController) {
-        assert(startController != null);
-        this.startController = startController;
-        this.players = PlayerType.values();
-        this.CBoxPlayers = new JComboBox[Turn.NUMBER_PLAYERS];
+    public StartPanelView(Logic logic) {
+        assert(logic != null);
+        this.logic = logic;
+        this.players = this.logic.getPlayerTypes();
+        this.CBoxPlayers = new JComboBox[this.logic.getNumberPlayers()];
     }
 
-    public StartPanelView(StartController startController, Command callback) {
-        this(startController);
+    public StartPanelView(Logic logic, Command callback) {
+        this(logic);
         assert(callback != null);
         this.setCallback(callback);
     }
@@ -34,7 +35,7 @@ public class StartPanelView extends GameLoopView implements ActionListener {
     public void write() {
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.add(new JLabel("SELECT PLAYERS:"));
-        for (int i = 0; i < Turn.NUMBER_PLAYERS; i++) {
+        for (int i = 0; i < this.logic.getNumberPlayers(); i++) {
             this.CBoxPlayers[i] = new JComboBox<PlayerType>(this.players);
             this.add(this.CBoxPlayers[i]);
         }
@@ -44,10 +45,10 @@ public class StartPanelView extends GameLoopView implements ActionListener {
     }
 
     public void addPlayers() {
-        this.startController.reset();
+        this.logic.reset();
         for (JComboBox<PlayerType> jComboBox : CBoxPlayers) {
             PlayerType playerType = (PlayerType) jComboBox.getSelectedItem();
-            this.startController.addPlayer(playerType);
+            this.logic.addPlayer(playerType);
         }
     }
 
