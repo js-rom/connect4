@@ -1,17 +1,9 @@
 package connect4;
 
-import connect4.models.Game;
 import connect4.views.View;
 import connect4.views.console.ConsoleView;
 
 public class ConsoleConnect4 extends Connect4 {
-
-    @Override
-    protected View createView(Game game) {
-
-        return new ConsoleView(game);
-
-    }
 
     protected void playGames() {
 
@@ -19,6 +11,13 @@ public class ConsoleConnect4 extends Connect4 {
             this.getView().start();
             this.getView().play();
         } while (this.getView().resume());
+
+    }
+
+    @Override
+    protected View createView() {
+
+        return new ConsoleView(this.startController, this.playController, this.resumeController);
 
     }
 

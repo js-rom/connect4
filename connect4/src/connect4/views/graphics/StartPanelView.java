@@ -1,6 +1,6 @@
 package connect4.views.graphics;
 
-import connect4.models.Game;
+import connect4.controllers.StartController;
 import connect4.models.Turn;
 import connect4.types.PlayerType;
 import connect4.views.graphics.commands.Command;
@@ -13,18 +13,21 @@ import javax.swing.JLabel;
 
 public class StartPanelView extends GameLoopView implements ActionListener {
 
+    private StartController startController;
     private final PlayerType[] players;
     private final JComboBox<PlayerType>[] CBoxPlayers;
     protected JButton button;
 
-    public StartPanelView(Game game) {
-        super(game);
+    public StartPanelView(StartController startController) {
+        assert(startController != null);
+        this.startController = startController;
         this.players = PlayerType.values();
         this.CBoxPlayers = new JComboBox[Turn.NUMBER_PLAYERS];
     }
 
-    public StartPanelView(Game game, Command callback) {
-        this(game);
+    public StartPanelView(StartController startController, Command callback) {
+        this(startController);
+        assert(callback != null);
         this.setCallback(callback);
     }
 
@@ -41,10 +44,10 @@ public class StartPanelView extends GameLoopView implements ActionListener {
     }
 
     public void addPlayers() {
-        this.game.reset();
+        this.startController.reset();
         for (JComboBox<PlayerType> jComboBox : CBoxPlayers) {
             PlayerType playerType = (PlayerType) jComboBox.getSelectedItem();
-            this.game.getTurn().addPlayer(playerType);
+            this.startController.addPlayer(playerType);
         }
     }
 
