@@ -3,9 +3,7 @@ package connect4.views.graphics;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import connect4.controllers.PlayController;
-import connect4.models.Player;
 import connect4.types.Color;
 
 public class TurnView extends PanelView {
@@ -25,10 +23,6 @@ public class TurnView extends PanelView {
             this.colors.put(color, icon);
         }
         this.write();
-    }
-
-    public Player getActivePlayer() {
-        return this.playController.getActivePlayer();
     }
 
     @Override

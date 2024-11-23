@@ -2,8 +2,6 @@ package connect4.views.graphics;
 
 import java.awt.BorderLayout;
 import connect4.controllers.PlayController;
-import connect4.models.Player;
-import connect4.types.PlayerType;
 import connect4.views.graphics.commands.NextTurnCommand;
 
 public class PlayPanelView extends ResumenPanelView {
@@ -19,10 +17,8 @@ public class PlayPanelView extends ResumenPanelView {
     @Override
     public void write() {
         if (!this.getPlayController().isFinished()) {
-            Player activePlayer = this.getPlayController().getActivePlayer();
-            PlayerType playerType = activePlayer.getType();
             this.removeBoard();
-            this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry, playerType);
+            this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry, this.getPlayController().getActivePlayerType());
             this.turnView.write();
             this.boardView.write();
             this.removeAll();

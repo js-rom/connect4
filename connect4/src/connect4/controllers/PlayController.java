@@ -3,6 +3,7 @@ package connect4.controllers;
 import connect4.models.Game;
 import connect4.models.Player;
 import connect4.types.Color;
+import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
 public class PlayController extends Controller {
@@ -13,6 +14,10 @@ public class PlayController extends Controller {
 
     public Player getActivePlayer() {
         return this.game.getActivePlayer();
+    }
+
+    public PlayerType getActivePlayerType() {
+        return this.game.getActivePlayerType();
     }
 
     public Color getColor(Coordinate coordinate) {
@@ -26,4 +31,8 @@ public class PlayController extends Controller {
     public void next() {
         this.game.next();
     }
+
+    public void dropToken(int Column)   {
+        this.getActivePlayer().dropToken(Column);
+        }
 }

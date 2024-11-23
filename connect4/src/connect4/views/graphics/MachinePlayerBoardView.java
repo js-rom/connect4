@@ -40,7 +40,7 @@ public class MachinePlayerBoardView extends PlayerBoardView {
         Timer timer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                player.dropToken(getColumn());
+                getPlayController().dropToken(getColumn());
                 write();
                 if (!getPlayController().isFinished()) {
                     getPlayController().next();

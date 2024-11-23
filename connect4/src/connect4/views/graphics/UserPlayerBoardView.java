@@ -39,7 +39,7 @@ public class UserPlayerBoardView extends PlayerBoardView implements ActionListen
     public void actionPerformed(ActionEvent e) {
         ClickableSquare square = (ClickableSquare) e.getSource();
         int column = square.getColumn();
-        this.player.dropToken(column); // OJO esto va en el controlador?
+        this.getPlayController().dropToken(column);
         write();
         if (!this.getPlayController().isFinished()) {
             this.getPlayController().next();
