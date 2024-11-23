@@ -1,20 +1,20 @@
 package connect4.views.console;
 
-import connect4.models.Game;
-import connect4.views.WithGameView;
+import connect4.controllers.StartController;
 
-public class StartView extends WithGameView {
+public class StartView {
 
-    public StartView(Game game) {
-        super(game);
-        assert this.game != null;
+    StartController startController;
+
+    public StartView(StartController startController) {
+        this.startController = startController;
     }
 
     public void interact() {
-        assert this.game.isReset();
-        new TurnView(this.game).selectPlayers();
+        assert this.startController.isReset();
+        new TurnView(this.startController).selectPlayers();
         Message.TITLE.writeln();
-        new BoardView(this.game).writeln();
+        new BoardView(this.startController).writeln();
     }
 
 }

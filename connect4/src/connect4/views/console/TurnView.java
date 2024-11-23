@@ -1,51 +1,54 @@
 package connect4.views.console;
 
-import connect4.models.Game;
-import connect4.models.Player;
+import connect4.controllers.PlayController;
+import connect4.controllers.StartController;
 import connect4.models.Turn;
-import connect4.types.PlayerType;
 import connect4.views.console.menus.TurnMenu;
 import utils.views.Console;
 
-public class TurnView  {
-    private Game game;
+public class TurnView {
+
+    private StartController startController;
+    private PlayController playController;
     private PlayerViewPrototypeRegistry playerViewPrototypeRegistry;
 
-    TurnView(Game game, PlayerViewPrototypeRegistry playerViewPrototypeRegistry) {
-        assert game != null;
+    TurnView(PlayController playController, PlayerViewPrototypeRegistry playerViewPrototypeRegistry) {
+        assert playController != null;
         assert playerViewPrototypeRegistry != null;
-        this.game = game;
+        this.playController = playController;
         this.playerViewPrototypeRegistry = playerViewPrototypeRegistry;
     }
 
-    TurnView(Game game) {
-        this(game, new PlayerViewPrototypeRegistry());
+    TurnView(StartController startController) {
+        this.startController = startController;
+    }
+
+    TurnView(PlayController playController) {
+        this(playController, new PlayerViewPrototypeRegistry());
     }
 
     public void selectPlayers() {
-        new TurnMenu(this.game.getTurn(), Turn.NUMBER_PLAYERS).interact();
+        new TurnMenu(this.startController, Turn.NUMBER_PLAYERS).interact();
     }
 
     public void dropToken() {
-        assert !this.game.isFinished();
-
-        Player activePlayer =  this.game.getActivePlayer();
-        PlayerType playerType =  activePlayer.getType();
-        PlayerView playerView = new PlayerViewPrototypeDirector().get(this.playerViewPrototypeRegistry, playerType);
-        playerView.setPlayer(activePlayer);
+        assert !this.playController.isFinished();
+        PlayerView playerView = new PlayerViewPrototypeDirector().get(this.playerViewPrototypeRegistry,
+                this.playController.getActivePlayerType());
+        playerView.setPlayer(this.playController.getActivePlayer());
         Message.TURN.write();
-        Console.getInstance().writeln(activePlayer.getColor().toString());
+        Console.getInstance().writeln(this.playController.getActivePlayer().getColor().toString());
         playerView.dropToken();
-        if (!this.game.isFinished()) {
-            this.game.next();
+        if (!this.playController.isFinished()) {
+            this.playController.next();
         }
 
     }
 
     public void writeResult() {
-        if (this.game.isWinner()) {
+        if (this.playController.isWinner()) {
             String message = Message.PLAYER_WIN.toString();
-            message = message.replace("#color", this.game.getActiveColor().toString());
+            message = message.replace("#color", this.playController.getActiveColor().toString());
             Console.getInstance().writeln(message);
         } else {
             Message.PLAYERS_TIED.writeln();

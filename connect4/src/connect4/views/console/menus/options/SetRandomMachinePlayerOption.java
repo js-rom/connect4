@@ -1,10 +1,10 @@
 package connect4.views.console.menus.options;
 
-import connect4.models.Turn;
+import connect4.controllers.StartController;
 import connect4.types.PlayerType;
 
 public class SetRandomMachinePlayerOption extends TurnOption {
-    public SetRandomMachinePlayerOption(Turn model) {
+    public SetRandomMachinePlayerOption(StartController model) {
         super("Easy Machine Player", model);
     }
 

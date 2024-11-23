@@ -47,7 +47,7 @@ public class StartPanelView extends GameLoopView implements ActionListener {
         this.startController.reset();
         for (JComboBox<PlayerType> jComboBox : CBoxPlayers) {
             PlayerType playerType = (PlayerType) jComboBox.getSelectedItem();
-            this.startController.getTurn().addPlayer(playerType);
+            this.startController.addPlayer(playerType);
         }
     }
 

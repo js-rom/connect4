@@ -1,6 +1,8 @@
 package connect4.views.console;
 
-import connect4.models.Game;
+import connect4.controllers.PlayController;
+import connect4.controllers.ResumeController;
+import connect4.controllers.StartController;
 import connect4.views.View;
 
 public class ConsoleView extends View {
@@ -9,12 +11,13 @@ public class ConsoleView extends View {
     private PlayView playView;
     private ResumeView resumeView;
 
-    public ConsoleView(Game game) {
-        super(game);
-        assert this.game != null;
-        this.startView = new StartView(this.game);
-        this.playView = new PlayView(this.game);
-        this.resumeView = new ResumeView(this.game);
+    public ConsoleView(StartController startController, PlayController playController,
+            ResumeController resumeController) {
+        super(startController, playController, resumeController);
+
+        this.startView = new StartView(this.startController);
+        this.playView = new PlayView(this.playController);
+        this.resumeView = new ResumeView(this.resumeController);
     }
 
     @Override
@@ -32,5 +35,4 @@ public class ConsoleView extends View {
         return this.resumeView.interact();
     }
 
-    
 }

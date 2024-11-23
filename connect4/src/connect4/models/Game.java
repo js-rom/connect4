@@ -53,8 +53,12 @@ public class Game {
         this.turn.next();
     }
 
-    public Turn getTurn() {
+/*     public Turn getTurn() {
         return this.turn;
+    } */
+
+    public void addPlayer(PlayerType playerType) {
+        this.turn.addPlayer(playerType);
     }
 
 }

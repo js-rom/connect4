@@ -41,4 +41,8 @@ public class PlayController extends Controller {
         MachinePlayer machinePlayer = (MachinePlayer) this.getActivePlayer();
         return machinePlayer.getColumn();
     }
+
+    public boolean isWinner() {
+        return this.game.isWinner();
+    }
 }

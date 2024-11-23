@@ -22,4 +22,8 @@ public class ResumeController extends Controller {
     public Color getColor(Coordinate coordinate) {
         return this.game.getColor(coordinate);
     }
+
+    public void reset() {
+        this.game.reset();
+    }
 }
