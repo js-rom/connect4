@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.4 documentView - withoutFactoryMethod
+# Connect 4. Solution v.1.6 modelViewPresenter - presentationModel - basic
 
 # Requisitos 1. *Machine*
 

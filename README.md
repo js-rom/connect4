@@ -11,7 +11,7 @@
 | machine | [v.1.3 documentView - machine - prototype](https://github.com/js-rom/connect4/tree/v.1.3) |
 | graphics | [v.1.4 documentView - withoutFactoryMethod](https://github.com/js-rom/connect4/tree/v.1.4) |
 | graphics | [v.1.5 documentView - withFactoryMethod](https://github.com/js-rom/connect4/tree/v.1.5) |
-| graphics | modelViewPresenter - presentationModel - basic |
+| graphics | [v.1.6 modelViewPresenter - presentationModel - basic](https://github.com/js-rom/connect4/tree/v.1.6) |
 | graphics | modelViewPresenter - presentationModel - withFacade |
 | graphics | modelViewPresenter - presentationModel - withoutDoubleDispatching |
 | graphics | modelViewPresenter - presentationModel - withDoubleDispatching |
@@ -27,7 +27,15 @@
 | basic | modelViewController |
 
 
-# Versión v.1.5
+# Versión v.1.6
+
+## Problemas de diseño de la versión v.1.6
+
+TODO
+
+## Soluciones de diseño a la versión v.1.5
+
+TODO
 
 ## Problemas de diseño de la versión v.1.5
 
