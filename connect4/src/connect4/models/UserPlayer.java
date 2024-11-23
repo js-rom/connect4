@@ -10,11 +10,7 @@ public class UserPlayer extends Player {
     }
 
     public UserPlayer() {
-        
-    }
 
-    public void accept(PlayerVisitor visitor){
-        visitor.visit(this);
     }
 
     public PlayerType getType() {

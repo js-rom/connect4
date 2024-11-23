@@ -12,14 +12,14 @@ public abstract class Player {
         assert color != null && board != null;
 
         this.color = color;
-        this.board = board;        
+        this.board = board;
     }
 
     Player() {
 
     }
 
-    public Color getColor(){
+    public Color getColor() {
         return this.color;
     }
 
@@ -35,20 +35,18 @@ public abstract class Player {
         this.board = board;
     }
 
-    public boolean isComplete(int column){
+    public boolean isComplete(int column) {
         assert 0 <= column && column < Coordinate.NUMBER_COLUMNS;
 
         return this.board.isComplete(column);
     }
 
-    public void dropToken(int column){
+    public void dropToken(int column) {
         assert 0 <= column && column < Coordinate.NUMBER_COLUMNS;
         assert !this.board.isComplete(column);
-        
+
         this.board.dropToken(column, this.color);
     }
-
-    public abstract void accept(PlayerVisitor playerVisitor);
 
     public abstract PlayerType getType();
 }
