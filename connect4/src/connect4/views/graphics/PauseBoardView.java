@@ -1,7 +1,6 @@
 package connect4.views.graphics;
 
 import javax.swing.ImageIcon;
-
 import connect4.controllers.PlayController;
 import utils.models.Coordinate;
 
@@ -19,8 +18,8 @@ public class PauseBoardView extends BoardView {
     }
 
     @Override
-    public BoardView copy() {
-        return new PauseBoardView(playController);
+    public void accept(PlayPanelViewVisitor playPanelView) {
+        playPanelView.visit(this);
     }
 
 }

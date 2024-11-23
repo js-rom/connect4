@@ -47,8 +47,6 @@ public abstract class BoardView extends PanelView {
 
     protected abstract Square createSquare(Coordinate coordiante);
 
-    public abstract BoardView copy();
-
     protected HashMap<Color, ImageIcon> getColors() {
         return this.colors;
     }
@@ -60,5 +58,7 @@ public abstract class BoardView extends PanelView {
     protected PlayController getPlayController() {
         return this.playController;
     }
+
+    public abstract void accept(PlayPanelViewVisitor playPanelView);
 
 }

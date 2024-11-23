@@ -1,6 +1,7 @@
 package connect4.controllers;
 
 import connect4.models.Game;
+import connect4.models.MachinePlayer;
 import connect4.models.Player;
 import connect4.types.Color;
 import connect4.types.PlayerType;
@@ -32,7 +33,12 @@ public class PlayController extends Controller {
         this.game.next();
     }
 
-    public void dropToken(int Column)   {
+    public void dropToken(int Column) {
         this.getActivePlayer().dropToken(Column);
-        }
+    }
+
+    public int getColumn() {
+        MachinePlayer machinePlayer = (MachinePlayer) this.getActivePlayer();
+        return machinePlayer.getColumn();
+    }
 }

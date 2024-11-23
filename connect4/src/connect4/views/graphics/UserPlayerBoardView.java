@@ -4,20 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import connect4.controllers.PlayController;
-import connect4.models.Player;
-import connect4.models.UserPlayer;
 import utils.models.Coordinate;
 
 public class UserPlayerBoardView extends PlayerBoardView implements ActionListener {
 
-    private UserPlayer player;
-
     public UserPlayerBoardView(PlayController playController, PanelViewCommand callback) {
         super(playController, callback);
-    }
-
-    public UserPlayerBoardView(PlayController playController, PanelViewCommand callback, Player player) {
-        super(playController, callback, player);
     }
 
     @Override
@@ -27,12 +19,6 @@ public class UserPlayerBoardView extends PlayerBoardView implements ActionListen
         ClickableSquare square = new ClickableSquare(icon, coordiante);
         square.addActionListener(this);
         return square;
-    }
-
-    @Override
-    public BoardView copy() {
-        PanelViewCommand callback = this.getCallback();
-        return new UserPlayerBoardView(this.getPlayController(), callback, this.getPlayController().getActivePlayer());
     }
 
     @Override
@@ -47,9 +33,7 @@ public class UserPlayerBoardView extends PlayerBoardView implements ActionListen
         this.getCallback().execute();
     }
 
-    @Override
-    public void setPlayer(Player player) {
-        this.player = (UserPlayer) getPlayController().getActivePlayer();
+    public void accept(PlayPanelViewVisitor playPanelView) {
+        playPanelView.visit(this);
     }
-
 }
