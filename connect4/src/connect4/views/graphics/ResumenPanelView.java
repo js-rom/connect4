@@ -1,27 +1,25 @@
 package connect4.views.graphics;
 
 import java.awt.BorderLayout;
-import connect4.controllers.PlayController;
-
+import connect4.controllers.Logic;
 
 public class ResumenPanelView extends GameLoopView {
 
-    private PlayController playController;
+    private Logic logic;
     protected BoardView boardView;
     protected TurnView turnView;
 
-    public ResumenPanelView(PlayController playController) {
-        assert(playController != null);
+    public ResumenPanelView(Logic logic) {
+        assert (logic != null);
         this.setLayout(new BorderLayout());
-        this.playController = playController;
-        this.turnView = new TurnView(this.playController);
+        this.logic = logic;
+        this.turnView = new TurnView(this.logic);
     }
-
 
     @Override
     public void write() {
-        assert(this.playController != null);
-        this.boardView = new PauseBoardView(this.playController);
+        assert (this.logic != null);
+        this.boardView = new PauseBoardView(this.logic);
         this.turnView.write();
         this.boardView.write();
         this.removeAll();
@@ -30,8 +28,8 @@ public class ResumenPanelView extends GameLoopView {
         this.add(this.boardView, BorderLayout.CENTER);
     }
 
-    protected PlayController getPlayController() {
-        assert(this.playController != null);
-        return this.playController;
+    protected Logic getLogic() {
+        assert (this.logic != null);
+        return this.logic;
     }
 }

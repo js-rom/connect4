@@ -1,16 +1,15 @@
 package connect4.views.console.menus.options;
 
-import connect4.controllers.StartController;
-import connect4.types.PlayerType;
+import connect4.controllers.Logic;
 
 public class SetUserPlayerOption extends TurnOption {
 
-    public SetUserPlayerOption(StartController model) {
+    public SetUserPlayerOption(Logic model) {
         super("Human player", model);
     }
 
     public void interact() {
-        this.model.addPlayer(PlayerType.USER_PLAYER);
+        this.model.addPlayer(model.getUserPlayerPlayerType());
     }
 
 }

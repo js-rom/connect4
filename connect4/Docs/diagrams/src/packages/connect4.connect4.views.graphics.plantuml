@@ -29,19 +29,19 @@ class JFrame
 JFrame <|-- FrameView
 FrameView <|-- MainFrame
 GraphicsView *-- MainFrame
-class ResumeController as "controllers.\nResumeController"
 
-MainFrame --> ResumeController
+class Logic as "controllers.Logic"
+MainFrame --> Logic
 
-class StartController as "controllers.\nStartController"
+class Logic as "controllers.\nLogic"
 
-StartPanelView --> StartController
+StartPanelView --> Logic
 
-class PlayController as "controllers.\nPlayController"
+class Logic as "controllers.\nLogic"
 
-PlayPanelView --> PlayController
+PlayPanelView --> Logic
 
-ResumePanelView --> PlayController
+ResumePanelView --> Logic
 
 abstract class View
 View <|-- GraphicsView

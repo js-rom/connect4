@@ -4,7 +4,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import java.awt.GridLayout;
-import connect4.controllers.PlayController;
+import connect4.controllers.Logic;
 import connect4.types.Color;
 import connect4.views.graphics.commands.Command;
 import utils.models.Coordinate;
@@ -12,12 +12,12 @@ import java.util.HashMap;
 
 public abstract class BoardView extends PanelView {
 
-    public PlayController playController;
+    public Logic logic;
     private HashMap<Color, ImageIcon> colors;
     private Command callback;
 
-    public BoardView(PlayController playController) {
-        this.playController = playController;
+    public BoardView(Logic logic) {
+        this.logic = logic;
         this.setLayout(new GridLayout(Coordinate.NUMBER_ROWS, Coordinate.NUMBER_COLUMNS));
         this.colors = new HashMap<Color, ImageIcon>();
         for (Color color : Color.values()) {
@@ -55,8 +55,8 @@ public abstract class BoardView extends PanelView {
         return this.callback;
     }
 
-    protected PlayController getPlayController() {
-        return this.playController;
+    protected Logic getLogic() {
+        return this.logic;
     }
 
     public abstract void accept(PlayPanelViewVisitor playPanelView);

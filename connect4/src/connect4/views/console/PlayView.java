@@ -1,23 +1,23 @@
 package connect4.views.console;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.Logic;
 
 public class PlayView {
 
-    PlayController playController;
+    Logic logic;
 
-    public PlayView(PlayController playController) {
-        assert this.playController != null;
-        this.playController = playController;
+    public PlayView(Logic logic) {
+        assert this.logic != null;
+        this.logic = logic;
     }
 
     public void interact() {
 
         do {
-            new TurnView(this.playController).dropToken();
-            new BoardView(this.playController).writeln();
-        } while (!this.playController.isFinished());
-        new TurnView(this.playController).writeResult();
+            new TurnView(this.logic).dropToken();
+            new BoardView(this.logic).writeln();
+        } while (!this.logic.isFinished());
+        new TurnView(this.logic).writeResult();
     }
 
 }
