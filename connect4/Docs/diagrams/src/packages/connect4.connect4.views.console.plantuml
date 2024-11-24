@@ -27,13 +27,11 @@ Consoleview *--> StartView
 Consoleview *--> PlayView
 Consoleview *--> ResumeView
 
-class StartController
-class PlayController
-class ResumeController
+class Logic
 
-StartView --> StartController
-PlayView --> PlayController
-ResumeView --> ResumeController
+StartView --> Logic
+PlayView --> Logic
+ResumeView --> Logic
 
 StartView ..> TurnView
 StartView ..> BoardView
@@ -70,14 +68,14 @@ enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
 
 TurnOption --|> Option
 TurnMenu --|> SecuentialMenu
-BoardView --> Controller
+BoardView --> Logic
 BoardView ..> Coordinate
 MachinePlayerView *-- Player
 UserPlayerView *-- Player
-TurnView --> StartController
-TurnView --> PlayController
-TurnMenu --> StartController
-TurnOption --> StartController
+TurnView --> Logic
+TurnView --> Logic
+TurnMenu --> Logic
+TurnOption --> Logic
 PlayerViewPrototypeDirector ..> PlayerType
 
 

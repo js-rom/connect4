@@ -1,15 +1,14 @@
 package connect4.views.console.menus.options;
 
-import connect4.controllers.StartController;
-import connect4.types.PlayerType;
+import connect4.controllers.Logic;
 
 public class SetMinMaxMachinePlayerOption extends TurnOption {
 
-    public SetMinMaxMachinePlayerOption(StartController model) {
+    public SetMinMaxMachinePlayerOption(Logic model) {
         super("Dificult Machine Player", model);
     }
 
     public void interact() {
-        this.model.addPlayer(PlayerType.MIN_MAX_MACHINE_PLAYER);
+        this.model.addPlayer(model.getMinMaxMachinePlayerType());
     }
 }

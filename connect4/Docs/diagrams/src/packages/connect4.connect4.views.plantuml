@@ -1,15 +1,14 @@
 @startuml connect4.connect4.views
 
-abstract class views.WithGameView
+abstract class views.WithLogicView
 abstract class views.View
-class Game as "connect4.connect4.\nmodels.Game"
+class Logic as "controllers.Logic"
 
-WithGameView <|-- View
-WithGameView --> Game
-View --> Game
+WithLogicView *--> Logic
+WithLogicView <|-- View
 
+WithLogicView : #logic
 
-WithGameView : #game
 View : {abstract} +start()
 View : {abstract} +play()
 View : {abstract} +resume()

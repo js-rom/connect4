@@ -1,26 +1,26 @@
 package connect4.views.graphics;
 
 import java.awt.BorderLayout;
-import connect4.controllers.PlayController;
+import connect4.controllers.Logic;
 import connect4.views.graphics.commands.NextTurnCommand;
 
 public class PlayPanelView extends ResumenPanelView implements PlayPanelViewVisitor {
 
     private BoardViewPrototypeRegistry boardViewPrototypeRegistry;
 
-    public PlayPanelView(PlayController playController) {
-        super(playController);
-        assert (playController != null);
-        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.getPlayController(),
+    public PlayPanelView(Logic logic) {
+        super(logic);
+        assert (logic != null);
+        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.getLogic(),
                 new NextTurnCommand(this));
     }
 
     @Override
     public void write() {
-        if (!this.getPlayController().isFinished()) {
+        if (!this.getLogic().isFinished()) {
             this.removeBoard();
             this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry,
-                    this.getPlayController().getActivePlayerType());
+                    this.getLogic().getActivePlayerType());
             this.turnView.write();
             this.boardView.accept(this);
             this.removeAll();

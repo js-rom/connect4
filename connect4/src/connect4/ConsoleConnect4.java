@@ -1,5 +1,6 @@
 package connect4;
 
+import connect4.controllers.Logic;
 import connect4.views.View;
 import connect4.views.console.ConsoleView;
 
@@ -15,9 +16,9 @@ public class ConsoleConnect4 extends Connect4 {
     }
 
     @Override
-    protected View createView() {
+    protected View createView(Logic logic) {
 
-        return new ConsoleView(this.startController, this.playController, this.resumeController);
+        return new ConsoleView(logic);
 
     }
 
