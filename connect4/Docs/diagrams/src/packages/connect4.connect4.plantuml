@@ -3,31 +3,19 @@
 abstract class connect4.Connect4 <<Creator>>
 class connect4.ConsoleConnect4 <<ConcreteCreator>>
 class connect4.GraphicsConnect4 <<ConcreteCreator>>
-class Game as "models.Game"
-abstract class Controller as "controlers.Controller"
-class StartController as "controlers.StartController"
-class PlayController as "controlers.PlayController"
-class ResumeController as "controlers.ResumeController"
 class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
 class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
 class View as "views.View" <<Product>>
 
 Connect4 <|-- ConsoleConnect4
 Connect4 <|-- GraphicsConnect4
-Connect4 *--> Game
-Connect4 *--> "3" Controller
 Connect4 *--> View
 
 GraphicsConnect4 ..> GraphicsView
-GraphicsView --> "3" Controller
-
+class Logic as "controllers.Logic"
+GraphicsConnect4 ..> Logic
 ConsoleConnect4 ..> GraphicsView
-ConsoleView --> "3" Controller
-
-Controller --> Game
-Controller <|-- StartController
-Controller <|-- PlayController
-Controller <|-- ResumeController
+ConsoleConnect4 ..> Logic
 
 View <|-- ConsoleView
 View <|-- GraphicsView
@@ -35,6 +23,7 @@ View <|-- GraphicsView
 Connect4 : #Connect4()
 Connect4 : {abstract}#createView(Game): View
 Connect4 : {abstract}#PlayGames()
+Connect4 : #getView(): View
 
 GraphicsConnect4 : #GraphicsConnect4()
 GraphicsConnect4 : #createView()

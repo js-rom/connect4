@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.6 modelViewPresenter - presentationModel - basic
+# Connect 4. Solution v.1.7 modelViewPresenter - presentationModel - withFacade
 
 # Requisitos 1. *Machine*
 
@@ -12,6 +12,7 @@
   - Arquitectura Documento/Vista mediante **Patrón de Vista Separada**  
     * **Patrón Template Method (Factory Method)**, para clases principales  
     * **Patrón Model View Presenter**, para incluir controllers 
+    * **Patrón Facade**, para clases principales
 
 ## Arquitectura
 
@@ -19,9 +20,19 @@
 
 ![Package_connect4](../out/connect4/Docs/diagrams/src/packages/connect4.connect4/connect4.connect4.svg)
 
+## connect4.controllers Package
+
+![Package_connect4.controllers](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.controllers/connect4.connect4.controllers.svg)
+
+
+## connect4.views.views Package
+
+![Package_connect4.views](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views/connect4.connect4.views.svg)
+
 ## connect4.views.console Package
 
 ![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console/connect4.connect4.views.svg)
+
 
 ## connect4.views.graphics Package
 
@@ -35,7 +46,7 @@
 
 ![Package_connect4.types](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.types/connect4.connect4.types.svg)
 
-## connect4.views utils
+## connect4.utils Package
 
 ![Package_connect4.utils](../out/connect4/Docs/diagrams/src/packages/connect4.utils/utils.svg)
 

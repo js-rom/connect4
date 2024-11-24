@@ -1,0 +1,24 @@
+@startuml connect4.connect4.controllers
+
+abstract class controllers.Controller
+class controllers.Startcontroller
+class controllers.PlayController
+class controllers.ResumeController
+class controllers.Logic
+class Game as "models.Game"
+
+Controller <|-- Startcontroller
+Controller <|-- PlayController
+Controller <|-- ResumeController
+
+Logic --> Game
+Logic *--> Startcontroller
+Logic *--> PlayController
+Logic *--> ResumeController
+
+Startcontroller --> Game
+PlayController --> Game
+ResumeController --> Game
+
+
+@enduml
