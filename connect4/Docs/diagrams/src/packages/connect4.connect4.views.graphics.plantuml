@@ -21,7 +21,7 @@ class graphics.StartPanelView
 class graphics.TurnView
 class graphics.UserPlayerBoardView
 abstract class graphics.PanelView
-abstract class graphics.PlayerBoardView
+
 
 class JFrame
 JFrame <|-- FrameView
@@ -55,7 +55,7 @@ PanelView <|-- TurnView
 GraphicsView ..> GameLoopView
 MainFrame --> GameLoopView
 
-PlayPanelView *--> PlayerBoardView
+PlayPanelView *--> BoardView
 PlayPanelView *--> TurnView
 PlayPanelView *--> BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
@@ -70,14 +70,14 @@ Command <|-- ViewCommand
 ViewCommand <|-- PlayCommand
 ViewCommand <|-- ResumeCommand
 
-BoardView <|-- PlayerBoardView
-PlayerBoardView <|-- MachinePlayerBoardView
-PlayerBoardView <|-- UserPlayerBoardView
+
+BoardView <|-- MachinePlayerBoardView
+BoardView <|-- UserPlayerBoardView
 MachinePlayerBoardView o--> NonClickableSquare
 UserPlayerBoardView o--> ClickableSquare
 Square <|-- ClickableSquare
 Square <|-- NonClickableSquare
 
-PlayerBoardView --> PanelViewCommand
+BoardView --> PanelViewCommand
 
 @enduml

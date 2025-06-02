@@ -6,13 +6,13 @@ import connect4.types.PlayerType;
 
 public class BoardViewPrototypeRegistry {
 
-    private HashMap<PlayerType, PlayerBoardView> playerBoardViews;
+    private HashMap<PlayerType, BoardView> playerBoardViews;
 
     public BoardViewPrototypeRegistry(Logic logic, PanelViewCommand callback) {
         assert (logic != null);
-        this.playerBoardViews = new HashMap<PlayerType, PlayerBoardView>();
+        this.playerBoardViews = new HashMap<PlayerType, BoardView>();
 
-        PlayerBoardView boardView;
+        BoardView boardView;
         boardView = new UserPlayerBoardView(logic, callback);
         this.addPlayerView(PlayerType.USER_PLAYER, boardView);
         boardView = new MachinePlayerBoardView(logic, callback);
@@ -20,7 +20,7 @@ public class BoardViewPrototypeRegistry {
         this.addPlayerView(PlayerType.MIN_MAX_MACHINE_PLAYER, boardView);
     }
 
-    private void addPlayerView(PlayerType type, PlayerBoardView playerView) {
+    private void addPlayerView(PlayerType type, BoardView playerView) {
         this.playerBoardViews.put(type, playerView);
     }
 
