@@ -13,7 +13,6 @@ class graphics.MachinePlayerBoardView
 class graphics.NextTurnCommand
 class graphics.PlayCommand
 class graphics.PlayPanelView
-class graphics.ResumePanelView
 class graphics.ResumeCommand
 class graphics.Square
 class graphics.ClickableSquare
@@ -21,14 +20,13 @@ class graphics.NonClickableSquare
 class graphics.StartPanelView
 class graphics.TurnView
 class graphics.UserPlayerBoardView
-class graphics.PauseBoardView
 abstract class graphics.PanelView
 abstract class graphics.PlayerBoardView
 
 class JFrame
 JFrame <|-- FrameView
 FrameView <|-- MainFrame
-GraphicsView *-- MainFrame
+GraphicsView *--> MainFrame
 
 class Logic as "controllers.Logic"
 MainFrame --> Logic
@@ -41,8 +39,6 @@ class Logic as "controllers.\nLogic"
 
 PlayPanelView --> Logic
 
-ResumePanelView --> Logic
-
 abstract class View
 View <|-- GraphicsView
 
@@ -52,22 +48,18 @@ MainFrame ..> JOptionPane
 JPanel <|-- PanelView
 PanelView <|-- GameLoopView
 GameLoopView <|-- StartPanelView
-ResumePanelView <|-- PlayPanelView
-GameLoopView <|-- ResumePanelView
+GameLoopView <|-- PlayPanelView
 PanelView <|-- BoardView
 PanelView <|-- TurnView
 
 GraphicsView ..> GameLoopView
 MainFrame --> GameLoopView
 
-PlayPanelView *-- PlayerBoardView
-PlayPanelView *-- TurnView
-PlayPanelView *-- BoardViewPrototypeRegistry
+PlayPanelView *--> PlayerBoardView
+PlayPanelView *--> TurnView
+PlayPanelView *--> BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
 BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
-
-ResumePanelView *-- PauseBoardView
-ResumePanelView *-- TurnView
 
 StartPanelView --> ViewCommand
 PlayPanelView --> ViewCommand
@@ -81,10 +73,8 @@ ViewCommand <|-- ResumeCommand
 BoardView <|-- PlayerBoardView
 PlayerBoardView <|-- MachinePlayerBoardView
 PlayerBoardView <|-- UserPlayerBoardView
-BoardView <|-- PauseBoardView
-MachinePlayerBoardView o-- NonClickableSquare
-UserPlayerBoardView o-- ClickableSquare
-PauseBoardView o-- NonClickableSquare
+MachinePlayerBoardView o--> NonClickableSquare
+UserPlayerBoardView o--> ClickableSquare
 Square <|-- ClickableSquare
 Square <|-- NonClickableSquare
 
