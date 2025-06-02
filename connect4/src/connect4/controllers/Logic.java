@@ -81,10 +81,10 @@ public class Logic {
     }
 
     public PlayerType getRandomMachinePlayerType() {
-        return this.startController.getMinMaxMachinePlayerType();
+        return this.startController.getRandomMachinePlayerType();
     }
 
     public PlayerType getUserPlayerPlayerType() {
-        return this.startController.getRandomMachinePlayerType();
+        return this.startController.getUserPlayerPlayerType();
     }
 }

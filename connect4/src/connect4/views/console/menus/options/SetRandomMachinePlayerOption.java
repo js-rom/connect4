@@ -8,6 +8,6 @@ public class SetRandomMachinePlayerOption extends TurnOption {
     }
 
     public void interact() {
-        this.model.addPlayer(model.getUserPlayerPlayerType());
+        this.model.addPlayer(model.getRandomMachinePlayerType());
     }
 }
