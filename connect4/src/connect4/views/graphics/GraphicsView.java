@@ -34,8 +34,6 @@ public class GraphicsView extends View {
 
     @Override
     public boolean resume() {
-        GameLoopView gameView = new ResumenPanelView(this.logic);
-        this.frame.setPanel(gameView);
         this.frame.write();
         return this.frame.isResumed();
     }
