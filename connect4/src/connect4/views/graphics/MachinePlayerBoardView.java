@@ -8,7 +8,7 @@ import javax.swing.Timer;
 import connect4.controllers.Logic;
 import utils.models.Coordinate;
 
-public class MachinePlayerBoardView extends PlayerBoardView {
+public class MachinePlayerBoardView extends BoardView {
 
     public MachinePlayerBoardView(Logic logic, PanelViewCommand callback) {
         super(logic, callback);

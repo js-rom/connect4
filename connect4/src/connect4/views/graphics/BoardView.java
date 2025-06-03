@@ -14,7 +14,8 @@ public abstract class BoardView extends PanelView {
 
     public Logic logic;
     private HashMap<Color, ImageIcon> colors;
-    private Command callback;
+    //private Command callback;
+    private PanelViewCommand callback;
 
     public BoardView(Logic logic) {
         this.logic = logic;
@@ -28,6 +29,13 @@ public abstract class BoardView extends PanelView {
             this.colors.put(color, icon);
         }
         this.write();
+    }
+
+    public BoardView(Logic logic, PanelViewCommand callback) {
+        this(logic);
+        assert (logic != null && callback != null);
+        this.callback = callback;
+
     }
 
     public void write() {
@@ -51,7 +59,11 @@ public abstract class BoardView extends PanelView {
         return this.colors;
     }
 
-    public Command getCallback() {
+/*     public Command getCallback() {
+        return this.callback;
+    } */
+
+        public PanelViewCommand getCallback() {
         return this.callback;
     }
 

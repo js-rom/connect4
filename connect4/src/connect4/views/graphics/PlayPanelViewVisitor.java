@@ -4,5 +4,4 @@ public interface PlayPanelViewVisitor {
 
     public void visit(MachinePlayerBoardView machinePlayerBoardView);
     public void visit(UserPlayerBoardView userPlayerBoardView);
-    public void visit(PauseBoardView pauseBoardView);
 }

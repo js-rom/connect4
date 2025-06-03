@@ -30,7 +30,7 @@
 
 # Versión v.1.7
 
-## Problemas de diseño de la versión v.1.6
+## Problemas de diseño de la versión v.1.7
 
 - Vistas con DRY en la lógica de control.
 - Clase Logic no adecuada por número de parámetros y creación de controladores.
