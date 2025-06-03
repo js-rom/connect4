@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import connect4.controllers.Logic;
 import utils.models.Coordinate;
 
-public class UserPlayerBoardView extends PlayerBoardView implements ActionListener {
+public class UserPlayerBoardView extends BoardView implements ActionListener {
 
     public UserPlayerBoardView(Logic logic, PanelViewCommand callback) {
         super(logic, callback);

@@ -53,9 +53,9 @@ public class Game {
         this.turn.next();
     }
 
-/*     public Turn getTurn() {
-        return this.turn;
-    } */
+    public int getNumberPlayers() {
+        return Turn.NUMBER_PLAYERS;
+    }
 
     public void addPlayer(PlayerType playerType) {
         this.turn.addPlayer(playerType);

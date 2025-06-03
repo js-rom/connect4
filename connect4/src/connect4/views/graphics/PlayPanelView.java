@@ -4,13 +4,18 @@ import java.awt.BorderLayout;
 import connect4.controllers.Logic;
 import connect4.views.graphics.commands.NextTurnCommand;
 
-public class PlayPanelView extends ResumenPanelView implements PlayPanelViewVisitor {
+public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor {
 
+    private Logic logic;
+    protected BoardView boardView;
+    protected TurnView turnView;
     private BoardViewPrototypeRegistry boardViewPrototypeRegistry;
 
     public PlayPanelView(Logic logic) {
-        super(logic);
         assert (logic != null);
+        this.setLayout(new BorderLayout());
+        this.logic = logic;
+        this.turnView = new TurnView(this.logic);
         this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(this.getLogic(),
                 new NextTurnCommand(this));
     }
@@ -40,6 +45,11 @@ public class PlayPanelView extends ResumenPanelView implements PlayPanelViewVisi
         }
     }
 
+        protected Logic getLogic() {
+        assert (this.logic != null);
+        return this.logic;
+    }
+
     public void visit(MachinePlayerBoardView machinePlayerBoardView) {
         machinePlayerBoardView.write();
         machinePlayerBoardView.dropToken();
@@ -47,10 +57,6 @@ public class PlayPanelView extends ResumenPanelView implements PlayPanelViewVisi
 
     public void visit(UserPlayerBoardView userPlayerBoardView) {
         userPlayerBoardView.write();
-    }
-
-    public void visit(PauseBoardView pauseBoardView) {
-        pauseBoardView.write();
     }
 
 }
