@@ -12,7 +12,7 @@
 | graphics | [v.1.4 documentView - withoutFactoryMethod](https://github.com/js-rom/connect4/tree/v.1.4) |
 | graphics | [v.1.5 documentView - withFactoryMethod](https://github.com/js-rom/connect4/tree/v.1.5) |
 | graphics | [v.1.6 modelViewPresenter - presentationModel - basic](https://github.com/js-rom/connect4/tree/v.1.6) |
-| graphics | [v.1.7 modelViewPresenter - presentationModel - withFacade](https://github.com/js-rom/connect4/tree/v.1.7) |
+| graphics | [v.1.7 modelViewPresenter - presentationModel - withFacade](https://github.com/js-rom/connect4/tree/v1.7.0-Release) |
 | graphics | modelViewPresenter - presentationModel - withoutDoubleDispatching |
 | graphics | modelViewPresenter - presentationModel - withDoubleDispatching |
 | undoRedo | modelViewPresenter - presentationModel - withComposite |
