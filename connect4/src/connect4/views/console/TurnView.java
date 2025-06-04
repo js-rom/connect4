@@ -2,53 +2,42 @@ package connect4.views.console;
 
 import connect4.controllers.Logic;
 import connect4.controllers.PlayController;
+import connect4.controllers.StartController;
 import connect4.models.Turn;
 import connect4.views.console.menus.TurnMenu;
 import utils.views.Console;
 
 public class TurnView {
 
-    private Logic logic;
     private PlayerViewPrototypeRegistry playerViewPrototypeRegistry;
 
-    TurnView(Logic logic, PlayerViewPrototypeRegistry playerViewPrototypeRegistry) {
-        assert logic != null;
-        assert playerViewPrototypeRegistry != null;
-        this.logic = logic;
-        this.playerViewPrototypeRegistry = playerViewPrototypeRegistry;
+    TurnView() {
+         this.playerViewPrototypeRegistry = new PlayerViewPrototypeRegistry();
     }
 
-    TurnView(Logic logic) {
-        this(logic, new PlayerViewPrototypeRegistry());
-        //this.logic = logic;
+
+    public void selectPlayers(StartController startController) {
+        new TurnMenu(startController, startController.getNumberPlayers()).interact();
     }
 
- /*    TurnView(PlayController playController) {
-        this(playController, new PlayerViewPrototypeRegistry());
-    } */
-
-    public void selectPlayers() {
-        new TurnMenu(this.logic, Turn.NUMBER_PLAYERS).interact();
-    }
-
-    public void dropToken() {
-        assert !this.logic.isFinished();
+    public void dropToken(PlayController playController) {
+        assert !playController.isFinished();
         PlayerView playerView = new PlayerViewPrototypeDirector().get(this.playerViewPrototypeRegistry,
-                this.logic.getActivePlayerType());
-        playerView.setPlayer(this.logic.getActivePlayer());
+                playController.getActivePlayerType());
+        playerView.setPlayer(playController.getActivePlayer());
         Message.TURN.write();
-        Console.getInstance().writeln(this.logic.getActiveColor().toString());
+        Console.getInstance().writeln(playController.getActiveColor().toString());
         playerView.dropToken();
-        if (!this.logic.isFinished()) {
-            this.logic.next();
+        if (!playController.isFinished()) {
+            playController.next();
         }
 
     }
 
-    public void writeResult() {
-        if (this.logic.isWinner()) {
+    public void writeResult(PlayController playController) {
+        if (playController.isWinner()) {
             String message = Message.PLAYER_WIN.toString();
-            message = message.replace("#color", this.logic.getActiveColor().toString());
+            message = message.replace("#color", playController.getActiveColor().toString());
             Console.getInstance().writeln(message);
         } else {
             Message.PLAYERS_TIED.writeln();

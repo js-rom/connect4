@@ -1,6 +1,9 @@
 package connect4.views;
 
 import connect4.controllers.Logic;
+import connect4.controllers.PlayController;
+import connect4.controllers.ResumeController;
+import connect4.controllers.StartController;
 
 public abstract class View extends WithLogicView {
 
@@ -8,10 +11,10 @@ public abstract class View extends WithLogicView {
         super(logic);
     }
 
-    public abstract void start();
+    public abstract void start(StartController startController);
 
-    public abstract void play();
+    public abstract void play(PlayController playController);
 
-    public abstract boolean resume();
+    public abstract boolean resume(ResumeController resumeController);
 
 }

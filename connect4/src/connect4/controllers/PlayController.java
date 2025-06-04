@@ -3,14 +3,15 @@ package connect4.controllers;
 import connect4.models.Game;
 import connect4.models.MachinePlayer;
 import connect4.models.Player;
+import connect4.models.State;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
 public class PlayController extends Controller {
 
-    public PlayController(Game game) {
-        super(game);
+    public PlayController(Game game, State state) {
+        super(game, state);
     }
 
     public Player getActivePlayer() {
@@ -40,6 +41,10 @@ public class PlayController extends Controller {
     public int getColumn() {
         MachinePlayer machinePlayer = (MachinePlayer) this.getActivePlayer();
         return machinePlayer.getColumn();
+    }
+
+    public boolean isWinner() {
+        return this.game.isWinner();
     }
 
 }
