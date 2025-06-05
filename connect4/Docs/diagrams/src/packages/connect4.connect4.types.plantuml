@@ -2,6 +2,12 @@
 
 enum types.Color
 enum types.PlayerType
+enum types.StateValue {
+    +INITIAL
+    +IN_GAME
+    +RESUME
+    +EXIT
+}
 
 Color : +RED
 Color : +YELLOW

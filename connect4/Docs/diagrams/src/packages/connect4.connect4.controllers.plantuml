@@ -1,24 +1,61 @@
 @startuml connect4.connect4.controllers
 
-abstract class controllers.Controller
-class controllers.Startcontroller
-class controllers.PlayController
-class controllers.ResumeController
-class controllers.Logic
+class controllers.Logic {
+    -controllers : Map<StateValue, Controller> 
+    +Logic()
+    +getController() : Controller
+}
+
+abstract class controllers.Controller {
+    +Controller(Game, State)
+    +nextState()
+}
+
+class controllers.Startcontroller {
+
+    +getPlayerTypes() : PlayerType[]
+    +getNumberPlayers() : int
+    +reset()
+    +isReset() : boolean
+    +addPlayer(PlayerType)
+    +getMinMaxMachinePlayerType() : PlayerType
+    +getRandomMachinePlayerType() : PlayerType
+    +getUserPlayerPlayerType() : PlayerType
+}
+
+class controllers.PlayController{
+    +getActivePlayer() : Player
+    +getActivePlayerType() : PlayerType
+    +getColor(Coordinate) : Color
+    +isFinished() : boolean
+    +next()
+    +dropToken(int)
+    +getColumn() : int
+    +isWinner() : boolean
+}
+class controllers.ResumeController{
+    +isWinner() : boolean
+    +reset()
+}
+
 class Game as "models.Game"
+class State as "models.State"
+class StateValue as "types.StateValue"
+
+
+
 
 Controller <|-- Startcontroller
 Controller <|-- PlayController
 Controller <|-- ResumeController
 
-Logic --> Game
-Logic *--> Startcontroller
-Logic *--> PlayController
-Logic *--> ResumeController
+Logic *--> Game
+Logic *--> State
+Logic *--> Controller
+Logic *--> StateValue
 
-Startcontroller --> Game
-PlayController --> Game
-ResumeController --> Game
+Controller --> Game
+Controller --> State
 
 
 @enduml
