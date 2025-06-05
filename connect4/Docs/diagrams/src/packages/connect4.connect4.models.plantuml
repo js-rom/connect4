@@ -9,6 +9,8 @@ class models.UserPlayer
 abstract class models.MachinePlayer
 class models.RandomMachinePlayer
 class models.MinMaxMachinePlayer
+class models.State
+class StateValue as "types.StateValue"
 
 Game *-- Board
 Game *-- Turn
@@ -20,6 +22,7 @@ Player <|-- MachinePlayer
 MachinePlayer <|-- RandomMachinePlayer
 MachinePlayer <|-- MinMaxMachinePlayer
 Board ..> Line
+State *--> StateValue
 
 enum Color as "connect4.connect4.\ntypes.Color"
 class Direction as "connect4.utils.\nDirection"
@@ -120,5 +123,9 @@ Line : +Line(coordinate: Coordinate)
 Line : +set(direction: Direction)
 Line : +shiftOpposite()
 Line : +getCoordinates(): Coordinate[ ]
+
+State : reset()
+State : next()
+State : getValueState()
 
 @enduml
