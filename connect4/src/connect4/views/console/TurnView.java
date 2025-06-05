@@ -9,20 +9,13 @@ import utils.views.Console;
 
 public class TurnView {
 
-    private PlayerViewPrototypeRegistry playerViewPrototypeRegistry;
-
-    TurnView() {
-         this.playerViewPrototypeRegistry = new PlayerViewPrototypeRegistry();
-    }
-
-
     public void selectPlayers(StartController startController) {
         new TurnMenu(startController, startController.getNumberPlayers()).interact();
     }
 
     public void dropToken(PlayController playController) {
         assert !playController.isFinished();
-        PlayerView playerView = new PlayerViewPrototypeDirector().get(this.playerViewPrototypeRegistry,
+        PlayerView playerView = new PlayerViewPrototypeDirector().get(new PlayerViewPrototypeRegistry(),
                 playController.getActivePlayerType());
         playerView.setPlayer(playController.getActivePlayer());
         Message.TURN.write();
