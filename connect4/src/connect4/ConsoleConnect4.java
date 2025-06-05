@@ -25,9 +25,9 @@ public class ConsoleConnect4 extends Connect4 {
     }
 
     @Override
-    protected View createView(Logic logic) {
+    protected View createView() {
 
-        return new ConsoleView(logic);
+        return new ConsoleView();
 
     }
 

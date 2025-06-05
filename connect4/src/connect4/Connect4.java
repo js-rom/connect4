@@ -11,11 +11,11 @@ public abstract class Connect4 {
     protected Connect4() {
 
         this.logic = new Logic();
-        this.view = this.createView(this.logic);
+        this.view = this.createView();
 
     }
 
-    protected abstract View createView(Logic logic);
+    protected abstract View createView();
 
     protected abstract void playGames();
 
