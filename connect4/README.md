@@ -31,7 +31,7 @@
 
 ## connect4.views.console Package
 
-![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console/connect4.connect4.views.svg)
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console/connect4.connect4.console.console.svg)
 
 
 ## connect4.views.graphics Package
