@@ -1,41 +1,50 @@
 package connect4.views.graphics;
 
-import connect4.controllers.Logic;
+import java.util.concurrent.CountDownLatch;
+
+import connect4.controllers.PlayController;
+import connect4.controllers.ResumeController;
+import connect4.controllers.StartController;
 import connect4.views.View;
-import connect4.views.graphics.commands.Command;
-import connect4.views.graphics.commands.PlayCommand;
-import connect4.views.graphics.commands.ResumeCommand;
 
-public class GraphicsView extends View {
 
-    mainFrame frame;
+public class GraphicsView implements View {
 
-    public GraphicsView(Logic logic) {
-        super(logic);
-        this.frame = new mainFrame(this.logic);
+    MainFrame frame;
+    CountDownLatch latch;
+
+    public GraphicsView() {
+        this.frame = new MainFrame();
     }
 
     @Override
-    public void start() {
-        this.frame.setPanel(new StartPanelView(this.logic));
-        Command nextView = new PlayCommand(this);
-        this.frame.setPanelCallback(nextView);
+    public void start(StartController startController) {
+        this.frame.setPanel(new StartPanelView(startController, this.latch));
         this.frame.interact();
         this.frame.write();
     }
 
     @Override
-    public void play() {
-        GameLoopView gameView = new PlayPanelView(this.logic);
-        gameView.setCallback(new ResumeCommand(this));
-        this.frame.setPanel(gameView);
+    public void play(PlayController playController) {
+        this.frame.setPanel(new PlayPanelView(playController, this.latch));
         this.frame.write();
     }
 
     @Override
-    public boolean resume() {
+    public boolean resume(ResumeController resumeController) {
         this.frame.write();
-        return this.frame.isResumed();
+        boolean isResumed = this.frame.isResumed(resumeController);
+            if (isResumed) {
+            resumeController.reset();
+        } else {
+            resumeController.nextState();
+        }
+        this.latch.countDown();
+        return isResumed;
+    }
+
+    public void setLatch(CountDownLatch latch) {
+        this.latch = latch;
     }
 
 }

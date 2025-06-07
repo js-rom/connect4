@@ -8,36 +8,34 @@ import connect4.views.graphics.commands.Command;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 public class StartPanelView extends GameLoopView implements ActionListener {
 
-    private Logic logic;
+    private StartController startController;
     private final PlayerType[] players;
-    private final JComboBox<PlayerType>[] CBoxPlayers;
+    private final JComboBox<PlayerType>[] cBoxPlayers;
     protected JButton button;
+    private CountDownLatch latch;
 
-    public StartPanelView(Logic logic) {
-        assert(logic != null);
-        this.logic = logic;
-        this.players = this.logic.getPlayerTypes();
-        this.CBoxPlayers = new JComboBox[this.logic.getNumberPlayers()];
-    }
-
-    public StartPanelView(Logic logic, Command callback) {
-        this(logic);
-        assert(callback != null);
-        this.setCallback(callback);
+    public StartPanelView(StartController startController, CountDownLatch latch) {
+        assert (startController != null);
+        this.startController = startController;
+        this.latch = latch;
+        this.players = this.startController.getPlayerTypes();
+        this.cBoxPlayers = new JComboBox[this.startController.getNumberPlayers()];
     }
 
     public void write() {
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.add(new JLabel("SELECT PLAYERS:"));
-        for (int i = 0; i < this.logic.getNumberPlayers(); i++) {
-            this.CBoxPlayers[i] = new JComboBox<PlayerType>(this.players);
-            this.add(this.CBoxPlayers[i]);
+        for (int i = 0; i < this.startController.getNumberPlayers(); i++) {
+            this.cBoxPlayers[i] = new JComboBox<>(this.players);
+            this.add(this.cBoxPlayers[i]);
         }
         this.button = new JButton("Play");
         this.add(button);
@@ -45,17 +43,18 @@ public class StartPanelView extends GameLoopView implements ActionListener {
     }
 
     public void addPlayers() {
-        this.logic.reset();
-        for (JComboBox<PlayerType> jComboBox : CBoxPlayers) {
+        this.startController.reset();
+        for (JComboBox<PlayerType> jComboBox : cBoxPlayers) {
             PlayerType playerType = (PlayerType) jComboBox.getSelectedItem();
-            this.logic.addPlayer(playerType);
+            this.startController.addPlayer(playerType);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         this.addPlayers();
-        this.getCallback().execute();
+        this.startController.nextState();
+        this.latch.countDown();
     }
 
 }

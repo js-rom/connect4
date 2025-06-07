@@ -14,6 +14,4 @@ public abstract class PanelViewCommand implements Command {
         return this.receiver;
     }
 
-    public abstract void execute();
-
 }
