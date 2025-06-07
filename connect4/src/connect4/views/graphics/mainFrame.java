@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 import connect4.controllers.ResumeController;
 
-public class MainFrame extends JFrame implements FrameView {
+public class MainFrame extends JFrame {
 
     private GameLoopView panel;
 

@@ -14,7 +14,7 @@ public class TurnView extends PanelView {
     private PlayController playController;
     private Map<Color, ImageIcon> colors;
 
-    public TurnView(PlayController playController) { // TODO DRY comun con BoardView
+    public TurnView(PlayController playController) {
         assert (playController != null);
         this.playController = playController;
         this.colors = new EnumMap<>(Color.class);
@@ -31,14 +31,10 @@ public class TurnView extends PanelView {
     @Override
     public void write() {
         this.removeAll();
-        ImageIcon activeIcon = this.getColors().get(this.playController.getActiveColor());
+        ImageIcon activeIcon = this.colors.get(this.playController.getActiveColor());
         this.add(new JLabel(Message.TURN.toString()));
         this.add(new JLabel(activeIcon));
 
-    }
-
-    protected Map<Color, ImageIcon> getColors() {
-        return this.colors;
     }
 
 }

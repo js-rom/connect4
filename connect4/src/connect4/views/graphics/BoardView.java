@@ -59,7 +59,7 @@ public abstract class BoardView extends PanelView {
         return this.colors;
     }
 
-    public PanelViewCommand getNextTurnCommand() {
+    protected PanelViewCommand getNextTurnCommand() {
         return this.nextTurnCommand;
     }
 

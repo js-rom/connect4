@@ -1,10 +1,7 @@
 package connect4.views.graphics;
 
-import connect4.controllers.Logic;
 import connect4.controllers.StartController;
-import connect4.models.Turn;
 import connect4.types.PlayerType;
-import connect4.views.graphics.commands.Command;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +14,6 @@ import javax.swing.JLabel;
 public class StartPanelView extends GameLoopView implements ActionListener {
 
     private StartController startController;
-    private final PlayerType[] players;
     private final JComboBox<PlayerType>[] cBoxPlayers;
     protected JButton button;
     private CountDownLatch latch;
@@ -26,7 +22,6 @@ public class StartPanelView extends GameLoopView implements ActionListener {
         assert (startController != null);
         this.startController = startController;
         this.latch = latch;
-        this.players = this.startController.getPlayerTypes();
         this.cBoxPlayers = new JComboBox[this.startController.getNumberPlayers()];
     }
 
@@ -34,7 +29,7 @@ public class StartPanelView extends GameLoopView implements ActionListener {
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.add(new JLabel("SELECT PLAYERS:"));
         for (int i = 0; i < this.startController.getNumberPlayers(); i++) {
-            this.cBoxPlayers[i] = new JComboBox<>(this.players);
+            this.cBoxPlayers[i] = new JComboBox<>(this.startController.getPlayerTypes());
             this.add(this.cBoxPlayers[i]);
         }
         this.button = new JButton("Play");

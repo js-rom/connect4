@@ -18,6 +18,4 @@ public abstract class Square extends JButton {
         this.coordinate = coordinate;
     }
 
-    public abstract int getColumn();
-
 }

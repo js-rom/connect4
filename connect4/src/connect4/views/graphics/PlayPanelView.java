@@ -12,7 +12,6 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
     private CountDownLatch latch;
     protected BoardView boardView;
     protected TurnView turnView;
-    private BoardViewPrototypeRegistry boardViewPrototypeRegistry;
 
     public PlayPanelView(PlayController playController, CountDownLatch latch) {
         assert (playController != null);
@@ -20,15 +19,15 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         this.playController = playController;
         this.latch = latch;
         this.turnView = new TurnView(playController);
-        this.boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(playController,
-                new NextTurnCommand(this));
     }
 
     @Override
     public void write() {
         if (!this.playController.isFinished()) {
             this.removeBoard();
-            this.boardView = new BoardViewPrototypeDirector().get(this.boardViewPrototypeRegistry,
+            BoardViewPrototypeRegistry boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(playController,
+                new NextTurnCommand(this));
+            this.boardView = new BoardViewPrototypeDirector().get(boardViewPrototypeRegistry,
                     this.playController.getActivePlayerType());
             this.turnView.write();
             this.boardView.accept(this);
@@ -39,7 +38,6 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
             this.getParent().revalidate();
             this.getParent().repaint();
         } else {
-            //this.getCallback().execute();
             this.playController.nextState();
             this.latch.countDown();
         }
@@ -50,11 +48,6 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
             this.remove(this.boardView);
         }
     }
-
-/*         protected Logic getLogic() {
-        assert (this.logic != null);
-        return this.logic;
-    } */
 
     public void visit(MachinePlayerBoardView machinePlayerBoardView) {
         machinePlayerBoardView.write();
