@@ -1,14 +1,14 @@
 @startuml connect4.connect4.views
 
 
-abstract class views.View
+interface views.View
 class StartController as "controllers.StartController"
 class PlayController as "controllers.PlayController"
 class ResumeController as "controllers.ResumeController"
 
-View : {abstract} +start(StartController)
-View : {abstract} +play(PlayController)
-View : {abstract} +resume(ResumeController)
+View : +start(StartController)
+View : +play(PlayController)
+View : +resume(ResumeController)
 
 View ..> StartController
 View ..> PlayController

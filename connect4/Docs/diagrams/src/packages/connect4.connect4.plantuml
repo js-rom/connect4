@@ -5,7 +5,7 @@ class connect4.ConsoleConnect4 <<ConcreteCreator>>
 class connect4.GraphicsConnect4 <<ConcreteCreator>>
 class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
 class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
-class View as "views.View" <<Product>>
+interface View as "views.View" <<Product>>
 class Logic as "controllers.Logic"
 class StartController as "controllers.StartController"
 class PlayController as "controllers.PlayController"
