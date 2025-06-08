@@ -1,8 +1,5 @@
 @startuml connect4.connect4.views.graphics
 class graphics.GraphicsView {
-    +start(StartController)
-    +play(PlayController)
-    +resume(ResumeController)
     +setLatch(CountDownLatch)
 }
 
@@ -78,6 +75,11 @@ class StartController as "controllers.\nStartController"
 class PlayController as "controllers.\nPlayController"
 class ResumeController as "controllers.\nResumeController"
 class Coordinate as "utils.models.\nCoordinate"
+interface View as "views.View"{
+    +start(StartController)
+    +play(PlayController)
+    +resume(ResumeController)
+}
 
 
 GraphicsView --> CountDownLatch
@@ -94,7 +96,7 @@ BoardView --> PlayController
 TurnView --> PlayController
 MainFrame ..> ResumeController
 
-abstract class View
+
 View <|-- GraphicsView
 
 class JOptionPane

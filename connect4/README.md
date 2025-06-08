@@ -9,10 +9,7 @@
 
 # Vista de Lógica/Diseño
 
-  - Arquitectura Documento/Vista mediante **Patrón de Vista Separada**  
-    * **Patrón Template Method (Factory Method)**, para clases principales  
-    * **Patrón Model View Presenter**, para incluir controllers 
-    * **Patrón Facade**, para clases principales
+  - Modelo/Vista/Presentador con Presentador del Modelo con Vista Achicada
 
 ## Arquitectura
 

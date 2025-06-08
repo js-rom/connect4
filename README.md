@@ -60,7 +60,7 @@ A behavioral notion of subtyping. ACM Transactions on Programming Languages and 
 ## Soluciones de diseño a la versión v.1.7
 
 - ~~Vistas con DRY en la lógica de control.~~
-El control de flujo de ejecución del juego es gestionado ahora por lo controladores. El bucle sigue estando en la vista, pero la responsabilidad de cómo cambiar el estado de juego está implementada en los controladores. Las vistas simplemente quedan a la espera de qué controlador va a llegar y actuarán en consecuencia.
+El control de flujo de ejecución del juego es gestionado ahora por lo controladores. El bucle sigue estando en la vista, pero la responsabilidad de cómo cambiar el estado de juego está implementada en los controladores. Las vistas simplemente quedan a la espera de qué controlador va a llegar y actuarán en consecuencia. Aplicación del patrón **Presentador del Modelo con Vista Achicada**
 
 - ~~Clase Logic no adecuada por número de parámetros y creación de controladores.~~
 Pasamos de tener potencialemnte 240 atributos en una clase a tener un solo Map.
