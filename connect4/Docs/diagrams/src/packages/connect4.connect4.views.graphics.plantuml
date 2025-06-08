@@ -1,45 +1,102 @@
 @startuml connect4.connect4.views.graphics
-interface graphics.FrameView
-class graphics.MainFrame
+class graphics.GraphicsView {
+    +setLatch(CountDownLatch)
+}
+
+class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
+class graphics.MainFrame{
+     +interact()
+    +setPanel(GameLoopView)
+    +write()
+    +isResumed(ResumeController) : boolean
+}
+abstract class graphics.PanelView {
+    + {abstract} write()
+}
 interface graphics.GameLoopView
-abstract class graphics.BoardView
-class graphics.BoardViewPrototypeDirector
-class graphics.BoardViewPrototypeRegistry
-interface graphics.Command
-abstract class graphics.PanelViewCommand
-abstract class graphics.ViewCommand
-class graphics.GraphicsView
-class graphics.MachinePlayerBoardView
+class graphics.StartPanelView {
+    +write()
+    +addPlayers()
+    +actionPerformed(ActionEvent)
+}
+
+class graphics.PlayPanelView{
+    +write()
+    -removeBoard()
+    +visit(MachinePlayerBoardView)
+    +visit(UserPlayerBoardView)
+}
+abstract class graphics.BoardView {
+    + BoardView(PlayController, PanelViewCommand)
+    + write()
+    #  {abstract}  createSquare(Coordinate) : Square
+    # getColors() : Map<Color, ImageIcon>
+    # getNextTurnCommand() : PanelViewCommand
+    # getPlayController() : PlayController
+    +  {abstract}  accept(PlayPanelViewVisitor)
+}
+class graphics.BoardViewPrototypeDirector{
+    +get(BoardViewPrototypeRegistry,\n PlayerType) : BoardView
+}
+class graphics.BoardViewPrototypeRegistry{
+    -playerBoardViews : Map<PlayerType, BoardView> 
+    -addPlayerview(PlayerType, BoardView)
+    +getPlayerView(PlayerType) : BoardView
+}
+interface graphics.Command {
+    +execute()
+}
+abstract class graphics.PanelViewCommand {
+    +PanelViewCommand(PanelView)
+    #getReceiver() : PanelView
+}
+class graphics.MachinePlayerBoardView {
+    +dropToken()
+    +accept(PlayPanelViewVisitor)
+}
+class graphics.UserPlayerBoardView{
+    -actionPerformed(ActionEvent)
+    +accept(PlayPanelViewVisitor)
+}
+
 class graphics.NextTurnCommand
-class graphics.PlayCommand
-class graphics.PlayPanelView
-class graphics.ResumeCommand
-class graphics.Square
-class graphics.ClickableSquare
-class graphics.NonClickableSquare
-class graphics.StartPanelView
-class graphics.TurnView
-class graphics.UserPlayerBoardView
+abstract class graphics.Square
+class graphics.ClickableSquare {
+    + getColumn() : int
+}
+class graphics.NonClickableSquare {
+    + actionPerformed(ActionEvent)
+}
+class graphics.TurnView{
+    +write()
+}
 abstract class graphics.PanelView
+class StartController as "controllers.\nStartController"
+class PlayController as "controllers.\nPlayController"
+class ResumeController as "controllers.\nResumeController"
+class Coordinate as "utils.models.\nCoordinate"
+interface View as "views.View"{
+    +start(StartController)
+    +play(PlayController)
+    +resume(ResumeController)
+}
 
 
+GraphicsView --> CountDownLatch
 class JFrame
-JFrame <|-- FrameView
-FrameView <|-- MainFrame
+JFrame <|-- MainFrame
 GraphicsView *--> MainFrame
 
-class Logic as "controllers.Logic"
-MainFrame --> Logic
 
-class Logic as "controllers.\nLogic"
+StartPanelView --> StartController
+StartPanelView --> CountDownLatch
+PlayPanelView --> PlayController
+PlayPanelView --> CountDownLatch
+BoardView --> PlayController
+TurnView --> PlayController
+MainFrame ..> ResumeController
 
-StartPanelView --> Logic
 
-class Logic as "controllers.\nLogic"
-
-PlayPanelView --> Logic
-
-abstract class View
 View <|-- GraphicsView
 
 class JOptionPane
@@ -57,18 +114,19 @@ MainFrame --> GameLoopView
 
 PlayPanelView *--> BoardView
 PlayPanelView *--> TurnView
-PlayPanelView *--> BoardViewPrototypeRegistry
+PlayPanelView ..> BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
 BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
+BoardViewPrototypeDirector ..> PlayerType
+BoardViewPrototypeRegistry ..> PlayController
+BoardViewPrototypeRegistry ..> Command
+BoardViewPrototypeRegistry *--> "2"BoardView
 
-StartPanelView --> ViewCommand
-PlayPanelView --> ViewCommand
+
+PlayPanelView ..> Command
 
 Command <|-- PanelViewCommand
 PanelViewCommand <|-- NextTurnCommand
-Command <|-- ViewCommand
-ViewCommand <|-- PlayCommand
-ViewCommand <|-- ResumeCommand
 
 
 BoardView <|-- MachinePlayerBoardView
@@ -77,7 +135,7 @@ MachinePlayerBoardView o--> NonClickableSquare
 UserPlayerBoardView o--> ClickableSquare
 Square <|-- ClickableSquare
 Square <|-- NonClickableSquare
+BoardView --> Command
 
-BoardView --> PanelViewCommand
-
+Square --> Coordinate
 @enduml

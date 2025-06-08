@@ -1,6 +1,6 @@
 # Connect 4. Solution v.1.7 modelViewPresenter - presentationModel - withFacade
 
-# Requisitos 1. *Machine*
+# Requisitos 2. *Gráficos*
 
 * Funcionalidad: **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
 * Interfaz: **Gráfica y Texto**
@@ -9,10 +9,7 @@
 
 # Vista de Lógica/Diseño
 
-  - Arquitectura Documento/Vista mediante **Patrón de Vista Separada**  
-    * **Patrón Template Method (Factory Method)**, para clases principales  
-    * **Patrón Model View Presenter**, para incluir controllers 
-    * **Patrón Facade**, para clases principales
+  - Modelo/Vista/Presentador con Presentador del Modelo con Vista Achicada
 
 ## Arquitectura
 
@@ -31,7 +28,7 @@
 
 ## connect4.views.console Package
 
-![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console/connect4.connect4.views.svg)
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console/connect4.connect4.console.console.svg)
 
 
 ## connect4.views.graphics Package

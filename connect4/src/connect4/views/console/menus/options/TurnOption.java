@@ -1,13 +1,13 @@
 package connect4.views.console.menus.options;
 
-import connect4.controllers.Logic;
+import connect4.controllers.StartController;
 import utils.models.menu.Option;
 
 public abstract class TurnOption extends Option {
-    protected Logic model;
+    protected StartController startController;
 
-    public TurnOption(String string, Logic model) {
+    public TurnOption(String string, StartController startController) {
         super(string);
-        this.model = model;
+        this.startController = startController;
     }
 }

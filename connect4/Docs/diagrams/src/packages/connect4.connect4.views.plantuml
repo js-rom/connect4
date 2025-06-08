@@ -1,17 +1,18 @@
 @startuml connect4.connect4.views
 
-abstract class views.WithLogicView
-abstract class views.View
-class Logic as "controllers.Logic"
 
-WithLogicView *--> Logic
-WithLogicView <|-- View
+interface views.View
+class StartController as "controllers.StartController"
+class PlayController as "controllers.PlayController"
+class ResumeController as "controllers.ResumeController"
 
-WithLogicView : #logic
+View : +start(StartController)
+View : +play(PlayController)
+View : +resume(ResumeController)
 
-View : {abstract} +start()
-View : {abstract} +play()
-View : {abstract} +resume()
+View ..> StartController
+View ..> PlayController
+View ..> ResumeController
 
 
 @enduml

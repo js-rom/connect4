@@ -1,22 +1,17 @@
 package connect4.views.console;
 
-import connect4.controllers.Logic;
+import connect4.controllers.ResumeController;
 import utils.views.YesNoDialog;
 
 public class ResumeView {
 
-    private Logic logic;
-
-    public ResumeView(Logic logic) {
-        assert this.logic != null;
-        this.logic = logic;
-    }
-
-    public boolean interact() {
+    public boolean interact(ResumeController resumeController) {
         YesNoDialog isResumed = new YesNoDialog();
         isResumed.read(Message.RESUME.toString());
         if (isResumed.isAffirmative()) {
-            this.logic.reset();
+            resumeController.reset();
+        } else {
+            resumeController.nextState();
         }
         return isResumed.isAffirmative();
     }

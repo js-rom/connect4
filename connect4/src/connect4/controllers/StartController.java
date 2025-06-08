@@ -1,14 +1,14 @@
 package connect4.controllers;
 
+import connect4.models.State;
+
 import connect4.models.Game;
 import connect4.types.PlayerType;
 
 public class StartController extends Controller {
 
-    public StartController(Game game) {
-
-        super(game);
-
+    public StartController(Game game, State state) {
+        super(game, state);
     }
 
     public PlayerType[] getPlayerTypes() {
@@ -16,7 +16,7 @@ public class StartController extends Controller {
     }
 
     public int getNumberPlayers() {
-        return  this.game.getNumberPlayers();
+        return this.game.getNumberPlayers();
     }
 
     public void reset() {

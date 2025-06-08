@@ -13,7 +13,7 @@
 | graphics | [v.1.5 documentView - withFactoryMethod](https://github.com/js-rom/connect4/tree/v.1.5) |
 | graphics | [v.1.6 modelViewPresenter - presentationModel - basic](https://github.com/js-rom/connect4/tree/v.1.6) |
 | graphics | [v.1.7 modelViewPresenter - presentationModel - withFacade](https://github.com/js-rom/connect4/tree/v1.7.0-Release) |
-| graphics | modelViewPresenter - presentationModel - withoutDoubleDispatching |
+| graphics | [v.1.8 modelViewPresenter - presentationModel - withoutDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.8.0-Release) |
 | graphics | modelViewPresenter - presentationModel - withDoubleDispatching |
 | undoRedo | modelViewPresenter - presentationModel - withComposite |
 | distributed | modelViewPresenter - presentationModel - withoutProxy |
@@ -28,25 +28,45 @@
 
 ![secuencia de versiones](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
-# Versión v.1.7
+# Versión v.1.8
+
+## Problemas de diseño de la versión v.1.8
+
+- Violación del Principio de Sustitución de Barbara Liskov.
+En connect4.ConsoleConnect4 y connect4.GraphicsConnect4 estamos preguntado por el tipo de un objeto polimórfico en una **estructura de control de flujo de ejecución** para en función del tipo hacer una cosa u otra.
+
+```java
+
+if (logic.getController() instanceof StartController) {
+    graphicsView.start((StartController) logic.getController());
+} else {
+    if (logic.getController() instanceof PlayController) {
+        graphicsView.play((PlayController) logic.getController());
+    } else {
+        graphicsView.resume((ResumeController) logic.getController());
+    }
+}
+
+```
+
+>Lo que se quiere aquí es algo como la siguiente propiedad de sustitución: si para cada objeto oT de un tipo T, hay un objeto oS de tipo S tal que para todo progama P definido en términos de T, el comportamiento de P no cambia cuando oT es sustituido por oS, entonces S es un subtipo de T
+— Barbara Liskov
+A behavioral notion of subtyping. ACM Transactions on Programming Languages and Systems (TOPLAS). Volume 16. Issue 6 (November 1994). pp. 1811. 1841
+
+- incurre en cambios divergentes para atender con una nueva rama en cada clase cliente que hay que localizar por toda la aplicación
+
+- rompe el principio Open/Close con cambios en el interior de los métodos del cliente
+
+## Soluciones de diseño a la versión v.1.7
+
+- ~~Vistas con DRY en la lógica de control.~~
+El control de flujo de ejecución del juego es gestionado ahora por lo controladores. El bucle sigue estando en la vista, pero la responsabilidad de cómo cambiar el estado de juego está implementada en los controladores. Las vistas simplemente quedan a la espera de qué controlador va a llegar y actuarán en consecuencia. Aplicación del patrón **Presentador del Modelo con Vista Achicada**
+
+- ~~Clase Logic no adecuada por número de parámetros y creación de controladores.~~
+Pasamos de tener potencialemnte 240 atributos en una clase a tener un solo Map.
+
 
 ## Problemas de diseño de la versión v.1.7
 
 - Vistas con DRY en la lógica de control.
 - Clase Logic no adecuada por número de parámetros y creación de controladores.
-
-## Soluciones de diseño a la versión v.1.6
-
-Clase lógica "Logic" que encapsula a controladores y modelos. Ahora soolo tenemos que acsociar 
-GraphicsView o ConsoleView con una clase Logic. Aunque el problema no ha desaparecido solo lo hemos movido de lugar, tenemos 
-una clase Logic--imaginemos que-- con potencialmente 240 atributos y 240 creaciones de controladores. Esto tampoco es mantenible.
-
-![Problema versión 1.7](./connect4/Docs/screenshots/v.1.7.png)
-
-## Problemas de diseño de la versión v.1.6
-
-El problema que tenemos en esta version 1.6 radica en cómo estamos asociando GraphicsView o ConsoleView con
-los controladores. Se lo estamos pasando como argumentos en el constructor. Si pretendemos que esta proyecto 
-siga creciendo e imaginemos que tenemos 240 controladores, obviamente es inviable pasar 240 parámetros.
-
-![Problema versión 1.6](./connect4/Docs/screenshots/v.1.6.png)
