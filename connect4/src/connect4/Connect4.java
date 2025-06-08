@@ -1,22 +1,21 @@
 package connect4;
 
 import connect4.controllers.Logic;
-import connect4.models.Game;
 import connect4.views.View;
 
 public abstract class Connect4 {
 
     private View view;
-    private Logic logic;
+    protected Logic logic;
 
     protected Connect4() {
 
-        this.logic = new Logic(new Game());
-        this.view = this.createView(this.logic);
+        this.logic = new Logic();
+        this.view = this.createView();
 
     }
 
-    protected abstract View createView(Logic logic);
+    protected abstract View createView();
 
     protected abstract void playGames();
 

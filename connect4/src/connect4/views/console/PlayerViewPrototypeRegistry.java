@@ -1,16 +1,17 @@
 package connect4.views.console;
 
-import java.util.HashMap;
+import java.util.EnumMap;
+import java.util.Map;
 
 import connect4.types.PlayerType;
 
 public class PlayerViewPrototypeRegistry {
 
-    private HashMap<PlayerType, PlayerView> playerViews;
+    private Map<PlayerType, PlayerView> playerViews;
 
 	public PlayerViewPrototypeRegistry() {
 
-		this.playerViews = new HashMap<PlayerType, PlayerView>();
+		this.playerViews = new EnumMap<>(PlayerType.class);
 
 		PlayerView playerView;
 		playerView = new UserPlayerView();

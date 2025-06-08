@@ -1,20 +1,13 @@
 package connect4.views.console;
 
-import connect4.controllers.Logic;
+import connect4.controllers.StartController;
 
 public class StartView {
 
-    Logic logic;
-
-    public StartView(Logic logic) {
-        this.logic = logic;
-    }
-
-    public void interact() {
-        assert this.logic.isReset();
-        new TurnView(this.logic).selectPlayers();
-        Message.TITLE.writeln();
-        new BoardView(this.logic).writeln();
+    public void interact(StartController startController) {
+        assert startController.isReset();
+        new TurnView().selectPlayers(startController);
+        startController.nextState();
     }
 
 }

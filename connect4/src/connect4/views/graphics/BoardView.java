@@ -4,26 +4,26 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import java.awt.GridLayout;
-import connect4.controllers.Logic;
+import connect4.controllers.PlayController;
 import connect4.types.Color;
-import connect4.views.graphics.commands.Command;
 import utils.models.Coordinate;
-import java.util.HashMap;
+
+import java.util.EnumMap;
+import java.util.Map;
 
 public abstract class BoardView extends PanelView {
 
-    public Logic logic;
-    private HashMap<Color, ImageIcon> colors;
-    //private Command callback;
-    private PanelViewCommand callback;
+    public PlayController playController;
+    private Map<Color, ImageIcon> colors;
+    private PanelViewCommand nextTurnCommand;
 
-    public BoardView(Logic logic) {
-        this.logic = logic;
+    BoardView(PlayController playController) {
+        this.playController = playController;
         this.setLayout(new GridLayout(Coordinate.NUMBER_ROWS, Coordinate.NUMBER_COLUMNS));
-        this.colors = new HashMap<Color, ImageIcon>();
+        this.colors = new EnumMap<>(Color.class);
         for (Color color : Color.values()) {
             String fileNamePrefix = "connect4\\src\\connect4\\views\\graphics\\assets\\";
-            String fileNameInfix = color.toString() == " " ? "White" : color.toString();
+            String fileNameInfix = color.toString().equals(" ") ? "White" : color.toString();
             String fileNameSufix = ".png";
             ImageIcon icon = new ImageIcon(fileNamePrefix + fileNameInfix + fileNameSufix);
             this.colors.put(color, icon);
@@ -31,10 +31,10 @@ public abstract class BoardView extends PanelView {
         this.write();
     }
 
-    public BoardView(Logic logic, PanelViewCommand callback) {
-        this(logic);
-        assert (logic != null && callback != null);
-        this.callback = callback;
+    BoardView(PlayController playController, PanelViewCommand callback) {
+        this(playController);
+        assert (playController != null && callback != null);
+        this.nextTurnCommand = callback;
 
     }
 
@@ -55,20 +55,16 @@ public abstract class BoardView extends PanelView {
 
     protected abstract Square createSquare(Coordinate coordiante);
 
-    protected HashMap<Color, ImageIcon> getColors() {
+    protected Map<Color, ImageIcon> getColors() {
         return this.colors;
     }
 
-/*     public Command getCallback() {
-        return this.callback;
-    } */
-
-        public PanelViewCommand getCallback() {
-        return this.callback;
+    protected PanelViewCommand getNextTurnCommand() {
+        return this.nextTurnCommand;
     }
 
-    protected Logic getLogic() {
-        return this.logic;
+    protected PlayController getPlayController() {
+        return this.playController;
     }
 
     public abstract void accept(PlayPanelViewVisitor playPanelView);

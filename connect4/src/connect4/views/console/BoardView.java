@@ -2,15 +2,15 @@ package connect4.views.console;
 
 import utils.models.Coordinate;
 import utils.views.Console;
-import connect4.controllers.Logic;
+import connect4.controllers.PlayController;
 
 public class BoardView {
 
-    private Logic logic;
+    private PlayController playController;
 
-    public BoardView(Logic logic) {
-        assert logic != null;
-        this.logic = logic;
+    public BoardView(PlayController playController) {
+        assert playController != null;
+        this.playController = playController;
     }
 
     public void writeln() {
@@ -19,7 +19,7 @@ public class BoardView {
             Message.VERTICAL_LINE.write();
             for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
                 Console.getInstance()
-                        .write(" " + this.logic.getColor(new Coordinate(i, j)).toString().charAt(0) + " ");
+                        .write(" " + this.playController.getColor(new Coordinate(i, j)).toString().charAt(0) + " ");
                 Message.VERTICAL_LINE.write();
             }
             Console.getInstance().writeln();

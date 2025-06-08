@@ -1,40 +1,96 @@
-@startuml connect4.connect4.views
+@startuml connect4.connect4.console.console
 
-class views.Consoleview
-class views.StartView
-class views.PlayView
-class views.ResumeView
-class views.BoardView
-class views.TurnView
-abstract class views.PlayerView
-abstract class views.MachinePlayerView
-class views.MinMaxMachinePlayerView
-class views.RandomMachinePlayerView
-class views.UserPlayerView
-class views.TurnMenu
-abstract class views.TurnOption
-class views.SetRandomMachinePlayerOption
-class views.SetMinMaxMachinePlayerOption
-class views.SetUserPlayerOption
-enum views.Message
-class views.YesNoDialog
-class views.PlayerViewPrototypeDirector <<Director>>
-class views.PlayerViewPrototypeRegistry <<PrototypeRegistry>>
+class console.Consoleview
 
-class View
+class console.StartView{
+    +interact(StartController)
+}
+
+class console.PlayView{
+    +interact(PlayController)
+}
+
+class console.ResumeView{
+    +interact(ResumeController)
+}
+
+class console.BoardView{
+    +writeln()
+    +writeHorizontal()
+}
+
+class console.TurnView{
+    +selectPlayers(StartController)
+    +dropToken(PlayController)
+    +writeResult(PlayController)
+}
+
+abstract class console.PlayerView{
+    +getColumn(): int
+    +dropToken()
+    +setPlayer(Player player)
+    +copy() : PlayerView
+}
+
+abstract class console.MachinePlayerView
+class console.MinMaxMachinePlayerView
+class console.RandomMachinePlayerView
+class console.UserPlayerView
+class console.TurnMenu{
+    +TurnMenu(Startcontroller, int)
+    +addOptions()
+    +interact()
+}
+
+abstract class console.TurnOption{
+    +SetUserPlayerOption(StartController)
+}
+
+class console.SetRandomMachinePlayerOption{
+        +interact()
+}
+
+class console.SetMinMaxMachinePlayerOption{
+        +interact()
+}
+
+class console.SetUserPlayerOption{
+        +interact()
+}
+
+enum console.Message
+
+class console.YesNoDialog
+
+class console.PlayerViewPrototypeDirector <<Director>> {
+    get(PlayerViewPrototypeRegistry, PlayerType) : PlayerView 
+}
+
+class console.PlayerViewPrototypeRegistry <<PrototypeRegistry>> {
+    -playerViews : Map<PlayerType, PlayerView> 
+    -addPlayerView(PlayerType, PlayerView)
+    +getPlayerView(PlayerType) : PlayerView
+}
+class StartController as "controllers.StartController"
+class PlayController as "controllers.PlayController"
+class ResumeController as "controllers.ResumeController"
+
+interface View{
+    +start(StartController)
+    +play(Playcoontroller)
+    +resume(ResumeController)
+}
+
 View <|-- Consoleview 
 Consoleview *--> StartView
 Consoleview *--> PlayView
 Consoleview *--> ResumeView
 
-class Logic
-
-StartView --> Logic
-PlayView --> Logic
-ResumeView --> Logic
+StartView ..> StartController
+PlayView ..> PlayController
+ResumeView ..> ResumeController
 
 StartView ..> TurnView
-StartView ..> BoardView
 
 PlayView ..> TurnView
 PlayView ..> BoardView
@@ -42,6 +98,12 @@ PlayView ..> BoardView
 ResumeView ..> YesNoDialog
 
 TurnView ..> PlayerView
+TurnView ..> StartController
+TurnView ..> PlayController
+TurnView ..> TurnMenu
+TurnMenu *-- "3"TurnOption
+TurnView ..> PlayerViewPrototypeDirector
+TurnView ..> PlayerViewPrototypeRegistry
 
 PlayerView <|-- UserPlayerView
 PlayerView <|-- MachinePlayerView
@@ -51,10 +113,7 @@ MachinePlayerView <|-- RandomMachinePlayerView
 TurnOption <|-- SetRandomMachinePlayerOption
 TurnOption <|-- SetMinMaxMachinePlayerOption
 TurnOption <|-- SetUserPlayerOption
-
-TurnView ..> TurnMenu
-TurnMenu o-- TurnOption
-TurnView ..> PlayerViewPrototypeDirector
+TurnMenu --> StartController
 
 PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
 PlayerViewPrototypeRegistry o-- PlayerView
@@ -66,16 +125,16 @@ class Console as "connect4.utils.Console"
 class Player as "connect4.connect4.\nmodels.Player"
 enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
 
-TurnOption --|> Option
-TurnMenu --|> SecuentialMenu
-BoardView --> Logic
+
+Option <|-- TurnOption
+SecuentialMenu <|-- TurnMenu
+BoardView --> PlayController
 BoardView ..> Coordinate
 MachinePlayerView *-- Player
 UserPlayerView *-- Player
-TurnView --> Logic
-TurnView --> Logic
-TurnMenu --> Logic
-TurnOption --> Logic
+
+
+
 PlayerViewPrototypeDirector ..> PlayerType
 
 
