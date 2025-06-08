@@ -1,6 +1,6 @@
 # Connect 4. Solution v.1.7 modelViewPresenter - presentationModel - withFacade
 
-# Requisitos 1. *Machine*
+# Requisitos 2. *Gráficos*
 
 * Funcionalidad: **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
 * Interfaz: **Gráfica y Texto**
