@@ -7,9 +7,7 @@ class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
 class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
 interface View as "views.View" <<Product>>
 class Logic as "controllers.Logic"
-class StartController as "controllers.StartController"
-class PlayController as "controllers.PlayController"
-class ResumeController as "controllers.ResumeController"
+class Controller as "controllers.Controller"
 
 Connect4 <|-- ConsoleConnect4
 Connect4 <|-- GraphicsConnect4
@@ -19,12 +17,9 @@ Connect4 *--> Logic
 GraphicsConnect4 ..> GraphicsView
 ConsoleConnect4 ..> ConsoleView
 
-ConsoleConnect4 ..> StartController
-ConsoleConnect4 ..> PlayController
-ConsoleConnect4 ..> ResumeController
-GraphicsConnect4 ..> StartController
-GraphicsConnect4 ..> PlayController
-GraphicsConnect4 ..> ResumeController
+ConsoleConnect4 ..> Controller
+GraphicsConnect4 ..> Controller
+
 
 View <|-- ConsoleView
 View <|-- GraphicsView
@@ -34,9 +29,7 @@ Connect4 : {abstract}#createView(): View
 Connect4 : {abstract}#PlayGames()
 Connect4 : #getView(): View
 
-GraphicsConnect4 : #GraphicsConnect4()
-GraphicsConnect4 : #createView(): View
-GraphicsConnect4 : #playGames()
 GraphicsConnect4 : {static}+main(String[])
+ConsoleConnect4 : {static}+main(String[])
 
 @enduml

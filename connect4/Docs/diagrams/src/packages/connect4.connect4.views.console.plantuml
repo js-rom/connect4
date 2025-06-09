@@ -79,6 +79,9 @@ interface View{
     +start(StartController)
     +play(Playcoontroller)
     +resume(ResumeController)
+    +visit(StartController)
+    +visit(PlayController)
+    +visit(ResumeController)
 }
 
 View <|-- Consoleview 

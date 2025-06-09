@@ -9,6 +9,7 @@ class controllers.Logic {
 abstract class controllers.Controller {
     +Controller(Game, State)
     +nextState()
+    + {abstract} accept(ControllerVisitor)
 }
 
 class controllers.Startcontroller {
@@ -21,6 +22,12 @@ class controllers.Startcontroller {
     +getMinMaxMachinePlayerType() : PlayerType
     +getRandomMachinePlayerType() : PlayerType
     +getUserPlayerPlayerType() : PlayerType
+}
+
+interface controllers.ControllerVisitor {
+    +start(Startcontroller)
+    +play(PlayController)
+    +resume(ResumeController)
 }
 
 class controllers.PlayController{
@@ -44,7 +51,7 @@ class StateValue as "types.StateValue"
 
 
 
-
+Controller ..> ControllerVisitor
 Controller <|-- Startcontroller
 Controller <|-- PlayController
 Controller <|-- ResumeController
