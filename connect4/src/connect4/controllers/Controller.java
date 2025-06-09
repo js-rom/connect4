@@ -29,4 +29,6 @@ public abstract class Controller {
         return this.game.getColor(coordinate);
 
     }
+
+    public abstract void accept(ControllerVisitor controllerVisitor);
 }
