@@ -32,4 +32,20 @@ public class ConsoleView implements View {
         return this.resumeView.interact(resumeController);
     }
 
+    @Override
+    public void visit(StartController startController) {
+        this.start(startController);
+    }
+
+    @Override
+    public void visit(PlayController playController) {
+        this.play(playController);
+    }
+
+    @Override
+    public boolean visit(ResumeController resumeController) {
+        return this.resume(resumeController);
+    }
+
+
 }
