@@ -5,11 +5,6 @@ interface views.View
 class StartController as "controllers.StartController"
 class PlayController as "controllers.PlayController"
 class ResumeController as "controllers.ResumeController"
-interface ControllerVisitor as "controllers.ControllerVisitor" {
-    +visit(StartController)
-    +visit(PlayController)
-    +visit(ResumeController)
-}
 
 View : +start(StartController)
 View : +play(PlayController)
@@ -18,8 +13,6 @@ View : +resume(ResumeController)
 View ..> StartController
 View ..> PlayController
 View ..> ResumeController
-
-ControllerVisitor <|-- View
 
 
 @enduml

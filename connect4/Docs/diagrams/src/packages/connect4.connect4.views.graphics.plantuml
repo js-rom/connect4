@@ -84,6 +84,12 @@ interface View as "views.View"{
     +visit(ResumeController)
 }
 
+interface ControllerVisitor as "controllers.ControllerVisitor" {
+    +visit(StartController)
+    +visit(PlayController)
+    +visit(ResumeController)
+}
+
 
 GraphicsView --> CountDownLatch
 class JFrame
@@ -100,7 +106,8 @@ TurnView --> PlayController
 MainFrame ..> ResumeController
 
 
-View <|-- GraphicsView
+View <|.. GraphicsView
+ControllerVisitor <|.. GraphicsView
 
 class JOptionPane
 MainFrame ..> JOptionPane
