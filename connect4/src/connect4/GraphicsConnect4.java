@@ -15,7 +15,7 @@ public class GraphicsConnect4 extends Connect4 {
             this.latch = new CountDownLatch(1);
             graphicsView.setLatch(latch);
             if (logic.getController() != null) {
-                logic.getController().accept(this.getView());
+                logic.getController().accept((GraphicsView)this.getView());
             }
             try {
                 latch.await();

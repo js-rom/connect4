@@ -8,7 +8,7 @@ public class ConsoleConnect4 extends Connect4 {
     protected void playGames() {
         do {
             if (logic.getController() != null) {
-                logic.getController().accept(this.getView());
+                logic.getController().accept((ConsoleView)this.getView());
             }
         } while (logic.getController() != null);
     }
