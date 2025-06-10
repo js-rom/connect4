@@ -1,11 +1,12 @@
 package connect4.views.console;
 
+import connect4.controllers.ControllerVisitor;
 import connect4.controllers.PlayController;
 import connect4.controllers.ResumeController;
 import connect4.controllers.StartController;
 import connect4.views.View;
 
-public class ConsoleView implements View {
+public class ConsoleView implements View, ControllerVisitor {
 
     private StartView startView;
     private PlayView playView;
@@ -31,5 +32,21 @@ public class ConsoleView implements View {
     public boolean resume(ResumeController resumeController) {
         return this.resumeView.interact(resumeController);
     }
+
+    @Override
+    public void visit(StartController startController) {
+        this.start(startController);
+    }
+
+    @Override
+    public void visit(PlayController playController) {
+        this.play(playController);
+    }
+
+    @Override
+    public boolean visit(ResumeController resumeController) {
+        return this.resume(resumeController);
+    }
+
 
 }

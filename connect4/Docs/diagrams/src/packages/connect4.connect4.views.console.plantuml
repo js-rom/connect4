@@ -75,13 +75,20 @@ class StartController as "controllers.StartController"
 class PlayController as "controllers.PlayController"
 class ResumeController as "controllers.ResumeController"
 
-interface View{
+interface View as "views.View"{
     +start(StartController)
     +play(Playcoontroller)
     +resume(ResumeController)
 }
 
-View <|-- Consoleview 
+interface ControllerVisitor as "controllers.ControllerVisitor" {
+    +visit(StartController)
+    +visit(PlayController)
+    +visit(ResumeController)
+}
+
+View <|.. Consoleview 
+ControllerVisitor <|.. Consoleview 
 Consoleview *--> StartView
 Consoleview *--> PlayView
 Consoleview *--> ResumeView
