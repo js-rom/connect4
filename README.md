@@ -14,7 +14,7 @@
 | graphics | [v.1.6 modelViewPresenter - presentationModel - basic](https://github.com/js-rom/connect4/tree/v.1.6) |
 | graphics | [v.1.7 modelViewPresenter - presentationModel - withFacade](https://github.com/js-rom/connect4/tree/v1.7.0-Release) |
 | graphics | [v.1.8 modelViewPresenter - presentationModel - withoutDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.8.0-Release) |
-| graphics | modelViewPresenter - presentationModel - withDoubleDispatching |
+| graphics | [v.1.9 modelViewPresenter - presentationModel - withDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.9.0-Release)  |
 | undoRedo | modelViewPresenter - presentationModel - withComposite |
 | distributed | modelViewPresenter - presentationModel - withoutProxy |
 | distributed | modelViewPresenter - presentationModel - withProxy |
@@ -28,7 +28,93 @@
 
 ![secuencia de versiones](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
-# Versión v.1.8
+# Versión v.1.9
+
+## Soluciones de diseño a la versión v.1.8
+
+- ~~Violación del Principio de Sustitución de Barbara Liskov.~~
+
+Esta versión evita preguntar por el tipo para abrir distintas ramas de sentencias alternativas para tratar cada tipo de clase derivada.
+
+Solución aplicando la técnica del doble despacho:
+- La jerarquía de clases no conoce directamente a los clientes sino que conoce únicamente a una interfaz que cumple todo cliente que visita la jerarquía, visitador genérico (controllers.ControllerVisitor).
+``` java
+
+public interface ControllerVisitor {
+    
+    void visit(StartController startController);
+
+    void visit(PlayController playController);
+
+    boolean visit(ResumeController resumeController);
+}
+
+```
+    - La nueva clase derivada debe redefinir el método aceptar para no ser abstracta enviando un mensaje visitar auto-pasandose por parámetro
+
+``` java
+public class StartController extends Controller {
+
+    //...
+
+    @Override
+    public void accept(ControllerVisitor controllerVisitor) {
+        controllerVisitor.visit(this);
+    }
+
+}
+
+```
+    - Los cambios están guiados por el compilador porque cada clase cliente debe definir un nuevo método visitar para la nueva clase derivada
+
+```java
+
+public class ConsoleView implements View, ControllerVisitor {
+
+    // ...
+
+    @Override
+    public void visit(StartController startController) {
+        this.start(startController);
+    }
+
+    @Override
+    public void visit(PlayController playController) {
+        this.play(playController);
+    }
+
+    @Override
+    public boolean visit(ResumeController resumeController) {
+        return this.resume(resumeController);
+    }
+
+}
+
+```
+
+Consecuencias:
+
+- No viola el Principio de Sustitución de Liskov preguntando por el tipo de objeto polimórfico
+```java
+
+public class ConsoleConnect4 extends Connect4 {
+
+    protected void playGames() {
+        do {
+            if (logic.getController() != null) {
+                logic.getController().accept((ConsoleView)this.getView());
+            }
+        } while (logic.getController() != null);
+    }
+
+    // ...
+}    
+```
+- No incurre en cambios divergentes para atender con una nueva rama en cada clase cliente
+- No rompe el principio Open/Close con cambios en el interior de los métodos del cliente
+- Con "leve" intimidad inapropiada con ciclos dentro del mismo paquete entre todas las clases de la jerarquía con la interfaz de los clientes, que no requiere pruebas ni comprensión porque no aporta código de implementación
+- Bajo acoplamiento según tienden a crecer los clientes porque no todas las clases de la jerarquía conocen a todas las clases de clientes, solo conocen a la interfaz de todos los clientes
+
 
 ## Problemas de diseño de la versión v.1.8
 
@@ -56,17 +142,3 @@ A behavioral notion of subtyping. ACM Transactions on Programming Languages and 
 - incurre en cambios divergentes para atender con una nueva rama en cada clase cliente que hay que localizar por toda la aplicación
 
 - rompe el principio Open/Close con cambios en el interior de los métodos del cliente
-
-## Soluciones de diseño a la versión v.1.7
-
-- ~~Vistas con DRY en la lógica de control.~~
-El control de flujo de ejecución del juego es gestionado ahora por lo controladores. El bucle sigue estando en la vista, pero la responsabilidad de cómo cambiar el estado de juego está implementada en los controladores. Las vistas simplemente quedan a la espera de qué controlador va a llegar y actuarán en consecuencia. Aplicación del patrón **Presentador del Modelo con Vista Achicada**
-
-- ~~Clase Logic no adecuada por número de parámetros y creación de controladores.~~
-Pasamos de tener potencialemnte 240 atributos en una clase a tener un solo Map.
-
-
-## Problemas de diseño de la versión v.1.7
-
-- Vistas con DRY en la lógica de control.
-- Clase Logic no adecuada por número de parámetros y creación de controladores.

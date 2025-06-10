@@ -79,6 +79,15 @@ interface View as "views.View"{
     +start(StartController)
     +play(PlayController)
     +resume(ResumeController)
+    +visit(StartController)
+    +visit(PlayController)
+    +visit(ResumeController)
+}
+
+interface ControllerVisitor as "controllers.ControllerVisitor" {
+    +visit(StartController)
+    +visit(PlayController)
+    +visit(ResumeController)
 }
 
 
@@ -97,7 +106,8 @@ TurnView --> PlayController
 MainFrame ..> ResumeController
 
 
-View <|-- GraphicsView
+View <|.. GraphicsView
+ControllerVisitor <|.. GraphicsView
 
 class JOptionPane
 MainFrame ..> JOptionPane

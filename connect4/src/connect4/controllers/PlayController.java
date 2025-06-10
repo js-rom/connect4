@@ -47,4 +47,9 @@ public class PlayController extends Controller {
         return this.game.isWinner();
     }
 
+    @Override
+    public void accept(ControllerVisitor controllerVisitor) {
+       controllerVisitor.visit(this);
+    }
+    
 }

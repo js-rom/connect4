@@ -43,4 +43,9 @@ public class StartController extends Controller {
         return PlayerType.USER_PLAYER;
     }
 
+    @Override
+    public void accept(ControllerVisitor controllerVisitor) {
+       controllerVisitor.visit(this);
+    }
+
 }
