@@ -2,6 +2,7 @@ package connect4.models;
 
 import connect4.types.Color;
 import connect4.types.PlayerType;
+import connect4.types.StateValue;
 import utils.models.Coordinate;
 
 public class Session {
@@ -14,6 +15,10 @@ public class Session {
         this.state = new State();
         this.game = new Game();
         this.registry = new Registry(this.game);
+    }
+
+    public StateValue getValueState() {
+        return this.state.getValueState();
     }
 
     public void nextState() {
@@ -32,8 +37,13 @@ public class Session {
         return this.game.getNumberPlayers();
     }
 
+/*     public void reset() {
+        this.game.reset();
+    } */
+
     public void reset() {
         this.game.reset();
+        this.state.reset();
     }
 
     public boolean isReset() {

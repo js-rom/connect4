@@ -10,7 +10,7 @@ public class Registry {
 	
 	Registry(Game game) {
 		this.game = game;
-		this.reset();
+		//this.reset();
 	}
 
 	void reset() {
