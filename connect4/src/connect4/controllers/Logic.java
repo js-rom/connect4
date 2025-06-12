@@ -9,7 +9,7 @@ import connect4.types.StateValue;
 public class Logic {
 
     private Session session;
-    private Map<StateValue, Controller> controllers;
+    private Map<StateValue, AcceptorController> controllers;
 
     public Logic() {
         this.session = new Session();
@@ -21,7 +21,7 @@ public class Logic {
         this.controllers.put(StateValue.EXIT, null);
     }
 
-    public Controller getController() {
+    public AcceptorController getController() {
         return this.controllers.get(this.session.getValueState());
     }
 

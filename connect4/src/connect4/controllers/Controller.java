@@ -25,6 +25,5 @@ public abstract class Controller {
         return this.session.getColor(coordinate);
 
     }
-
-    public abstract void accept(ControllerVisitor controllerVisitor);
+    
 }

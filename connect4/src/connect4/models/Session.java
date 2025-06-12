@@ -17,6 +17,22 @@ public class Session {
         this.registry = new Registry(this.game);
     }
 
+    public void undo() {
+        this.registry.undo();
+    }
+
+    public boolean undoable() {
+        return this.registry.undoable();
+    }
+
+    public void redo() {
+        this.registry.redo();
+    }
+
+    public boolean redoable() {
+        return this.registry.redoable();
+    }
+
     public StateValue getValueState() {
         return this.state.getValueState();
     }
@@ -33,13 +49,15 @@ public class Session {
         return this.game.getColor(coordinate);
     }
 
-        public int getNumberPlayers() {
+    public int getNumberPlayers() {
         return this.game.getNumberPlayers();
     }
 
-/*     public void reset() {
-        this.game.reset();
-    } */
+    /*
+     * public void reset() {
+     * this.game.reset();
+     * }
+     */
 
     public void reset() {
         this.game.reset();
@@ -54,7 +72,7 @@ public class Session {
         this.game.addPlayer(playerType);
     }
 
-        public Player getActivePlayer() {
+    public Player getActivePlayer() {
         return this.game.getActivePlayer();
     }
 

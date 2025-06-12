@@ -6,47 +6,70 @@ import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
-public class PlayController extends Controller implements AcceptorController{
+public class PlayController extends Controller implements AcceptorController {
+
+    private ActionContoller actionController;
+    private UndoController undoController;
+    private RedoController redoController;
 
     public PlayController(Session session) {
         super(session);
+        this.actionController = new ActionContoller(session);
+        this.undoController = new UndoController(session);
+        this.redoController = new RedoController(session);
+    }
+
+    public void undo() {
+        this.undoController.undo();
+    }
+
+    public boolean undoable() {
+        return this.undoController.undoable();
+    }
+
+    public void redo() {
+        this.redoController.redo();
+    }
+
+    public boolean redoable() {
+        return this.redoController.redoable();
     }
 
     public Player getActivePlayer() {
-        return this.session.getActivePlayer();
+        return this.actionController.getActivePlayer();
     }
 
     public PlayerType getActivePlayerType() {
-        return this.session.getActivePlayerType();
+        return this.actionController.getActivePlayerType();
     }
 
     public Color getColor(Coordinate coordinate) {
-        return this.session.getColor(coordinate);
+        return this.actionController.getColor(coordinate);
     }
 
     public boolean isFinished() {
-        return this.session.isFinished();
+        return this.actionController.isFinished();
     }
 
     public void next() {
-        this.session.next();
+        this.actionController.next();
     }
 
     public void dropToken(int Column) {
-        this.session.dropToken(Column);
+        this.actionController.dropToken(Column);
     }
 
     public int getColumn() {
-        return this.session.getColumn();
+        return this.actionController.getColumn();
     }
 
     public boolean isWinner() {
-        return this.session.isWinner();
+        return this.actionController.isWinner();
     }
 
     @Override
     public void accept(ControllerVisitor controllerVisitor) {
-       controllerVisitor.visit(this);
+        controllerVisitor.visit(this);
     }
-    
+
 }
