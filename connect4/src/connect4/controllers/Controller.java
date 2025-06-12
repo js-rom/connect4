@@ -1,32 +1,28 @@
 package connect4.controllers;
 
-import connect4.models.State;
-
-import connect4.models.Game;
+import connect4.models.Session;
 import connect4.types.Color;
 import utils.models.Coordinate;
 
 public abstract class Controller {
 
-    protected Game game;
-    protected State state;
+    protected Session session;
 
-    Controller(Game game, State state) {
-        this.game = game;
-        this.state = state;
+    Controller(Session session) {
+        this.session = session;
     }
 
     public void nextState() {
-        this.state.next();
+        this.session.nextState();
     }
 
     public Color getActiveColor() {
-        return this.game.getActiveColor();
+        return this.session.getActiveColor();
     }
 
     public Color getColor(Coordinate coordinate) {
 
-        return this.game.getColor(coordinate);
+        return this.session.getColor(coordinate);
 
     }
 
