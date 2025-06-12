@@ -1,50 +1,47 @@
 package connect4.controllers;
 
-import connect4.models.Game;
-import connect4.models.MachinePlayer;
 import connect4.models.Player;
-import connect4.models.State;
+import connect4.models.Session;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
 public class PlayController extends Controller {
 
-    public PlayController(Game game, State state) {
-        super(game, state);
+    public PlayController(Session session) {
+        super(session);
     }
 
     public Player getActivePlayer() {
-        return this.game.getActivePlayer();
+        return this.session.getActivePlayer();
     }
 
     public PlayerType getActivePlayerType() {
-        return this.game.getActivePlayerType();
+        return this.session.getActivePlayerType();
     }
 
     public Color getColor(Coordinate coordinate) {
-        return this.game.getColor(coordinate);
+        return this.session.getColor(coordinate);
     }
 
     public boolean isFinished() {
-        return this.game.isFinished();
+        return this.session.isFinished();
     }
 
     public void next() {
-        this.game.next();
+        this.session.next();
     }
 
     public void dropToken(int Column) {
-        this.getActivePlayer().dropToken(Column);
+        this.session.dropToken(Column);
     }
 
     public int getColumn() {
-        MachinePlayer machinePlayer = (MachinePlayer) this.getActivePlayer();
-        return machinePlayer.getColumn();
+        return this.session.getColumn();
     }
 
     public boolean isWinner() {
-        return this.game.isWinner();
+        return this.session.isWinner();
     }
 
     @Override

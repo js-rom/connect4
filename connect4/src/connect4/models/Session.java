@@ -43,4 +43,33 @@ public class Session {
     public void addPlayer(PlayerType playerType) {
         this.game.addPlayer(playerType);
     }
+
+        public Player getActivePlayer() {
+        return this.game.getActivePlayer();
+    }
+
+    public PlayerType getActivePlayerType() {
+        return this.game.getActivePlayerType();
+    }
+
+    public boolean isFinished() {
+        return this.game.isFinished();
+    }
+
+    public void next() {
+        this.game.next();
+    }
+
+    public void dropToken(int Column) {
+        this.getActivePlayer().dropToken(Column);
+    }
+
+    public int getColumn() {
+        MachinePlayer machinePlayer = (MachinePlayer) this.getActivePlayer();
+        return machinePlayer.getColumn();
+    }
+
+    public boolean isWinner() {
+        return this.game.isWinner();
+    }
 }

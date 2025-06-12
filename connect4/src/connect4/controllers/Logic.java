@@ -20,7 +20,7 @@ public class Logic {
 
         this.controllers = new EnumMap<>(StateValue.class);
         this.controllers.put(StateValue.INITIAL, new StartController(session));
-        this.controllers.put(StateValue.IN_GAME, new PlayController(this.game, this.state));
+        this.controllers.put(StateValue.IN_GAME, new PlayController(session));
         this.controllers.put(StateValue.RESUME, new ResumeController(this.game, this.state));
         this.controllers.put(StateValue.EXIT, null);
     }
