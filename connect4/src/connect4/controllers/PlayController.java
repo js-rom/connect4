@@ -6,7 +6,7 @@ import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
-public class PlayController extends Controller {
+public class PlayController extends Controller implements AcceptorController{
 
     public PlayController(Session session) {
         super(session);

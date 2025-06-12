@@ -2,7 +2,7 @@ package connect4.controllers;
 
 import connect4.models.Session;
 
-public class ResumeController extends Controller {
+public class ResumeController extends Controller implements AcceptorController {
 
     public ResumeController(Session session) {
         super(session);

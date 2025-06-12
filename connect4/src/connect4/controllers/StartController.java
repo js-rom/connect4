@@ -3,7 +3,7 @@ package connect4.controllers;
 import connect4.models.Session;
 import connect4.types.PlayerType;
 
-public class StartController extends Controller {
+public class StartController extends Controller implements AcceptorController {
 
     public StartController(Session session) {
         super(session);
