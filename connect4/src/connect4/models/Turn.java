@@ -44,6 +44,11 @@ public class Turn {
         return this.players[this.activePlayer];
     }
 
+    public void setActivePlayer(int activePlayer) {
+        assert activePlayer >= 0 && activePlayer < Turn.NUMBER_PLAYERS;
+        this.activePlayer = activePlayer;
+    }
+
     public boolean isReset() {
         return this.playersSize == 0;
     }

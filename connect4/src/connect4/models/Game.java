@@ -14,6 +14,16 @@ public class Game {
         this.turn = new Turn(this.board);
     }
 
+    public Memento createMemento() {
+        return new Memento(this.board, this.turn);
+    }
+
+    public void setMemento(Memento memento) {
+        assert memento != null;
+        this.board = memento.getBoard();
+        this.turn.setActivePlayer(memento.getActivePlayer());
+    }
+
     public void reset() {
         this.board.reset();
         this.turn.reset();
