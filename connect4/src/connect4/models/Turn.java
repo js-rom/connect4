@@ -52,4 +52,13 @@ public class Turn {
     public boolean isReset() {
         return this.playersSize == 0;
     }
+
+    public void setBoard(Board board) {
+        assert board != null;
+        assert players != null;
+        this.board = board;
+        for (Player player : players) {
+                player.setBoard(board);
+        }
+    }
 }

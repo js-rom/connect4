@@ -21,7 +21,7 @@ public class PlayController extends Controller implements AcceptorController {
 
     public void undo() {
         this.undoController.undo();
-    }
+                }
 
     public boolean undoable() {
         return this.undoController.undoable();
@@ -53,6 +53,10 @@ public class PlayController extends Controller implements AcceptorController {
 
     public void next() {
         this.actionController.next();
+    }
+
+    public void registerMemento() {
+        this.actionController.registerMemento();
     }
 
     public void dropToken(int Column) {

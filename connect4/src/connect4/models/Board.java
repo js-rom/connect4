@@ -187,7 +187,7 @@ public class Board {
         Board board = new Board();
         for (int i = 0; i < Coordinate.NUMBER_ROWS; i++) {
             for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
-                board.dropToken(j, Color.valueOf(boardColors[colorsCount++]));
+                board.dropToken(j, Color.get(boardColors[colorsCount++]));
             }
         }
         return board;

@@ -32,6 +32,10 @@ public class ActionContoller extends Controller {
         this.session.next();
     }
 
+    public void registerMemento() {
+        this.session.register();
+    }
+
     public void dropToken(int Column) {
         this.session.dropToken(Column);
     }

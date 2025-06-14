@@ -53,15 +53,10 @@ public class Session {
         return this.game.getNumberPlayers();
     }
 
-    /*
-     * public void reset() {
-     * this.game.reset();
-     * }
-     */
-
     public void reset() {
         this.game.reset();
         this.state.reset();
+        this.registry.reset();
     }
 
     public boolean isReset() {
@@ -86,6 +81,11 @@ public class Session {
 
     public void next() {
         this.game.next();
+        this.register();
+    }
+
+    public void register() {
+        this.registry.register();
     }
 
     public void dropToken(int Column) {

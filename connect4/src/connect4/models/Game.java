@@ -21,6 +21,7 @@ public class Game {
     public void setMemento(Memento memento) {
         assert memento != null;
         this.board = memento.getBoard();
+        this.turn.setBoard(this.board);
         this.turn.setActivePlayer(memento.getActivePlayer());
     }
 

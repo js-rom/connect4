@@ -10,13 +10,12 @@ public class Registry {
 	
 	Registry(Game game) {
 		this.game = game;
-		//this.reset();
+		this.reset();
 	}
 
 	void reset() {
 		this.firstPrevious = 0;
 		this.mementos = new ArrayList<>();
-		this.mementos.add(this.firstPrevious, this.game.createMemento());
 	}
 
 	void register() {
