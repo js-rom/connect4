@@ -3,8 +3,12 @@ package connect4.views.graphics;
 import java.awt.BorderLayout;
 import java.util.concurrent.CountDownLatch;
 
+import javax.swing.JButton;
+
 import connect4.controllers.PlayController;
 import connect4.views.graphics.commands.NextTurnCommand;
+import connect4.views.graphics.commands.RedoCommand;
+import connect4.views.graphics.commands.UndoCommand;
 
 public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor {
 
@@ -19,6 +23,9 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         this.playController = playController;
         this.latch = latch;
         this.turnView = new TurnView(playController);
+        this.turnView.setUndoCommand(new UndoCommand(this));
+        this.turnView.setRedoComand(new RedoCommand(this));
+        this.playController.registerMemento();
     }
 
     @Override
@@ -26,14 +33,14 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         if (!this.playController.isFinished()) {
             this.removeBoard();
             BoardViewPrototypeRegistry boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(playController,
-                new NextTurnCommand(this));
+                    new NextTurnCommand(this));
             this.boardView = new BoardViewPrototypeDirector().get(boardViewPrototypeRegistry,
                     this.playController.getActivePlayerType());
             this.turnView.write();
             this.boardView.accept(this);
             this.removeAll();
             this.setLayout(new BorderLayout());
-            this.add(this.turnView, BorderLayout.WEST);
+            this.add(this.turnView, BorderLayout.NORTH);
             this.add(this.boardView, BorderLayout.CENTER);
             this.getParent().revalidate();
             this.getParent().repaint();
@@ -56,6 +63,10 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
 
     public void visit(UserPlayerBoardView userPlayerBoardView) {
         userPlayerBoardView.write();
+    }
+
+    public PlayController getPlayController() {
+        return this.playController;
     }
 
 }
