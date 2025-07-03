@@ -72,10 +72,6 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         userPlayerBoardView.write();
     }
 
-    public PlayController getPlayController() {
-        return this.playController;
-    }
-
     public void undo(UndoMachinePlayerCommand undoMachinePlayerCommand) {
         if (this.playController.undoable()) {
             ((MachinePlayerBoardView) this.boardView).interruptDropToken();
