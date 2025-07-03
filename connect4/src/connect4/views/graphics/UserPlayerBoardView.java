@@ -9,7 +9,7 @@ import utils.models.Coordinate;
 
 public class UserPlayerBoardView extends BoardView implements ActionListener {
 
-    public UserPlayerBoardView(PlayController playController, PanelViewCommand callback) {
+    public UserPlayerBoardView(PlayController playController, PlayPanelViewCommand callback) {
         super(playController, callback);
     }
 
