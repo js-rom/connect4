@@ -8,7 +8,10 @@ import javax.swing.JButton;
 import connect4.controllers.PlayController;
 import connect4.views.graphics.commands.NextTurnCommand;
 import connect4.views.graphics.commands.RedoCommand;
-import connect4.views.graphics.commands.UndoCommand;
+import connect4.views.graphics.commands.RedoMachinePlayerCommand;
+import connect4.views.graphics.commands.RedoUserPlayerCommand;
+import connect4.views.graphics.commands.UndoMachinePlayerCommand;
+import connect4.views.graphics.commands.UndoUserPlayerCommand;
 
 public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor {
 
@@ -23,8 +26,8 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         this.playController = playController;
         this.latch = latch;
         this.turnView = new TurnView(playController);
-        this.turnView.setUndoCommand(new UndoCommand(this));
-        this.turnView.setRedoComand(new RedoCommand(this));
+        // this.turnView.setUndoCommand(new UndoMachinePlayerCommand(this));
+        //this.turnView.setRedoComand(new RedoCommand(this));
         this.playController.registerMemento();
     }
 
@@ -36,8 +39,8 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
                     new NextTurnCommand(this));
             this.boardView = new BoardViewPrototypeDirector().get(boardViewPrototypeRegistry,
                     this.playController.getActivePlayerType());
-            this.turnView.write();
             this.boardView.accept(this);
+            this.turnView.write();
             this.removeAll();
             this.setLayout(new BorderLayout());
             this.add(this.turnView, BorderLayout.NORTH);
@@ -57,16 +60,50 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
     }
 
     public void visit(MachinePlayerBoardView machinePlayerBoardView) {
+        this.turnView.setUndoCommand(new UndoMachinePlayerCommand(this));
+        this.turnView.setRedoComand(new RedoMachinePlayerCommand(this));
         machinePlayerBoardView.write();
         machinePlayerBoardView.dropToken();
     }
 
     public void visit(UserPlayerBoardView userPlayerBoardView) {
+        this.turnView.setUndoCommand(new UndoUserPlayerCommand(this));
+        this.turnView.setRedoComand(new RedoUserPlayerCommand(this));
         userPlayerBoardView.write();
     }
 
-    public PlayController getPlayController() {
-        return this.playController;
+    public void undo(UndoMachinePlayerCommand undoMachinePlayerCommand) {
+        if (this.playController.undoable()) {
+            ((MachinePlayerBoardView) this.boardView).interruptDropToken();
+            this.undo();
+        }
+    }
+
+    public void undo(UndoUserPlayerCommand undoUserPlayerCommand) {
+        if (this.playController.undoable()) {
+            this.undo();
+        }
+    }
+
+    private void undo() {
+        assert this.playController.undoable();
+        this.playController.undo();
+        this.write();
+    }
+
+    public void redo(RedoUserPlayerCommand redoUserPlayerCommand) {
+        this.redo();
+    }
+
+    public void redo(RedoMachinePlayerCommand redoMachinePlayerCommand) {
+        ((MachinePlayerBoardView) this.boardView).interruptDropToken();
+        this.redo();
+    }
+
+    private void redo() {
+        assert this.playController.redoable();
+        this.playController.redo();
+        this.write();
     }
 
 }

@@ -1,21 +1,13 @@
 package connect4.views.graphics.commands;
 
-import connect4.views.graphics.PanelView;
-import connect4.views.graphics.PanelViewCommand;
 import connect4.views.graphics.PlayPanelView;
+import connect4.views.graphics.PlayPanelViewCommand;
 
-public class UndoCommand extends PanelViewCommand {
+public abstract class UndoCommand extends PlayPanelViewCommand  {
 
-    public UndoCommand(PanelView receiver) {
+    public UndoCommand(PlayPanelView receiver) {
         super(receiver);
+        //TODO Auto-generated constructor stub
     }
 
-    @Override
-    public void execute() {
-        PlayPanelView playPanelView = (PlayPanelView) this.getReceiver();
-        if(playPanelView.getPlayController().undoable()){
-            playPanelView.getPlayController().undo();
-            new NextTurnCommand(this.getReceiver()).execute();
-        }
-    }
 }
