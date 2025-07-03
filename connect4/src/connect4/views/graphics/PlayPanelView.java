@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import connect4.controllers.PlayController;
 import connect4.views.graphics.commands.NextTurnCommand;
 import connect4.views.graphics.commands.RedoCommand;
+import connect4.views.graphics.commands.RedoMachinePlayerCommand;
+import connect4.views.graphics.commands.RedoUserPlayerCommand;
 import connect4.views.graphics.commands.UndoMachinePlayerCommand;
 import connect4.views.graphics.commands.UndoUserPlayerCommand;
 
@@ -25,7 +27,7 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         this.latch = latch;
         this.turnView = new TurnView(playController);
         // this.turnView.setUndoCommand(new UndoMachinePlayerCommand(this));
-        this.turnView.setRedoComand(new RedoCommand(this));
+        //this.turnView.setRedoComand(new RedoCommand(this));
         this.playController.registerMemento();
     }
 
@@ -59,12 +61,14 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
 
     public void visit(MachinePlayerBoardView machinePlayerBoardView) {
         this.turnView.setUndoCommand(new UndoMachinePlayerCommand(this));
+        this.turnView.setRedoComand(new RedoMachinePlayerCommand(this));
         machinePlayerBoardView.write();
         machinePlayerBoardView.dropToken();
     }
 
     public void visit(UserPlayerBoardView userPlayerBoardView) {
         this.turnView.setUndoCommand(new UndoUserPlayerCommand(this));
+        this.turnView.setRedoComand(new RedoUserPlayerCommand(this));
         userPlayerBoardView.write();
     }
 
@@ -91,7 +95,16 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         this.write();
     }
 
-    public void redo() {
+    public void redo(RedoUserPlayerCommand redoUserPlayerCommand) {
+        this.redo();
+    }
+
+    public void redo(RedoMachinePlayerCommand redoMachinePlayerCommand) {
+        ((MachinePlayerBoardView) this.boardView).interruptDropToken();
+        this.redo();
+    }
+
+    private void redo() {
         assert this.playController.redoable();
         this.playController.redo();
         this.write();
