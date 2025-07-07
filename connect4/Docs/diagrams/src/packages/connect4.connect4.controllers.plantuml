@@ -1,18 +1,22 @@
 @startuml connect4.connect4.controllers
 
+
+interface controllers.AcceptorController {
+    +accept(ControllerVisitor)
+}
+
 class controllers.Logic {
-    -controllers : Map<StateValue, Controller> 
+    -controllers : Map<StateValue, AceptorController> 
     +Logic()
-    +getController() : Controller
+    +getController() : AceptorController
 }
 
 abstract class controllers.Controller {
-    +Controller(Game, State)
+    +Controller(Session)
     +nextState()
-    + {abstract} accept(ControllerVisitor)
 }
 
-class controllers.Startcontroller {
+class controllers.StartController {
 
     +getPlayerTypes() : PlayerType[]
     +getNumberPlayers() : int
@@ -25,7 +29,7 @@ class controllers.Startcontroller {
 }
 
 interface controllers.ControllerVisitor {
-    +start(Startcontroller)
+    +start(StartController)
     +play(PlayController)
     +resume(ResumeController)
 }
@@ -39,30 +43,65 @@ class controllers.PlayController{
     +dropToken(int)
     +getColumn() : int
     +isWinner() : boolean
+    +undo()
+    +undoable() : boolean
+    +redo()
+    +redoable() : boolean
+    +registerMemento()
 }
+
+class controllers.ActionController{
+    +getActivePlayer() : Player
+    +getActivePlayerType() : PlayerType
+    +getColor(Coordinate) : Color
+    +isFinished() : boolean
+    +next()
+    +dropToken(int)
+    +getColumn() : int
+    +isWinner() : boolean
+    +registerMemento()
+}
+
+class controllers.UndoController{
+    +undo()
+    +undoable() : boolean
+}
+
+class controllers.RedoController{
+    +redo()
+    +redoable() : boolean
+}
+
 class controllers.ResumeController{
     +isWinner() : boolean
     +reset()
 }
 
-class Game as "models.Game"
-class State as "models.State"
+class Session as "models.Session"
 class StateValue as "types.StateValue"
 
 
 
 Controller ..> ControllerVisitor
-Controller <|-- Startcontroller
+Controller <|-- StartController
 Controller <|-- PlayController
+Controller <|-- ActionController
+Controller <|-- UndoController
+Controller <|-- RedoController
 Controller <|-- ResumeController
+AcceptorController <|.. StartController
+AcceptorController <|.. PlayController
+AcceptorController <|.. ResumeController
 
-Logic *--> Game
-Logic *--> State
+Logic *--> Session
 Logic *--> Controller
 Logic *--> StateValue
 
-Controller --> Game
-Controller --> State
+Controller --> Session
+
+PlayController *--> ActionController
+PlayController *--> UndoController
+PlayController *--> RedoController
 
 
 @enduml

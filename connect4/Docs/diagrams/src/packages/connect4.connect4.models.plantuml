@@ -11,6 +11,9 @@ class models.RandomMachinePlayer
 class models.MinMaxMachinePlayer
 class models.State
 class StateValue as "types.StateValue"
+class models.Memento
+class models.Registry
+class models.Session
 
 Game *-- Board
 Game *-- Turn
@@ -39,6 +42,14 @@ Board ..> Direction
 Direction --> Coordinate
 Direction ..> Coordinate
 Coordinate *-- ClosedInterval
+Memento ..> Board
+Memento ..> Turn
+Game ..> Memento
+Registry --> Game
+Registry --> "1..n" Memento
+Session *--> Registry
+Session *--> Game
+Session *--> State
 
 Game : -board: Board
 Game : -turn: Turn
@@ -49,6 +60,8 @@ Game : +isWinner(): boolean
 Game : +isFinished(): boolean
 Game : +getActivePlayer(): Player
 Game : +getTurn(): Turn
+Game : +createMemento(): Memento
+Game : +setMemento(Memento)
 
 Turn : {static} +NUMBER_PLAYERS: int
 Turn : -players: Player
@@ -62,6 +75,8 @@ Turn : +setUserPlayer()
 Turn : +setRandomMachinePlayer()
 Turn : +setMinMaxPlayer()
 Turn : -addPlayer(Player)
+Turn : +setActivePlayer(activePlayer: int)
+Turn : +setBoard(Board)
 
 Player : -color: Color
 Player : -board: Board
@@ -113,7 +128,8 @@ Board : -setColor(Coordinate, Color)
 Board : +getUncompletedColumn(): int[ ]
 Board : +removeTop(column: int)
 Board : -getTop(column: int): Coordinate
-
+Board : +toStringArray(): String[]
+Board : +fromStringArray(String[]): Board
 
 Line : {static} +LENGTH: int
 Line : -origin: Coordinate
@@ -127,5 +143,44 @@ Line : +getCoordinates(): Coordinate[ ]
 State : +reset()
 State : +next()
 State : +getValueState()
+
+Memento : -boardColors: String[]
+Memento : -activePlayer: int
+Memento : + getBoard(): Board
+Memento : +getActivePlayer(): int
+
+Registry : - mementos: List<Memento>
+Registry : - game: Game
+Registry : - firstPrevious: int
+Registry : +Registry(game: Game)
+Registry : +reset()
+Registry : +register()
+Registry : +undo()
+Registry : +redo()
+Registry : +undoable()
+Registry : +redoable()
+
+Session : -state: State
+Session : -registry: Registry
+Session : -game: Game
+Session : +nextState()
+Session : + getActiveColor(): Color
+Session : + getColor(Coordinate): Color
+Session : + getNumberPlayers(): int
+Session : +reset()
+Session : +addPlayer(PlayerType)
+Session : +getActivePlayer(): Player
+Session : +getActivePlayerType(): PlayerType
+Session : +isFinished(): boolean
+Session : +next()
+Session : +dropToken()
+Session : +getColumn(): int
+Session : +isWinner(): boolean
+Session : +getValueState(): StateValue
+Session : +undo()
+Session : +undoable() : boolean
+Session : +redo()
+Session : +redoable() : boolean
+Session : +register()
 
 @enduml
