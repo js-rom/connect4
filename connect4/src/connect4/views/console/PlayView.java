@@ -11,8 +11,6 @@ public class PlayView {
         new BoardView(playController).writeln();
         playController.registerMemento();
         do {
-          /*   new TurnView().dropToken(playController); // move into Actionoption
-            new BoardView(playController).writeln(); // move into Option */
             new PlayMenu(playController).interact();
         } while (!playController.isFinished());
         new TurnView().writeResult(playController);
