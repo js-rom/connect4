@@ -12,7 +12,7 @@ enum types.StateValue {
 Color : +RED
 Color : +YELLOW
 Color : +NULL
-Color : -color: String
+Color : -description: String
 Color : {static} -PLAYERS : Color[ ]
 Color : +Color(color: String)
 Color : {static} +get(ordinal: int): Color

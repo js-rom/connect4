@@ -25,7 +25,18 @@ class graphics.PlayPanelView{
     -removeBoard()
     +visit(MachinePlayerBoardView)
     +visit(UserPlayerBoardView)
+    +undo(UndoMachinePlayerCommand)
+    +undo(UndoUserPlayerCommand)
+    +redo(RedoMachinePlayerCommand)
+    +redo(RedoUserPlayerCommand)
+    -redo()
 }
+
+interface graphics.PlayPanelViewVisitor {
+    +visit(MachinePlayerBoardView)
+    +visit(UserPlayerBoardView)
+}
+
 abstract class graphics.BoardView {
     + BoardView(PlayController, PanelViewCommand)
     + write()
@@ -46,9 +57,9 @@ class graphics.BoardViewPrototypeRegistry{
 interface graphics.Command {
     +execute()
 }
-abstract class graphics.PanelViewCommand {
-    +PanelViewCommand(PanelView)
-    #getReceiver() : PanelView
+abstract class graphics.PlayPanelViewCommand {
+    +PlayPanelViewCommand(PlayPanelView)
+    #getReceiver() : PlayPanelView
 }
 class graphics.MachinePlayerBoardView {
     +dropToken()
@@ -69,6 +80,8 @@ class graphics.NonClickableSquare {
 }
 class graphics.TurnView{
     +write()
+    +setUndoCommand(UndoComand)
+    +setRedoCommand(RedoComand)
 }
 abstract class graphics.PanelView
 class StartController as "controllers.\nStartController"
@@ -89,6 +102,13 @@ interface ControllerVisitor as "controllers.ControllerVisitor" {
     +visit(PlayController)
     +visit(ResumeController)
 }
+
+abstract class graphics.UndoComand
+abstract class graphics.RedoComand
+class graphics.RedoMachinePlayerCommand {}
+class graphics.UndoMachinePlayerCommand {}
+class graphics.RedoUserPlayerCommand {}
+class graphics.UndoUserPlayerCommand {}
 
 
 GraphicsView --> CountDownLatch
@@ -116,6 +136,7 @@ JPanel <|-- PanelView
 PanelView <|-- GameLoopView
 GameLoopView <|-- StartPanelView
 GameLoopView <|-- PlayPanelView
+PlayPanelViewVisitor <|.. PlayPanelView
 PanelView <|-- BoardView
 PanelView <|-- TurnView
 
@@ -126,6 +147,9 @@ PlayPanelView *--> BoardView
 PlayPanelView *--> TurnView
 PlayPanelView ..> BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
+PlayPanelView ..> UndoComand
+PlayPanelView ..> RedoComand
+
 BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
 BoardViewPrototypeDirector ..> PlayerType
 BoardViewPrototypeRegistry ..> PlayController
@@ -135,8 +159,14 @@ BoardViewPrototypeRegistry *--> "2"BoardView
 
 PlayPanelView ..> Command
 
-Command <|-- PanelViewCommand
-PanelViewCommand <|-- NextTurnCommand
+Command <|-- PlayPanelViewCommand
+PlayPanelViewCommand <|-- NextTurnCommand
+PlayPanelViewCommand <|-- UndoComand
+PlayPanelViewCommand <|-- RedoComand
+UndoComand <|-- UndoMachinePlayerCommand
+UndoComand <|-- UndoUserPlayerCommand
+RedoComand <|-- RedoMachinePlayerCommand
+RedoComand <|-- RedoUserPlayerCommand
 
 
 BoardView <|-- MachinePlayerBoardView

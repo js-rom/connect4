@@ -3,11 +3,8 @@ package connect4.views.graphics;
 import java.awt.BorderLayout;
 import java.util.concurrent.CountDownLatch;
 
-import javax.swing.JButton;
-
 import connect4.controllers.PlayController;
 import connect4.views.graphics.commands.NextTurnCommand;
-import connect4.views.graphics.commands.RedoCommand;
 import connect4.views.graphics.commands.RedoMachinePlayerCommand;
 import connect4.views.graphics.commands.RedoUserPlayerCommand;
 import connect4.views.graphics.commands.UndoMachinePlayerCommand;
@@ -26,8 +23,6 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
         this.playController = playController;
         this.latch = latch;
         this.turnView = new TurnView(playController);
-        // this.turnView.setUndoCommand(new UndoMachinePlayerCommand(this));
-        //this.turnView.setRedoComand(new RedoCommand(this));
         this.playController.registerMemento();
     }
 

@@ -87,6 +87,28 @@ interface ControllerVisitor as "controllers.ControllerVisitor" {
     +visit(ResumeController)
 }
 
+class console.PlayMenu {
+    +PlayMenu(PlayController)
+    +addOptions()
+    +interact()
+}
+
+abstract class console.PlayOption {
+    +interact()
+    + {abstract} isActive()
+}
+class console.UndoOption {
+    +interact()
+}
+
+class console.RedoOption {
+    +interact()
+}
+
+class console.ActionOption {
+    +interact()
+}
+
 View <|.. Consoleview 
 ControllerVisitor <|.. Consoleview 
 Consoleview *--> StartView
@@ -99,8 +121,17 @@ ResumeView ..> ResumeController
 
 StartView ..> TurnView
 
-PlayView ..> TurnView
-PlayView ..> BoardView
+Menu <|-- PlayMenu
+Option <|-- PlayOption
+PlayOption --> PlayController
+PlayOption ..> BoardView
+PlayOption <|-- ActionOption
+ActionOption ..> TurnView
+PlayOption <|-- UndoOption
+PlayOption <|-- RedoOption
+PlayMenu *--> "3"PlayOption
+PlayView ..> PlayMenu
+PlayMenu --> PlayController
 
 ResumeView ..> YesNoDialog
 
@@ -127,6 +158,7 @@ PlayerViewPrototypeRegistry o-- PlayerView
 
 class Option as "connect4.utils.menu.Option"
 class SecuentialMenu as "connect4.utils.menu.SecuentialMenu"
+class Menu as "connect4.utils.menu.Menu"
 class Coordinate as "connect4.Utils.Coordinate"
 class Console as "connect4.utils.Console"
 class Player as "connect4.connect4.\nmodels.Player"
