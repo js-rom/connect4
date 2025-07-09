@@ -1,15 +1,20 @@
-# Connect 4. Solution v.1.7 modelViewPresenter - presentationModel - withFacade
+# Connect 4. Solution v.1.10 modelViewPresenter - presentationModel - withComposite??
 
 # Requisitos 2. *Gráficos*
 
-* Funcionalidad: **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
+* Funcionalidad: 
+  * **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
+  * **undo - redo**
 * Interfaz: **Gráfica y Texto**
 * Distribución: **Standalone**
 * Persistencia: **No**
 
 # Vista de Lógica/Diseño
 
-  - Modelo/Vista/Presentador con Presentador del Modelo con Vista Achicada
+- Modelo/Vista/Presentador con Presentador del Modelo con Vista Achicada
+  - Patrón Command, para el menú
+  - Patrón Facade, para multicontroladores y sesión
+  - Patrón Memento, para la funcionalidad undo/redo
 
 ## Arquitectura
 

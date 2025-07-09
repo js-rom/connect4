@@ -28,117 +28,21 @@
 
 ![secuencia de versiones](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
-# Versión v.1.9
+# Versión v.1.10
 
-## Soluciones de diseño a la versión v.1.8
+## enfoque
 
-- ~~Violación del Principio de Sustitución de Barbara Liskov.~~
+En esta versión se añade la funcionalidad de deshacer y rehacer movimientos, disponible tanto para jugadores humanos como para jugadores máquina, y accesible desde ambas interfaces: consola y gráfica.
 
-Esta versión evita preguntar por el tipo para abrir distintas ramas de sentencias alternativas para tratar cada tipo de clase derivada.
+## Diseño
 
-Solución aplicando la técnica del doble despacho:
-- La jerarquía de clases no conoce directamente a los clientes sino que conoce únicamente a una interfaz que cumple todo cliente que visita la jerarquía, visitador genérico (controllers.ControllerVisitor).
-``` java
+La nueva funcionalidad de deshacer y rehacer movimientos se ha implementado utilizando el patrón de diseño Memento.
 
-public interface ControllerVisitor {
-    
-    void visit(StartController startController);
+**Cambios en el paquete `connect4.models`:**
 
-    void visit(PlayController playController);
+- Se introduce la clase `Registry`, responsable de gestionar una lista de objetos `Memento` generados por `Game`. Esta clase almacena los diferentes estados por los que pasa el juego y permite restaurar el estado del juego a cualquier punto anterior o posterior.
+- Se crea la fachada `Session`, que centraliza la gestión del estado en memoria de la aplicación mediante una interfaz común. Esta fachada agrupa y delega responsabilidades en las clases `Game`, `Registry` y `State`.
 
-    boolean visit(ResumeController resumeController);
-}
+**Cambios en el paquete `connect4.controllers`:**
 
-```
-    - La nueva clase derivada debe redefinir el método aceptar para no ser abstracta enviando un mensaje visitar auto-pasandose por parámetro
-
-``` java
-public class StartController extends Controller {
-
-    //...
-
-    @Override
-    public void accept(ControllerVisitor controllerVisitor) {
-        controllerVisitor.visit(this);
-    }
-
-}
-
-```
-    - Los cambios están guiados por el compilador porque cada clase cliente debe definir un nuevo método visitar para la nueva clase derivada
-
-```java
-
-public class ConsoleView implements View, ControllerVisitor {
-
-    // ...
-
-    @Override
-    public void visit(StartController startController) {
-        this.start(startController);
-    }
-
-    @Override
-    public void visit(PlayController playController) {
-        this.play(playController);
-    }
-
-    @Override
-    public boolean visit(ResumeController resumeController) {
-        return this.resume(resumeController);
-    }
-
-}
-
-```
-
-Consecuencias:
-
-- No viola el Principio de Sustitución de Liskov preguntando por el tipo de objeto polimórfico
-```java
-
-public class ConsoleConnect4 extends Connect4 {
-
-    protected void playGames() {
-        do {
-            if (logic.getController() != null) {
-                logic.getController().accept((ConsoleView)this.getView());
-            }
-        } while (logic.getController() != null);
-    }
-
-    // ...
-}    
-```
-- No incurre en cambios divergentes para atender con una nueva rama en cada clase cliente
-- No rompe el principio Open/Close con cambios en el interior de los métodos del cliente
-- Con "leve" intimidad inapropiada con ciclos dentro del mismo paquete entre todas las clases de la jerarquía con la interfaz de los clientes, que no requiere pruebas ni comprensión porque no aporta código de implementación
-- Bajo acoplamiento según tienden a crecer los clientes porque no todas las clases de la jerarquía conocen a todas las clases de clientes, solo conocen a la interfaz de todos los clientes
-
-
-## Problemas de diseño de la versión v.1.8
-
-- Violación del Principio de Sustitución de Barbara Liskov.
-En connect4.ConsoleConnect4 y connect4.GraphicsConnect4 estamos preguntado por el tipo de un objeto polimórfico en una **estructura de control de flujo de ejecución** para en función del tipo hacer una cosa u otra.
-
-```java
-
-if (logic.getController() instanceof StartController) {
-    graphicsView.start((StartController) logic.getController());
-} else {
-    if (logic.getController() instanceof PlayController) {
-        graphicsView.play((PlayController) logic.getController());
-    } else {
-        graphicsView.resume((ResumeController) logic.getController());
-    }
-}
-
-```
-
->Lo que se quiere aquí es algo como la siguiente propiedad de sustitución: si para cada objeto oT de un tipo T, hay un objeto oS de tipo S tal que para todo progama P definido en términos de T, el comportamiento de P no cambia cuando oT es sustituido por oS, entonces S es un subtipo de T
-— Barbara Liskov
-A behavioral notion of subtyping. ACM Transactions on Programming Languages and Systems (TOPLAS). Volume 16. Issue 6 (November 1994). pp. 1811. 1841
-
-- incurre en cambios divergentes para atender con una nueva rama en cada clase cliente que hay que localizar por toda la aplicación
-
-- rompe el principio Open/Close con cambios en el interior de los métodos del cliente
+- Se incorporan nuevos controladores para gestionar la funcionalidad de deshacer y rehacer. Se diferencian entre controladores principales, que implementan la interfaz `AcceptorController` y pueden actuar como fachada de controladores secundarios, agrupando así diferentes casos de uso bajo una una misma interfaz.
