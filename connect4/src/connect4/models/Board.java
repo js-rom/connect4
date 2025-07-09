@@ -165,8 +165,31 @@ public class Board {
         Coordinate coordinate = new Coordinate(Coordinate.NUMBER_ROWS - 1, column);
         while (this.isEmpty(coordinate)) {
             coordinate = coordinate.shifted(Direction.SOUTH.getCoordinate());
-            //coordinate = Direction.SOUTH.next(coordinate);
         }
         return coordinate;
+    }
+
+    public String[] toStringArray() {
+        String[] boardColors = new String[Coordinate.NUMBER_ROWS * Coordinate.NUMBER_COLUMNS];
+        int colorsCount = 0;
+        for (int i = 0; i < Coordinate.NUMBER_ROWS; i++) {
+            for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
+                boardColors[colorsCount] = this.colors[i][j].toString();
+                colorsCount++;
+            }
+        }
+        return boardColors;
+    }
+
+    public static Board fromStringArray(String[] boardColors) {
+        assert boardColors != null && boardColors.length == Coordinate.NUMBER_ROWS * Coordinate.NUMBER_COLUMNS;
+        int colorsCount = 0;
+        Board board = new Board();
+        for (int i = 0; i < Coordinate.NUMBER_ROWS; i++) {
+            for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
+                board.dropToken(j, Color.get(boardColors[colorsCount++]));
+            }
+        }
+        return board;
     }
 }

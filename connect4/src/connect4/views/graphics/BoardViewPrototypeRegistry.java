@@ -10,7 +10,7 @@ public class BoardViewPrototypeRegistry {
 
     private Map<PlayerType, BoardView> playerBoardViews;
 
-    public BoardViewPrototypeRegistry(PlayController playController, PanelViewCommand nextTurnCommand) {
+    public BoardViewPrototypeRegistry(PlayController playController, PlayPanelViewCommand nextTurnCommand) {
         assert (playController != null);
         this.playerBoardViews = new EnumMap<>(PlayerType.class);
 

@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch GraphicsConnect4",
+            "request": "launch",
+            "mainClass": "connect4.GraphicsConnect4",
+            "vmArgs": "-ea"
+        },
+        {
+            "type": "java",
+            "name": "Launch ConsoleConnect4",
+            "request": "launch",
+            "mainClass": "connect4.ConsoleConnect4",
+            "vmArgs": "-ea"
+        }
+    ]
+}

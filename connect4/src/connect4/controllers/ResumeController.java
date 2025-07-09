@@ -1,21 +1,19 @@
 package connect4.controllers;
 
-import connect4.models.Game;
-import connect4.models.State;
+import connect4.models.Session;
 
-public class ResumeController extends Controller {
+public class ResumeController extends Controller implements AcceptorController {
 
-    public ResumeController(Game game, State state) {
-        super(game, state);
+    public ResumeController(Session session) {
+        super(session);
     }
 
     public boolean isWinner() {
-        return this.game.isWinner();
+        return this.session.isWinner();
     }
 
     public void reset() {
-        this.game.reset();
-        this.state.reset();
+        this.session.reset();
     }
 
     @Override

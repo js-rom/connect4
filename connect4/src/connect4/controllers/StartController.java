@@ -1,14 +1,12 @@
 package connect4.controllers;
 
-import connect4.models.State;
-
-import connect4.models.Game;
+import connect4.models.Session;
 import connect4.types.PlayerType;
 
-public class StartController extends Controller {
+public class StartController extends Controller implements AcceptorController {
 
-    public StartController(Game game, State state) {
-        super(game, state);
+    public StartController(Session session) {
+        super(session);
     }
 
     public PlayerType[] getPlayerTypes() {
@@ -16,19 +14,19 @@ public class StartController extends Controller {
     }
 
     public int getNumberPlayers() {
-        return this.game.getNumberPlayers();
+        return this.session.getNumberPlayers();
     }
 
     public void reset() {
-        this.game.reset();
+        this.session.reset();
     }
 
     public boolean isReset() {
-        return this.game.isReset();
+        return this.session.isReset();
     }
 
     public void addPlayer(PlayerType playerType) {
-        this.game.addPlayer(playerType);
+        this.session.addPlayer(playerType);
     }
 
     public PlayerType getMinMaxMachinePlayerType() {
@@ -45,7 +43,7 @@ public class StartController extends Controller {
 
     @Override
     public void accept(ControllerVisitor controllerVisitor) {
-       controllerVisitor.visit(this);
+        controllerVisitor.visit(this);
     }
 
 }

@@ -44,7 +44,21 @@ public class Turn {
         return this.players[this.activePlayer];
     }
 
+    public void setActivePlayer(int activePlayer) {
+        assert activePlayer >= 0 && activePlayer < Turn.NUMBER_PLAYERS;
+        this.activePlayer = activePlayer;
+    }
+
     public boolean isReset() {
         return this.playersSize == 0;
+    }
+
+    public void setBoard(Board board) {
+        assert board != null;
+        assert players != null;
+        this.board = board;
+        for (Player player : players) {
+                player.setBoard(board);
+        }
     }
 }

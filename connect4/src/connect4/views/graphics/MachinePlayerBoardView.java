@@ -10,7 +10,9 @@ import utils.models.Coordinate;
 
 public class MachinePlayerBoardView extends BoardView {
 
-    public MachinePlayerBoardView(PlayController playController, PanelViewCommand callback) {
+    private Timer timer;
+
+    public MachinePlayerBoardView(PlayController playController, PlayPanelViewCommand callback) {
         super(playController, callback);
     }
 
@@ -23,7 +25,7 @@ public class MachinePlayerBoardView extends BoardView {
 
     public void dropToken() {
         int delay = 1000;
-        Timer timer = new Timer(delay, new ActionListener() {
+        this.timer = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 getPlayController().dropToken(getPlayController().getColumn());
@@ -34,8 +36,13 @@ public class MachinePlayerBoardView extends BoardView {
                 getNextTurnCommand().execute();
             }
         });
-        timer.setRepeats(false);
-        timer.start();
+        this.timer.setRepeats(false);
+        this.timer.start();
+    }
+
+    public void interruptDropToken() {
+        assert (this.timer != null && timer.isRunning());
+        this.timer.stop();
     }
 
     public void accept(PlayPanelViewVisitor playPanelView) {

@@ -15,7 +15,7 @@ public abstract class BoardView extends PanelView {
 
     public PlayController playController;
     private Map<Color, ImageIcon> colors;
-    private PanelViewCommand nextTurnCommand;
+    private PlayPanelViewCommand nextTurnCommand;
 
     BoardView(PlayController playController) {
         this.playController = playController;
@@ -31,7 +31,7 @@ public abstract class BoardView extends PanelView {
         this.write();
     }
 
-    BoardView(PlayController playController, PanelViewCommand callback) {
+    BoardView(PlayController playController, PlayPanelViewCommand callback) {
         this(playController);
         assert (playController != null && callback != null);
         this.nextTurnCommand = callback;
@@ -59,7 +59,7 @@ public abstract class BoardView extends PanelView {
         return this.colors;
     }
 
-    protected PanelViewCommand getNextTurnCommand() {
+    protected PlayPanelViewCommand getNextTurnCommand() {
         return this.nextTurnCommand;
     }
 

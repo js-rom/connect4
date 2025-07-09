@@ -27,7 +27,6 @@ public class GraphicsView implements View, ControllerVisitor {
     @Override
     public void play(PlayController playController) {
         this.frame.setPanel(new PlayPanelView(playController, this.latch));
-        this.frame.write();
     }
 
     @Override
