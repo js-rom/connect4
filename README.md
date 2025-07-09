@@ -15,7 +15,7 @@
 | graphics | [v.1.7 modelViewPresenter - presentationModel - withFacade](https://github.com/js-rom/connect4/tree/v1.7.0-Release) |
 | graphics | [v.1.8 modelViewPresenter - presentationModel - withoutDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.8.0-Release) |
 | graphics | [v.1.9 modelViewPresenter - presentationModel - withDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.9.0-Release)  |
-| undoRedo | modelViewPresenter - presentationModel - withComposite |
+| undoRedo | [modelViewPresenter - presentationModel - withComposite](https://github.com/js-rom/connect4/tree/v1.10.0-Release) |
 | distributed | modelViewPresenter - presentationModel - withoutProxy |
 | distributed | modelViewPresenter - presentationModel - withProxy |
 | files | modelViewPresenter - presentationModel - withoutDAO |
