@@ -1,35 +1,103 @@
 @startuml connect4.connect4
 
-abstract class connect4.Connect4 <<Creator>>
-class connect4.ConsoleConnect4 <<ConcreteCreator>>
-class connect4.GraphicsConnect4 <<ConcreteCreator>>
+@startuml connect4.connect4
+
+interface Logic as "controllers\n.core\n.Logic" <<abstractProduct>> 
+class LogicImplementation as "controllers\n.implementation\n.LogicImplementation" <<concreteProduct>>
+Logic <|-- LogicImplementation
+
 class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
 class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
-interface View as "views.View" <<Product>>
-class Logic as "controllers.Logic"
-class Controller as "controllers.Controller"
+interface View as "views.View" <<abstractProduct>>
 
-Connect4 <|-- ConsoleConnect4
-Connect4 <|-- GraphicsConnect4
-Connect4 *--> View
-Connect4 *--> Logic
+package "launchers" {
 
-GraphicsConnect4 ..> GraphicsView
-ConsoleConnect4 ..> ConsoleView
+    abstract class launchers.Connect4 <<creator>> {
+        - LauncherProvider launcherProvider
+        + Connect4()
+        # {abstract}createLauncherProvider() : LauncherProvider
+        # {abstract} PlayGames()
+    }
+    
+    package standalone {
+    
+        class ConsoleConnect4 <<concreteCreator>> {
+            {static}+main(String[])
+        }
+        
+        class GraphicsConnect4 <<concreteCreator>> {
+            {static}+main(String[])
+        }
+    
+    }
+    
+        package distributed {
+        
+            package client {
+                class ConsoleConnect4 <<concreteCreator>> {
+                    {static}+main(String[])
+                }
+        
+                class GraphicsConnect4 <<concreteCreator>> {
+                    {static}+main(String[])
+                }
+                
+                class LogicProxy <<concreteProduct>>
+            }
+            package server {
+                class Connect4Server
+            }
+    
+    }
+    
+    launchers.Connect4 <|-- standalone.ConsoleConnect4
+    launchers.Connect4 <|-- standalone.GraphicsConnect4
+    launchers.Connect4 <|-- distributed.client.ConsoleConnect4
+    launchers.Connect4 <|-- distributed.client.GraphicsConnect4
 
-ConsoleConnect4 ..> Controller
-GraphicsConnect4 ..> Controller
+    package launcherProviders {
+        
+        interface LauncherProvider <<abstractFactory>> {
+            + getController() : Controller
+            + getView() : View
+        }
+        
+        class StandaloneConsole <<concreteFactory>> {}
+        class DistributedConsole <<concreteFactory>>
+        class StandaloneGraphics <<concreteFactory>>
+        class DistributedGraphics <<concreteFactory>>
+        
+        LauncherProvider <|-- StandaloneConsole
+        LauncherProvider <|-- DistributedConsole
+        LauncherProvider <|-- StandaloneGraphics
+        LauncherProvider <|-- DistributedGraphics
+    
+         Logic <|-- LogicProxy
 
+         View <|-- ConsoleView
+         View <|-- GraphicsView
+         
+         StandaloneConsole ..> LogicImplementation
+         StandaloneConsole ..> ConsoleView
+         
+         DistributedConsole ..> LogicProxy
+         DistributedConsole ..> ConsoleView
+         
+         StandaloneGraphics ..> LogicImplementation
+         StandaloneGraphics ..> GraphicsView
+         
+         DistributedGraphics ..> LogicProxy
+         DistributedGraphics ..> GraphicsView
+         
+    }
+    
+    standalone.ConsoleConnect4 *--> launcherProviders.LauncherProvider
+    standalone.GraphicsConnect4 *--> launcherProviders.LauncherProvider
+    distributed.client.ConsoleConnect4 *--> launcherProviders.LauncherProvider
+    distributed.client.GraphicsConnect4 *--> launcherProviders.LauncherProvider
+    
+}
 
-View <|-- ConsoleView
-View <|-- GraphicsView
-
-Connect4 : #Connect4()
-Connect4 : {abstract}#createView(): View
-Connect4 : {abstract}#PlayGames()
-Connect4 : #getView(): View
-
-GraphicsConnect4 : {static}+main(String[])
-ConsoleConnect4 : {static}+main(String[])
+@enduml
 
 @enduml
