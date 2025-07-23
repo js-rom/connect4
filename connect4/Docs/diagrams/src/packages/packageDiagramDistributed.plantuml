@@ -1,0 +1,52 @@
+@startuml
+
+package connect4
+package utils.tcpip
+package connect4.launchers.standalone
+package connect4.launchers.distributed.client
+package connect4.launchers.distributed.server
+package connect4.launchers.factories
+
+package connect4.controllers.core
+package connect4.controllers.implementation
+package connect4.controllers.proxies
+package connect4.models
+package connect4.types
+package connect4.views
+package connect4.views.console
+package connect4.views.graphics
+
+connect4 ..> connect4.controllers.core
+connect4 ..> connect4.views
+connect4.launchers.standalone ..> connect4
+connect4.launchers.distributed.client ..> connect4
+connect4.launchers.standalone ..> connect4.launchers.factories
+connect4.launchers.distributed.client ..> connect4.launchers.factories
+connect4.launchers.factories ..> connect4.controllers.implementation
+connect4.launchers.factories ..> connect4.controllers.proxies
+connect4.controllers.implementation ..> connect4.controllers.core
+connect4.controllers.proxies ..> connect4.controllers.core
+
+connect4.launchers.standalone ..> connect4.views.console
+connect4.launchers.standalone ..> connect4.views.graphics
+connect4.launchers.distributed.client ..> connect4.views.console
+connect4.launchers.distributed.client ..> connect4.views.graphics
+
+connect4.launchers.factories ..> connect4.views.console
+connect4.launchers.factories ..> connect4.views.graphics
+
+connect4.views.console ..> connect4.views
+connect4.views.graphics ..> connect4.views
+
+connect4.views ..> connect4.controllers.core
+
+connect4.controllers.core ..> connect4.models
+connect4.controllers.core ..> connect4.types
+connect4.models ..> connect4.types
+
+connect4.controllers.proxies ..> utils.tcpip
+connect4.launchers.distributed.server ..> utils.tcpip
+connect4.models ..> utils.tcpip
+connect4.launchers.distributed.server ..> connect4.controllers.implementation
+
+@enduml

@@ -5,6 +5,8 @@
 interface Logic as "controllers\n.core\n.Logic" <<abstractProduct>> 
 class LogicImplementation as "controllers\n.implementation\n.LogicImplementation" <<concreteProduct>>
 Logic <|-- LogicImplementation
+class LogicProxy as "controllers\n.proxy\n.LogicProxy" <<concreteProduct>>
+Logic <|-- LogicProxy
 
 class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
 class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
@@ -42,7 +44,7 @@ package "launchers" {
                     {static}+main(String[])
                 }
                 
-                class LogicProxy <<concreteProduct>>
+               
             }
             package server {
                 class Connect4Server
@@ -55,7 +57,7 @@ package "launchers" {
     launchers.Connect4 <|-- distributed.client.ConsoleConnect4
     launchers.Connect4 <|-- distributed.client.GraphicsConnect4
 
-    package launcherProviders {
+    package factories {
         
         interface LauncherProvider <<abstractFactory>> {
             + getController() : Controller
@@ -71,8 +73,6 @@ package "launchers" {
         LauncherProvider <|-- DistributedConsole
         LauncherProvider <|-- StandaloneGraphics
         LauncherProvider <|-- DistributedGraphics
-    
-         Logic <|-- LogicProxy
 
          View <|-- ConsoleView
          View <|-- GraphicsView
@@ -91,10 +91,10 @@ package "launchers" {
          
     }
     
-    standalone.ConsoleConnect4 *--> launcherProviders.LauncherProvider
-    standalone.GraphicsConnect4 *--> launcherProviders.LauncherProvider
-    distributed.client.ConsoleConnect4 *--> launcherProviders.LauncherProvider
-    distributed.client.GraphicsConnect4 *--> launcherProviders.LauncherProvider
+    standalone.ConsoleConnect4 *--> factories.LauncherProvider
+    standalone.GraphicsConnect4 *--> factories.LauncherProvider
+    distributed.client.ConsoleConnect4 *--> factories.LauncherProvider
+    distributed.client.GraphicsConnect4 *--> factories.LauncherProvider
     
 }
 
