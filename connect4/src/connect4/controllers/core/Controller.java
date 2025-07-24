@@ -1,4 +1,4 @@
-package connect4.controllers;
+package connect4.controllers.core;
 
 import connect4.models.Session;
 import connect4.types.Color;
@@ -8,7 +8,7 @@ public abstract class Controller {
 
     protected Session session;
 
-    Controller(Session session) {
+    public Controller(Session session) {
         this.session = session;
     }
 

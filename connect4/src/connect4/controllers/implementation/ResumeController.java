@@ -1,8 +1,10 @@
-package connect4.controllers;
+package connect4.controllers.implementation;
 
+import connect4.controllers.core.AcceptorController;
+import connect4.controllers.core.ControllerVisitor;
 import connect4.models.Session;
 
-public class ResumeController extends Controller implements AcceptorController {
+public class ResumeController extends connect4.controllers.core.ResumeController implements AcceptorController {
 
     public ResumeController(Session session) {
         super(session);

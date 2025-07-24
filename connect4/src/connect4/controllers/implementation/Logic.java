@@ -1,20 +1,13 @@
-package connect4.controllers;
+package connect4.controllers.implementation;
 
-import java.util.EnumMap;
-import java.util.Map;
-
+import connect4.controllers.core.AcceptorController;
 import connect4.models.Session;
 import connect4.types.StateValue;
 
-public class Logic {
-
-    private Session session;
-    private Map<StateValue, AcceptorController> controllers;
+public class Logic extends connect4.controllers.core.Logic {
 
     public Logic() {
         this.session = new Session();
-
-        this.controllers = new EnumMap<>(StateValue.class);
         this.controllers.put(StateValue.INITIAL, new StartController(session));
         this.controllers.put(StateValue.IN_GAME, new PlayController(session));
         this.controllers.put(StateValue.RESUME, new ResumeController(session));

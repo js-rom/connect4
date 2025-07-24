@@ -1,9 +1,11 @@
-package connect4.controllers;
+package connect4.controllers.implementation;
 
+import connect4.controllers.core.AcceptorController;
+import connect4.controllers.core.ControllerVisitor;
 import connect4.models.Session;
 import connect4.types.PlayerType;
 
-public class StartController extends Controller implements AcceptorController {
+public class StartController extends connect4.controllers.core.StartController implements AcceptorController {
 
     public StartController(Session session) {
         super(session);
