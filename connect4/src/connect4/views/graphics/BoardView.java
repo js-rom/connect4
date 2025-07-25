@@ -4,7 +4,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import java.awt.GridLayout;
-import connect4.controllers.PlayController;
+
+import connect4.controllers.implementation.PlayController;
 import connect4.types.Color;
 import utils.models.Coordinate;
 

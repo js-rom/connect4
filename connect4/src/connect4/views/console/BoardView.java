@@ -1,8 +1,8 @@
 package connect4.views.console;
 
+import connect4.controllers.core.PlayController;
 import utils.models.Coordinate;
 import utils.views.Console;
-import connect4.controllers.PlayController;
 
 public class BoardView {
 

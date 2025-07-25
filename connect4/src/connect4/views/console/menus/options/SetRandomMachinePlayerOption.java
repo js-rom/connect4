@@ -1,6 +1,6 @@
 package connect4.views.console.menus.options;
 
-import connect4.controllers.StartController;
+import connect4.controllers.core.StartController;
 
 public class SetRandomMachinePlayerOption extends TurnOption {
     public SetRandomMachinePlayerOption(StartController startController) {

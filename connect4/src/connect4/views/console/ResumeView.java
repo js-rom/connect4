@@ -1,6 +1,6 @@
 package connect4.views.console;
 
-import connect4.controllers.ResumeController;
+import connect4.controllers.core.ResumeController;
 import utils.views.YesNoDialog;
 
 public class ResumeView {

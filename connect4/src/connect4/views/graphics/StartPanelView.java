@@ -1,6 +1,6 @@
 package connect4.views.graphics;
 
-import connect4.controllers.StartController;
+import connect4.controllers.implementation.StartController;
 import connect4.types.PlayerType;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

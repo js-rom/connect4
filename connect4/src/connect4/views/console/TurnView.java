@@ -1,7 +1,7 @@
 package connect4.views.console;
 
-import connect4.controllers.PlayController;
-import connect4.controllers.StartController;
+import connect4.controllers.core.PlayController;
+import connect4.controllers.core.StartController;
 import connect4.views.console.menus.TurnMenu;
 import utils.views.Console;
 

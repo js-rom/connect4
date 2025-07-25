@@ -1,6 +1,6 @@
 package connect4.views.console.menus.options;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.core.PlayController;
 
 public class RedoOption extends PlayOption {
 

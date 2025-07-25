@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.implementation.PlayController;
 import connect4.types.Color;
 import connect4.views.graphics.commands.RedoCommand;
 import connect4.views.graphics.commands.UndoCommand;

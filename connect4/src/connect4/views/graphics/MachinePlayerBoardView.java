@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.implementation.PlayController;
 import utils.models.Coordinate;
 
 public class MachinePlayerBoardView extends BoardView {

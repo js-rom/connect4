@@ -3,7 +3,7 @@ package connect4.views.graphics;
 import java.util.EnumMap;
 import java.util.Map;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.implementation.PlayController;
 import connect4.types.PlayerType;
 
 public class BoardViewPrototypeRegistry {

@@ -17,6 +17,8 @@ public abstract class StartController extends Controller implements AcceptorCont
 
     public abstract boolean isReset();
 
+    public abstract void addPlayer(PlayerType playerType);
+
     public abstract PlayerType getMinMaxMachinePlayerType();
 
     public abstract PlayerType getRandomMachinePlayerType();

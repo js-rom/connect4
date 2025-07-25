@@ -3,7 +3,7 @@ package connect4.views.graphics;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import connect4.controllers.ResumeController;
+import connect4.controllers.implementation.ResumeController;
 
 public class MainFrame extends JFrame {
 

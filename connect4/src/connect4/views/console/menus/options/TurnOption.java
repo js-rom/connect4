@@ -1,6 +1,6 @@
 package connect4.views.console.menus.options;
 
-import connect4.controllers.StartController;
+import connect4.controllers.core.StartController;
 import utils.models.menu.Option;
 
 public abstract class TurnOption extends Option {

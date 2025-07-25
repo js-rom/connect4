@@ -1,6 +1,6 @@
 package connect4;
 
-import connect4.controllers.Logic;
+import connect4.controllers.implementation.Logic;
 import connect4.views.View;
 
 public abstract class Connect4 {

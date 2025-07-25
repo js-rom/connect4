@@ -1,6 +1,6 @@
 package connect4.views.console.menus;
 
-import connect4.controllers.StartController;
+import connect4.controllers.core.StartController;
 import connect4.views.console.menus.options.SetMinMaxMachinePlayerOption;
 import connect4.views.console.menus.options.SetRandomMachinePlayerOption;
 import connect4.views.console.menus.options.SetUserPlayerOption;

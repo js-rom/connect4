@@ -2,7 +2,7 @@ package connect4.views.console.menus;
 
 import java.util.List;
 
-import connect4.controllers.PlayController;
+import connect4.controllers.core.PlayController;
 import connect4.views.console.menus.options.ActionOption;
 import connect4.views.console.menus.options.PlayOption;
 import connect4.views.console.menus.options.RedoOption;
