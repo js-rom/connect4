@@ -1,29 +1,17 @@
 package connect4;
 
-import connect4.controllers.implementation.Logic;
-import connect4.views.View;
+import connect4.launchers.factories.LauncherProvider;
 
 public abstract class Connect4 {
 
-    private View view;
-    protected Logic logic;
+    protected LauncherProvider launcherProvider;
 
     protected Connect4() {
-
-        this.logic = new Logic();
-        this.view = this.createView();
-
+        this.launcherProvider = this.createLauncherProvider();
     }
 
-    protected abstract View createView();
+    protected abstract LauncherProvider createLauncherProvider();
 
     protected abstract void playGames();
-
-    protected View getView() {
-
-        assert (this.view != null);
-        return this.view;
-
-    }
 
 }
