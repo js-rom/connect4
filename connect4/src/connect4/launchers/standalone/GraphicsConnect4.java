@@ -1,8 +1,10 @@
-package connect4;
+package connect4.launchers.standalone;
 
 import java.util.concurrent.CountDownLatch;
 
-import connect4.views.View;
+import connect4.Connect4;
+import connect4.launchers.factories.LauncherProvider;
+import connect4.launchers.factories.StandaloneGraphics;
 import connect4.views.graphics.GraphicsView;
 
 public class GraphicsConnect4 extends Connect4 {
@@ -10,25 +12,25 @@ public class GraphicsConnect4 extends Connect4 {
     private CountDownLatch latch;
 
     protected void playGames() {
-        GraphicsView graphicsView = (GraphicsView) this.getView();
+        GraphicsView graphicsView = (GraphicsView) launcherProvider.getView();
         do {
             this.latch = new CountDownLatch(1);
             graphicsView.setLatch(latch);
-            if (logic.getController() != null) {
-                logic.getController().accept((GraphicsView) this.getView());
+            if (launcherProvider.getController() != null) {
+                launcherProvider.getController().accept(graphicsView);
             }
             try {
                 latch.await();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } while (logic.getController() != null);
+        } while (launcherProvider.getController() != null);
         System.exit(0);
     }
 
     @Override
-    protected View createView() {
-        return new GraphicsView();
+    protected LauncherProvider createLauncherProvider() {
+        return this.launcherProvider = new StandaloneGraphics();
     }
 
     public static void main(String[] args) throws Exception {
