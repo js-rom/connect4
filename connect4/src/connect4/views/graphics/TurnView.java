@@ -7,11 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import connect4.controllers.implementation.PlayController;
+import connect4.controllers.core.PlayController;
 import connect4.types.Color;
 import connect4.views.graphics.commands.RedoCommand;
 import connect4.views.graphics.commands.UndoCommand;
-import connect4.views.graphics.commands.UndoMachinePlayerCommand;
 
 public class TurnView extends PanelView {
 
@@ -47,9 +46,9 @@ public class TurnView extends PanelView {
         undo.setEnabled(playController.undoable());
         JButton redo = new JButton("Redo Last Move");
         redo.addActionListener(e -> {
-           this.redoCommand.execute();
+            this.redoCommand.execute();
         });
-         redo.setEnabled(playController.redoable());
+        redo.setEnabled(playController.redoable());
         this.add(undo);
         this.add(redo);
 

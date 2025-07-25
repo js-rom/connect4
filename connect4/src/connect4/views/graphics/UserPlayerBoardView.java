@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 
-import connect4.controllers.implementation.PlayController;
+import connect4.controllers.core.PlayController;
 import utils.models.Coordinate;
 
 public class UserPlayerBoardView extends BoardView implements ActionListener {

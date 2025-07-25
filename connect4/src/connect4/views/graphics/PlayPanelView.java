@@ -3,7 +3,7 @@ package connect4.views.graphics;
 import java.awt.BorderLayout;
 import java.util.concurrent.CountDownLatch;
 
-import connect4.controllers.implementation.PlayController;
+import connect4.controllers.core.PlayController;
 import connect4.views.graphics.commands.NextTurnCommand;
 import connect4.views.graphics.commands.RedoMachinePlayerCommand;
 import connect4.views.graphics.commands.RedoUserPlayerCommand;

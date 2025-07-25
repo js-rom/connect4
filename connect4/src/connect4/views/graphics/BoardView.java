@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import java.awt.GridLayout;
 
-import connect4.controllers.implementation.PlayController;
+import connect4.controllers.core.PlayController;
 import connect4.types.Color;
 import utils.models.Coordinate;
 
