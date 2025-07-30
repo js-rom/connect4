@@ -43,4 +43,6 @@ public abstract class PlayController extends Controller implements AcceptorContr
         controllerVisitor.visit(this);
     }
 
+     public abstract boolean isComplete(int column);
+
 }

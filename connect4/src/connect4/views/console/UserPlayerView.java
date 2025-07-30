@@ -2,23 +2,12 @@ package connect4.views.console;
 
 import utils.models.Coordinate;
 import utils.views.Console;
-import connect4.models.Player;
-import connect4.models.UserPlayer;
+import connect4.controllers.core.PlayController;
 
 public class UserPlayerView extends PlayerView {
 
-    private UserPlayer player;
-
-    public UserPlayerView() {
-    }
-
-    public UserPlayerView(UserPlayer player) {
-        this.player = player;
-    }
-
-    
-    public void setPlayer(Player player) {
-        this.player = (UserPlayer) player;
+    public UserPlayerView(PlayController playController) {
+        super(playController);
     }
 
     public int getColumn() {
@@ -32,7 +21,7 @@ public class UserPlayerView extends PlayerView {
                 message = message.replace("#maxColumns", String.valueOf(Coordinate.NUMBER_COLUMNS));
                 Console.getInstance().writeln(message);
             } else {
-                valid = !this.player.isComplete(column);
+                valid = !this.playController.isComplete(column);
                 if (!valid) {
                     Message.COMPLETED_COLUMN.writeln();
                 }
@@ -42,10 +31,10 @@ public class UserPlayerView extends PlayerView {
     }
 
     public void dropToken() {
-        this.player.dropToken(this.getColumn());
+        this.playController.dropToken(this.getColumn());
     }
 
     public PlayerView copy() {
-        return new UserPlayerView(this.player);
+        return new UserPlayerView(this.playController);
     }
 }

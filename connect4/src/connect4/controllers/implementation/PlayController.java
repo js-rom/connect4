@@ -78,4 +78,8 @@ public class PlayController extends connect4.controllers.core.PlayController imp
         controllerVisitor.visit(this);
     }
 
+    public boolean isComplete(int column) {
+        return this.actionController.isComplete(column);
+    }
+
 }

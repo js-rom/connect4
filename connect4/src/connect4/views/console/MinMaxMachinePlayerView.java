@@ -1,19 +1,14 @@
 package connect4.views.console;
 
-import connect4.models.MachinePlayer;
+import connect4.controllers.core.PlayController;
 
 public class MinMaxMachinePlayerView extends MachinePlayerView {
 
-    public MinMaxMachinePlayerView() {
-        super("IA");
-    }
-
-    public MinMaxMachinePlayerView(MachinePlayer player) {
-        this();
-        this.setPlayer(player);
+    public MinMaxMachinePlayerView(PlayController playController) {
+        super(playController, "IA");
     }
 
     public PlayerView copy() {
-        return new MinMaxMachinePlayerView(this.getPlayer());
+        return new MinMaxMachinePlayerView(this.playController);
     }
 }

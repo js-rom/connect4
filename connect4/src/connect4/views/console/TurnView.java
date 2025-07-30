@@ -13,9 +13,8 @@ public class TurnView {
 
     public void dropToken(PlayController playController) {
         assert !playController.isFinished();
-        PlayerView playerView = new PlayerViewPrototypeDirector().get(new PlayerViewPrototypeRegistry(),
+        PlayerView playerView = new PlayerViewPrototypeDirector().get(new PlayerViewPrototypeRegistry(playController),
                 playController.getActivePlayerType());
-        playerView.setPlayer(playController.getActivePlayer());
         Message.TURN.write();
         Console.getInstance().writeln(playController.getActiveColor().toString());
         playerView.dropToken();

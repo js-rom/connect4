@@ -1,23 +1,18 @@
 package connect4.views.console;
 
-import connect4.models.MachinePlayer;
-import connect4.models.Player;
+import connect4.controllers.core.PlayController;
 import utils.views.Console;
 
 public abstract class MachinePlayerView extends PlayerView {
     private String title;
-    private MachinePlayer player;
 
-    public MachinePlayerView(String title) {
+    public MachinePlayerView(PlayController playController ,String title) {
+        super(playController);
         this.title = title;
     }
 
-    public void setPlayer(Player player) {
-        this.player = (MachinePlayer) player;
-    }
-
     public int getColumn() {
-        int column = this.player.getColumn();
+        int column = this.playController.getColumn();
         this.writeChoosenColumn(column);
         return column;
     }
@@ -30,14 +25,7 @@ public abstract class MachinePlayerView extends PlayerView {
     };
 
     public void dropToken() {
-        this.player.dropToken(this.getColumn());
+        this.playController.dropToken(this.getColumn());
     }
 
- /*    protected String getTitle() {
-        return title;
-    } */
-
-    protected MachinePlayer getPlayer() {
-        return player;
-    }
 }

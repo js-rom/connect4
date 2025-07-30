@@ -49,4 +49,8 @@ public class ActionContoller extends Controller {
         return this.session.isWinner();
     }
 
+    public boolean isComplete(int column) {
+        return this.session.isComplete(column);
+    }
+
 }

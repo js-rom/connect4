@@ -72,4 +72,8 @@ public class Game {
         this.turn.addPlayer(playerType);
     }
 
+    public boolean isComplete(int column) {
+        return this.board.isComplete(column);
+    }
+
 }

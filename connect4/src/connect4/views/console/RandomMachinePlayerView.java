@@ -1,19 +1,14 @@
 package connect4.views.console;
 
-import connect4.models.MachinePlayer;
+import connect4.controllers.core.PlayController;
 
 public class RandomMachinePlayerView extends MachinePlayerView {
 
-    public RandomMachinePlayerView() {
-        super("Randomly");
-    }
-
-    public RandomMachinePlayerView(MachinePlayer player) {
-        this();
-        this.setPlayer(player);
+    public RandomMachinePlayerView(PlayController playController) {
+        super(playController, "Randomly");
     }
 
     public PlayerView copy() {
-        return new RandomMachinePlayerView(this.getPlayer());
+        return new RandomMachinePlayerView(this.playController);
     }
 }
