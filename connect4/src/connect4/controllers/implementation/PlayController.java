@@ -1,6 +1,5 @@
 package connect4.controllers.implementation;
 
-import connect4.controllers.core.AcceptorController;
 import connect4.controllers.core.ControllerVisitor;
 import connect4.models.Player;
 import connect4.models.Session;
@@ -8,7 +7,7 @@ import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 
-public class PlayController extends connect4.controllers.core.PlayController implements AcceptorController {
+public class PlayController extends connect4.controllers.core.PlayController {
 
     private ActionContoller actionController;
     private UndoController undoController;
