@@ -2,6 +2,7 @@ package connect4.controllers.core;
 
 import connect4.models.Session;
 import connect4.types.Color;
+import connect4.types.StateValue;
 import utils.models.Coordinate;
 
 public abstract class Controller {
@@ -16,6 +17,10 @@ public abstract class Controller {
         this.session.nextState();
     }
 
+    public StateValue getValueState() {
+        return this.session.getValueState();
+    }
+
     public Color getActiveColor() {
         return this.session.getActiveColor();
     }
@@ -25,5 +30,5 @@ public abstract class Controller {
         return this.session.getColor(coordinate);
 
     }
-    
+
 }
