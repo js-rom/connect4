@@ -1,7 +1,8 @@
 package connect4.launchers.distributed.dispatchers;
 
 public enum FrameType {
-    START,
+    PLAYER_TYPES,
+    STATE,
     CLOSE;
 
     public static FrameType parser(String string) {
