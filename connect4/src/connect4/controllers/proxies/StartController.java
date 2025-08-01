@@ -42,14 +42,19 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public void reset() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'reset'");
+        this.client.send(FrameType.RESET.name());
     }
 
     @Override
     public boolean isReset() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isReset'");
+        this.client.send(FrameType.IS_RESET.name());
+        boolean isReset = false;
+        try {
+            isReset = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isReset;
     }
 
     @Override
