@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Server",
+            "request": "launch",
+            "mainClass": "connect4.launchers.distributed.Server",
+            "projectName": "connect4_baca4c33"
+        },
+        {
+            "type": "java",
             "name": "ConsoleConnect4",
             "request": "launch",
             "mainClass": "connect4.launchers.standalone.ConsoleConnect4",

@@ -2,6 +2,7 @@ package connect4.launchers.distributed.dispatchers;
 
 public enum FrameType {
     PLAYER_TYPES,
+    NUMBRE_PPLAYERS,
     STATE,
     CLOSE;
 

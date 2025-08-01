@@ -1,6 +1,7 @@
 package connect4.launchers.distributed.dispatchers;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import utils.tcpip.Server;
@@ -12,6 +13,7 @@ public class DispatcherPrototype {
 
     public DispatcherPrototype() throws IOException {
         this.server = new Server("2020");
+        this.dispatcherMap = new HashMap<FrameType, Dispatcher>();
     }
 
     public void add(FrameType frameType, Dispatcher dispatcher) {
