@@ -1,11 +1,11 @@
-package connect4.launchers.distributed;
+package connect4.launchers.distributed.server;
 
 import connect4.controllers.implementation.Logic;
-import connect4.launchers.distributed.dispatchers.DispatcherPrototype;
-import connect4.launchers.distributed.dispatchers.FrameType;
-import connect4.launchers.distributed.dispatchers.NumberPlayersDispatcher;
-import connect4.launchers.distributed.dispatchers.PlayerTypesDispatcher;
-import connect4.launchers.distributed.dispatchers.StateDispatcher;
+import connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
+import connect4.launchers.distributed.server.dispatchers.FrameType;
+import connect4.launchers.distributed.server.dispatchers.NumberPlayersDispatcher;
+import connect4.launchers.distributed.server.dispatchers.PlayerTypesDispatcher;
+import connect4.launchers.distributed.server.dispatchers.StateDispatcher;
 
 public class LogicImplementationServer extends Logic {
 

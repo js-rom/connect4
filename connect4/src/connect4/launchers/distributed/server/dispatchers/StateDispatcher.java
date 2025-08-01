@@ -1,4 +1,4 @@
-package connect4.launchers.distributed.dispatchers;
+package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 

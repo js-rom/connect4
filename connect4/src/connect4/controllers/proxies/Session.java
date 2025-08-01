@@ -2,7 +2,7 @@ package connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import connect4.launchers.distributed.dispatchers.FrameType;
+import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.types.StateValue;
 import utils.tcpip.Client;
 

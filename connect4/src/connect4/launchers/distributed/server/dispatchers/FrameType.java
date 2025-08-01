@@ -1,4 +1,4 @@
-package connect4.launchers.distributed.dispatchers;
+package connect4.launchers.distributed.server.dispatchers;
 
 public enum FrameType {
     PLAYER_TYPES,

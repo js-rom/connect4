@@ -1,4 +1,4 @@
-package connect4.launchers.distributed.dispatchers;
+package connect4.launchers.distributed.server.dispatchers;
 
 import java.io.IOException;
 import java.util.HashMap;

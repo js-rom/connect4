@@ -1,8 +1,8 @@
-package connect4.launchers.distributed;
+package connect4.launchers.distributed.server;
 
 import java.io.IOException;
 
-import connect4.launchers.distributed.dispatchers.DispatcherPrototype;
+import connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
 
 public class Server {
 
