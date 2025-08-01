@@ -5,7 +5,14 @@
             "type": "java",
             "name": "Server",
             "request": "launch",
-            "mainClass": "connect4.launchers.distributed.Server",
+            "mainClass": "connect4.launchers.distributed.server.Server",
+            "projectName": "connect4_baca4c33"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsConnect4",
+            "request": "launch",
+            "mainClass": "connect4.launchers.distributed.client.GraphicsConnect4",
             "projectName": "connect4_baca4c33"
         },
         {

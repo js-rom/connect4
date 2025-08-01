@@ -8,7 +8,6 @@ import utils.tcpip.Client;
 public class Logic extends connect4.controllers.core.Logic {
 
     private Client client;
-    private Session session;
 
     public Logic() {
         try {

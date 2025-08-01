@@ -2,6 +2,7 @@ package connect4.controllers.proxies;
 
 import java.io.IOException;
 
+import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.models.Session;
 import connect4.types.PlayerType;
 import utils.tcpip.Client;
@@ -17,6 +18,7 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public PlayerType[] getPlayerTypes() {
+        this.client.send(FrameType.PLAYER_TYPES.name());
         PlayerType[] playerTypes = null;
         try {
             playerTypes = this.client.receivePlayerTypes();
@@ -28,6 +30,7 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public int getNumberPlayers() {
+        this.client.send(FrameType.NUMBRE_PPLAYERS.name());
         int numberPlayers = 0;
         try {
             numberPlayers = this.client.receiveInt();
