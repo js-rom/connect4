@@ -28,8 +28,13 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public int getNumberPlayers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNumberPlayers'");
+        int numberPlayers = 0;
+        try {
+            numberPlayers = this.client.receiveInt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return numberPlayers;
     }
 
     @Override
