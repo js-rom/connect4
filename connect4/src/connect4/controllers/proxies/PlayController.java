@@ -79,8 +79,14 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public boolean isFinished() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isFinished'");
+        this.client.send(FrameType.IS_FINISHED.name());
+        boolean finished = false;
+        try {
+            finished = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return finished;
     }
 
     @Override
