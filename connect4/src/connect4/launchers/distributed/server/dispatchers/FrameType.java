@@ -15,6 +15,7 @@ public enum FrameType {
     IS_FINISHED,
     NEXT,
     REGISTER_MEMENTO,
+    DROP_TOKEN,
     STATE,
     CLOSE;
 

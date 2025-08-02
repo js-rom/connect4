@@ -55,8 +55,8 @@ public class PlayController extends connect4.controllers.core.PlayController {
         this.actionController.registerMemento();
     }
 
-    public void dropToken(int Column) {
-        this.actionController.dropToken(Column);
+    public void dropToken(int column) {
+        this.actionController.dropToken(column);
     }
 
     public int getColumn() {

@@ -29,7 +29,7 @@ public abstract class PlayController extends Controller implements AcceptorContr
 
     public abstract void registerMemento();
 
-    public abstract void dropToken(int Column);
+    public abstract void dropToken(int column);
 
     public abstract int getColumn();
 

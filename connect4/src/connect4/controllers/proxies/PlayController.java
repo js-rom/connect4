@@ -100,9 +100,9 @@ public class PlayController extends connect4.controllers.core.PlayController {
     }
 
     @Override
-    public void dropToken(int Column) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dropToken'");
+    public void dropToken(int column) {
+        this.client.send(FrameType.DROP_TOKEN.name());
+        this.client.send(column);
     }
 
     @Override
