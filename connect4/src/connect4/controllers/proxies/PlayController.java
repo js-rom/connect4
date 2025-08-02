@@ -1,5 +1,6 @@
 package connect4.controllers.proxies;
 
+import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.models.Player;
 import connect4.types.Color;
 import connect4.types.PlayerType;
@@ -17,8 +18,7 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public void undo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'undo'");
+        this.client.send(FrameType.UNDO.name());
     }
 
     @Override
