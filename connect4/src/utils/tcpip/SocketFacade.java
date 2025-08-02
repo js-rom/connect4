@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import connect4.types.Color;
 import connect4.types.PlayerType;
 
 public abstract class SocketFacade {
@@ -60,6 +61,11 @@ public abstract class SocketFacade {
 		this.send(sb.toString());
 	}
 
+	public void send(Color color) {
+		assert color != null : "Cannot send null Color";
+		this.send(color.name());
+	}
+
 	public String receiveLine() throws IOException {
 		String result = null;
 		do {
@@ -96,6 +102,10 @@ public abstract class SocketFacade {
 			result[i] = PlayerType.valueOf(playerTypes[i]);
 		}
 		return result;
+	}
+
+	public Color receiveColor() throws IOException {
+		return Color.valueOf(this.receiveLine());
 	}
 
 	public void close() throws IOException {

@@ -65,8 +65,16 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public Color getColor(Coordinate coordinate) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getColor'");
+        this.client.send(FrameType.COLOR.name());
+        this.client.send(coordinate.getRow());
+        this.client.send(coordinate.getColumn());
+        Color color = null;
+        try {
+            color = this.client.receiveColor();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return color;
     }
 
     @Override

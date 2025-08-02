@@ -11,6 +11,7 @@ public enum FrameType {
     REDO,
     REDOABLE,
     ACTIVE_PLAYER_TYPE,
+    COLOR,
     STATE,
     CLOSE;
 
