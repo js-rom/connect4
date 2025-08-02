@@ -1,5 +1,7 @@
 package connect4.controllers.proxies;
 
+import java.io.IOException;
+
 import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.models.Player;
 import connect4.types.Color;
@@ -23,8 +25,14 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public boolean undoable() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'undoable'");
+        this.client.send(FrameType.UNDOABLE.name());
+        boolean undoable = false;
+        try {
+            undoable = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return undoable;
     }
 
     @Override
