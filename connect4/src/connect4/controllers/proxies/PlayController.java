@@ -91,8 +91,7 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public void next() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
+        this.client.send(FrameType.NEXT.name());
     }
 
     @Override

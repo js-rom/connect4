@@ -13,6 +13,7 @@ public enum FrameType {
     ACTIVE_PLAYER_TYPE,
     COLOR,
     IS_FINISHED,
+    NEXT,
     STATE,
     CLOSE;
 
