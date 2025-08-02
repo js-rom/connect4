@@ -53,8 +53,14 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public PlayerType getActivePlayerType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getActivePlayerType'");
+        this.client.send(FrameType.ACTIVE_PLAYER_TYPE.name());
+        PlayerType playerType = null;
+        try {
+            playerType = this.client.receivePlayerType();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return playerType;
     }
 
     @Override

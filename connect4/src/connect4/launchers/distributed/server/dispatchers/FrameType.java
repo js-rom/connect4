@@ -10,6 +10,7 @@ public enum FrameType {
     UNDOABLE,
     REDO,
     REDOABLE,
+    ACTIVE_PLAYER_TYPE,
     STATE,
     CLOSE;
 
