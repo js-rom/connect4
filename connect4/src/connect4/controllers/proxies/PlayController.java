@@ -107,8 +107,14 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public int getColumn() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getColumn'");
+        this.client.send(FrameType.COLUMN.name());
+        int column = 0;
+        try {
+            column = this.client.receiveInt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return column;
     }
 
     @Override

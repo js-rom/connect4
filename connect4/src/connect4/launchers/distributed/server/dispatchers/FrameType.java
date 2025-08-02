@@ -16,6 +16,7 @@ public enum FrameType {
     NEXT,
     REGISTER_MEMENTO,
     DROP_TOKEN,
+    COLUMN,
     STATE,
     CLOSE;
 
