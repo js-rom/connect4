@@ -5,6 +5,7 @@ public enum FrameType {
     NUMBRE_PPLAYERS,
     RESET,
     IS_RESET,
+    ADD_PLAYER,
     STATE,
     CLOSE;
 

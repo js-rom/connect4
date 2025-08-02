@@ -59,8 +59,8 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public void addPlayer(PlayerType playerType) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addPlayer'");
+        this.client.send(FrameType.ADD_PLAYER.name());
+        this.client.send(playerType);
     }
 
     @Override
