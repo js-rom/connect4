@@ -1,7 +1,6 @@
 package connect4.controllers.implementation;
 
 import connect4.controllers.core.ControllerVisitor;
-import connect4.models.Player;
 import connect4.models.Session;
 import connect4.types.Color;
 import connect4.types.PlayerType;
@@ -34,10 +33,6 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     public boolean redoable() {
         return this.redoController.redoable();
-    }
-
-    public Player getActivePlayer() {
-        return this.actionController.getActivePlayer();
     }
 
     public PlayerType getActivePlayerType() {

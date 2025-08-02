@@ -3,7 +3,6 @@ package connect4.controllers.proxies;
 import java.io.IOException;
 
 import connect4.launchers.distributed.server.dispatchers.FrameType;
-import connect4.models.Player;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
@@ -50,12 +49,6 @@ public class PlayController extends connect4.controllers.core.PlayController {
             e.printStackTrace();
         }
         return redoable;
-    }
-
-    @Override
-    public Player getActivePlayer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getActivePlayer'");
     }
 
     @Override

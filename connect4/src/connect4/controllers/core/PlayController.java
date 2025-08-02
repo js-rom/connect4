@@ -1,6 +1,5 @@
 package connect4.controllers.core;
 
-import connect4.models.Player;
 import connect4.models.Session;
 import connect4.types.Color;
 import connect4.types.PlayerType;
@@ -19,8 +18,6 @@ public abstract class PlayController extends Controller implements AcceptorContr
     public abstract void redo();
 
     public abstract boolean redoable();
-
-    public abstract Player getActivePlayer();
 
     public abstract PlayerType getActivePlayerType();
 
