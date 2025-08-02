@@ -131,8 +131,15 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public boolean isComplete(int column) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isComplete'");
+        this.client.send(FrameType.IS_COMPLETE.name());
+        this.client.send(column);
+        boolean isComplete = false;
+        try {
+            isComplete = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isComplete;
     }
 
 }

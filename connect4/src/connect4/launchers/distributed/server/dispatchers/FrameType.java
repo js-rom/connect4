@@ -18,6 +18,7 @@ public enum FrameType {
     DROP_TOKEN,
     COLUMN,
     IS_WINNER,
+    IS_COMPLETE,
     STATE,
     CLOSE;
 
