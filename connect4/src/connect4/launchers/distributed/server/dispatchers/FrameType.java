@@ -17,6 +17,7 @@ public enum FrameType {
     REGISTER_MEMENTO,
     DROP_TOKEN,
     COLUMN,
+    IS_WINNER,
     STATE,
     CLOSE;
 

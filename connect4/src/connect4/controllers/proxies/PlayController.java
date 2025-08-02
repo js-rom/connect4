@@ -119,8 +119,14 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public boolean isWinner() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isWinner'");
+        this.client.send(FrameType.IS_WINNER.name());
+        boolean isWinner = false;
+        try {
+            isWinner = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isWinner;
     }
 
     @Override
