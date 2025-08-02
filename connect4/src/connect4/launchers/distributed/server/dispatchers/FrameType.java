@@ -14,6 +14,7 @@ public enum FrameType {
     COLOR,
     IS_FINISHED,
     NEXT,
+    REGISTER_MEMENTO,
     STATE,
     CLOSE;
 

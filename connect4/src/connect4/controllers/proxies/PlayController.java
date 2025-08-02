@@ -96,8 +96,7 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public void registerMemento() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerMemento'");
+        this.client.send(FrameType.REGISTER_MEMENTO.name());
     }
 
     @Override
