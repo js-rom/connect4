@@ -19,12 +19,6 @@ public abstract class StartController extends Controller implements AcceptorCont
 
     public abstract void addPlayer(PlayerType playerType);
 
-    public abstract PlayerType getMinMaxMachinePlayerType();
-
-    public abstract PlayerType getRandomMachinePlayerType();
-
-    public abstract PlayerType getUserPlayerPlayerType();
-
     @Override
     public void accept(ControllerVisitor controllerVisitor) {
         controllerVisitor.visit(this);

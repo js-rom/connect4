@@ -30,18 +30,6 @@ public class StartController extends connect4.controllers.core.StartController {
         this.session.addPlayer(playerType);
     }
 
-    public PlayerType getMinMaxMachinePlayerType() {
-        return PlayerType.MIN_MAX_MACHINE_PLAYER;
-    }
-
-    public PlayerType getRandomMachinePlayerType() {
-        return PlayerType.RANDOM_MACHINE_PLAYER;
-    }
-
-    public PlayerType getUserPlayerPlayerType() {
-        return PlayerType.USER_PLAYER;
-    }
-
     @Override
     public void accept(ControllerVisitor controllerVisitor) {
         controllerVisitor.visit(this);

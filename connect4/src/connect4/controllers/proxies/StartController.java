@@ -63,22 +63,4 @@ public class StartController extends connect4.controllers.core.StartController {
         this.client.send(playerType);
     }
 
-    @Override
-    public PlayerType getMinMaxMachinePlayerType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMinMaxMachinePlayerType'");
-    }
-
-    @Override
-    public PlayerType getRandomMachinePlayerType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRandomMachinePlayerType'");
-    }
-
-    @Override
-    public PlayerType getUserPlayerPlayerType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUserPlayerPlayerType'");
-    }
-
 }

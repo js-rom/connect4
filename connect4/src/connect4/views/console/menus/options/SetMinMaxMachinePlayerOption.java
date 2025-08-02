@@ -1,6 +1,7 @@
 package connect4.views.console.menus.options;
 
 import connect4.controllers.core.StartController;
+import connect4.types.PlayerType;
 
 public class SetMinMaxMachinePlayerOption extends TurnOption {
 
@@ -9,6 +10,6 @@ public class SetMinMaxMachinePlayerOption extends TurnOption {
     }
 
     public void interact() {
-        this.startController.addPlayer(startController.getMinMaxMachinePlayerType());
+        this.startController.addPlayer(PlayerType.MIN_MAX_MACHINE_PLAYER);
     }
 }
