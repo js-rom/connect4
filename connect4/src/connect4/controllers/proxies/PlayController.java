@@ -37,8 +37,7 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public void redo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redo'");
+        this.client.send(FrameType.REDO.name());
     }
 
     @Override

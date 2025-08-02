@@ -8,6 +8,7 @@ public enum FrameType {
     ADD_PLAYER,
     UNDO,
     UNDOABLE,
+    REDO,
     STATE,
     CLOSE;
 
