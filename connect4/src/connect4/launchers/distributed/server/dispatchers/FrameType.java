@@ -9,6 +9,7 @@ public enum FrameType {
     UNDO,
     UNDOABLE,
     REDO,
+    REDOABLE,
     STATE,
     CLOSE;
 

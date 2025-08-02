@@ -42,8 +42,14 @@ public class PlayController extends connect4.controllers.core.PlayController {
 
     @Override
     public boolean redoable() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'redoable'");
+        this.client.send(FrameType.REDOABLE.name());
+        boolean redoable = false;
+        try {
+            redoable = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return redoable;
     }
 
     @Override
