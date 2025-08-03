@@ -3,11 +3,11 @@ package connect4.controllers.proxies;
 import java.io.IOException;
 
 import connect4.launchers.distributed.server.dispatchers.FrameType;
-import connect4.models.Session;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 import utils.tcpip.Client;
+import connect4.models.Session;
 
 public class PlayController extends connect4.controllers.core.PlayController {
 
@@ -153,6 +153,10 @@ public class PlayController extends connect4.controllers.core.PlayController {
             e.printStackTrace();
         }
         return activeColor;
+    }
+
+        public void nextState() {
+        this.client.send(FrameType.PLAY_NEXT_STATE.name());
     }
 
 }

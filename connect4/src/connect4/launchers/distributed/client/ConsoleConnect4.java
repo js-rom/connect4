@@ -2,7 +2,7 @@ package connect4.launchers.distributed.client;
 
 import connect4.controllers.proxies.Logic;
 
-public class ConsoleConnect4 extends connect4.launchers.GraphicsConnect4 {
+public class ConsoleConnect4 extends connect4.launchers.ConsoleConnect4 {
 
     @Override
     protected void createLogic() {

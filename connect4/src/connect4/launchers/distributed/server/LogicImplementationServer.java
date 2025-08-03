@@ -49,7 +49,7 @@ public class LogicImplementationServer extends Logic {
         dispatcherPrototype.add(FrameType.START_NEXT_STATE, new NextStateDispatcher(this.startController));
         dispatcherPrototype.add(FrameType.ACTIVE_COLOR, new ActiveColorDispatcher(this.playController));
         dispatcherPrototype.add(FrameType.NEXT, new NextDispatcher(this.playController));
-
-
+        dispatcherPrototype.add(FrameType.PLAY_NEXT_STATE, new NextStateDispatcher(this.playController));
+        dispatcherPrototype.add(FrameType.RESUME_NEXT_STATE, new NextStateDispatcher(this.resumeController));
     }
 }

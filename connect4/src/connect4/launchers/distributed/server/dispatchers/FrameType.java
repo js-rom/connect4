@@ -20,7 +20,9 @@ public enum FrameType {
     IS_WINNER,
     IS_COMPLETE,
     START_NEXT_STATE,
+    PLAY_NEXT_STATE,
     ACTIVE_COLOR,
+    RESUME_NEXT_STATE,
     STATE,
     CLOSE;
 
