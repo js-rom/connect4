@@ -63,4 +63,8 @@ public class StartController extends connect4.controllers.core.StartController {
         this.client.send(playerType);
     }
 
+    public void nextState() {
+        this.client.send(FrameType.START_NEXT_STATE.name());
+    }
+
 }

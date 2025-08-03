@@ -3,6 +3,7 @@ package connect4.controllers.proxies;
 import java.io.IOException;
 
 import connect4.launchers.distributed.server.dispatchers.FrameType;
+import connect4.models.Session;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
@@ -140,6 +141,18 @@ public class PlayController extends connect4.controllers.core.PlayController {
             e.printStackTrace();
         }
         return isComplete;
+    }
+
+    @Override
+    public Color getActiveColor() {
+        this.client.send(FrameType.ACTIVE_COLOR.name());
+        Color activeColor = null;
+        try {
+            activeColor = this.client.receiveColor();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return activeColor;
     }
 
 }

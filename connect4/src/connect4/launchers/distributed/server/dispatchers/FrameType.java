@@ -19,6 +19,8 @@ public enum FrameType {
     COLUMN,
     IS_WINNER,
     IS_COMPLETE,
+    START_NEXT_STATE,
+    ACTIVE_COLOR,
     STATE,
     CLOSE;
 
