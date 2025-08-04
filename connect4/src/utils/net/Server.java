@@ -3,7 +3,7 @@ package utils.net;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class Server extends SocketFacade {
+public class Server extends CharactersTcpipSocket {
 
     private ServerSocket serverSocket;
 

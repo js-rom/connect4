@@ -9,7 +9,7 @@ import java.net.Socket;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 
-public abstract class SocketFacade {
+public abstract class CharactersTcpipSocket {
 
 	protected Socket socket;
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 
-public class Client extends SocketFacade {
+public class Client extends CharactersTcpipSocket {
 
     public Client(String host, int port) throws IOException {
         this.associate(new Socket(host, port));
