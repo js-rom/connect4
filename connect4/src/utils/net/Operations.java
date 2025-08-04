@@ -33,4 +33,8 @@ public interface Operations {
     public char receiveChar() throws IOException;
 
     public void close() throws IOException;
+
+    public String getHostAddress();
+
+    public int getPort();
 }

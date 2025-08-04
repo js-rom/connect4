@@ -9,13 +9,13 @@ import java.net.Socket;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 
-public abstract class CharactersTcpipSocket implements Operations {
+public class CharactersTcpipSocket implements Operations {
 
-	protected Socket socket;
+	private Socket socket;
 
-	protected PrintWriter out;
+	private PrintWriter out;
 
-	protected BufferedReader in;
+	private BufferedReader in;
 
 	public void associate(Socket socket) throws IOException {
 		this.socket = socket;
@@ -112,8 +112,15 @@ public abstract class CharactersTcpipSocket implements Operations {
 		this.in.close();
 		this.out.close();
 		this.socket.close();
-		this._close();
 	}
 
-	protected abstract void _close() throws IOException;
+	public String getHostAddress() {
+		return this.socket.getInetAddress().getHostAddress();
+	}
+
+	public int getPort() {
+		return this.socket.getPort();
+	}
+
+
 }

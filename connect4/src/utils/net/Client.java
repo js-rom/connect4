@@ -3,17 +3,19 @@ package utils.net;
 import java.io.IOException;
 import java.net.Socket;
 
+public class Client {
 
-public class Client extends CharactersTcpipSocket {
+    private Operations socket;
 
     public Client(String host, int port) throws IOException {
-        this.associate(new Socket(host, port));
-        		System.out.println("Cliente> Establecida conexion");
+        this.socket = new CharactersTcpipSocket();
+        socket.associate(new Socket(host, port));
+        System.out.println("Cliente> Establecida conexion");
     }
 
-    @Override
-    protected void _close() throws IOException {
-       System.out.println("Client> Connection closed");
+    public void close() throws IOException {
+        this.socket.close();
+        System.out.println("Client> Connection closed");
     }
 
 }
