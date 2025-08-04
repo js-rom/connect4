@@ -3,7 +3,10 @@ package utils.net;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client {
+import connect4.types.Color;
+import connect4.types.PlayerType;
+
+public class Client implements Operations {
 
     private Operations socket;
 
@@ -16,6 +19,76 @@ public class Client {
     public void close() throws IOException {
         this.socket.close();
         System.out.println("Client> Connection closed");
+    }
+
+    @Override
+    public void associate(Socket socket) throws IOException {
+        this.socket.associate(socket);
+    }
+
+    @Override
+    public void send(String value) {
+        this.socket.send(value);
+    }
+
+    @Override
+    public void send(Integer value) {
+        this.socket.send(value);
+    }
+
+    @Override
+    public void send(Boolean value) {
+        this.socket.send(value);
+    }
+
+    @Override
+    public void send(char value) {
+        this.socket.send(value);
+    }
+
+    @Override
+    public void send(PlayerType playerType) {
+        this.socket.send(playerType);
+    }
+
+    @Override
+    public void send(PlayerType[] playerTypes) {
+        this.socket.send(playerTypes);
+    }
+
+    @Override
+    public void send(Color color) {
+        this.socket.send(color);
+    }
+
+    @Override
+    public String receiveLine() throws IOException {
+        return this.socket.receiveLine();
+    }
+
+    @Override
+    public boolean receiveBoolean() throws IOException {
+        return this.socket.receiveBoolean();
+    }
+
+    @Override
+    public Integer receiveInt() throws IOException {
+        return this.socket.receiveInt();
+    }
+
+    @Override
+    public char receiveChar() throws IOException {
+        return this.socket.receiveChar();
+    }
+
+    @Override
+    public String getHostAddress() {
+        return this.socket.getHostAddress();
+    }
+
+    @Override
+    public int getPort() {
+        return this.socket.getPort();
     }
 
 }
