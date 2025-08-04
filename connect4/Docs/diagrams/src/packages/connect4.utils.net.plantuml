@@ -1,0 +1,37 @@
+@startuml utils.net
+
+package net as "connect4.utils.net" {
+    interface Operations {
+        + associate(Socket)
+        + send(String)
+        + send(Integer)
+        +send(Boolean)
+        +send(char)
+        + receiveLine() : String
+        + receiveInt() : Integer
+        + receiveBoolean() : Boolean
+        + receiveChar() : char
+        + close()
+    }
+    class Client {
+    }
+    class Server {
+        + listen()
+    }
+    class CharactersTcpiSocket {
+
+    }
+}
+
+class ServerSocket as "java.net.ServerSocket"
+class Socket as "java.net.Socket"
+
+Operations <|.. net.Client
+Operations <|.. net.Server
+Operations <|.. net.CharactersTcpiSocket
+net.Client *--> net.CharactersTcpiSocket
+net.Server *--> net.CharactersTcpiSocket
+net.Server *--> ServerSocket
+net.CharactersTcpiSocket *--> Socket
+
+@enduml
