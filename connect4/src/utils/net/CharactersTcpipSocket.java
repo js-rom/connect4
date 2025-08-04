@@ -122,5 +122,4 @@ public class CharactersTcpipSocket implements Operations {
 		return this.socket.getPort();
 	}
 
-
 }

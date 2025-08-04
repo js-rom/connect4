@@ -81,7 +81,7 @@ public class Client implements Operations {
         return this.socket.receiveChar();
     }
 
-        @Override
+    @Override
     public PlayerType receivePlayerType() throws IOException {
         return this.socket.receivePlayerType();
     }

@@ -34,9 +34,9 @@ public interface Operations {
 
     public PlayerType receivePlayerType() throws IOException;
 
-	public PlayerType[] receivePlayerTypes() throws IOException;
+    public PlayerType[] receivePlayerTypes() throws IOException;
 
-	public Color receiveColor() throws IOException;
+    public Color receiveColor() throws IOException;
 
     public void close() throws IOException;
 
