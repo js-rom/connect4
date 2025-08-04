@@ -32,6 +32,12 @@ public interface Operations {
 
     public char receiveChar() throws IOException;
 
+    public PlayerType receivePlayerType() throws IOException;
+
+	public PlayerType[] receivePlayerTypes() throws IOException;
+
+	public Color receiveColor() throws IOException;
+
     public void close() throws IOException;
 
     public String getHostAddress();

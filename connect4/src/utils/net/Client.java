@@ -81,6 +81,21 @@ public class Client implements Operations {
         return this.socket.receiveChar();
     }
 
+        @Override
+    public PlayerType receivePlayerType() throws IOException {
+        return this.socket.receivePlayerType();
+    }
+
+    @Override
+    public PlayerType[] receivePlayerTypes() throws IOException {
+        return this.socket.receivePlayerTypes();
+    }
+
+    @Override
+    public Color receiveColor() throws IOException {
+        return this.socket.receiveColor();
+    }
+
     @Override
     public String getHostAddress() {
         return this.socket.getHostAddress();
