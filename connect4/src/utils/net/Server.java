@@ -1,4 +1,4 @@
-package utils.tcpip;
+package utils.net;
 
 import java.io.IOException;
 import java.net.ServerSocket;

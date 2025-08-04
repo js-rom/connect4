@@ -3,7 +3,7 @@ package connect4.controllers.proxies;
 import java.io.IOException;
 
 import connect4.types.StateValue;
-import utils.tcpip.Client;
+import utils.net.Client;
 
 public class Logic extends connect4.controllers.core.Logic {
 

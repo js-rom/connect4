@@ -3,9 +3,9 @@ package connect4.controllers.proxies;
 import java.io.IOException;
 
 import connect4.launchers.distributed.server.dispatchers.FrameType;
-import utils.tcpip.Client;
 import connect4.models.Session;
 import connect4.types.Color;
+import utils.net.Client;
 
 public class ResumeController extends connect4.controllers.core.ResumeController {
 
