@@ -9,7 +9,7 @@ import java.net.Socket;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 
-public abstract class CharactersTcpipSocket {
+public abstract class CharactersTcpipSocket implements Operations {
 
 	protected Socket socket;
 
@@ -17,7 +17,7 @@ public abstract class CharactersTcpipSocket {
 
 	protected BufferedReader in;
 
-	protected void associate(Socket socket) throws IOException {
+	public void associate(Socket socket) throws IOException {
 		this.socket = socket;
 		this.out = new PrintWriter(socket.getOutputStream());
 		this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
