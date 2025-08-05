@@ -3,17 +3,18 @@ package utils.net;
 import java.io.IOException;
 import java.net.Socket;
 
-import connect4.types.Color;
-import connect4.types.PlayerType;
-
 public class Client implements Operations {
 
-    private Operations socket;
+    protected Operations socket;
 
     public Client(String host, int port) throws IOException {
-        this.socket = new CharactersTcpipSocket();
+        this.createSocket();
         socket.associate(new Socket(host, port));
         System.out.println("Cliente> Establecida conexion");
+    }
+
+    public void createSocket() {
+        this.socket = new CharactersTcpipSocket();
     }
 
     public void close() throws IOException {
@@ -47,21 +48,6 @@ public class Client implements Operations {
     }
 
     @Override
-    public void send(PlayerType playerType) {
-        this.socket.send(playerType);
-    }
-
-    @Override
-    public void send(PlayerType[] playerTypes) {
-        this.socket.send(playerTypes);
-    }
-
-    @Override
-    public void send(Color color) {
-        this.socket.send(color);
-    }
-
-    @Override
     public String receiveLine() throws IOException {
         return this.socket.receiveLine();
     }
@@ -79,21 +65,6 @@ public class Client implements Operations {
     @Override
     public char receiveChar() throws IOException {
         return this.socket.receiveChar();
-    }
-
-    @Override
-    public PlayerType receivePlayerType() throws IOException {
-        return this.socket.receivePlayerType();
-    }
-
-    @Override
-    public PlayerType[] receivePlayerTypes() throws IOException {
-        return this.socket.receivePlayerTypes();
-    }
-
-    @Override
-    public Color receiveColor() throws IOException {
-        return this.socket.receiveColor();
     }
 
     @Override

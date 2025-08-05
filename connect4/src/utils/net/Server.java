@@ -4,17 +4,18 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import connect4.types.Color;
-import connect4.types.PlayerType;
-
 public class Server implements Operations {
 
-    private Operations socket;
+    protected Operations socket;
     private ServerSocket serverSocket;
 
-    public Server(String port) throws IOException {
+    public Server(int port) throws IOException {
+        this.createSocket();
+        this.serverSocket = new ServerSocket(port);
+    }
+
+    public void createSocket() {
         this.socket = new CharactersTcpipSocket();
-        this.serverSocket = new ServerSocket(2020);
     }
 
     public void close() throws IOException {
@@ -57,21 +58,6 @@ public class Server implements Operations {
     }
 
     @Override
-    public void send(PlayerType playerType) {
-        this.socket.send(playerType);
-    }
-
-    @Override
-    public void send(PlayerType[] playerTypes) {
-        this.socket.send(playerTypes);
-    }
-
-    @Override
-    public void send(Color color) {
-        this.socket.send(color);
-    }
-
-    @Override
     public String receiveLine() throws IOException {
         return this.socket.receiveLine();
     }
@@ -89,21 +75,6 @@ public class Server implements Operations {
     @Override
     public char receiveChar() throws IOException {
         return this.socket.receiveChar();
-    }
-
-    @Override
-    public PlayerType receivePlayerType() throws IOException {
-        return this.socket.receivePlayerType();
-    }
-
-    @Override
-    public PlayerType[] receivePlayerTypes() throws IOException {
-        return this.socket.receivePlayerTypes();
-    }
-
-    @Override
-    public Color receiveColor() throws IOException {
-        return this.socket.receiveColor();
     }
 
     @Override
