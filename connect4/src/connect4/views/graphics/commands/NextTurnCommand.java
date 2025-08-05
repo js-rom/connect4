@@ -1,6 +1,5 @@
 package connect4.views.graphics.commands;
 
-import connect4.views.graphics.PanelView;
 import connect4.views.graphics.PlayPanelView;
 import connect4.views.graphics.PlayPanelViewCommand;
 
