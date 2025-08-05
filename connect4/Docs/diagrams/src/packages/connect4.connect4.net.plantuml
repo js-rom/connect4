@@ -9,8 +9,10 @@ package net as "connect4.connect4.net" {
         + receiveColor() : Color
     }
     class Client {
+        # createOperationsSocket()
     }
     class Server {
+        # createOperationsSocket()
     }
     class CharactersTcpiSocket {
 
@@ -20,14 +22,16 @@ package net as "connect4.connect4.net" {
 class Client as "connect4.utils.net.Client"
 class Server as "connect4.utils.net.Server"
 class CharactersTcpiSocket as "connect4.utils.net.CharactersTcpiSocket"
+interface Operations as "connect4.utils.net.Operations"
 
-Operations <|.. net.Client
-Operations <|.. net.Server
-Operations <|.. net.CharactersTcpiSocket
+net.Operations <|.. net.Client
+net.Operations <|.. net.Server
+net.Operations <|.. net.CharactersTcpiSocket
 net.Client *--> net.CharactersTcpiSocket
 net.Server *--> net.CharactersTcpiSocket
 CharactersTcpiSocket <|-- net.CharactersTcpiSocket
 Client <|-- net.Client
 Server <|-- net.Server
+Operations <|-- net.Operations
 
 @enduml

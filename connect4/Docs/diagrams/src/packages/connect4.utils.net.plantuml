@@ -14,8 +14,10 @@ package net as "connect4.utils.net" {
         + close()
     }
     class Client {
+        # createOperationsSocket()
     }
     class Server {
+        # createOperationsSocket()
         + listen()
     }
     class CharactersTcpiSocket {
