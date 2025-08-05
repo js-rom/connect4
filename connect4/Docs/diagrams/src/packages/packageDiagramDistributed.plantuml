@@ -59,4 +59,34 @@ connect4.controllers.proxies ..> connect4.launchers.distributed.server.dispatche
 connect4.controllers.proxies ..> utils.models
 connect4.controllers.proxies ..> connect4.models
 
+connect4.views ..> connect4.controllers.core
+connect4.views.console ..> connect4.controllers.core
+connect4.views.console ..> connect4.views
+connect4.views.console ..> utils.models
+package utils.views
+connect4.views.console ..> utils.views
+connect4.views.console ..> connect4.types
+package connect4.views.console.menus.play
+package connect4.views.console.menus.turn
+connect4.views.console ..> connect4.views.console.menus.play
+connect4.views.console ..> connect4.views.console.menus.turn
+connect4.views.console.menus.play ..> connect4.controllers.core
+connect4.views.console.menus.play ..> connect4.views.console
+package utils.models.menu
+connect4.views.console.menus.play ..> utils.models.menu
+connect4.views.console.menus.turn ..> connect4.controllers.core
+connect4.views.console.menus.turn ..> utils.models.menu
+connect4.views.console.menus.turn ..> connect4.types
+
+connect4.views.graphics ..> connect4.controllers.core
+connect4.views.graphics ..> connect4.types
+connect4.views.graphics ..> utils.models
+connect4.views.graphics ..> connect4.views
+connect4.views.graphics ..> utils.views
+package connect4.views.graphics.commands
+connect4.views.graphics ..> connect4.views.graphics.commands
+
+connect4.views.graphics.commands ..> connect4.views.graphics
+
+
 @enduml
