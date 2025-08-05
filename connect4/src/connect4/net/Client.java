@@ -12,35 +12,35 @@ public class Client extends utils.net.Client implements Operations {
     }
 
     @Override
-    public void createSocket() {
-        this.socket = new CharactersTcpipSocket();
+    protected void createOperationsSocket() {
+        this.OperationsSocket = new CharactersTcpipSocket();
     }
 
     public void send(PlayerType playerType) {
-        ((Operations)this.socket).send(playerType);
+        ((Operations)this.OperationsSocket).send(playerType);
     }
 
     public void send(PlayerType[] playerTypes) {
-        ((Operations)this.socket).send(playerTypes);
+        ((Operations)this.OperationsSocket).send(playerTypes);
     }
 
     public void send(Color color) {
-        ((Operations)this.socket).send(color);
+        ((Operations)this.OperationsSocket).send(color);
     }
 
     @Override
     public PlayerType receivePlayerType() throws IOException {
-        return ((Operations)this.socket).receivePlayerType();
+        return ((Operations)this.OperationsSocket).receivePlayerType();
     }
 
     @Override
     public PlayerType[] receivePlayerTypes() throws IOException {
-        return ((Operations)this.socket).receivePlayerTypes();
+        return ((Operations)this.OperationsSocket).receivePlayerTypes();
     }
 
     @Override
     public Color receiveColor() throws IOException {
-        return ((Operations)this.socket).receiveColor();
+        return ((Operations)this.OperationsSocket).receiveColor();
     }
 
 }

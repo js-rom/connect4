@@ -6,20 +6,20 @@ import java.net.Socket;
 
 public class Server implements Operations {
 
-    protected Operations socket;
+    protected Operations OperationsSocket;
     private ServerSocket serverSocket;
 
     public Server(int port) throws IOException {
-        this.createSocket();
+        this.createOperationsSocket();
         this.serverSocket = new ServerSocket(port);
     }
 
-    public void createSocket() {
-        this.socket = new CharactersTcpipSocket();
+    protected void createOperationsSocket() {
+        this.OperationsSocket = new CharactersTcpipSocket();
     }
 
     public void close() throws IOException {
-        this.socket.close();
+        this.OperationsSocket.close();
         this.serverSocket.close();
         System.out.println("Server> Connection closed");
     }
@@ -27,64 +27,64 @@ public class Server implements Operations {
     public void listen() throws IOException {
         System.out.println("Servidor> Esperando conexion...");
         this.associate(serverSocket.accept());
-        System.out.println("Servidor> Recibida conexion de " + this.socket.getHostAddress() + ":"
-                + this.socket.getPort());
+        System.out.println("Servidor> Recibida conexion de " + this.OperationsSocket.getHostAddress() + ":"
+                + this.OperationsSocket.getPort());
 
     }
 
     @Override
     public void associate(Socket socket) throws IOException {
-        this.socket.associate(socket);
+        this.OperationsSocket.associate(socket);
     }
 
     @Override
     public void send(String value) {
-        this.socket.send(value);
+        this.OperationsSocket.send(value);
     }
 
     @Override
     public void send(Integer value) {
-        this.socket.send(value);
+        this.OperationsSocket.send(value);
     }
 
     @Override
     public void send(Boolean value) {
-        this.socket.send(value);
+        this.OperationsSocket.send(value);
     }
 
     @Override
     public void send(char value) {
-        this.socket.send(value);
+        this.OperationsSocket.send(value);
     }
 
     @Override
     public String receiveLine() throws IOException {
-        return this.socket.receiveLine();
+        return this.OperationsSocket.receiveLine();
     }
 
     @Override
     public boolean receiveBoolean() throws IOException {
-        return this.socket.receiveBoolean();
+        return this.OperationsSocket.receiveBoolean();
     }
 
     @Override
     public Integer receiveInt() throws IOException {
-        return this.socket.receiveInt();
+        return this.OperationsSocket.receiveInt();
     }
 
     @Override
     public char receiveChar() throws IOException {
-        return this.socket.receiveChar();
+        return this.OperationsSocket.receiveChar();
     }
 
     @Override
     public String getHostAddress() {
-        return this.socket.getHostAddress();
+        return this.OperationsSocket.getHostAddress();
     }
 
     @Override
     public int getPort() {
-        return this.socket.getPort();
+        return this.OperationsSocket.getPort();
     }
 
 }
