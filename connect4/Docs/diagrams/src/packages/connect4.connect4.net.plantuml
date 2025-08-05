@@ -1,0 +1,37 @@
+@startuml connect4.net
+
+package net as "connect4.connect4.net" {
+    interface Operations {
+        + send(PlayerType)
+        + send(PlayerType[])
+        +send(Color)
+        + receivePlayerTypes() : PlayerType[]
+        + receiveColor() : Color
+    }
+    class Client {
+        # createOperationsSocket()
+    }
+    class Server {
+        # createOperationsSocket()
+    }
+    class CharactersTcpiSocket {
+
+    }
+}
+
+class Client as "connect4.utils.net.Client"
+class Server as "connect4.utils.net.Server"
+class CharactersTcpiSocket as "connect4.utils.net.CharactersTcpiSocket"
+interface Operations as "connect4.utils.net.Operations"
+
+net.Operations <|.. net.Client
+net.Operations <|.. net.Server
+net.Operations <|.. net.CharactersTcpiSocket
+net.Client *--> net.CharactersTcpiSocket
+net.Server *--> net.CharactersTcpiSocket
+CharactersTcpiSocket <|-- net.CharactersTcpiSocket
+Client <|-- net.Client
+Server <|-- net.Server
+Operations <|-- net.Operations
+
+@enduml

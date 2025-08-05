@@ -3,7 +3,7 @@ package connect4.controllers.proxies;
 import java.io.IOException;
 
 import connect4.types.StateValue;
-import utils.tcpip.Client;
+import connect4.net.Client;
 
 public class Logic extends connect4.controllers.core.Logic {
 
@@ -20,5 +20,13 @@ public class Logic extends connect4.controllers.core.Logic {
         this.controllers.put(StateValue.IN_GAME, new PlayController(this.session, this.client));
         this.controllers.put(StateValue.RESUME, new ResumeController(this.session, this.client));
         this.controllers.put(StateValue.EXIT, null);
+    }
+
+    public void close() {
+        try {
+            this.client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,7 +1,7 @@
 package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.core.AcceptorController;
-import utils.tcpip.Server;
+import connect4.net.Server;
 
 public abstract class Dispatcher {
 

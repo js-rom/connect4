@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import utils.tcpip.Server;
+import connect4.net.Server;
+import connect4.types.FrameType;
 
 public class DispatcherPrototype {
 
@@ -12,7 +13,7 @@ public class DispatcherPrototype {
     private Map<FrameType, Dispatcher> dispatcherMap;
 
     public DispatcherPrototype() throws IOException {
-        this.server = new Server("2020");
+        this.server = new Server(2020);
         this.dispatcherMap = new HashMap<FrameType, Dispatcher>();
     }
 

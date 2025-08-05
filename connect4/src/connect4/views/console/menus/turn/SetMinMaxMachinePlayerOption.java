@@ -1,4 +1,4 @@
-package connect4.views.console.menus.options;
+package connect4.views.console.menus.turn;
 
 import connect4.controllers.core.StartController;
 import connect4.types.PlayerType;

@@ -2,9 +2,9 @@ package connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import connect4.launchers.distributed.server.dispatchers.FrameType;
+import connect4.types.FrameType;
 import connect4.types.StateValue;
-import utils.tcpip.Client;
+import utils.net.Client;
 
 public class Session extends connect4.models.Session {
 

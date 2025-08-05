@@ -28,7 +28,6 @@ public abstract class GraphicsConnect4 extends Connect4 {
                 e.printStackTrace();
             }
         } while (this.logic.getController() != null);
-        System.exit(0);
     }
 
 }

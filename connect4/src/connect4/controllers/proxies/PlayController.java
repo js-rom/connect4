@@ -2,11 +2,11 @@ package connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.types.Color;
+import connect4.types.FrameType;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
-import utils.tcpip.Client;
+import connect4.net.Client;
 import connect4.models.Session;
 
 public class PlayController extends connect4.controllers.core.PlayController {

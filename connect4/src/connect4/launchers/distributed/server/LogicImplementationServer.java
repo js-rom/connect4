@@ -8,7 +8,6 @@ import connect4.launchers.distributed.server.dispatchers.ColorDispatcher;
 import connect4.launchers.distributed.server.dispatchers.ColumnDispatcher;
 import connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
 import connect4.launchers.distributed.server.dispatchers.DropTokenDispatcher;
-import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.launchers.distributed.server.dispatchers.IsCompleteDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsFinishedDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsResetDispatcher;
@@ -24,6 +23,7 @@ import connect4.launchers.distributed.server.dispatchers.ResetDispatcher;
 import connect4.launchers.distributed.server.dispatchers.StateDispatcher;
 import connect4.launchers.distributed.server.dispatchers.UndoDispatcher;
 import connect4.launchers.distributed.server.dispatchers.UndoableDispatcher;
+import connect4.types.FrameType;
 
 public class LogicImplementationServer extends Logic {
 
