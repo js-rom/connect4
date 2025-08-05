@@ -9,6 +9,14 @@ public class GraphicsConnect4 extends connect4.launchers.GraphicsConnect4 {
         this.logic = new Logic();
     }
 
+    @Override
+    protected void playGames() {
+        super.playGames();
+        ((Logic) this.logic).close();
+        System.exit(0);
+
+    }
+
     public static void main(String[] args) throws Exception {
         new GraphicsConnect4().playGames();
     }

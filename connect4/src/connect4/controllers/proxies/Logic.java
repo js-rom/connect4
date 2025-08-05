@@ -21,4 +21,12 @@ public class Logic extends connect4.controllers.core.Logic {
         this.controllers.put(StateValue.RESUME, new ResumeController(this.session, this.client));
         this.controllers.put(StateValue.EXIT, null);
     }
+
+    public void close() {
+        try {
+            this.client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
