@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import connect4.net.Server;
+import connect4.types.FrameType;
 
 public class DispatcherPrototype {
 

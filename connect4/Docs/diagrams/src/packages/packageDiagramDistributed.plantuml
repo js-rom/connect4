@@ -39,7 +39,6 @@ connect4.models ..> utils.models
 
 
 connect4.net ..> connect4.types
-connect4.net ..> connect4.launchers.distributed.server.dispatchers
 package utils.net
 connect4.net ..> utils.net
 
@@ -55,7 +54,6 @@ connect4.controllers.implementation ..> utils.models
 
 connect4.controllers.proxies ..> connect4.types
 connect4.controllers.proxies ..> connect4.net
-connect4.controllers.proxies ..> connect4.launchers.distributed.server.dispatchers
 connect4.controllers.proxies ..> utils.models
 connect4.controllers.proxies ..> connect4.models
 

@@ -2,8 +2,8 @@ package connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.types.Color;
+import connect4.types.FrameType;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 import connect4.net.Client;

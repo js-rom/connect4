@@ -2,8 +2,8 @@ package connect4.net;
 
 import java.io.IOException;
 
-import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.types.Color;
+import connect4.types.FrameType;
 import connect4.types.PlayerType;
 
 public class Client extends utils.net.Client implements Operations {
