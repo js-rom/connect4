@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.types.PlayerType;
-import utils.net.Client;
+import connect4.net.Client;
 import connect4.models.Session;
 
 public class StartController extends connect4.controllers.core.StartController {

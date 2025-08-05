@@ -6,7 +6,7 @@ import connect4.launchers.distributed.server.dispatchers.FrameType;
 import connect4.types.Color;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
-import utils.net.Client;
+import connect4.net.Client;
 import connect4.models.Session;
 
 public class PlayController extends connect4.controllers.core.PlayController {
