@@ -2,7 +2,7 @@ package connect4.views.console;
 
 import connect4.controllers.core.PlayController;
 import connect4.controllers.core.StartController;
-import connect4.views.console.menus.TurnMenu;
+import connect4.views.console.menus.turn.TurnMenu;
 import utils.views.Console;
 
 public class TurnView {

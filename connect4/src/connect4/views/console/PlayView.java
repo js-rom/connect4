@@ -1,7 +1,7 @@
 package connect4.views.console;
 
 import connect4.controllers.core.PlayController;
-import connect4.views.console.menus.PlayMenu;
+import connect4.views.console.menus.play.PlayMenu;
 
 public class PlayView {
 

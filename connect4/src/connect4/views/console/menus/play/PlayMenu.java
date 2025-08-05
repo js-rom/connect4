@@ -1,12 +1,8 @@
-package connect4.views.console.menus;
+package connect4.views.console.menus.play;
 
 import java.util.List;
 
 import connect4.controllers.core.PlayController;
-import connect4.views.console.menus.options.ActionOption;
-import connect4.views.console.menus.options.PlayOption;
-import connect4.views.console.menus.options.RedoOption;
-import connect4.views.console.menus.options.UndoOption;
 import utils.models.menu.Menu;
 
 public class PlayMenu extends Menu {
