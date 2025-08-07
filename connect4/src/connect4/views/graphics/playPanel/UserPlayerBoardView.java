@@ -1,4 +1,4 @@
-package connect4.views.graphics;
+package connect4.views.graphics.playPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

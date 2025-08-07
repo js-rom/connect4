@@ -81,10 +81,6 @@ connect4.views.graphics ..> connect4.types
 connect4.views.graphics ..> utils.models
 connect4.views.graphics ..> connect4.views
 connect4.views.graphics ..> utils.views
-package connect4.views.graphics.commands
-connect4.views.graphics ..> connect4.views.graphics.commands
-
-connect4.views.graphics.commands ..> connect4.views.graphics
 
 
 @enduml

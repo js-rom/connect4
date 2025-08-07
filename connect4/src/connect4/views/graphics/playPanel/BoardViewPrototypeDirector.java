@@ -1,4 +1,4 @@
-package connect4.views.graphics;
+package connect4.views.graphics.playPanel;
 
 import connect4.types.PlayerType;
 

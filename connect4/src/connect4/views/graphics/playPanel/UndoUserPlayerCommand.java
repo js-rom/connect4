@@ -1,10 +1,8 @@
-package connect4.views.graphics.commands;
-
-import connect4.views.graphics.PlayPanelView;
+package connect4.views.graphics.playPanel;
 
 public class UndoUserPlayerCommand extends UndoCommand {
 
-    public UndoUserPlayerCommand(PlayPanelView receiver) {
+    public UndoUserPlayerCommand(PlayPanelViewVisitor receiver) {
         super(receiver);
     }
 

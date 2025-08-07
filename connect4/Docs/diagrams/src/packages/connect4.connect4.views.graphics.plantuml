@@ -35,6 +35,11 @@ class graphics.PlayPanelView{
 interface graphics.PlayPanelViewVisitor {
     +visit(MachinePlayerBoardView)
     +visit(UserPlayerBoardView)
+    +write();
+    +redo(RedoMachinePlayerCommand command);
+    +redo(RedoUserPlayerCommand command);
+    +undo(UndoMachinePlayerCommand command);
+    +undo(UndoUserPlayerCommand command);
 }
 
 abstract class graphics.BoardView {
@@ -147,8 +152,6 @@ PlayPanelView *--> BoardView
 PlayPanelView *--> TurnView
 PlayPanelView ..> BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
-PlayPanelView ..> UndoComand
-PlayPanelView ..> RedoComand
 
 BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
 BoardViewPrototypeDirector ..> PlayerType
@@ -158,6 +161,7 @@ BoardViewPrototypeRegistry *--> "2"BoardView
 
 
 PlayPanelView ..> Command
+PlayPanelViewCommand --> PlayPanelViewVisitor
 
 Command <|-- PlayPanelViewCommand
 PlayPanelViewCommand <|-- NextTurnCommand
@@ -175,7 +179,7 @@ MachinePlayerBoardView o--> NonClickableSquare
 UserPlayerBoardView o--> ClickableSquare
 Square <|-- ClickableSquare
 Square <|-- NonClickableSquare
-BoardView --> Command
+BoardView --> PlayPanelViewCommand
 
 Square --> Coordinate
 @enduml

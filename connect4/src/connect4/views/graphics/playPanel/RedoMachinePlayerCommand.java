@@ -1,10 +1,8 @@
-package connect4.views.graphics.commands;
-
-import connect4.views.graphics.PlayPanelView;
+package connect4.views.graphics.playPanel;
 
 public class RedoMachinePlayerCommand extends RedoCommand {
 
-    public RedoMachinePlayerCommand(PlayPanelView receiver) {
+    public RedoMachinePlayerCommand(PlayPanelViewVisitor receiver) {
         super(receiver);
     }
 
