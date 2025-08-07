@@ -1,8 +1,11 @@
-package connect4.views.console;
+package connect4.views.console.turn;
 
 import connect4.controllers.core.PlayController;
 import connect4.controllers.core.StartController;
-import connect4.views.console.menus.turn.TurnMenu;
+import connect4.views.console.shared.Message;
+import connect4.views.console.turn.player.PlayerView;
+import connect4.views.console.turn.player.PlayerViewPrototypeDirector;
+import connect4.views.console.turn.player.PlayerViewPrototypeRegistry;
 import utils.views.Console;
 
 public class TurnView {

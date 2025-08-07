@@ -1,4 +1,4 @@
-package connect4.views.console.menus.play;
+package connect4.views.console.play;
 
 import connect4.controllers.core.PlayController;
 

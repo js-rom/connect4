@@ -1,4 +1,4 @@
-package connect4.views.console.menus.play;
+package connect4.views.console.play;
 
 import java.util.List;
 

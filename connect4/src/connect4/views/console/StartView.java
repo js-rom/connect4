@@ -1,6 +1,7 @@
 package connect4.views.console;
 
 import connect4.controllers.core.StartController;
+import connect4.views.console.turn.TurnView;
 
 public class StartView {
 

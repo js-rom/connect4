@@ -1,4 +1,4 @@
-package connect4.views.console;
+package connect4.views.console.turn.player;
 
 import java.util.EnumMap;
 import java.util.Map;

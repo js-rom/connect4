@@ -1,7 +1,6 @@
-package connect4.views.console.menus.play;
+package connect4.views.console.play;
 
 import connect4.controllers.core.PlayController;
-import connect4.views.console.BoardView;
 import utils.models.menu.Option;
 
 public abstract class PlayOption extends Option {

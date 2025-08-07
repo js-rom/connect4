@@ -1,4 +1,4 @@
-package connect4.views.console;
+package connect4.views.console.shared;
 
 import utils.views.Console;
 

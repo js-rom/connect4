@@ -1,8 +1,9 @@
-package connect4.views.console;
+package connect4.views.console.turn.player;
 
 import utils.models.Coordinate;
 import utils.views.Console;
 import connect4.controllers.core.PlayController;
+import connect4.views.console.shared.Message;
 
 public class UserPlayerView extends PlayerView {
 

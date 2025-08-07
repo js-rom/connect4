@@ -1,4 +1,4 @@
-package connect4.views.console.menus.turn;
+package connect4.views.console.turn;
 
 import connect4.controllers.core.StartController;
 import utils.models.menu.Option;

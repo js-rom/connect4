@@ -1,7 +1,8 @@
-package connect4.views.console;
+package connect4.views.console.play;
 
 import connect4.controllers.core.PlayController;
-import connect4.views.console.menus.play.PlayMenu;
+import connect4.views.console.shared.Message;
+import connect4.views.console.turn.TurnView;
 
 public class PlayView {
 

@@ -1,6 +1,7 @@
-package connect4.views.console;
+package connect4.views.console.turn.player;
 
 import connect4.controllers.core.PlayController;
+import connect4.views.console.shared.Message;
 import utils.views.Console;
 
 public abstract class MachinePlayerView extends PlayerView {
