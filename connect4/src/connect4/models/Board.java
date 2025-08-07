@@ -57,8 +57,7 @@ public class Board {
         return this.isComplete() || this.isWinner();
     }
 
-    public boolean isWinner() { // TODO me parece que el Board tiene demasiado conocimiento de como se implmenta
-                                // line, analizar crear clase que integre a line y direction
+    public boolean isWinner() {
 
         if (this.lastDrop == null ) {
             return false;
