@@ -156,11 +156,11 @@ PlayPanelView ..> BoardViewPrototypeDirector
 BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
 BoardViewPrototypeDirector ..> PlayerType
 BoardViewPrototypeRegistry ..> PlayController
-BoardViewPrototypeRegistry ..> Command
+BoardViewPrototypeRegistry ..> PlayPanelViewCommand
 BoardViewPrototypeRegistry *--> "2"BoardView
 
 
-PlayPanelView ..> Command
+PlayPanelView ..> PlayPanelViewCommand
 PlayPanelViewCommand --> PlayPanelViewVisitor
 
 Command <|-- PlayPanelViewCommand
