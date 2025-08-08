@@ -2,9 +2,9 @@
 
 
 interface views.View
-class StartController as "controllers.StartController"
-class PlayController as "controllers.PlayController"
-class ResumeController as "controllers.ResumeController"
+class StartController as "controllers.core.StartController"
+class PlayController as "controllers.core.PlayController"
+class ResumeController as "controllers.core.ResumeController"
 
 View : +start(StartController)
 View : +play(PlayController)
