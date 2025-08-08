@@ -5,14 +5,12 @@ import java.io.IOException;
 import connect4.types.FrameType;
 import connect4.types.PlayerType;
 import connect4.net.Client;
-import connect4.models.Session;
 
 public class StartController extends connect4.controllers.core.StartController {
 
     private Client client;
 
-    public StartController(Session session, Client client) {
-        super(session);
+    public StartController(Client client) {
         this.client = client;
     }
 

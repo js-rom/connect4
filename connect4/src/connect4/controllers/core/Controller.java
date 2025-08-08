@@ -13,6 +13,10 @@ public abstract class Controller {
         this.session = session;
     }
 
+    public Controller() {
+
+    }
+
     public void nextState() {
         this.session.nextState();
     }

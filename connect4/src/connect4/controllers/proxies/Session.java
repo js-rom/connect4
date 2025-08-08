@@ -6,7 +6,7 @@ import connect4.types.FrameType;
 import connect4.types.StateValue;
 import utils.net.Client;
 
-public class Session extends connect4.models.Session {
+public class Session {
 
     private Client client;
 

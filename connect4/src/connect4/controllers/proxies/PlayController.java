@@ -7,14 +7,12 @@ import connect4.types.FrameType;
 import connect4.types.PlayerType;
 import utils.models.Coordinate;
 import connect4.net.Client;
-import connect4.models.Session;
 
 public class PlayController extends connect4.controllers.core.PlayController {
 
     private Client client;
 
-    public PlayController(Session session, Client client) {
-        super(session);
+    public PlayController(Client client) {
         this.client = client;
     }
 

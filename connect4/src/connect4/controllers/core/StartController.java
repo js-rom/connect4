@@ -9,6 +9,10 @@ public abstract class StartController extends Controller implements AcceptorCont
         super(session);
     }
 
+    public StartController() {
+
+    }
+
     public abstract PlayerType[] getPlayerTypes();
 
     public abstract int getNumberPlayers();

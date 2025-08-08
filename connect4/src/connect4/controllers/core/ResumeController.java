@@ -8,6 +8,10 @@ public abstract class ResumeController extends Controller implements AcceptorCon
         super(session);
     }
 
+    public ResumeController() {
+
+    }
+
     public abstract boolean isWinner();
 
     public abstract void reset();

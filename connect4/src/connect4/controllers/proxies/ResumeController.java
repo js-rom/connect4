@@ -2,7 +2,6 @@ package connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import connect4.models.Session;
 import connect4.types.Color;
 import connect4.types.FrameType;
 import connect4.net.Client;
@@ -11,8 +10,7 @@ public class ResumeController extends connect4.controllers.core.ResumeController
 
     private Client client;
 
-    public ResumeController(Session session, Client client) {
-        super(session);
+    public ResumeController(Client client) {
         this.client = client;
     }
 

@@ -6,6 +6,8 @@ import connect4.types.StateValue;
 
 public class Logic extends connect4.controllers.core.Logic {
 
+    private Session session;
+
     protected StartController startController;
     protected PlayController playController;
     protected ResumeController resumeController;

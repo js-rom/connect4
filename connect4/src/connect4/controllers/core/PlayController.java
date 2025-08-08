@@ -11,6 +11,10 @@ public abstract class PlayController extends Controller implements AcceptorContr
         super(session);
     }
 
+    public PlayController() {
+
+    }
+
     public abstract void undo();
 
     public abstract boolean undoable();
@@ -35,11 +39,11 @@ public abstract class PlayController extends Controller implements AcceptorContr
 
     public abstract boolean isWinner();
 
+    public abstract boolean isComplete(int column);
+
     @Override
     public void accept(ControllerVisitor controllerVisitor) {
         controllerVisitor.visit(this);
     }
-
-     public abstract boolean isComplete(int column);
 
 }
