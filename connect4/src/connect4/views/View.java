@@ -1,9 +1,8 @@
 package connect4.views;
 
-import connect4.controllers.ControllerVisitor;
-import connect4.controllers.PlayController;
-import connect4.controllers.ResumeController;
-import connect4.controllers.StartController;
+import connect4.controllers.core.PlayController;
+import connect4.controllers.core.ResumeController;
+import connect4.controllers.core.StartController;
 
 public interface View {
     public void start(StartController startController);

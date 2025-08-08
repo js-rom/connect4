@@ -1,0 +1,63 @@
+@startuml connect4.connect4.controllers.implementation
+
+class controllers.implementation.Logic {
+    -controllers : Map<StateValue, AceptorController> 
+    +Logic()
+    +getController() : AceptorController
+}
+
+
+class controllers.implementation.StartController {
+
+}
+
+
+class controllers.implementation.PlayController{
+
+}
+
+class controllers.implementation.ActionController{
+   
+}
+
+class controllers.implementation.UndoController{
+  
+}
+
+class controllers.implementation.RedoController{
+   
+}
+
+class controllers.implementation.ResumeController{
+  
+}
+
+class Session as "models.Session"
+class StateValue as "types.StateValue"
+
+abstract class controllers.AcceptorController as "controllers.core.AcceptorController"
+AcceptorController <|.. StartController
+AcceptorController <|.. PlayController
+AcceptorController <|.. ResumeController
+
+abstract class controllers.coreLogic as "controllers.core.Logic"
+coreLogic <|-- Logic
+Logic *--> Session
+Logic *--> StartController
+Logic *--> PlayController
+Logic *--> ResumeController
+Logic *--> StateValue
+
+PlayController *--> ActionController
+PlayController *--> UndoController
+PlayController *--> RedoController
+
+abstract class controllers.StartController as "controllers.core.StartController"
+abstract class controllers.PlayController as "controllers.core.PlayController"
+abstract class controllers.ResumeController as "controllers.core.ResumeController"
+
+controllers.StartController <|-- controllers.implementation.StartController
+controllers.PlayController <|-- controllers.implementation.PlayController
+controllers.ResumeController <|-- controllers.implementation.ResumeController
+
+@enduml

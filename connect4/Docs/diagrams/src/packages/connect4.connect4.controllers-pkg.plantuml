@@ -1,0 +1,28 @@
+@startuml
+
+package connect4.connect4.controllers {
+    package core
+    package implementation
+    package proxies
+    implementation ..> core
+    proxies ..> core
+}
+
+package connect4.connect4.models
+package connect4.connect4.types
+package connect4.utils
+
+core ..> connect4.connect4.models
+core ..> connect4.connect4.types
+core ..> connect4.utils
+
+implementation ..> connect4.connect4.models
+implementation ..> connect4.connect4.types
+implementation ..> connect4.utils
+
+package connect4.connect4.net
+proxies ..> connect4.connect4.types
+proxies ..> connect4.connect4.net
+proxies ..> connect4.utils
+
+@enduml

@@ -100,4 +100,8 @@ public class Session {
     public boolean isWinner() {
         return this.game.isWinner();
     }
+
+    public boolean isComplete(int column) {
+        return this.game.isComplete(column);
+    }
 }
