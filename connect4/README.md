@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.10 modelViewPresenter - presentationModel - withComposite??
+# Connect 4. Solution v.1.12 modelViewPresenter - presentationModel - withProxy
 
 # Requisitos 5. *Distribuido*
 
@@ -38,6 +38,8 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.launchers/connect4.connect4.launchers.svg)
 
+![Package_connect4](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.launchers.distributed.server/connect4.connect4.launchers.distributed.server.svg)
+
 ## connect4.controllers Package
 
 ![Package_connect4.controllers](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.controllers-pkg/connect4.connect4.controllers-pkg.svg)
@@ -68,6 +70,10 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4.models](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.models/connect4.connect4.models.svg)
 
+## connect4.net Package
+
+![Package_connect4.models](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.net/connect4.net.svg)
+
 ## connect4.types Package
 
 ![Package_connect4.types](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.types/connect4.connect4.types.svg)
@@ -75,6 +81,9 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 ## connect4.utils Package
 
 ![Package_connect4.utils](../out/connect4/Docs/diagrams/src/packages/connect4.utils/utils.svg)
+
+
+![Package_connect4.utils](../out/connect4/Docs/diagrams/src/packages/connect4.utils.net/utils.net.svg)
 
 # Vista de Desarrollo/Implementación
 

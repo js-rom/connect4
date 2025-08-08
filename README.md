@@ -15,9 +15,9 @@
 | graphics | [v.1.7 modelViewPresenter - presentationModel - withFacade](https://github.com/js-rom/connect4/tree/v1.7.0-Release) |
 | graphics | [v.1.8 modelViewPresenter - presentationModel - withoutDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.8.0-Release) |
 | graphics | [v.1.9 modelViewPresenter - presentationModel - withDoubleDispatching](https://github.com/js-rom/connect4/tree/v1.9.0-Release)  |
-| undoRedo | [modelViewPresenter - presentationModel - withComposite](https://github.com/js-rom/connect4/tree/v1.10.0-Release) |
+| undoRedo | [v.1.10 modelViewPresenter - presentationModel - withComposite](https://github.com/js-rom/connect4/tree/v1.10.0-Release) |
 | distributed | modelViewPresenter - presentationModel - withoutProxy |
-| distributed | modelViewPresenter - presentationModel - withProxy |
+| distributed | [v.1.12 modelViewPresenter - presentationModel - withProxy](https://github.com/js-rom/connect4/tree/v1.12.0-Release) |
 | files | modelViewPresenter - presentationModel - withoutDAO |
 | files | modelViewPresenter - presentationModel - withDAO |
 | bbdd | modelViewPresenter - presentationModel - withoutPrototype |
@@ -28,21 +28,19 @@
 
 ![secuencia de versiones](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
-# Versión v.1.10
+# Versión v.1.12
 
 ## enfoque
 
-En esta versión se añade la funcionalidad de deshacer y rehacer movimientos, disponible tanto para jugadores humanos como para jugadores máquina, y accesible desde ambas interfaces: consola y gráfica.
+En esta versión se añade un nuevo requisito para distribuir la aplicacion mediante comunicaciones TCP/IP. El objetivo no es solo distribuir la aplicación, sino permitir que convivan todas las combinaciones posibles de ejecución bajo un mismo proyecto reutilizando el mayor porcentaje de código posible:
+
+- Interfaz consola - standalone
+- Interfaz gráfica - standalone
+- Interfaz consola - distribuida
+- Interfaz gráfica - distribuida
 
 ## Diseño
 
-La nueva funcionalidad de deshacer y rehacer movimientos se ha implementado utilizando el patrón de diseño Memento.
+- Patrón Proxy: para abstraer a las vistas (consola o gráfica) del tipo de arquitectura subyacente (standalone o distribuida). De esta manera, la interfaz de usuario no necesita conocer si está operando localmente o a través de la red. 
 
-**Cambios en el paquete `connect4.models`:**
-
-- Se introduce la clase `Registry`, responsable de gestionar una lista de objetos `Memento` generados por `Game`. Esta clase almacena los diferentes estados por los que pasa el juego y permite restaurar el estado del juego a cualquier punto anterior o posterior.
-- Se crea la fachada `Session`, que centraliza la gestión del estado en memoria de la aplicación mediante una interfaz común. Esta fachada agrupa y delega responsabilidades en las clases `Game`, `Registry` y `State`.
-
-**Cambios en el paquete `connect4.controllers`:**
-
-- Se incorporan nuevos controladores para gestionar la funcionalidad de deshacer y rehacer. Se diferencian entre controladores principales, que implementan la interfaz `AcceptorController` y pueden actuar como fachada de controladores secundarios, agrupando así diferentes casos de uso bajo una una misma interfaz.
+- factory method: para configurar los diferentes modos de arranque evitando así hacer jerarquias de herencia paralelas
