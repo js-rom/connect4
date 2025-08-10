@@ -48,7 +48,7 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4.controllers](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.controllers.implementation/connect4.connect4.controllers.implementation.svg)
 
-![Package_connect4.controllers](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.controllers.proxies/connect4.connect4.controllers.implementation.svg)
+![Package_connect4.controllers](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.controllers.proxies/connect4.connect4.controllers.proxies.svg)
 
 
 ## connect4.views.views Package
