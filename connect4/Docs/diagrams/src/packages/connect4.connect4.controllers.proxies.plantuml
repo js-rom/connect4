@@ -1,0 +1,51 @@
+@startuml connect4.connect4.controllers.proxies
+
+class controllers.proxies.Logic {
+    - client
+    + close()
+}
+
+
+class controllers.proxies.StartController {
+
+}
+
+
+class controllers.proxies.PlayController{
+
+}
+
+class controllers.proxies.ResumeController{
+  
+}
+
+class controllers.proxies.Session{
+  
+}
+
+class StateValue as "types.StateValue"
+
+abstract class controllers.coreLogic as "controllers.core.Logic"
+coreLogic <|-- Logic
+Logic *--> Session
+Logic *--> StartController
+Logic *--> PlayController
+Logic *--> ResumeController
+Logic *--> StateValue
+class Client as "connect4.net.Client"
+Logic *--> Client
+Session --> Client
+
+StartController --> Client
+PlayController --> Client
+ResumeController --> Client
+
+abstract class controllers.StartController as "controllers.core.StartController"
+abstract class controllers.PlayController as "controllers.core.PlayController"
+abstract class controllers.ResumeController as "controllers.core.ResumeController"
+
+controllers.StartController <|-- controllers.proxies.StartController
+controllers.PlayController <|-- controllers.proxies.PlayController
+controllers.ResumeController <|-- controllers.proxies.ResumeController
+
+@enduml

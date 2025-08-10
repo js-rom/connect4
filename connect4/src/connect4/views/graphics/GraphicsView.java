@@ -2,11 +2,13 @@ package connect4.views.graphics;
 
 import java.util.concurrent.CountDownLatch;
 
-import connect4.controllers.ControllerVisitor;
-import connect4.controllers.PlayController;
-import connect4.controllers.ResumeController;
-import connect4.controllers.StartController;
+import connect4.controllers.core.ControllerVisitor;
+import connect4.controllers.core.PlayController;
+import connect4.controllers.core.ResumeController;
+import connect4.controllers.core.StartController;
 import connect4.views.View;
+import connect4.views.graphics.playPanel.PlayPanelView;
+import connect4.views.graphics.startPanel.StartPanelView;
 
 public class GraphicsView implements View, ControllerVisitor {
 

@@ -1,0 +1,75 @@
+@startuml connect4.connect4.controllers.core
+
+interface controllers.core.AcceptorController {
+    +accept(ControllerVisitor)
+}
+
+abstract class controllers.core.Logic {
+    -controllers : Map<StateValue, AceptorController> 
+    +Logic()
+    +getController() : AceptorController
+}
+
+abstract class controllers.core.Controller {
+    +Controller(Session)
+    +nextState()
+    +getValueState() : StateValue
+}
+
+abstract class controllers.core.StartController {
+
+    + {abstract} getPlayerTypes() : PlayerType[]
+    + {abstract} getNumberPlayers() : int
+    + {abstract} reset()
+    + {abstract} isReset() : boolean
+    + {abstract} addPlayer(PlayerType)
+    + accept(ControllerVisitor)
+}
+
+interface controllers.core.ControllerVisitor {
+    +start(StartController)
+    +play(PlayController)
+    +resume(ResumeController)
+}
+
+abstract class controllers.core.PlayController{
+    + {abstract} getActivePlayer() : Player
+    + {abstract} getActivePlayerType() : PlayerType
+    + {abstract} getColor(Coordinate) : Color
+    + {abstract} isFinished() : boolean
+    + {abstract} next()
+    + {abstract} dropToken(int)
+    + {abstract} getColumn() : int
+    + {abstract} isWinner() : boolean
+    + {abstract} undo()
+    + {abstract} undoable() : boolean
+    + {abstract} redo()
+    + {abstract} redoable() : boolean
+    + {abstract} registerMemento()
+    + accept(ControllerVisitor)
+}
+
+abstract class controllers.core.ResumeController{
+    + {abstract} isWinner() : boolean
+    + {abstract} reset()
+    + accept(ControllerVisitor)
+}
+
+class Session as "models.Session"
+class StateValue as "types.StateValue"
+
+AcceptorController ..> ControllerVisitor
+Controller <|-- StartController
+Controller <|-- PlayController
+Controller <|-- ResumeController
+AcceptorController <|.. StartController
+AcceptorController <|.. PlayController
+AcceptorController <|.. ResumeController
+
+Logic *--> Session
+Logic *--> AcceptorController
+Logic *--> StateValue
+
+Controller --> Session
+
+@enduml

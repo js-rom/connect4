@@ -1,0 +1,24 @@
+@startuml
+
+package connect4
+package connect4.controllers
+package connect4.models
+package connect4.types
+package connect4.views
+package connect4.views.console
+package connect4.views.graphics
+
+connect4 ..> connect4.controllers
+connect4 ..> connect4.views
+connect4 ..> connect4.views.console
+connect4 ..> connect4.views.graphics
+connect4.controllers ..> connect4.models
+connect4.controllers ..> connect4.types
+connect4.models ..> connect4.types
+connect4.views ..> connect4.controllers
+connect4.views.console ..> connect4.views
+connect4.views.console ..> connect4.models
+connect4.views.graphics ..> connect4.views
+connect4.views.graphics ..> connect4.models
+
+@enduml

@@ -1,10 +1,11 @@
 package connect4.views.console;
 
-import connect4.controllers.ControllerVisitor;
-import connect4.controllers.PlayController;
-import connect4.controllers.ResumeController;
-import connect4.controllers.StartController;
+import connect4.controllers.core.ControllerVisitor;
+import connect4.controllers.core.PlayController;
+import connect4.controllers.core.ResumeController;
+import connect4.controllers.core.StartController;
 import connect4.views.View;
+import connect4.views.console.play.PlayView;
 
 public class ConsoleView implements View, ControllerVisitor {
 

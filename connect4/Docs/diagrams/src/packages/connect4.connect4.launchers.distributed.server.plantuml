@@ -1,0 +1,55 @@
+@startuml connect4.connect4.launchers.distributed.server
+
+class distributed.server.Server {
+    - serve()
+    + main(String[])
+}
+class distributed.server.DispatcherProtoype {
+    - Map<FrameType, Dispatcher> dispatchers
+    + add(FrameType, Dispatcher)
+    + serve()
+}
+class distributed.server.LogicImplementationServer {
+    + createDispatchers(DispatcherProtoype)
+}
+abstract class distributed.server.Dispatcher {
+    # acceptorController : AcceptorController
+    # server : net.Server
+    + {abstract} dispatch()
+    + associate(net.Server) 
+}
+class distributed.server.ActiveColorDispatcher
+class distributed.server.ActivePlayerTypeDispatcher
+class distributed.server.AddPlayerDispatcher
+class distributed.server.XxxDispatcher as "... Dispatcher"
+
+Server *--> LogicImplementationServer
+Server *--> DispatcherProtoype
+class Logic as  "connect4.connect4.controllers.\nimplementation.Logic"
+Logic <|-- LogicImplementationServer
+LogicImplementationServer ..> DispatcherProtoype
+
+class NetServer as "connect4.net.Server"
+DispatcherProtoype *--> NetServer
+class FrameType as "connect4.types.FrameType"
+DispatcherProtoype *--> "*" FrameType
+DispatcherProtoype *--> "*" Dispatcher
+
+Dispatcher --> NetServer
+class AcceptorController as "connect4.controllers.\ncore.AcceptorController"
+Dispatcher *--> AcceptorController 
+
+
+Dispatcher <|-- ActiveColorDispatcher
+Dispatcher <|-- ActivePlayerTypeDispatcher
+Dispatcher <|-- AddPlayerDispatcher
+Dispatcher <|-- XxxDispatcher
+class PlayController as "connect4.controllers.\nimplementation.PlayController"
+class StartController as "connect4.controllers.\nconimplementation.StartController"
+class ResumeController as "connect4.controllers.\nimplementation.ResumeController"
+XxxDispatcher ..> PlayController
+XxxDispatcher ..> StartController
+XxxDispatcher ..> ResumeController
+
+
+@enduml 

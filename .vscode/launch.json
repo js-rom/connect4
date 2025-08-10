@@ -3,16 +3,43 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch GraphicsConnect4",
+            "name": "ConsoleConnect4",
             "request": "launch",
-            "mainClass": "connect4.GraphicsConnect4",
+            "mainClass": "connect4.launchers.distributed.client.ConsoleConnect4",
+            "projectName": "connect4_baca4c33",
+            "vmArgs": "-ea"
+        },
+
+        {
+            "type": "java",
+            "name": "Server",
+            "request": "launch",
+            "mainClass": "connect4.launchers.distributed.server.Server",
+            "projectName": "connect4_baca4c33",
             "vmArgs": "-ea"
         },
         {
             "type": "java",
-            "name": "Launch ConsoleConnect4",
+            "name": "GraphicsConnect4",
             "request": "launch",
-            "mainClass": "connect4.ConsoleConnect4",
+            "mainClass": "connect4.launchers.distributed.client.GraphicsConnect4",
+            "projectName": "connect4_baca4c33",
+            "vmArgs": "-ea"
+        },
+        {
+            "type": "java",
+            "name": "ConsoleConnect4",
+            "request": "launch",
+            "mainClass": "connect4.launchers.standalone.ConsoleConnect4",
+            "projectName": "connect4_baca4c33",
+            "vmArgs": "-ea"
+        },
+        {
+            "type": "java",
+            "name": "GraphicsConnect4",
+            "request": "launch",
+            "mainClass": "connect4.launchers.standalone.GraphicsConnect4",
+            "projectName": "connect4_baca4c33",
             "vmArgs": "-ea"
         }
     ]
