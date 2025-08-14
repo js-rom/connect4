@@ -1,13 +1,12 @@
-package connect4.views.console;
+package connect4.views.console.start;
 
 import connect4.controllers.core.StartController;
-import connect4.views.console.turn.TurnView;
 
 public class StartView {
 
     public void interact(StartController startController) {
         assert startController.isReset();
-        new TurnView().selectPlayers(startController);
+        new StartMenu(startController).interact();
         startController.nextState();
     }
 
