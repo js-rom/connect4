@@ -1,6 +1,5 @@
 @startuml
 
-package connect4.views.console
 package connect4.views.console.play
 package connect4.views.console.shared
 package connect4.views.console.turn
@@ -10,15 +9,8 @@ package utils.models.menu
 package connect4.types
 package connect4.controllers.core
 package utils.models
-package connect4.views
+package connect4.views.console.start
 
-connect4.views.console ..> connect4.controllers.core
-connect4.views.console ..> connect4.views
-connect4.views.console ..> connect4.views.console.play
-connect4.views.console ..> utils.views
-connect4.views.console ..> connect4.types
-connect4.views.console ..> connect4.views.console.shared
-connect4.views.console ..> connect4.views.console.turn
 connect4.views.console.play ..> connect4.views.console.turn
 connect4.views.console.play ..> connect4.controllers.core
 connect4.views.console.play ..> connect4.views.console.shared
@@ -35,4 +27,7 @@ connect4.views.console.turn.player ..> connect4.views.console.shared
 connect4.views.console.turn.player ..> utils.views
 connect4.views.console.shared ..> connect4.controllers.core
 connect4.views.console.shared ..> utils.models.menu
+connect4.views.console.start ..> connect4.controllers.core
+connect4.views.console.start ..> utils.models.menu
+connect4.views.console.start ..> connect4.views.console.turn
 @enduml

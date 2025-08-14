@@ -70,10 +70,10 @@ class console.PlayerViewPrototypeRegistry <<PrototypeRegistry>> {
     -addPlayerView(PlayerType, PlayerView)
     +getPlayerView(PlayerType) : PlayerView
 }
-class StartController as "controllers.core.StartController"
-class PlayController as "controllers.core.PlayController"
-class ResumeController as "controllers.core.ResumeController"
-class AcceptorController as "controllers.core.AcceptorController"
+class StartController as "controllers.core\n.StartController"
+class PlayController as "controllers.core\n.PlayController"
+class ResumeController as "controllers.core\n.ResumeController"
+class AcceptorController as "controllers.core\n.AcceptorController"
 
 interface View as "views.View"{
     +start(StartController)
@@ -81,7 +81,7 @@ interface View as "views.View"{
     +resume(ResumeController)
 }
 
-interface ControllerVisitor as "controllers.ControllerVisitor" {
+interface ControllerVisitor as "controllers.\nControllerVisitor" {
     +visit(StartController)
     +visit(PlayController)
     +visit(ResumeController)
@@ -114,6 +114,18 @@ class console.ActionOption {
 abstract class console.MenuOption {
 }
 
+class console.StartMenu {
+}
+
+class console.NewGameCommand {
+    +interact()
+}
+
+Menu <|-- StartMenu
+StartMenu <|-- NewGameCommand
+StartMenu --> StartController
+NewGameCommand ..> TurnView
+
 Option <|-- MenuOption
 MenuOption <|-- PlayOption
 MenuOption --> AcceptorController
@@ -128,7 +140,7 @@ StartView ..> StartController
 PlayView ..> PlayController
 ResumeView ..> ResumeController
 
-StartView ..> TurnView
+StartView ..> StartMenu
 
 Menu <|-- PlayMenu
 PlayOption --> PlayController
@@ -167,11 +179,11 @@ TurnMenu --> StartController
 PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
 PlayerViewPrototypeRegistry o-- PlayerView
 
-class Option as "connect4.utils.menu.Option"
-class SecuentialMenu as "connect4.utils.menu.SecuentialMenu"
-class Menu as "connect4.utils.menu.Menu"
-class Coordinate as "connect4.Utils.Coordinate"
-class Console as "connect4.utils.Console"
+class Option as "connect4.utils\n.menu.Option"
+class SecuentialMenu as "connect4.utils\n.menu.SecuentialMenu"
+class Menu as "connect4.utils\n.menu.Menu"
+class Coordinate as "connect4.Utils\n.Coordinate"
+class Console as "connect4.utils\n.Console"
 class Player as "connect4.connect4.\nmodels.Player"
 enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
 
