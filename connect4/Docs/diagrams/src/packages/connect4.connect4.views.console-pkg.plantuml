@@ -33,5 +33,6 @@ connect4.views.console.turn ..> utils.views
 connect4.views.console.turn.player ..> connect4.controllers.core
 connect4.views.console.turn.player ..> connect4.views.console.shared
 connect4.views.console.turn.player ..> utils.views
-
+connect4.views.console.shared ..> connect4.controllers.core
+connect4.views.console.shared ..> utils.models.menu
 @enduml

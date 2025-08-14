@@ -6,6 +6,7 @@ import connect4.controllers.core.ResumeController;
 import connect4.controllers.core.StartController;
 import connect4.views.View;
 import connect4.views.console.play.PlayView;
+import connect4.views.console.start.StartView;
 
 public class ConsoleView implements View, ControllerVisitor {
 

@@ -42,20 +42,19 @@ class console.TurnMenu{
     +interact()
 }
 
-abstract class console.TurnOption{
-    +SetUserPlayerOption(StartController)
-}
-
 class console.SetRandomMachinePlayerOption{
         +interact()
+        +isActive() : boolean
 }
 
 class console.SetMinMaxMachinePlayerOption{
         +interact()
+        +isActive() : boolean
 }
 
 class console.SetUserPlayerOption{
         +interact()
+        +isActive() : boolean
 }
 
 enum console.Message
@@ -71,9 +70,10 @@ class console.PlayerViewPrototypeRegistry <<PrototypeRegistry>> {
     -addPlayerView(PlayerType, PlayerView)
     +getPlayerView(PlayerType) : PlayerView
 }
-class StartController as "controllers.StartController"
-class PlayController as "controllers.PlayController"
-class ResumeController as "controllers.ResumeController"
+class StartController as "controllers.core.StartController"
+class PlayController as "controllers.core.PlayController"
+class ResumeController as "controllers.core.ResumeController"
+class AcceptorController as "controllers.core.AcceptorController"
 
 interface View as "views.View"{
     +start(StartController)
@@ -95,19 +95,28 @@ class console.PlayMenu {
 
 abstract class console.PlayOption {
     +interact()
-    + {abstract} isActive()
 }
 class console.UndoOption {
     +interact()
+    +isActive() : boolean
 }
 
 class console.RedoOption {
     +interact()
+    +isActive() : boolean
 }
 
 class console.ActionOption {
     +interact()
+    +isActive() : boolean
 }
+
+abstract class console.MenuOption {
+}
+
+Option <|-- MenuOption
+MenuOption <|-- PlayOption
+MenuOption --> AcceptorController
 
 View <|.. Consoleview 
 ControllerVisitor <|.. Consoleview 
@@ -122,7 +131,6 @@ ResumeView ..> ResumeController
 StartView ..> TurnView
 
 Menu <|-- PlayMenu
-Option <|-- PlayOption
 PlayOption --> PlayController
 PlayOption ..> BoardView
 PlayOption <|-- ActionOption
@@ -148,9 +156,12 @@ PlayerView <|-- MachinePlayerView
 MachinePlayerView <|-- MinMaxMachinePlayerView
 MachinePlayerView <|-- RandomMachinePlayerView
 
-TurnOption <|-- SetRandomMachinePlayerOption
-TurnOption <|-- SetMinMaxMachinePlayerOption
-TurnOption <|-- SetUserPlayerOption
+MenuOption <|-- SetRandomMachinePlayerOption
+MenuOption <|-- SetMinMaxMachinePlayerOption
+MenuOption <|-- SetUserPlayerOption
+SetUserPlayerOption --> StartController
+SetRandomMachinePlayerOption --> StartController
+SetMinMaxMachinePlayerOption --> StartController
 TurnMenu --> StartController
 
 PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
