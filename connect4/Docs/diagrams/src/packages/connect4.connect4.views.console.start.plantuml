@@ -1,0 +1,67 @@
+@startuml connect4.connect4.console.start
+
+package start as "connect4.views.console.start"{
+    
+}
+
+class start.StartView{
+    +interact(StartController)
+}
+
+class TurnView as  "views.console.turn.TurnView" {
+}
+
+enum Message as "console.shared.Message"
+class StartController as "controllers.core\n.StartController"
+
+abstract class MenuOption as  "console.MenuOption"{
+}
+
+class start.StartMenu {
+}
+
+class start.NewGameCommand {
+    +interact()
+}
+
+class start.OpenGameCommand {
+    +interact()
+}
+
+class start.GameSelectionMenu {
+}
+
+class start.GameSelectionCommand {
+    +interact()
+}
+
+class Menu as "connect4.utils\n.models.menu.Menu"
+class Console as "connect4.utils\n.Console"
+
+Menu <|-- StartMenu
+StartMenu --> NewGameCommand
+StartMenu --> OpenGameCommand
+StartMenu --> StartController
+NewGameCommand ..> TurnView
+MenuOption <|-- NewGameCommand
+MenuOption <|-- OpenGameCommand
+OpenGameCommand --> StartController
+NewGameCommand --> StartController
+MenuOption <|-- GameSelectionCommand
+OpenGameCommand ..> GameSelectionMenu
+GameSelectionMenu --> "0..n" GameSelectionCommand
+GameSelectionMenu --> StartController
+Menu <|-- GameSelectionMenu
+GameSelectionCommand --> StartController
+GameSelectionCommand ..> Console
+GameSelectionCommand ..> Message
+
+
+StartView ..> StartController
+StartView ..> StartMenu
+
+
+
+
+
+@enduml

@@ -15,7 +15,7 @@ public class StartMenu extends Menu {
     @Override
     protected void addOptions() {
         this.add(new NewGameCommand(this.startController));
-        //this.add(new OpenGameCommand(this.startController));
+        this.add(new OpenGameCommand(this.startController));
     }
 
 }

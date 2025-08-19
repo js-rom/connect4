@@ -65,4 +65,28 @@ public class StartController extends connect4.controllers.core.StartController {
         this.client.send(FrameType.START_NEXT_STATE.name());
     }
 
+    @Override
+    public void start() {
+        // TODO
+        throw new UnsupportedOperationException("Unimplemented method 'start'");
+    }
+
+    @Override
+    public void start(String gameName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'start'");
+    }
+
+    @Override
+    public String[] getGameNames() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getGameNames'");
+    }
+
+    @Override
+    public boolean hasSavedGames() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'hasSavedGames'");
+    }
+
 }

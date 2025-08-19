@@ -111,7 +111,7 @@ class console.ActionOption {
     +isActive() : boolean
 }
 
-abstract class console.MenuOption {
+abstract class MenuOption {
 }
 
 class console.StartMenu {
@@ -121,10 +121,23 @@ class console.NewGameCommand {
     +interact()
 }
 
+class console.OpenGameCommand {
+    +interact()
+}
+
+class console.GameSelectionCommand {
+    +interact()
+}
+
+
 Menu <|-- StartMenu
-StartMenu <|-- NewGameCommand
+StartMenu --> NewGameCommand
+StartMenu --> OpenGameCommand
 StartMenu --> StartController
 NewGameCommand ..> TurnView
+MenuOption <|-- NewGameCommand
+MenuOption <|-- OpenGameCommand
+MenuOption <|-- GameSelectionCommand
 
 Option <|-- MenuOption
 MenuOption <|-- PlayOption

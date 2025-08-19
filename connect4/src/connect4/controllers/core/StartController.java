@@ -13,6 +13,10 @@ public abstract class StartController extends Controller implements AcceptorCont
 
     }
 
+    public abstract void start();
+
+    public abstract void start(String gameName);
+
     public abstract PlayerType[] getPlayerTypes();
 
     public abstract int getNumberPlayers();
@@ -22,6 +26,10 @@ public abstract class StartController extends Controller implements AcceptorCont
     public abstract boolean isReset();
 
     public abstract void addPlayer(PlayerType playerType);
+
+    public abstract String[] getGameNames();
+
+    public abstract boolean hasSavedGames();
 
     @Override
     public void accept(ControllerVisitor controllerVisitor) {

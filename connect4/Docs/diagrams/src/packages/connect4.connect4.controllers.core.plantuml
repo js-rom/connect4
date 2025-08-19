@@ -24,6 +24,10 @@ abstract class controllers.core.StartController {
     + {abstract} isReset() : boolean
     + {abstract} addPlayer(PlayerType)
     + accept(ControllerVisitor)
+    + start()
+    + start(String name)
+    + getGameNames() : String[]
+    + hasSavedGames() : boolean
 }
 
 interface controllers.core.ControllerVisitor {

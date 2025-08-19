@@ -15,7 +15,8 @@ public enum Message {
     PLAYER_WIN("#colorS WIN!!! : -)"),
     PLAYERS_TIED("TIED!!!"),
     RESUME("Do you want to continue"),
-    CHOOSEN_COLUMN("#METHOD choosen column: #COLUMN");
+    CHOOSEN_COLUMN("#METHOD choosen column: #COLUMN"),
+    GAME_SELECTED("Game selected: #NAME");
 
     private String string;
 

@@ -7,7 +7,6 @@ public class StartView {
     public void interact(StartController startController) {
         assert startController.isReset();
         new StartMenu(startController).interact();
-        startController.nextState();
     }
 
 }
