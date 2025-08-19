@@ -1,6 +1,7 @@
 package connect4.launchers.distributed.server;
 
 import connect4.controllers.implementation.Logic;
+import connect4.daos.SessionDAO;
 import connect4.launchers.distributed.server.dispatchers.ActiveColorDispatcher;
 import connect4.launchers.distributed.server.dispatchers.ActivePlayerTypeDispatcher;
 import connect4.launchers.distributed.server.dispatchers.AddPlayerDispatcher;
@@ -26,6 +27,10 @@ import connect4.launchers.distributed.server.dispatchers.UndoableDispatcher;
 import connect4.types.FrameType;
 
 public class LogicImplementationServer extends Logic {
+
+    public LogicImplementationServer() {
+        super(new SessionDAO());
+    }
 
     public void createDispatchers(DispatcherPrototype dispatcherPrototype) {
         dispatcherPrototype.add(FrameType.STATE, new StateDispatcher(this.playController));

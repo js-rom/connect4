@@ -6,6 +6,7 @@ package connect4.types
 package connect4.views
 package connect4.controllers
 package connect4.utils
+package connect4.daos
 
 connect4.launchers ..> connect4.views
 connect4.launchers ..> connect4.controllers
@@ -17,5 +18,7 @@ connect4.controllers ..> connect4.types
 connect4.controllers ..> connect4.utils
 connect4.models ..> connect4.types
 connect4.models ..> connect4.utils
+connect4.launchers ..> connect4.daos
+connect4.controllers ..> connect4.daos
 
 @enduml

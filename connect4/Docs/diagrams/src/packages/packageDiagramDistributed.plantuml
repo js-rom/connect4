@@ -32,6 +32,11 @@ connect4.launchers.distributed.server.dispatchers ..> utils.models
 connect4.launchers.distributed.server.dispatchers ..> connect4.controllers.core
 package connect4.net
 connect4.launchers.distributed.server.dispatchers ..> connect4.net
+package connect4.daos
+connect4.launchers.distributed.server ..> connect4.daos
+connect4.launchers.standalone ..> connect4.daos
+connect4.controllers.implementation ..> connect4.daos
+
 
 package connect4.models
 connect4.models ..> connect4.types

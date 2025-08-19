@@ -1,0 +1,7 @@
+@startuml connect4.connect4.daos
+
+class daos.Session {
+
+}
+
+@enduml

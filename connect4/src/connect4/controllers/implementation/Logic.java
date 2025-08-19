@@ -1,19 +1,22 @@
 package connect4.controllers.implementation;
 
 import connect4.controllers.core.AcceptorController;
+import connect4.daos.SessionDAO;
 import connect4.models.Session;
 import connect4.types.StateValue;
 
 public class Logic extends connect4.controllers.core.Logic {
 
     private Session session;
+    private SessionDAO sessionDAO;
 
     protected StartController startController;
     protected PlayController playController;
     protected ResumeController resumeController;
 
-    public Logic() {
+    public Logic(SessionDAO sessionDAO) {
         this.session = new Session();
+        this.sessionDAO = sessionDAO;
         this.startController = new StartController(session);
         this.playController = new PlayController(session);
         this.resumeController = new ResumeController(session);
