@@ -111,6 +111,11 @@ class console.ActionOption {
     +isActive() : boolean
 }
 
+class console.ExitOption {
+    +interact()
+    +isActive() : boolean
+}
+
 abstract class MenuOption {
 }
 
@@ -159,6 +164,7 @@ Menu <|-- PlayMenu
 PlayOption --> PlayController
 PlayOption ..> BoardView
 PlayOption <|-- ActionOption
+PlayOption <|-- ExitOption
 ActionOption ..> TurnView
 PlayOption <|-- UndoOption
 PlayOption <|-- RedoOption
