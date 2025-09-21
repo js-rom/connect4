@@ -10,12 +10,12 @@ public class ExitOption extends PlayOption {
 
     @Override
     public void interact() {
-        ((PlayController) this.acceptorController).nextState();;
+        ((PlayController) this.acceptorController).nextState();
     }
 
     @Override
     public boolean isActive() {
-        return ((PlayController) this.acceptorController).redoable();
+        return true;
     }
 
 }
