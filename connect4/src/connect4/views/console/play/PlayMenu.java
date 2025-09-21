@@ -16,7 +16,8 @@ public class PlayMenu extends Menu {
         this.playOption = List.of(
             new ActionOption(this.playController),
             new UndoOption(this.playController),
-            new RedoOption(playController)
+            new RedoOption(this.playController),
+            new ExitOption(this.playController)
         );
     }
 
