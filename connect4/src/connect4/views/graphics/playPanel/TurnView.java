@@ -44,13 +44,18 @@ public class TurnView extends PanelView {
             this.undoCommand.execute();
         });
         undo.setEnabled(playController.undoable());
+        this.add(undo);
         JButton redo = new JButton("Redo Last Move");
         redo.addActionListener(e -> {
             this.redoCommand.execute();
         });
         redo.setEnabled(playController.redoable());
-        this.add(undo);
         this.add(redo);
+        JButton exit = new JButton("Exit Game");
+        exit.addActionListener(e -> {
+            this.playController.nextState();
+        });
+        this.add(exit);
 
     }
 
