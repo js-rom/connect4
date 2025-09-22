@@ -5,6 +5,7 @@ import java.util.concurrent.CountDownLatch;
 import connect4.controllers.core.ControllerVisitor;
 import connect4.controllers.core.PlayController;
 import connect4.controllers.core.ResumeController;
+import connect4.controllers.core.SaveController;
 import connect4.controllers.core.StartController;
 import connect4.views.View;
 import connect4.views.graphics.playPanel.PlayPanelView;
@@ -61,6 +62,12 @@ public class GraphicsView implements View, ControllerVisitor {
     @Override
     public boolean visit(ResumeController resumeController) {
         return this.resume(resumeController);
+    }
+
+    @Override
+    public void visit(SaveController saveController) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'visit'");
     }
 
 }

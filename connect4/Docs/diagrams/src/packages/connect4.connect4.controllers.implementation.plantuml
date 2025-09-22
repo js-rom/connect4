@@ -28,6 +28,10 @@ class controllers.implementation.RedoController{
    
 }
 
+class controllers.implementation.SaveController{
+  
+}
+
 class controllers.implementation.ResumeController{
   
 }
@@ -38,6 +42,7 @@ class StateValue as "types.StateValue"
 abstract class controllers.AcceptorController as "controllers.core.AcceptorController"
 AcceptorController <|.. StartController
 AcceptorController <|.. PlayController
+AcceptorController <|.. SaveController
 AcceptorController <|.. ResumeController
 
 abstract class controllers.coreLogic as "controllers.core.Logic"
@@ -58,6 +63,7 @@ abstract class controllers.ResumeController as "controllers.core.ResumeControlle
 
 controllers.StartController <|-- controllers.implementation.StartController
 controllers.PlayController <|-- controllers.implementation.PlayController
+controllers.SaveController <|-- controllers.implementation.SaveController
 controllers.ResumeController <|-- controllers.implementation.ResumeController
 
 @enduml

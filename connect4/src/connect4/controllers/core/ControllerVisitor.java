@@ -6,5 +6,7 @@ public interface ControllerVisitor {
 
     void visit(PlayController playController);
 
+    void visit(SaveController saveController);
+
     boolean visit(ResumeController resumeController);
 }

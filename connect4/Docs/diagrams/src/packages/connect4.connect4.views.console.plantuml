@@ -84,6 +84,7 @@ interface View as "views.View"{
 interface ControllerVisitor as "controllers.\nControllerVisitor" {
     +visit(StartController)
     +visit(PlayController)
+    +visit(SaveController)
     +visit(ResumeController)
 }
 

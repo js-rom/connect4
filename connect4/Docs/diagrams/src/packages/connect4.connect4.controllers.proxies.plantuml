@@ -42,10 +42,12 @@ ResumeController --> Client
 
 abstract class controllers.StartController as "controllers.core.StartController"
 abstract class controllers.PlayController as "controllers.core.PlayController"
+abstract class controllers.SaveController as "controllers.core.SaveController"
 abstract class controllers.ResumeController as "controllers.core.ResumeController"
 
 controllers.StartController <|-- controllers.proxies.StartController
 controllers.PlayController <|-- controllers.proxies.PlayController
+controllers.SaveController <|-- controllers.proxies.SaveController
 controllers.ResumeController <|-- controllers.proxies.ResumeController
 
 @enduml

@@ -31,9 +31,10 @@ abstract class controllers.core.StartController {
 }
 
 interface controllers.core.ControllerVisitor {
-    +start(StartController)
-    +play(PlayController)
-    +resume(ResumeController)
+    +visit(StartController)
+    +visit(PlayController)
+    +visit(SaveController)
+    +visit(ResumeController)
 }
 
 abstract class controllers.core.PlayController{
@@ -53,6 +54,10 @@ abstract class controllers.core.PlayController{
     + accept(ControllerVisitor)
 }
 
+abstract class controllers.core.SaveController{
+    + accept(ControllerVisitor)
+}
+
 abstract class controllers.core.ResumeController{
     + {abstract} isWinner() : boolean
     + {abstract} reset()
@@ -65,9 +70,11 @@ class StateValue as "types.StateValue"
 AcceptorController ..> ControllerVisitor
 Controller <|-- StartController
 Controller <|-- PlayController
+Controller <|-- SaveController
 Controller <|-- ResumeController
 AcceptorController <|.. StartController
 AcceptorController <|.. PlayController
+AcceptorController <|.. SaveController
 AcceptorController <|.. ResumeController
 
 Logic *--> Session
