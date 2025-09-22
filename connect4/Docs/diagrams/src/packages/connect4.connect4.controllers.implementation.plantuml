@@ -37,6 +37,7 @@ class controllers.implementation.ResumeController{
 }
 
 class Session as "models.Session"
+class SessionDAO as "daos.SessionDAO"
 class StateValue as "types.StateValue"
 
 abstract class controllers.AcceptorController as "controllers.core.AcceptorController"
@@ -48,8 +49,10 @@ AcceptorController <|.. ResumeController
 abstract class controllers.coreLogic as "controllers.core.Logic"
 coreLogic <|-- Logic
 Logic *--> Session
+Logic --> SessionDAO
 Logic *--> StartController
 Logic *--> PlayController
+Logic *--> SaveController
 Logic *--> ResumeController
 Logic *--> StateValue
 
@@ -59,6 +62,7 @@ PlayController *--> RedoController
 
 abstract class controllers.StartController as "controllers.core.StartController"
 abstract class controllers.PlayController as "controllers.core.PlayController"
+abstract class controllers.SaveController as "controllers.core.SaveController"
 abstract class controllers.ResumeController as "controllers.core.ResumeController"
 
 controllers.StartController <|-- controllers.implementation.StartController

@@ -15,6 +15,10 @@ class controllers.proxies.PlayController{
 
 }
 
+class controllers.proxies.SaveController{
+
+}
+
 class controllers.proxies.ResumeController{
   
 }
@@ -30,6 +34,7 @@ coreLogic <|-- Logic
 Logic *--> Session
 Logic *--> StartController
 Logic *--> PlayController
+Logic *--> SaveController
 Logic *--> ResumeController
 Logic *--> StateValue
 class Client as "connect4.net.Client"
@@ -38,6 +43,7 @@ Session --> Client
 
 StartController --> Client
 PlayController --> Client
+SaveController --> Client
 ResumeController --> Client
 
 abstract class controllers.StartController as "controllers.core.StartController"
