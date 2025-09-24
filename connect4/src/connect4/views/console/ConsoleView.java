@@ -60,8 +60,7 @@ public class ConsoleView implements View, ControllerVisitor {
 
     @Override
     public void visit(SaveController saveController) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'visit'");
+        this.save(saveController);
     }
 
 
