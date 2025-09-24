@@ -109,4 +109,8 @@ public class Session {
     public boolean hasName() {
         return this.name != null;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

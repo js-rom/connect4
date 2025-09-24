@@ -7,22 +7,22 @@ import connect4.types.FrameType;
 
 public class SaveController extends connect4.controllers.core.SaveController {
 
-    private Client client;
+	private Client client;
 
-    public SaveController(Client client) {
-        this.client = client;
-    }
+	public SaveController(Client client) {
+		this.client = client;
+	}
 
 	@Override
 	public boolean hasName() {
 		this.client.send(FrameType.HAS_GAME_NAME.name());
-        boolean hasName = false;
-        try {
-            hasName = this.client.receiveBoolean();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return hasName;
+		boolean hasName = false;
+		try {
+			hasName = this.client.receiveBoolean();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return hasName;
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class SaveController extends connect4.controllers.core.SaveController {
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'setName'");
+		this.client.send(FrameType.SET_GAME_NAME.name());
+		this.client.send(name);
 	}
 
 }

@@ -25,8 +25,7 @@ public class SaveController extends connect4.controllers.core.SaveController {
 
     @Override
     public void setName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setName'");
+        this.session.setName(name);
     }
 
 }
