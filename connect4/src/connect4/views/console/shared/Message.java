@@ -14,6 +14,9 @@ public enum Message {
     COMPLETED_COLUMN("Invalid column!!! It's completed"),
     PLAYER_WIN("#colorS WIN!!! : -)"),
     PLAYERS_TIED("TIED!!!"),
+    SAVE("Do you want to save the game"),
+    NAME("Enter the name of the game: "),
+    NAME_ALREADY_EXISTS("The name already exists"),
     RESUME("Do you want to continue"),
     CHOOSEN_COLUMN("#METHOD choosen column: #COLUMN"),
     GAME_SELECTED("Game selected: #NAME");

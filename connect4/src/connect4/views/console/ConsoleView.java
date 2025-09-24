@@ -14,11 +14,13 @@ public class ConsoleView implements View, ControllerVisitor {
     private StartView startView;
     private PlayView playView;
     private ResumeView resumeView;
+    private SaveView saveView;
 
     public ConsoleView() {
         this.startView = new StartView();
         this.playView = new PlayView();
         this.resumeView = new ResumeView();
+        this.saveView = new SaveView();
     }
 
     @Override
@@ -29,6 +31,11 @@ public class ConsoleView implements View, ControllerVisitor {
     @Override
     public void play(PlayController playController) {
         this.playView.interact(playController);
+    }
+
+    @Override
+    public void save(SaveController saveController) {
+        this.saveView.interact(saveController);
     }
 
     @Override
