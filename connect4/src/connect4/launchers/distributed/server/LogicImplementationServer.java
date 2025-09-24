@@ -9,6 +9,7 @@ import connect4.launchers.distributed.server.dispatchers.ColorDispatcher;
 import connect4.launchers.distributed.server.dispatchers.ColumnDispatcher;
 import connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
 import connect4.launchers.distributed.server.dispatchers.DropTokenDispatcher;
+import connect4.launchers.distributed.server.dispatchers.HasGameNameDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsCompleteDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsFinishedDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsResetDispatcher;
@@ -54,6 +55,7 @@ public class LogicImplementationServer extends Logic {
         dispatcherPrototype.add(FrameType.START_NEXT_STATE, new NextStateDispatcher(this.startController));
         dispatcherPrototype.add(FrameType.ACTIVE_COLOR, new ActiveColorDispatcher(this.playController));
         dispatcherPrototype.add(FrameType.NEXT, new NextDispatcher(this.playController));
+        dispatcherPrototype.add(FrameType.HAS_GAME_NAME, new HasGameNameDispatcher(this.saveController));
         dispatcherPrototype.add(FrameType.PLAY_NEXT_STATE, new NextStateDispatcher(this.playController));
         dispatcherPrototype.add(FrameType.RESUME_NEXT_STATE, new NextStateDispatcher(this.resumeController));
     }

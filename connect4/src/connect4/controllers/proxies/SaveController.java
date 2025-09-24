@@ -1,6 +1,9 @@
 package connect4.controllers.proxies;
 
+import java.io.IOException;
+
 import connect4.net.Client;
+import connect4.types.FrameType;
 
 public class SaveController extends connect4.controllers.core.SaveController {
 
@@ -12,8 +15,14 @@ public class SaveController extends connect4.controllers.core.SaveController {
 
 	@Override
 	public boolean hasName() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'hasName'");
+		this.client.send(FrameType.HAS_GAME_NAME.name());
+        boolean hasName = false;
+        try {
+            hasName = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return hasName;
 	}
 
 	@Override

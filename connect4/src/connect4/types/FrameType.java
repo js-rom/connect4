@@ -23,6 +23,7 @@ public enum FrameType {
     PLAY_NEXT_STATE,
     ACTIVE_COLOR,
     RESUME_NEXT_STATE,
+    HAS_GAME_NAME,
     STATE,
     CLOSE;
 

@@ -10,6 +10,7 @@ public class Session {
     private State state;
     private Game game;
     private Registry registry;
+    private String name;
 
     public Session() {
         this.state = new State();
@@ -103,5 +104,9 @@ public class Session {
 
     public boolean isComplete(int column) {
         return this.game.isComplete(column);
+    }
+
+    public boolean hasName() {
+        return this.name != null;
     }
 }

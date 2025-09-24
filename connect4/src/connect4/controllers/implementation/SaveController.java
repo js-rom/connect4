@@ -10,8 +10,7 @@ public class SaveController extends connect4.controllers.core.SaveController {
     }
 
     public boolean hasName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hasName'");
+        return this.session.hasName();
     }
 
     public boolean exists(String name) {
