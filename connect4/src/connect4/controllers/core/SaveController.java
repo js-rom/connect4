@@ -17,4 +17,12 @@ public abstract class SaveController extends Controller implements AcceptorContr
         controllerVisitor.visit(this);
     }
 
+    public abstract boolean hasName();
+
+    public abstract boolean exists(String name);
+
+    public abstract void save();
+
+    public abstract void setName(String name);
+
 }
