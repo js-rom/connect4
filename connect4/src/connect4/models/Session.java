@@ -113,4 +113,12 @@ public class Session {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Game getGame() {
+        return this.game;
+    }
 }
