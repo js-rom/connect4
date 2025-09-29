@@ -18,6 +18,7 @@ public class Logic extends connect4.controllers.core.Logic {
     public Logic(SessionDAO sessionDAO) {
         this.session = new Session();
         this.sessionDAO = sessionDAO;
+        this.sessionDAO.associate(this.session);
         this.startController = new StartController(session);
         this.playController = new PlayController(session);
         this.saveController = new SaveController(session, sessionDAO);
