@@ -55,8 +55,20 @@ public class Game {
         return this.getActivePlayer().getType();
     }
 
+    public String getPlayerTypeName(int index) {
+        return this.turn.getPlayerTypeName(index);
+    }
+
+    public int getActivePlayerIndex() {
+        return this.turn.getActivePlayerIndex();
+    }
+
     public Color getActiveColor() {
         return this.getActivePlayer().getColor();
+    }
+
+    public String getPlayerColorName(int index) {
+        return this.turn.getPlayerColorName(index);
     }
 
     public void next() {
@@ -82,5 +94,9 @@ public class Game {
 
     public Coordinate getLastDrop() {
         return this.board.getLastDrop();
+    }
+
+    public int getPlayersSize() {
+        return this.turn.getPlayersSize();
     }
 }

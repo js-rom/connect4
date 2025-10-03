@@ -7,7 +7,7 @@ import utils.models.Coordinate;
 
 public class BoardDAO implements DAO {
 
-    Game game;
+    private Game game;
 
     public BoardDAO(Game game) {
         assert game != null;
