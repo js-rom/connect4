@@ -191,4 +191,9 @@ public class Board {
         }
         return board;
     }
+
+    public Coordinate getLastDrop() {
+        return this.lastDrop;
+    }
+    
 }

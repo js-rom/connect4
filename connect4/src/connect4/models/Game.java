@@ -76,4 +76,11 @@ public class Game {
         return this.board.isComplete(column);
     }
 
+    public String[] getBoardColors() {
+        return this.board.toStringArray();
+    }
+
+    public Coordinate getLastDrop() {
+        return this.board.getLastDrop();
+    }
 }
