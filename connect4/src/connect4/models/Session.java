@@ -77,7 +77,7 @@ public class Session {
     }
 
     public boolean isFinished() {
-        return this.game.isFinished();
+        return this.game.isFinished() || this.state.getValueState() != StateValue.IN_GAME;
     }
 
     public void next() {
