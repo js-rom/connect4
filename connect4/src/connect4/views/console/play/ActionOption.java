@@ -13,6 +13,10 @@ public class ActionOption extends PlayOption {
     public void interact() {
         new TurnView().dropToken((PlayController) this.acceptorController);
         super.interact();
+        if (((PlayController) this.acceptorController).isFinished()) {
+            new TurnView().writeResult((PlayController) this.acceptorController);
+            ((PlayController) this.acceptorController).nextState();
+        }
     }
 
     @Override
