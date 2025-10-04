@@ -25,6 +25,7 @@ public enum FrameType {
     RESUME_NEXT_STATE,
     HAS_GAME_NAME,
     SET_GAME_NAME,
+    EXISTS_GAME_NAME,
     STATE,
     CLOSE;
 

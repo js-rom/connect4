@@ -27,8 +27,15 @@ public class SaveController extends connect4.controllers.core.SaveController {
 
 	@Override
 	public boolean exists(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'exists'");
+		this.client.send(FrameType.EXISTS_GAME_NAME.name());
+		this.client.send(name);
+		boolean exists = false;
+		try {
+			exists = this.client.receiveBoolean();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return exists;
 	}
 
 	@Override
