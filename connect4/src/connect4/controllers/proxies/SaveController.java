@@ -40,8 +40,7 @@ public class SaveController extends connect4.controllers.core.SaveController {
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'save'");
+		this.client.send(FrameType.SAVE.name());
 	}
 
 	@Override

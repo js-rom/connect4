@@ -23,6 +23,7 @@ import connect4.launchers.distributed.server.dispatchers.RedoDispatcher;
 import connect4.launchers.distributed.server.dispatchers.RedoableDispatcher;
 import connect4.launchers.distributed.server.dispatchers.RegisterMementoDispatcher;
 import connect4.launchers.distributed.server.dispatchers.ResetDispatcher;
+import connect4.launchers.distributed.server.dispatchers.SaveDispatcher;
 import connect4.launchers.distributed.server.dispatchers.SetGameNameDispatcher;
 import connect4.launchers.distributed.server.dispatchers.StateDispatcher;
 import connect4.launchers.distributed.server.dispatchers.UndoDispatcher;
@@ -60,6 +61,7 @@ public class LogicImplementationServer extends Logic {
         dispatcherPrototype.add(FrameType.HAS_GAME_NAME, new HasGameNameDispatcher(this.saveController));
         dispatcherPrototype.add(FrameType.SET_GAME_NAME, new SetGameNameDispatcher(this.saveController));
         dispatcherPrototype.add(FrameType.EXISTS_GAME_NAME, new ExistGameNameDispatcher(this.saveController));
+        dispatcherPrototype.add(FrameType.SAVE, new SaveDispatcher(this.saveController));
         dispatcherPrototype.add(FrameType.PLAY_NEXT_STATE, new NextStateDispatcher(this.playController));
         dispatcherPrototype.add(FrameType.RESUME_NEXT_STATE, new NextStateDispatcher(this.resumeController));
     }

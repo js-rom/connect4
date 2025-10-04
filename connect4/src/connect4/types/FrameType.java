@@ -26,6 +26,7 @@ public enum FrameType {
     HAS_GAME_NAME,
     SET_GAME_NAME,
     EXISTS_GAME_NAME,
+    SAVE,
     STATE,
     CLOSE;
 
