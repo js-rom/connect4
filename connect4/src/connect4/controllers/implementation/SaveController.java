@@ -5,8 +5,11 @@ import connect4.models.Session;
 
 public class SaveController extends connect4.controllers.core.SaveController {
 
+    SessionDAO sessionDAO;
+
     public SaveController(Session session, SessionDAO sessionDAO) {
         super(session);
+        this.sessionDAO = sessionDAO;
     }
 
     public boolean hasName() {
@@ -14,13 +17,11 @@ public class SaveController extends connect4.controllers.core.SaveController {
     }
 
     public boolean exists(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exists'");
+        return this.sessionDAO.exists(name);
     }
 
     public void save() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        this.sessionDAO.save();
     }
 
     @Override
