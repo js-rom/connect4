@@ -67,8 +67,7 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public void start() {
-        // TODO
-        throw new UnsupportedOperationException("Unimplemented method 'start'");
+        this.nextState();
     }
 
     @Override
