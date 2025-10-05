@@ -13,6 +13,10 @@ public class SaveController extends connect4.controllers.core.SaveController {
 		this.client = client;
 	}
 
+	public void nextState() {
+		this.client.send(FrameType.START_NEXT_STATE.name());
+	}
+
 	@Override
 	public boolean hasName() {
 		this.client.send(FrameType.HAS_GAME_NAME.name());
