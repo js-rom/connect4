@@ -61,6 +61,16 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console/connect4.connect4.console.console.svg)
 
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console.shared/connect4.connect4.console.shared.svg)
+
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console.start/connect4.connect4.console.start.svg)
+
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console.play/connect4.connect4.console.play.svg)
+
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console.turn/connect4.connect4.console.turn.svg)
+
+![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console.turn.player/connect4.connect4.console.turn.player.svg)
+
 
 ## connect4.views.graphics Package
 

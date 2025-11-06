@@ -1,0 +1,26 @@
+@startuml connect4.connect4.console.shared
+
+class Console as "utils\n.Console"
+abstract class Option as "utils.models.\nmenu.Option"
+interface AcceptorController as "connect4.controllers.\ncore.AcceptorController"
+
+package shared as "connect4.views.console.shared"{
+}
+
+enum shared.Message {
+    - string: String
+    + Message(string : String)
+    + write(): void
+    + writeln(): void
+    + toString(): String
+}
+
+abstract class shared.MenuOption {
+    + MenuOption(AcceptorController, tittle : String)
+}
+
+Message ..> Console
+Option <|-- MenuOption
+MenuOption *--> AcceptorController
+
+@enduml

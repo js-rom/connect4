@@ -1,223 +1,57 @@
 @startuml connect4.connect4.console.console
 
-class console.Consoleview
 
-class console.StartView{
-    +interact(StartController)
-}
-
-class console.PlayView{
-    +interact(PlayController)
-}
-
-class console.ResumeView{
-    +interact(ResumeController)
-}
-
-class console.BoardView{
-    +writeln()
-    +writeHorizontal()
-}
-
-class console.TurnView{
-    +selectPlayers(StartController)
-    +dropToken(PlayController)
-    +writeResult(PlayController)
-}
-
-abstract class console.PlayerView{
-    +getColumn(): int
-    +dropToken()
-    +setPlayer(Player player)
-    +copy() : PlayerView
-}
-
-abstract class console.MachinePlayerView
-class console.MinMaxMachinePlayerView
-class console.RandomMachinePlayerView
-class console.UserPlayerView
-class console.TurnMenu{
-    +TurnMenu(Startcontroller, int)
-    +addOptions()
-    +interact()
-}
-
-class console.SetRandomMachinePlayerOption{
-        +interact()
-        +isActive() : boolean
-}
-
-class console.SetMinMaxMachinePlayerOption{
-        +interact()
-        +isActive() : boolean
-}
-
-class console.SetUserPlayerOption{
-        +interact()
-        +isActive() : boolean
-}
-
-enum console.Message
-
-class console.YesNoDialog
-
-class console.PlayerViewPrototypeDirector <<Director>> {
-    get(PlayerViewPrototypeRegistry, PlayerType) : PlayerView 
-}
-
-class console.PlayerViewPrototypeRegistry <<PrototypeRegistry>> {
-    -playerViews : Map<PlayerType, PlayerView> 
-    -addPlayerView(PlayerType, PlayerView)
-    +getPlayerView(PlayerType) : PlayerView
-}
 class StartController as "controllers.core\n.StartController"
 class PlayController as "controllers.core\n.PlayController"
 class ResumeController as "controllers.core\n.ResumeController"
-class AcceptorController as "controllers.core\n.AcceptorController"
+class SaveController as "controllers.core\n.SaveController"
+class StartView as "connect4.views.\nconsole.start.StartView"
+class PlayView as "connect4.views.\nconsole.play.PlayView"
+interface View as "connect4.views.View"
+interface ControllerVisitor as "controllers.core.\nControllerVisitor"
+class Console as "utils.views.Console"
+class YesNoDialog as "utils.views.YesNoDialog"
+enum Message as "connect4.views.console.\nshared.Message"
 
-interface View as "views.View"{
-    +start(StartController)
-    +play(Playcoontroller)
-    +resume(ResumeController)
+package console as "connect4.views.console"{
+    
 }
 
-interface ControllerVisitor as "controllers.\nControllerVisitor" {
-    +visit(StartController)
-    +visit(PlayController)
-    +visit(SaveController)
-    +visit(ResumeController)
+class console.ResumeView{
+    + interact(ResumeController)
 }
 
-class console.PlayMenu {
-    +PlayMenu(PlayController)
-    +addOptions()
-    +interact()
+class console.Consoleview {
+    + start(StartController)
+    + play(Playcoontroller)
+    + resume(ResumeController)
+    + visit(StartController)
+    + visit(PlayController)
+    + visit(SaveController)
+    + visit(ResumeController)
 }
 
-abstract class console.PlayOption {
-    +interact()
+class console.SaveView {
+    + interact(SaveController)
+    - askName() : String
 }
-class console.UndoOption {
-    +interact()
-    +isActive() : boolean
-}
-
-class console.RedoOption {
-    +interact()
-    +isActive() : boolean
-}
-
-class console.ActionOption {
-    +interact()
-    +isActive() : boolean
-}
-
-class console.ExitOption {
-    +interact()
-    +isActive() : boolean
-}
-
-abstract class MenuOption {
-}
-
-class console.StartMenu {
-}
-
-class console.NewGameCommand {
-    +interact()
-}
-
-class console.OpenGameCommand {
-    +interact()
-}
-
-class console.GameSelectionCommand {
-    +interact()
-}
-
-
-Menu <|-- StartMenu
-StartMenu --> NewGameCommand
-StartMenu --> OpenGameCommand
-StartMenu --> StartController
-NewGameCommand ..> TurnView
-MenuOption <|-- NewGameCommand
-MenuOption <|-- OpenGameCommand
-MenuOption <|-- GameSelectionCommand
-
-Option <|-- MenuOption
-MenuOption <|-- PlayOption
-MenuOption --> AcceptorController
 
 View <|.. Consoleview 
 ControllerVisitor <|.. Consoleview 
 Consoleview *--> StartView
 Consoleview *--> PlayView
 Consoleview *--> ResumeView
-
-StartView ..> StartController
-PlayView ..> PlayController
+Consoleview *--> SaveView
+Consoleview ..> StartController
+Consoleview ..> PlayController
+Consoleview ..> ResumeController
+Consoleview ..> SaveController
 ResumeView ..> ResumeController
-
-StartView ..> StartMenu
-
-Menu <|-- PlayMenu
-PlayOption --> PlayController
-PlayOption ..> BoardView
-PlayOption <|-- ActionOption
-PlayOption <|-- ExitOption
-ActionOption ..> TurnView
-PlayOption <|-- UndoOption
-PlayOption <|-- RedoOption
-PlayMenu *--> "3"PlayOption
-PlayView ..> PlayMenu
-PlayMenu --> PlayController
-
 ResumeView ..> YesNoDialog
-
-TurnView ..> PlayerView
-TurnView ..> StartController
-TurnView ..> PlayController
-TurnView ..> TurnMenu
-TurnMenu *-- "3"TurnOption
-TurnView ..> PlayerViewPrototypeDirector
-TurnView ..> PlayerViewPrototypeRegistry
-
-PlayerView <|-- UserPlayerView
-PlayerView <|-- MachinePlayerView
-MachinePlayerView <|-- MinMaxMachinePlayerView
-MachinePlayerView <|-- RandomMachinePlayerView
-
-MenuOption <|-- SetRandomMachinePlayerOption
-MenuOption <|-- SetMinMaxMachinePlayerOption
-MenuOption <|-- SetUserPlayerOption
-SetUserPlayerOption --> StartController
-SetRandomMachinePlayerOption --> StartController
-SetMinMaxMachinePlayerOption --> StartController
-TurnMenu --> StartController
-
-PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
-PlayerViewPrototypeRegistry o-- PlayerView
-
-class Option as "connect4.utils\n.menu.Option"
-class SecuentialMenu as "connect4.utils\n.menu.SecuentialMenu"
-class Menu as "connect4.utils\n.menu.Menu"
-class Coordinate as "connect4.Utils\n.Coordinate"
-class Console as "connect4.utils\n.Console"
-class Player as "connect4.connect4.\nmodels.Player"
-enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
-
-
-Option <|-- TurnOption
-SecuentialMenu <|-- TurnMenu
-BoardView --> PlayController
-BoardView ..> Coordinate
-MachinePlayerView *-- Player
-UserPlayerView *-- Player
-
-
-
-PlayerViewPrototypeDirector ..> PlayerType
-
+ResumeView ..> Message
+SaveView ..> Message
+SaveView ..> Console
+SaveView ..> YesNoDialog
+SaveView ..> SaveController
 
 @enduml
