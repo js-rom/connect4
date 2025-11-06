@@ -56,6 +56,10 @@ abstract class controllers.core.PlayController{
 
 abstract class controllers.core.SaveController{
     + accept(ControllerVisitor)
+    + {abstract} hasName() : boolean
+    + {abstract} exists(String name) : String
+    + {abstract} save()
+    + {abstract} setName(String name)
 }
 
 abstract class controllers.core.ResumeController{

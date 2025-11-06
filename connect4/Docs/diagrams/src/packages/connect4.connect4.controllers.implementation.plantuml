@@ -1,38 +1,43 @@
 @startuml connect4.connect4.controllers.implementation
 
-class controllers.implementation.Logic {
+package implementation {
+
+}
+
+class implementation.Logic {
     -controllers : Map<StateValue, AceptorController> 
     +Logic()
     +getController() : AceptorController
 }
 
 
-class controllers.implementation.StartController {
+class implementation.StartController {
 
 }
 
 
-class controllers.implementation.PlayController{
+class implementation.PlayController{
 
 }
 
-class controllers.implementation.ActionController{
+class implementation.ActionController{
    
 }
 
-class controllers.implementation.UndoController{
+class implementation.UndoController{
   
 }
 
-class controllers.implementation.RedoController{
+class implementation.RedoController{
    
 }
 
-class controllers.implementation.SaveController{
-  
+class implementation.SaveController{
+  - sessionDAO : SessionDAO
+  + SaveController(Session, SessionDAO)
 }
 
-class controllers.implementation.ResumeController{
+class implementation.ResumeController{
   
 }
 
@@ -40,13 +45,13 @@ class Session as "models.Session"
 class SessionDAO as "daos.SessionDAO"
 class StateValue as "types.StateValue"
 
-abstract class controllers.AcceptorController as "controllers.core.AcceptorController"
+interface AcceptorController as "controllers.core.\nAcceptorController"
 AcceptorController <|.. StartController
 AcceptorController <|.. PlayController
 AcceptorController <|.. SaveController
 AcceptorController <|.. ResumeController
 
-abstract class controllers.coreLogic as "controllers.core.Logic"
+abstract class coreLogic as "controllers.core.Logic"
 coreLogic <|-- Logic
 Logic *--> Session
 Logic --> SessionDAO
@@ -60,14 +65,20 @@ PlayController *--> ActionController
 PlayController *--> UndoController
 PlayController *--> RedoController
 
-abstract class controllers.StartController as "controllers.core.StartController"
-abstract class controllers.PlayController as "controllers.core.PlayController"
-abstract class controllers.SaveController as "controllers.core.SaveController"
-abstract class controllers.ResumeController as "controllers.core.ResumeController"
+abstract class StartController as "controllers.core.\nStartController"
+abstract class PlayController as "controllers.core.\nPlayController"
+abstract class SaveController as "controllers.core.\nSaveController"
+abstract class ResumeController as "controllers.core.\nResumeController"
 
-controllers.StartController <|-- controllers.implementation.StartController
-controllers.PlayController <|-- controllers.implementation.PlayController
-controllers.SaveController <|-- controllers.implementation.SaveController
-controllers.ResumeController <|-- controllers.implementation.ResumeController
+StartController <|-- implementation.StartController
+PlayController <|-- implementation.PlayController
+SaveController <|-- implementation.SaveController
+ResumeController <|-- implementation.ResumeController
+
+implementation.SaveController --> Session
+implementation.PlayController --> Session
+implementation.SaveController --> Session
+implementation.ResumeController --> Session
+implementation.SaveController --> SessionDAO
 
 @enduml
