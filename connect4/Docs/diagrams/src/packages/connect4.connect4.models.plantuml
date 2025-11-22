@@ -160,10 +160,11 @@ Registry : +redo()
 Registry : +undoable()
 Registry : +redoable()
 
-Session : -state: State
-Session : -registry: Registry
-Session : -game: Game
-Session : +nextState()
+Session : - state: State
+Session : - registry: Registry
+Session : - game: Game
+Session : + nextState()
+Session : - name: String
 Session : + getActiveColor(): Color
 Session : + getColor(Coordinate): Color
 Session : + getNumberPlayers(): int
@@ -182,5 +183,7 @@ Session : +undoable() : boolean
 Session : +redo()
 Session : +redoable() : boolean
 Session : +register()
+Session : +hasName() : boolean
+Session : +setName()
 
 @enduml
