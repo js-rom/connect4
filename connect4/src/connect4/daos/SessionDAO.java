@@ -16,8 +16,8 @@ public class SessionDAO {
     static {
         SessionDAO.directory = SessionDAO.DIRECTORY.toFile();
     }
-    Session session;
-    GameDAO gameDAO;
+    private Session session;
+    private GameDAO gameDAO;
 
     public void associate(Session session) {
         this.session = session;
