@@ -28,11 +28,11 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ### summary view
 
-![Package_connect4](../out/connect4/Docs/diagrams/src/packages/packageDiagramDistributedSummary/packageDiagramDistributedSummary.svg)
+![Package_connect4](../out/connect4/Docs/diagrams/src/packages/packageDiagram/packageDiagram.svg)
 
 ### detailed view
 
-![Package_connect4](../out/connect4/Docs/diagrams/src/packages/packageDiagramDistributed/packageDiagramDistributed.svg)
+![Package_connect4](../out/connect4/Docs/diagrams/src/packages/packageDiagramSummary/packageDiagramSummary.svg)
 
 ## launchers Package
 
