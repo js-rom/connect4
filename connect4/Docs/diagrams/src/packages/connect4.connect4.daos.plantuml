@@ -1,7 +1,67 @@
 @startuml connect4.connect4.daos
 
-class daos.Session {
+class Session as "models.Session"
+class Game as "models.Game"
+class Coordinate as "utils.models.Coordinate"
+
+class daos.SessionDAO {
+
++ {static} EXTENSION : String
++ {static} DIRECTORY : Path
++ {static} directory : File
+- session : SessionDAO
+- gameDAO : GameDAO
++ associate(Session)
++ save()
++ save(name: String)
+- createFilewriter(name: String) : FileWriter
+- closeFilewriter(fileWriter: FileWriter)
++ exists(name: String) : boolean
 
 }
+
+class daos.GameDAO {
+
+   - game : Game
+   - boardDAO : BoardDAO
+   - turnDAO : TurnDAO
+   + save(Filewriter)
+}
+
+
+class daos.BoardDAO {
+
+    - game : Game
+    + save(Filewriter)
+    - saveBoard(Filewriter)
+    - saveLastDrop(Filewriter)
+}
+
+
+class daos.TurnDAO {
+
+    - game : Game
+    + save(Filewriter)
+    - saveActivePlayer(Filewriter)
+    - savePlayersSize(Filewriter)
+    - savePlayers(Filewriter)
+}
+
+class daos.PlayerDAO {
+
+    - game : Game
+    + save(Filewriter)
+}
+
+SessionDAO --> Session
+SessionDAO --> GameDAO
+GameDAO --> Game
+GameDAO *--> BoardDAO
+GameDAO *--> TurnDAO
+BoardDAO ..> Coordinate
+TurnDAO ..> PlayerDAO
+BoardDAO --> Game
+TurnDAO --> Game
+PlayerDAO --> Game
 
 @enduml

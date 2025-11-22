@@ -80,6 +80,10 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4.models](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.models/connect4.connect4.models.svg)
 
+## connect4.daos Package
+
+![Package_connect4.daos](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.daos/connect4.connect4.daos.svg)
+
 ## connect4.net Package
 
 ![Package_connect4.models](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.net/connect4.net.svg)

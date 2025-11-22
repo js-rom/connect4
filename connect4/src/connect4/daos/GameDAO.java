@@ -6,9 +6,9 @@ import connect4.models.Game;
 
 public class GameDAO implements DAO {
 
-    Game game;
-    BoardDAO boardDAO;
-    TurnDAO turnDAO;
+    private Game game;
+    private BoardDAO boardDAO;
+    private TurnDAO turnDAO;
 
     public GameDAO(Game game) {
         assert game != null;

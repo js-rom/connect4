@@ -42,6 +42,9 @@ package connect4.models
 connect4.models ..> connect4.types
 connect4.models ..> utils.models
 
+connect4.daos ..> utils.models
+connect4.daos ..> connect4.models
+
 
 connect4.net ..> connect4.types
 package utils.net

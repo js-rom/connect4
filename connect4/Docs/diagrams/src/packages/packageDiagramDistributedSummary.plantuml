@@ -20,5 +20,7 @@ connect4.models ..> connect4.types
 connect4.models ..> connect4.utils
 connect4.launchers ..> connect4.daos
 connect4.controllers ..> connect4.daos
+connect4.daos ..> connect4.models
+connect4.daos ..> connect4.utils
 
 @enduml

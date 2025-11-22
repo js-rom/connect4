@@ -62,10 +62,16 @@ Game : +getActivePlayer(): Player
 Game : +getTurn(): Turn
 Game : +createMemento(): Memento
 Game : +setMemento(Memento)
+Game : +getPlayerTypeName(index) : String
+Game : +getActivePlayerIndex() : int
+Game : +getPlayerColorName(index) : String
+Game : +getBoardColors() : String[]
+Game : +getLastDrop() : Coordinate
+Game : +getPlayersSize() : int
 
 Turn : {static} +NUMBER_PLAYERS: int
 Turn : -players: Player
-Turn : -activePlayer: int
+Turn : -activePlayerIndex: int
 Turn : -board: Board
 Turn : -Turn(Board)
 Turn : +reset(int userPlayers)
@@ -76,7 +82,13 @@ Turn : +setRandomMachinePlayer()
 Turn : +setMinMaxPlayer()
 Turn : -addPlayer(Player)
 Turn : +setActivePlayer(activePlayer: int)
+Turn : +getPlayerTypeName(index) : String
+Turn : +getPlayerColorName(index) : String
+Turn : +setActivePlayer(index)
+Turn : +getActivePlayerIndex() : int
+Turn : +isReset() : int
 Turn : +setBoard(Board)
+Turn : +getPlayersSize() : int
 
 Player : -color: Color
 Player : -board: Board
@@ -130,6 +142,7 @@ Board : +removeTop(column: int)
 Board : -getTop(column: int): Coordinate
 Board : +toStringArray(): String[]
 Board : +fromStringArray(String[]): Board
+Board : +getLastDrop(): Coordinate
 
 Line : {static} +LENGTH: int
 Line : -origin: Coordinate
