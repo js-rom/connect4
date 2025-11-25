@@ -22,6 +22,7 @@ public class Board {
                 this.colors[i][j] = Color.NULL;
             }
         }
+        this.lastDrop = null;
     }
 
     public void dropToken(int column, Color color) {

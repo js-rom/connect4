@@ -20,9 +20,8 @@ public class Game {
 
     public void setMemento(Memento memento) {
         assert memento != null;
-        //TODO set boar values instead of creating a new board and losing references
-        this.board = memento.getBoard();
-        this.turn.setBoard(this.board);
+        this.board.reset();
+        this.board.setColors(memento.getBoard().toStringArray());
         this.turn.setActivePlayer(memento.getActivePlayer());
     } 
 
