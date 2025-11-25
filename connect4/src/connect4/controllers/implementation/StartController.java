@@ -1,13 +1,17 @@
 package connect4.controllers.implementation;
 
 import connect4.controllers.core.ControllerVisitor;
+import connect4.daos.SessionDAO;
 import connect4.models.Session;
 import connect4.types.PlayerType;
 
 public class StartController extends connect4.controllers.core.StartController {
 
-    public StartController(Session session) {
+    private SessionDAO sessionDAO;
+
+    public StartController(Session session, SessionDAO sessionDAO) {
         super(session);
+        this.sessionDAO = sessionDAO;
     }
 
     public PlayerType[] getPlayerTypes() {
@@ -42,19 +46,18 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public void start(String gameName) {
-        // TODO
+        this.sessionDAO.load(gameName);
+        this.session.nextState();
     }
 
     @Override
     public String[] getGameNames() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGameNames'");
+        return this.sessionDAO.getGamesNames();
     }
 
     @Override
     public boolean hasSavedGames() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hasSavedGames'");
+        return this.sessionDAO.hasSavedGames();
     }
 
 }

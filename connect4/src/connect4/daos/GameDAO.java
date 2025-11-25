@@ -1,5 +1,6 @@
 package connect4.daos;
 
+import java.io.BufferedReader;
 import java.io.FileWriter;
 
 import connect4.models.Game;
@@ -21,6 +22,12 @@ public class GameDAO implements DAO {
         assert fileWriter != null;
         this.boardDAO.save(fileWriter);
         this.turnDAO.save(fileWriter);
+    }
+
+    public void load(BufferedReader bufferedReader) {
+        assert bufferedReader != null;
+        this.boardDAO.load(bufferedReader);
+        this.turnDAO.load(bufferedReader);
     }
 
 }

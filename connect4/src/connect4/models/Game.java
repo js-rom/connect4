@@ -20,10 +20,11 @@ public class Game {
 
     public void setMemento(Memento memento) {
         assert memento != null;
+        //TODO set boar values instead of creating a new board and losing references
         this.board = memento.getBoard();
         this.turn.setBoard(this.board);
         this.turn.setActivePlayer(memento.getActivePlayer());
-    }
+    } 
 
     public void reset() {
         this.board.reset();
@@ -63,6 +64,10 @@ public class Game {
         return this.turn.getActivePlayerIndex();
     }
 
+    public void setActivePlayer(int index) {
+        this.turn.setActivePlayer(index);
+    }
+
     public Color getActiveColor() {
         return this.getActivePlayer().getColor();
     }
@@ -92,11 +97,23 @@ public class Game {
         return this.board.toStringArray();
     }
 
+    public void setBoardColors(String[] boardColors) {
+        this.board.setColors(boardColors);
+    }
+
     public Coordinate getLastDrop() {
         return this.board.getLastDrop();
     }
 
+    public void setLastDrop(Coordinate lastDrop) {
+        this.board.setLastDrop(lastDrop);
+    }
+
     public int getPlayersSize() {
         return this.turn.getPlayersSize();
+    }
+
+    public void setPlayersSize(int size) {
+        this.turn.setPlayersSize(size);
     }
 }

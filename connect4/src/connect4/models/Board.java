@@ -59,7 +59,7 @@ public class Board {
 
     public boolean isWinner() {
 
-        if (this.lastDrop == null ) {
+        if (this.lastDrop == null) {
             return false;
         }
         Line line = new Line(this.lastDrop);
@@ -182,18 +182,27 @@ public class Board {
 
     public static Board fromStringArray(String[] boardColors) {
         assert boardColors != null && boardColors.length == Coordinate.NUMBER_ROWS * Coordinate.NUMBER_COLUMNS;
-        int colorsCount = 0;
         Board board = new Board();
+        board.setColors(boardColors);
+        return board;
+    }
+
+    public void setColors(String[] boardColors) {
+        assert boardColors != null && boardColors.length == Coordinate.NUMBER_ROWS * Coordinate.NUMBER_COLUMNS;
+        int colorsCount = 0;
         for (int i = 0; i < Coordinate.NUMBER_ROWS; i++) {
             for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
-                board.dropToken(j, Color.get(boardColors[colorsCount++]));
+                this.dropToken(j, Color.get(boardColors[colorsCount++]));
             }
         }
-        return board;
     }
 
     public Coordinate getLastDrop() {
         return this.lastDrop;
     }
-    
+
+    public void setLastDrop(Coordinate lastDrop) {
+        this.lastDrop = lastDrop;
+    }
+
 }

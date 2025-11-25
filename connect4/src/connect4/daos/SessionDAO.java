@@ -1,8 +1,11 @@
 package connect4.daos;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -51,9 +54,29 @@ public class SessionDAO {
         return fileWriter;
     }
 
+    private BufferedReader createBufferedReader(String name) {
+        assert name != null;
+        File file = new File(SessionDAO.directory, name);
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bufferedReader;
+    }
+
     private void closeFileWriter(FileWriter fileWriter) {
         try {
             fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void closeBufferedReader(BufferedReader bufferedReader) {
+        try {
+            bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,5 +93,16 @@ public class SessionDAO {
             }
         }
         return false;
+    }
+
+    public boolean hasSavedGames() {
+        return this.getGamesNames().length > 0;
+    }
+
+    public void load(String gameName) {
+        assert gameName != null;
+        BufferedReader bufferedReader = this.createBufferedReader(gameName);
+        this.gameDAO.load(bufferedReader);
+        this.closeBufferedReader(bufferedReader);
     }
 }

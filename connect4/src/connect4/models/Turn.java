@@ -79,4 +79,8 @@ public class Turn {
     public int getPlayersSize() {
         return this.playersSize;
     }
+
+    public void setPlayersSize(int size) {
+        this.playersSize = size;
+    }
 }

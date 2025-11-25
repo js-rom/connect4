@@ -1,5 +1,6 @@
 package connect4.daos;
 
+import java.io.BufferedReader;
 import java.io.FileWriter;
 
 import connect4.models.Game;
@@ -39,4 +40,35 @@ public class BoardDAO implements DAO {
             e.printStackTrace();
         }
     }
+
+    public void load(BufferedReader bufferedReader) {
+        this.loadBoard(bufferedReader);
+        this.loadLastDrop(bufferedReader);
+    }
+
+    public void loadBoard(BufferedReader bufferedReader) {
+        String[] boardColors = game.getBoardColors();
+        for (int i = 0; i < boardColors.length; i++) {
+            try {
+                boardColors[i] = bufferedReader.readLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        this.game.setBoardColors(boardColors);
+    }
+
+    public void loadLastDrop(BufferedReader bufferedReader) {
+        int row = 0;
+        int column = 0;
+        try {
+            row = Integer.parseInt(bufferedReader.readLine());
+            column = Integer.parseInt(bufferedReader.readLine());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Coordinate lastDrop = new Coordinate(row, column);
+        this.game.setLastDrop(lastDrop);
+    }
+
 }
