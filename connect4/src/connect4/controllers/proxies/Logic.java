@@ -21,7 +21,7 @@ public class Logic extends connect4.controllers.core.Logic {
         this.controllers.put(StateValue.INITIAL, new StartController(this.client));
         this.controllers.put(StateValue.IN_GAME, new PlayController(this.client));
         this.controllers.put(StateValue.OUT_GAME, new SaveController(this.client));
-        this.controllers.put(StateValue.RESUME, new ResumeController(this.client));
+        this.controllers.put(StateValue.FINAL, new ResumeController(this.client));
         this.controllers.put(StateValue.EXIT, null);
     }
 

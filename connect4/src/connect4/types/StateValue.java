@@ -4,6 +4,6 @@ public enum StateValue {
     INITIAL,
     IN_GAME,
     OUT_GAME,
-    RESUME,
+    FINAL,
     EXIT
 }

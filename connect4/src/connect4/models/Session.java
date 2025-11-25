@@ -125,4 +125,8 @@ public class Session {
     public Game getGame() {
         return this.game;
     }
+
+    public void setState(StateValue state) {
+        this.state.setValueState(state);
+    }
 }
