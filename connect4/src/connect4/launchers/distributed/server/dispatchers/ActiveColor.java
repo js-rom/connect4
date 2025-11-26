@@ -3,9 +3,9 @@ package connect4.launchers.distributed.server.dispatchers;
 import connect4.controllers.implementation.PlayController;
 import connect4.types.Color;
 
-public class ActiveColorDispatcher extends Dispatcher {
+public class ActiveColor extends Dispatcher {
 
-    public ActiveColorDispatcher(PlayController playController) {
+    public ActiveColor(PlayController playController) {
         super(playController);
     }
 

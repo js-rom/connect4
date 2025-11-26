@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import connect4.controllers.implementation.PlayController;
 
-public class IsCompleteDispatcher extends Dispatcher {
+public class DropToken extends Dispatcher {
 
-    public IsCompleteDispatcher(PlayController playController) {
+    public DropToken(PlayController playController) {
         super(playController);
     }
 
@@ -18,8 +18,8 @@ public class IsCompleteDispatcher extends Dispatcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        boolean isComplete = ((PlayController) this.acceptorController).isComplete(column);
-        this.server.send(isComplete);
+        ((PlayController) this.acceptorController).dropToken(column);
+
     }
 
 }

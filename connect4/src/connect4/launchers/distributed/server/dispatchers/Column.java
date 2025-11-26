@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 
-public class ColumnDispatcher extends Dispatcher {
+public class Column extends Dispatcher {
 
-    public ColumnDispatcher(PlayController playController) {
+    public Column(PlayController playController) {
         super(playController);
     }
 

@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.SaveController;
 
-public class SaveDispatcher extends Dispatcher {
+public class Save extends Dispatcher {
 
-    public SaveDispatcher(SaveController saveController) {
+    public Save(SaveController saveController) {
         super(saveController);
     }
 

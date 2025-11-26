@@ -3,9 +3,9 @@ package connect4.launchers.distributed.server.dispatchers;
 import connect4.controllers.core.AcceptorController;
 import connect4.controllers.core.Controller;
 
-public class NextStateDispatcher extends Dispatcher {
+public class NextState extends Dispatcher {
 
-    public NextStateDispatcher(AcceptorController playController) {
+    public NextState(AcceptorController playController) {
         super(playController);
     }
 

@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.core.StartController;
 
-public class IsResetDispatcher extends Dispatcher {
+public class IsReset extends Dispatcher {
 
-    public IsResetDispatcher(StartController startController) {
+    public IsReset(StartController startController) {
         super(startController);
     }
 

@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.StartController;
 
-public class NumberPlayersDispatcher extends Dispatcher {
+public class NumberPlayers extends Dispatcher {
 
-    public NumberPlayersDispatcher(StartController startController) {
+    public NumberPlayers(StartController startController) {
         super(startController);
     }
 

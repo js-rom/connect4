@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 
-public class RedoableDispatcher extends Dispatcher {
+public class Redoable extends Dispatcher {
 
-    public RedoableDispatcher(PlayController playController) {
+    public Redoable(PlayController playController) {
         super(playController);
     }
 

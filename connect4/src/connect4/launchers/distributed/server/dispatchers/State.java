@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 
-public class StateDispatcher extends Dispatcher {
+public class State extends Dispatcher {
 
-    public StateDispatcher(PlayController acceptorController) {
+    public State(PlayController acceptorController) {
         super(acceptorController);
     }
 

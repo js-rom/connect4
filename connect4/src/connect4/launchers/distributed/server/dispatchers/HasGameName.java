@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.SaveController;
 
-public class HasGameNameDispatcher extends Dispatcher {
+public class HasGameName extends Dispatcher {
 
-    public HasGameNameDispatcher(SaveController saveController) {
+    public HasGameName(SaveController saveController) {
         super(saveController);
     }
 

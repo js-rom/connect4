@@ -5,9 +5,9 @@ import java.io.IOException;
 import connect4.controllers.implementation.StartController;
 import connect4.types.PlayerType;
 
-public class AddPlayerDispatcher extends Dispatcher {
+public class AddPlayer extends Dispatcher {
 
-    public AddPlayerDispatcher(StartController startController) {
+    public AddPlayer(StartController startController) {
         super(startController);
     }
 

@@ -2,15 +2,15 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 
-public class RedoDispatcher extends Dispatcher {
+public class Undo extends Dispatcher {
 
-    public RedoDispatcher(PlayController playController) {
+    public Undo(PlayController playController) {
         super(playController);
     }
 
     @Override
     public void dispatch() {
-        ((PlayController) this.acceptorController).redo();
+        ((PlayController) this.acceptorController).undo();
     }
 
 }

@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import connect4.controllers.implementation.SaveController;
 
-public class SetGameNameDispatcher extends Dispatcher {
+public class SetGameName extends Dispatcher {
 
-    public SetGameNameDispatcher(SaveController saveController) {
+    public SetGameName(SaveController saveController) {
         super(saveController);
     }
 

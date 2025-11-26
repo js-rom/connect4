@@ -3,12 +3,11 @@ package connect4.launchers.distributed.server.dispatchers;
 import java.io.IOException;
 
 import connect4.controllers.implementation.PlayController;
-import connect4.types.Color;
 import utils.models.Coordinate;
 
-public class ColorDispatcher extends Dispatcher {
+public class Color extends Dispatcher {
 
-    public ColorDispatcher(PlayController playController) {
+    public Color(PlayController playController) {
         super(playController);
     }
 
@@ -23,7 +22,7 @@ public class ColorDispatcher extends Dispatcher {
             e.printStackTrace();
         }
         Coordinate coordinate = new Coordinate(row, column);
-        Color color = ((PlayController) this.acceptorController).getColor(coordinate);
+        connect4.types.Color color = ((PlayController) this.acceptorController).getColor(coordinate);
         this.server.send(color);
     }
 

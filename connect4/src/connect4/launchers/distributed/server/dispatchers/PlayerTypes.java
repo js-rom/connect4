@@ -3,9 +3,9 @@ package connect4.launchers.distributed.server.dispatchers;
 import connect4.controllers.implementation.StartController;
 import connect4.types.PlayerType;
 
-public class PlayerTypesDispatcher extends Dispatcher {
+public class PlayerTypes extends Dispatcher {
 
-    public PlayerTypesDispatcher(StartController startController) {
+    public PlayerTypes(StartController startController) {
         super(startController);
     }
 

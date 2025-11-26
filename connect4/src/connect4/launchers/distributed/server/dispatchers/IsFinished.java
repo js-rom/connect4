@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 
-public class IsFinishedDispatcher extends Dispatcher {
+public class IsFinished extends Dispatcher {
 
-    public IsFinishedDispatcher(PlayController playController) {
+    public IsFinished(PlayController playController) {
         super(playController);
     }
 

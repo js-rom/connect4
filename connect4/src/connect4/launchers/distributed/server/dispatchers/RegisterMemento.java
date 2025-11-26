@@ -2,9 +2,9 @@ package connect4.launchers.distributed.server.dispatchers;
 
 import connect4.controllers.implementation.PlayController;
 
-public class RegisterMementoDispatcher extends Dispatcher {
+public class RegisterMemento extends Dispatcher {
 
-    public RegisterMementoDispatcher(PlayController playController) {
+    public RegisterMemento(PlayController playController) {
         super(playController);
     }
 
