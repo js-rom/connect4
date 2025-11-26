@@ -18,7 +18,6 @@ public class TurnDAO implements DAO {
     @Override
     public void save(FileWriter fileWriter) {
         this.saveActivePlayer(fileWriter);
-        //this.savePlayersSize(fileWriter);
         this.savePlayers(fileWriter);
     }
 
@@ -30,21 +29,12 @@ public class TurnDAO implements DAO {
         }
     }
 
-/*     private void savePlayersSize(FileWriter fileWriter) {
-        try {
-            fileWriter.write(this.game.getPlayersSize() + EOL);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    } */
-
     private void savePlayers(FileWriter fileWriter) {
         new PlayerDAO(this.game).save(fileWriter);
     }
 
     public void load(BufferedReader bufferedReader) {
         this.loadActivePlayer(bufferedReader);
-        //this.loadPlayersSize(bufferedReader);
         new PlayerDAO(this.game).load(bufferedReader);
     }
 
@@ -57,14 +47,5 @@ public class TurnDAO implements DAO {
         }
         this.game.setActivePlayer(activePlayerIndex);
     }
-
-/*     private void loadPlayersSize(BufferedReader bufferedReader) {
-        int playersSize = 0;
-        try {
-            playersSize = Integer.parseInt(bufferedReader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.game.setPlayersSize(playersSize);
-    } */
+    
 }

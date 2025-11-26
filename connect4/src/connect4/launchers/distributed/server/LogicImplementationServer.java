@@ -10,7 +10,9 @@ import connect4.launchers.distributed.server.dispatchers.ColumnDispatcher;
 import connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
 import connect4.launchers.distributed.server.dispatchers.DropTokenDispatcher;
 import connect4.launchers.distributed.server.dispatchers.ExistGameNameDispatcher;
+import connect4.launchers.distributed.server.dispatchers.GetGameNames;
 import connect4.launchers.distributed.server.dispatchers.HasGameNameDispatcher;
+import connect4.launchers.distributed.server.dispatchers.HasSavedGames;
 import connect4.launchers.distributed.server.dispatchers.IsCompleteDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsFinishedDispatcher;
 import connect4.launchers.distributed.server.dispatchers.IsResetDispatcher;
@@ -25,6 +27,7 @@ import connect4.launchers.distributed.server.dispatchers.RegisterMementoDispatch
 import connect4.launchers.distributed.server.dispatchers.ResetDispatcher;
 import connect4.launchers.distributed.server.dispatchers.SaveDispatcher;
 import connect4.launchers.distributed.server.dispatchers.SetGameNameDispatcher;
+import connect4.launchers.distributed.server.dispatchers.StartWithName;
 import connect4.launchers.distributed.server.dispatchers.StateDispatcher;
 import connect4.launchers.distributed.server.dispatchers.UndoDispatcher;
 import connect4.launchers.distributed.server.dispatchers.UndoableDispatcher;
@@ -64,5 +67,8 @@ public class LogicImplementationServer extends Logic {
         dispatcherPrototype.add(FrameType.SAVE, new SaveDispatcher(this.saveController));
         dispatcherPrototype.add(FrameType.PLAY_NEXT_STATE, new NextStateDispatcher(this.playController));
         dispatcherPrototype.add(FrameType.RESUME_NEXT_STATE, new NextStateDispatcher(this.resumeController));
+        dispatcherPrototype.add(FrameType.GET_GAME_NAMES, new GetGameNames(this.startController));
+        dispatcherPrototype.add(FrameType.HAS_SAVED_GAMES, new HasSavedGames(this.startController));
+        dispatcherPrototype.add(FrameType.START_NAME, new StartWithName(this.startController));
     }
 }

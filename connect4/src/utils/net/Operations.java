@@ -15,6 +15,8 @@ public interface Operations {
 
     public void send(char value);
 
+    public void send(String[] strings);
+
     public String receiveLine() throws IOException;
 
     public boolean receiveBoolean() throws IOException;
@@ -22,6 +24,8 @@ public interface Operations {
     public Integer receiveInt() throws IOException;
 
     public char receiveChar() throws IOException;
+
+    public String[] receiveStringArray() throws IOException;
 
     public void close() throws IOException;
 

@@ -49,10 +49,9 @@ public class StartController extends connect4.controllers.core.StartController {
     @Override
     public void start(String gameName) {
         this.sessionDAO.load(gameName);
+        this.session.nextState();
         if (this.session.isFinished()) {
             this.session.setState(StateValue.FINAL);
-        } else {
-            this.session.nextState();
         }
     }
 
