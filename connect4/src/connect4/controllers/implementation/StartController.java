@@ -3,7 +3,6 @@ package connect4.controllers.implementation;
 import connect4.controllers.core.ControllerVisitor;
 import connect4.daos.SessionDAO;
 import connect4.models.Session;
-import connect4.models.State;
 import connect4.types.PlayerType;
 import connect4.types.StateValue;
 
