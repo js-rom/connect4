@@ -15,8 +15,12 @@ class daos.SessionDAO {
 + save()
 + save(name: String)
 - createFilewriter(name: String) : FileWriter
+- createBufferedReader(name: String) : BufferedReader
 - closeFilewriter(fileWriter: FileWriter)
+- closeBufferedReader(BufferedReader)
 + exists(name: String) : boolean
++ hasSavedGames() : boolean
++ load(name: String)
 
 }
 
@@ -26,6 +30,7 @@ class daos.GameDAO {
    - boardDAO : BoardDAO
    - turnDAO : TurnDAO
    + save(Filewriter)
+   + load(BufferedReader)
 }
 
 
@@ -35,6 +40,9 @@ class daos.BoardDAO {
     + save(Filewriter)
     - saveBoard(Filewriter)
     - saveLastDrop(Filewriter)
+    + load(BufferedReader)
+    - loadBoard(BufferedReader)
+    - loadLastDrop(BufferedReader)
 }
 
 
@@ -45,12 +53,15 @@ class daos.TurnDAO {
     - saveActivePlayer(Filewriter)
     - savePlayersSize(Filewriter)
     - savePlayers(Filewriter)
+    + load(BufferedReader)
+    - loadActivePlayer(BufferedReader)
 }
 
 class daos.PlayerDAO {
 
     - game : Game
     + save(Filewriter)
+    + load(BufferedReader)
 }
 
 SessionDAO --> Session

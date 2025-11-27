@@ -40,6 +40,7 @@ StartMenu --> NewGameCommand
 StartMenu --> OpenGameCommand
 StartMenu --> StartController
 NewGameCommand ..> TurnView
+StartMenu ..> MenuOption
 MenuOption <|-- NewGameCommand
 MenuOption <|-- OpenGameCommand
 OpenGameCommand --> StartController

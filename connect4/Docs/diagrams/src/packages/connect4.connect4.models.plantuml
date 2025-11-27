@@ -54,20 +54,29 @@ Session *--> State
 Game : -board: Board
 Game : -turn: Turn
 Game : +Game()
+Game : +createMemento(): Memento
+Game : +setMemento(Memento)
 Game : +reset()
 Game : +getColor(): Color
 Game : +isWinner(): boolean
 Game : +isFinished(): boolean
 Game : +getActivePlayer(): Player
-Game : +getTurn(): Turn
-Game : +createMemento(): Memento
-Game : +setMemento(Memento)
+Game : +getPlayerType() : PlayerType
 Game : +getPlayerTypeName(index) : String
 Game : +getActivePlayerIndex() : int
+Game : +setActivePlayer(index)
+Game : +getActiveColor() : Color
 Game : +getPlayerColorName(index) : String
+Game : +next()
+Game : +getNumberPlayers() : int
+Game : +addPlayer(PlayerType)
+Game : +isComplete(column: int) : boolean
 Game : +getBoardColors() : String[]
+Game : +setBoardColors(String[])
 Game : +getLastDrop() : Coordinate
+Game : +setLastDrop(Coordinate)
 Game : +getPlayersSize() : int
+Game : +setPlayersSize(size) 
 
 Turn : {static} +NUMBER_PLAYERS: int
 Turn : -players: Player
@@ -89,6 +98,7 @@ Turn : +getActivePlayerIndex() : int
 Turn : +isReset() : int
 Turn : +setBoard(Board)
 Turn : +getPlayersSize() : int
+Turn : +setPlayersSize(size)
 
 Player : -color: Color
 Player : -board: Board
@@ -142,7 +152,10 @@ Board : +removeTop(column: int)
 Board : -getTop(column: int): Coordinate
 Board : +toStringArray(): String[]
 Board : +fromStringArray(String[]): Board
+Board : +setColors(String[])
 Board : +getLastDrop(): Coordinate
+Board : +setLastDrop()
+
 
 Line : {static} +LENGTH: int
 Line : -origin: Coordinate
@@ -156,6 +169,7 @@ Line : +getCoordinates(): Coordinate[ ]
 State : +reset()
 State : +next()
 State : +getValueState()
+State : +setValueState()
 
 Memento : -boardColors: String[]
 Memento : -activePlayer: int
@@ -182,6 +196,7 @@ Session : + getActiveColor(): Color
 Session : + getColor(Coordinate): Color
 Session : + getNumberPlayers(): int
 Session : +reset()
+Session : +resetRegistry()
 Session : +addPlayer(PlayerType)
 Session : +getActivePlayer(): Player
 Session : +getActivePlayerType(): PlayerType
@@ -198,5 +213,6 @@ Session : +redoable() : boolean
 Session : +register()
 Session : +hasName() : boolean
 Session : +setName()
+Session : +setState()
 
 @enduml
