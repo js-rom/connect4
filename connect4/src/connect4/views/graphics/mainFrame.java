@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import connect4.controllers.core.ResumeController;
+import connect4.views.graphics.gameLoop.GameLoopView;
 
 public class MainFrame extends JFrame {
 

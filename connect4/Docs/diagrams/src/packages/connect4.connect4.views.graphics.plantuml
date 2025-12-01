@@ -2,6 +2,7 @@
 
 class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
 class ResumeController as "controllers.\nResumeController"
+interface GameLoopView as "graphics.\ngameLoop.\nGameLoopView"
 
 class graphics.GraphicsView {
     +setLatch(CountDownLatch)
@@ -13,15 +14,6 @@ class graphics.MainFrame{
     +write()
     +isResumed(ResumeController) : boolean
 }
-
-abstract class graphics.PanelView {
-    + {abstract} write()
-}
-
-interface graphics.GameLoopView
-
-
-abstract class graphics.PanelView
 
 interface View as "views.View"{
     +start(StartController)
@@ -52,9 +44,6 @@ ControllerVisitor <|.. GraphicsView
 
 class JOptionPane
 MainFrame ..> JOptionPane
-
-JPanel <|-- PanelView
-PanelView <|-- GameLoopView
 
 GraphicsView ..> GameLoopView
 MainFrame --> GameLoopView

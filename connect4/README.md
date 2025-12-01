@@ -78,6 +78,8 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4.views.graphics](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics/connect4.connect4.views.graphics.svg)
 
+![Package_connect4.views.graphics.gameLoop](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop/connect4.connect4.views.graphics.gameLoop.svg)
+
 ![Package_connect4.views.graphics.start](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.start/connect4.connect4.views.graphics.start.svg)
 
 ![Package_connect4.views.graphics.play](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.play/connect4.connect4.views.graphics.play.svg)

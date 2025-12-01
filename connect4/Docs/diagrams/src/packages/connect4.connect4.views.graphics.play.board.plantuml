@@ -1,7 +1,7 @@
 @startuml connect4.connect4.views.graphics.board
 
 class PlayController as "controllers.\ncore.\nPlayController"
-abstract class PanelView as "graphics.\nPanelView"
+abstract class PanelView as "graphics.\ngameLoop.\nPanelView"
 abstract class PlayPanelViewCommand as "graphics.\nplay.\ncommands.\nPlayPanelViewCommand"
 class PlayerType as "types.\nPlayerType"
 class Coordinate as "utils.\nmodels.\nCoordinate"

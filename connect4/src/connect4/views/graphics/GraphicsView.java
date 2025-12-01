@@ -8,8 +8,8 @@ import connect4.controllers.core.ResumeController;
 import connect4.controllers.core.SaveController;
 import connect4.controllers.core.StartController;
 import connect4.views.View;
-import connect4.views.graphics.play.PlayPanelView;
-import connect4.views.graphics.start.StartPanelView;
+import connect4.views.graphics.gameLoop.play.PlayPanelView;
+import connect4.views.graphics.gameLoop.start.StartPanelView;
 
 public class GraphicsView implements View, ControllerVisitor {
 

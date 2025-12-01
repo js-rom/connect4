@@ -1,4 +1,4 @@
-package connect4.views.graphics.play.board;
+package connect4.views.graphics.gameLoop.play.board;
 
 import java.awt.event.ActionListener;
 

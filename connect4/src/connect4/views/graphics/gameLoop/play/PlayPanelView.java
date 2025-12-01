@@ -1,21 +1,21 @@
-package connect4.views.graphics.play;
+package connect4.views.graphics.gameLoop.play;
 
 import java.awt.BorderLayout;
 import java.util.concurrent.CountDownLatch;
 
 import connect4.controllers.core.PlayController;
-import connect4.views.graphics.GameLoopView;
-import connect4.views.graphics.play.board.BoardView;
-import connect4.views.graphics.play.board.BoardViewPrototypeDirector;
-import connect4.views.graphics.play.board.BoardViewPrototypeRegistry;
-import connect4.views.graphics.play.board.MachinePlayerBoardView;
-import connect4.views.graphics.play.board.UserPlayerBoardView;
-import connect4.views.graphics.play.commands.NextTurnCommand;
-import connect4.views.graphics.play.commands.PlayPanelViewVisitor;
-import connect4.views.graphics.play.commands.RedoMachinePlayerCommand;
-import connect4.views.graphics.play.commands.RedoUserPlayerCommand;
-import connect4.views.graphics.play.commands.UndoMachinePlayerCommand;
-import connect4.views.graphics.play.commands.UndoUserPlayerCommand;
+import connect4.views.graphics.gameLoop.GameLoopView;
+import connect4.views.graphics.gameLoop.play.board.BoardView;
+import connect4.views.graphics.gameLoop.play.board.BoardViewPrototypeDirector;
+import connect4.views.graphics.gameLoop.play.board.BoardViewPrototypeRegistry;
+import connect4.views.graphics.gameLoop.play.board.MachinePlayerBoardView;
+import connect4.views.graphics.gameLoop.play.board.UserPlayerBoardView;
+import connect4.views.graphics.gameLoop.play.commands.NextTurnCommand;
+import connect4.views.graphics.gameLoop.play.commands.PlayPanelViewVisitor;
+import connect4.views.graphics.gameLoop.play.commands.RedoMachinePlayerCommand;
+import connect4.views.graphics.gameLoop.play.commands.RedoUserPlayerCommand;
+import connect4.views.graphics.gameLoop.play.commands.UndoMachinePlayerCommand;
+import connect4.views.graphics.gameLoop.play.commands.UndoUserPlayerCommand;
 
 public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor {
 

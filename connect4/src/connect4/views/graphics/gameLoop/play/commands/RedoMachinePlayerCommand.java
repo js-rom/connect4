@@ -1,4 +1,4 @@
-package connect4.views.graphics.play.commands;
+package connect4.views.graphics.gameLoop.play.commands;
 
 public class RedoMachinePlayerCommand extends RedoCommand {
 

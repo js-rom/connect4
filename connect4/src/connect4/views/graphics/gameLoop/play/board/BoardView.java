@@ -1,4 +1,4 @@
-package connect4.views.graphics.play.board;
+package connect4.views.graphics.gameLoop.play.board;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -7,9 +7,9 @@ import java.awt.GridLayout;
 
 import connect4.controllers.core.PlayController;
 import connect4.types.Color;
-import connect4.views.graphics.PanelView;
-import connect4.views.graphics.play.commands.PlayPanelViewCommand;
-import connect4.views.graphics.play.commands.PlayPanelViewVisitor;
+import connect4.views.graphics.gameLoop.PanelView;
+import connect4.views.graphics.gameLoop.play.commands.PlayPanelViewCommand;
+import connect4.views.graphics.gameLoop.play.commands.PlayPanelViewVisitor;
 import utils.models.Coordinate;
 
 import java.util.EnumMap;

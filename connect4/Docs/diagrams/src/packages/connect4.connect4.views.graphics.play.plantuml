@@ -7,7 +7,7 @@ class RedoUserPlayerCommand as "graphics.\nplay.\ncommands.\nRedoUserPlayerComma
 class UndoMachinePlayerCommand as "graphics.\nplay.\ncommands.\nUndoMachinePlayerCommand"
 class UndoUserPlayerCommand as "graphics.\nplay.\ncommands.\nUndoUserPlayerCommand"
 
-abstract class GameLoopView as "graphics.\nGameLoopView"
+abstract class GameLoopView as "graphics.\ngameLoop.\nGameLoopView"
 interface PlayPanelViewVisitor as "grapgics.\nplay.\ncommands.\nPlayPanelViewVisitor"
 class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
 class PlayController as "controllers.\nPlayController"

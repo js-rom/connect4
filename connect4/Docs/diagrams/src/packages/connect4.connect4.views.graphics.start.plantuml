@@ -2,9 +2,7 @@
 
 class StartController as "controllers.\nStartController"
 class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
-
-interface GameLoopView as "graphics.\nGameLoopView" {
-}
+abstract class GameLoopView as "graphics.\ngameLoop\nGameLoopView"
 
 class start.StartPanelView {
     +write()

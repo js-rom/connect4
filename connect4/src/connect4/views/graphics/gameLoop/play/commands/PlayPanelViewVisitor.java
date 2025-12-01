@@ -1,7 +1,7 @@
-package connect4.views.graphics.play.commands;
+package connect4.views.graphics.gameLoop.play.commands;
 
-import connect4.views.graphics.play.board.MachinePlayerBoardView;
-import connect4.views.graphics.play.board.UserPlayerBoardView;
+import connect4.views.graphics.gameLoop.play.board.MachinePlayerBoardView;
+import connect4.views.graphics.gameLoop.play.board.UserPlayerBoardView;
 
 public interface PlayPanelViewVisitor {
 

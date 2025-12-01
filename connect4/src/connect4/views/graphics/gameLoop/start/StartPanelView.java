@@ -1,8 +1,8 @@
-package connect4.views.graphics.start;
+package connect4.views.graphics.gameLoop.start;
 
 import connect4.controllers.core.StartController;
 import connect4.types.PlayerType;
-import connect4.views.graphics.GameLoopView;
+import connect4.views.graphics.gameLoop.GameLoopView;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

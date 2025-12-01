@@ -1,11 +1,11 @@
-package connect4.views.graphics.play.board;
+package connect4.views.graphics.gameLoop.play.board;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 import connect4.controllers.core.PlayController;
 import connect4.types.PlayerType;
-import connect4.views.graphics.play.commands.PlayPanelViewCommand;
+import connect4.views.graphics.gameLoop.play.commands.PlayPanelViewCommand;
 
 public class BoardViewPrototypeRegistry {
 
