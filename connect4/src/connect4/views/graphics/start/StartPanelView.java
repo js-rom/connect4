@@ -1,4 +1,4 @@
-package connect4.views.graphics.startPanel;
+package connect4.views.graphics.start;
 
 import connect4.controllers.core.StartController;
 import connect4.types.PlayerType;

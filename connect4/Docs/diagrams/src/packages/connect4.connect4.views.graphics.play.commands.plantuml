@@ -1,0 +1,39 @@
+@startuml connect4.connect4.views.graphics.commands
+
+interface commands.PlayPanelViewVisitor {
+    +visit(MachinePlayerBoardView)
+    +visit(UserPlayerBoardView)
+    +write();
+    +redo(RedoMachinePlayerCommand command);
+    +redo(RedoUserPlayerCommand command);
+    +undo(UndoMachinePlayerCommand command);
+    +undo(UndoUserPlayerCommand command);
+}
+
+interface commands.Command {
+    +execute()
+}
+abstract class commands.PlayPanelViewCommand {
+    +PlayPanelViewCommand(PlayPanelView)
+    #getReceiver() : PlayPanelView
+}
+
+class commands.NextTurnCommand
+abstract class commands.UndoComand
+abstract class commands.RedoComand
+class commands.RedoMachinePlayerCommand {}
+class commands.UndoMachinePlayerCommand {}
+class commands.RedoUserPlayerCommand {}
+class commands.UndoUserPlayerCommand {}
+
+PlayPanelViewCommand --> PlayPanelViewVisitor
+Command <|-- PlayPanelViewCommand
+PlayPanelViewCommand <|-- NextTurnCommand
+PlayPanelViewCommand <|-- UndoComand
+PlayPanelViewCommand <|-- RedoComand
+UndoComand <|-- UndoMachinePlayerCommand
+UndoComand <|-- UndoUserPlayerCommand
+RedoComand <|-- RedoMachinePlayerCommand
+RedoComand <|-- RedoUserPlayerCommand
+
+@enduml

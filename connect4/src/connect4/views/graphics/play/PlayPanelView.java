@@ -1,10 +1,21 @@
-package connect4.views.graphics.playPanel;
+package connect4.views.graphics.play;
 
 import java.awt.BorderLayout;
 import java.util.concurrent.CountDownLatch;
 
 import connect4.controllers.core.PlayController;
 import connect4.views.graphics.GameLoopView;
+import connect4.views.graphics.play.board.BoardView;
+import connect4.views.graphics.play.board.BoardViewPrototypeDirector;
+import connect4.views.graphics.play.board.BoardViewPrototypeRegistry;
+import connect4.views.graphics.play.board.MachinePlayerBoardView;
+import connect4.views.graphics.play.board.UserPlayerBoardView;
+import connect4.views.graphics.play.commands.NextTurnCommand;
+import connect4.views.graphics.play.commands.PlayPanelViewVisitor;
+import connect4.views.graphics.play.commands.RedoMachinePlayerCommand;
+import connect4.views.graphics.play.commands.RedoUserPlayerCommand;
+import connect4.views.graphics.play.commands.UndoMachinePlayerCommand;
+import connect4.views.graphics.play.commands.UndoUserPlayerCommand;
 
 public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor {
 

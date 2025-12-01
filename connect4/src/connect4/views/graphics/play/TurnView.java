@@ -1,4 +1,4 @@
-package connect4.views.graphics.playPanel;
+package connect4.views.graphics.play;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -11,6 +11,8 @@ import connect4.controllers.core.PlayController;
 import connect4.types.Color;
 import connect4.views.graphics.Message;
 import connect4.views.graphics.PanelView;
+import connect4.views.graphics.play.commands.RedoCommand;
+import connect4.views.graphics.play.commands.UndoCommand;
 
 public class TurnView extends PanelView {
 

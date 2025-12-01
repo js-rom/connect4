@@ -1,4 +1,4 @@
-package connect4.views.graphics.playPanel;
+package connect4.views.graphics.play.board;
 
 import javax.swing.Icon;
 import javax.swing.JButton;

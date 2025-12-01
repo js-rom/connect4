@@ -8,8 +8,8 @@ import connect4.controllers.core.ResumeController;
 import connect4.controllers.core.SaveController;
 import connect4.controllers.core.StartController;
 import connect4.views.View;
-import connect4.views.graphics.playPanel.PlayPanelView;
-import connect4.views.graphics.startPanel.StartPanelView;
+import connect4.views.graphics.play.PlayPanelView;
+import connect4.views.graphics.start.StartPanelView;
 
 public class GraphicsView implements View, ControllerVisitor {
 
@@ -68,6 +68,12 @@ public class GraphicsView implements View, ControllerVisitor {
     public void visit(SaveController saveController) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'visit'");
+    }
+
+    @Override
+    public void save(SaveController saveController) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
 }

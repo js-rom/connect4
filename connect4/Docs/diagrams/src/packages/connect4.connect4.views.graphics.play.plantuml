@@ -1,0 +1,52 @@
+@startuml connect4.connect4.views.graphics.play
+
+class PlayPanelViewVisitor as "graphics.\nplay.\ncommands.\nPlayPanelViewVisitor"
+class NextTurnCommand as "graphics.\nplay.\ncommands.\nNextTurnCommand"
+class RedoMachinePlayerCommand as "graphics.\nplay.\ncommands.\nRedoMachinePlayerCommand"
+class RedoUserPlayerCommand as "graphics.\nplay.\ncommands.\nRedoUserPlayerCommand"
+class UndoMachinePlayerCommand as "graphics.\nplay.\ncommands.\nUndoMachinePlayerCommand"
+class UndoUserPlayerCommand as "graphics.\nplay.\ncommands.\nUndoUserPlayerCommand"
+
+abstract class GameLoopView as "graphics.\nGameLoopView"
+interface PlayPanelViewVisitor as "grapgics.\nplay.\ncommands.\nPlayPanelViewVisitor"
+class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
+class PlayController as "controllers.\nPlayController"
+abstract class BoardView as "grapgics.\nplay.\nboard.\nBoardView"
+abstract class BoardViewPrototypeDirector as "grapgics.\nplay.\nboard.\nBoardViewPrototypeDirector"
+abstract class BoardViewPrototypeRegistry as "grapgics.\nplay.\nboard.\nBoardViewPrototypeRegistry"
+
+
+class play.PlayPanelView{
+    +write()
+    -removeBoard()
+    +visit(MachinePlayerBoardView)
+    +visit(UserPlayerBoardView)
+    +undo(UndoMachinePlayerCommand)
+    +undo(UndoUserPlayerCommand)
+    +redo(RedoMachinePlayerCommand)
+    +redo(RedoUserPlayerCommand)
+    -redo()
+}
+
+class play.TurnView{
+    +write()
+    +setUndoCommand(UndoComand)
+    +setRedoCommand(RedoComand)
+}
+
+PlayPanelView --> PlayController
+PlayPanelView --> CountDownLatch
+GameLoopView <|-- PlayPanelView
+PlayPanelViewVisitor <|.. PlayPanelView
+PlayPanelView *--> BoardView
+PlayPanelView ..> BoardViewPrototypeRegistry
+PlayPanelView ..> BoardViewPrototypeDirector
+TurnView --> PlayController
+PlayPanelView *--> TurnView
+PlayPanelView ..> NextTurnCommand
+PlayPanelView ..> RedoMachinePlayerCommand
+PlayPanelView ..> RedoUserPlayerCommand
+PlayPanelView ..> UndoMachinePlayerCommand
+PlayPanelView ..> UndoUserPlayerCommand
+
+@enduml

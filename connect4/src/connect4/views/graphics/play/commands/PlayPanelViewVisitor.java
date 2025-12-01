@@ -1,4 +1,7 @@
-package connect4.views.graphics.playPanel;
+package connect4.views.graphics.play.commands;
+
+import connect4.views.graphics.play.board.MachinePlayerBoardView;
+import connect4.views.graphics.play.board.UserPlayerBoardView;
 
 public interface PlayPanelViewVisitor {
 

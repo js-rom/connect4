@@ -1,4 +1,4 @@
-package connect4.views.graphics.playPanel;
+package connect4.views.graphics.play.commands;
 
 public abstract class UndoCommand extends PlayPanelViewCommand  {
 

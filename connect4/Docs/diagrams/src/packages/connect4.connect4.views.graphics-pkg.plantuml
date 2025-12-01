@@ -1,0 +1,49 @@
+@startuml
+
+package connect4.views.graphics
+package connect4.views.graphics.play
+package connect4.views.graphics.play.board
+package connect4.views.graphics.play.commands
+package connect4.views.graphics.start
+package javax.swing
+package java.awt
+package java.util.concurrent
+package utils.views
+package connect4.types
+package connect4.controllers.core
+package utils.models
+package connect4.views
+
+connect4.views.graphics ..> connect4.controllers.core
+connect4.views.graphics ..> connect4.views
+connect4.views.graphics ..> connect4.views.graphics.play
+connect4.views.graphics ..> connect4.views.graphics.start
+connect4.views.graphics ..> javax.swing
+connect4.views.graphics ..> utils.views
+
+connect4.views.graphics.start ..> connect4.controllers.core
+connect4.views.graphics.start ..> connect4.types
+connect4.views.graphics.start ..> connect4.views.graphics
+connect4.views.graphics.start ..> java.awt
+connect4.views.graphics.start ..> java.util.concurrent
+connect4.views.graphics.start ..> javax.swing
+
+connect4.views.graphics.play ..> connect4.controllers.core
+connect4.views.graphics.play ..> connect4.views.graphics
+connect4.views.graphics.play ..> connect4.views.graphics.play.board
+connect4.views.graphics.play ..> connect4.views.graphics.play.commands
+connect4.views.graphics.play ..> javax.swing
+connect4.views.graphics.play ..> connect4.types
+
+connect4.views.graphics.play.board ..> connect4.controllers.core
+connect4.views.graphics.play.board ..> connect4.types
+connect4.views.graphics.play.board ..> utils.models
+connect4.views.graphics.play.board ..> connect4.views.graphics.play.commands
+connect4.views.graphics.play.board ..> connect4.views.graphics
+connect4.views.graphics.play.board ..> javax.swing
+connect4.views.graphics.play.board ..> java.awt
+
+connect4.views.graphics.play.commands ..> connect4.views.graphics.play.board
+
+
+@enduml

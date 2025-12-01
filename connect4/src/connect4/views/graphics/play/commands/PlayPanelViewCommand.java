@@ -1,6 +1,4 @@
-package connect4.views.graphics.playPanel;
-
-import connect4.views.graphics.Command;
+package connect4.views.graphics.play.commands;
 
 public abstract class PlayPanelViewCommand implements Command {
 
