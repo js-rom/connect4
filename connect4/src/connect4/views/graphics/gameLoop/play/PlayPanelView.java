@@ -6,16 +6,9 @@ import java.util.concurrent.CountDownLatch;
 import connect4.controllers.core.PlayController;
 import connect4.views.graphics.gameLoop.GameLoopView;
 import connect4.views.graphics.gameLoop.play.board.BoardView;
-import connect4.views.graphics.gameLoop.play.board.BoardViewPrototypeDirector;
-import connect4.views.graphics.gameLoop.play.board.BoardViewPrototypeRegistry;
 import connect4.views.graphics.gameLoop.play.board.MachinePlayerBoardView;
 import connect4.views.graphics.gameLoop.play.board.UserPlayerBoardView;
-import connect4.views.graphics.gameLoop.play.commands.NextTurnCommand;
 import connect4.views.graphics.gameLoop.play.commands.PlayPanelViewVisitor;
-import connect4.views.graphics.gameLoop.play.commands.RedoMachinePlayerCommand;
-import connect4.views.graphics.gameLoop.play.commands.RedoUserPlayerCommand;
-import connect4.views.graphics.gameLoop.play.commands.UndoMachinePlayerCommand;
-import connect4.views.graphics.gameLoop.play.commands.UndoUserPlayerCommand;
 
 public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor {
 
@@ -37,10 +30,7 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
     public void write() {
         if (!this.playController.isFinished()) {
             this.removeBoard();
-            BoardViewPrototypeRegistry boardViewPrototypeRegistry = new BoardViewPrototypeRegistry(playController,
-                    new NextTurnCommand(this));
-            this.boardView = new BoardViewPrototypeDirector().get(boardViewPrototypeRegistry,
-                    this.playController.getActivePlayerType());
+            this.boardView = new BoardViewFactory(this.playController).createBoardView(this);
             this.boardView.accept(this);
             this.turnView.write();
             this.removeAll();
@@ -62,13 +52,13 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
     }
 
     public void visit(MachinePlayerBoardView machinePlayerBoardView) {
-        this.turnView = new TurnFactory().createMachineTurnView(this.playController, this);
+        this.turnView = new TurnViewFactory(this.playController).createMachineTurnView(this);
         machinePlayerBoardView.write();
         machinePlayerBoardView.dropToken();
     }
 
     public void visit(UserPlayerBoardView userPlayerBoardView) {
-        this.turnView = new TurnFactory().createUserTurnView(this.playController, this);
+        this.turnView = new TurnViewFactory(this.playController).createUserTurnView(this);
         userPlayerBoardView.write();
     }
 

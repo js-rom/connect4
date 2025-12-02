@@ -36,8 +36,12 @@ class play.TurnView{
 }
 
 class play.TurnViewFactory{
-    +createMachineTurnView(PlayController, PlayPanelViewVisitor)
-    +createUserTurnView(PlayController, PlayPanelViewVisitor)
+    +createMachineTurnView(PlayPanelViewVisitor)
+    +createUserTurnView(PlayPanelViewVisitor)
+}
+
+class play.BoardViewFactory{
+    +createMachineBoardView(PlayPanelViewVisitor)
 }
 
 PlayPanelView --> PlayController
@@ -45,18 +49,20 @@ PlayPanelView --> CountDownLatch
 GameLoopView <|-- PlayPanelView
 PlayPanelViewVisitor <|.. PlayPanelView
 PlayPanelView *--> BoardView
-PlayPanelView ..> BoardViewPrototypeRegistry
-PlayPanelView ..> BoardViewPrototypeDirector
 TurnView --> PlayController
 TurnView --> UndoCommand
 TurnView --> RedoCommand
 PlayPanelView *--> TurnView
 PlayPanelView ..> TurnViewFactory
-PlayPanelView ..> NextTurnCommand
+PlayPanelView ..> BoardViewFactory
+BoardViewFactory ..> BoardViewPrototypeRegistry
+BoardViewFactory ..> BoardViewPrototypeDirector
+BoardViewFactory ..> NextTurnCommand
 TurnViewFactory --> PlayController
 TurnViewFactory ..> RedoMachinePlayerCommand
 TurnViewFactory ..> RedoUserPlayerCommand
 TurnViewFactory ..> UndoMachinePlayerCommand
 TurnViewFactory ..> UndoUserPlayerCommand
+
 
 @enduml

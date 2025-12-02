@@ -7,16 +7,21 @@ import connect4.views.graphics.gameLoop.play.commands.RedoUserPlayerCommand;
 import connect4.views.graphics.gameLoop.play.commands.UndoMachinePlayerCommand;
 import connect4.views.graphics.gameLoop.play.commands.UndoUserPlayerCommand;
 
-public class TurnFactory {
+public class TurnViewFactory {
 
-    public TurnView createMachineTurnView(PlayController playController, PlayPanelViewVisitor visitor) {
+    private PlayController playController;
+
+    public TurnViewFactory(PlayController playController) {
+        this.playController = playController;
+    }
+    public TurnView createMachineTurnView(PlayPanelViewVisitor visitor) {
         TurnView turnView = new TurnView(playController);
         turnView.setUndoCommand(new UndoMachinePlayerCommand(visitor));
         turnView.setRedoComand(new RedoMachinePlayerCommand(visitor));    
         return turnView;
     }
 
-    public TurnView createUserTurnView(PlayController playController, PlayPanelViewVisitor visitor) {
+    public TurnView createUserTurnView(PlayPanelViewVisitor visitor) {
         TurnView turnView = new TurnView(playController);
         turnView.setUndoCommand(new UndoUserPlayerCommand(visitor));
         turnView.setRedoComand(new RedoUserPlayerCommand(visitor));    
