@@ -6,6 +6,8 @@ class RedoMachinePlayerCommand as "graphics.\nplay.\ncommands.\nRedoMachinePlaye
 class RedoUserPlayerCommand as "graphics.\nplay.\ncommands.\nRedoUserPlayerCommand"
 class UndoMachinePlayerCommand as "graphics.\nplay.\ncommands.\nUndoMachinePlayerCommand"
 class UndoUserPlayerCommand as "graphics.\nplay.\ncommands.\nUndoUserPlayerCommand"
+class RedoCommand as "graphics.\nplay.\ncommands.\nRedoCommand"
+class UndoCommand as "graphics.\nplay.\ncommands.\nUndoCommand"
 
 abstract class GameLoopView as "graphics.\ngameLoop.\nGameLoopView"
 interface PlayPanelViewVisitor as "grapgics.\nplay.\ncommands.\nPlayPanelViewVisitor"
@@ -21,17 +23,21 @@ class play.PlayPanelView{
     -removeBoard()
     +visit(MachinePlayerBoardView)
     +visit(UserPlayerBoardView)
-    +undo(UndoMachinePlayerCommand)
-    +undo(UndoUserPlayerCommand)
-    +redo(RedoMachinePlayerCommand)
-    +redo(RedoUserPlayerCommand)
-    -redo()
+    +interruptDropToken()
+    +undoable()
+    +undo()
+    +redo()
 }
 
 class play.TurnView{
     +write()
     +setUndoCommand(UndoComand)
     +setRedoCommand(RedoComand)
+}
+
+class play.TurnViewFactory{
+    +createMachineTurnView(PlayController, PlayPanelViewVisitor)
+    +createUserTurnView(PlayController, PlayPanelViewVisitor)
 }
 
 PlayPanelView --> PlayController
@@ -42,11 +48,15 @@ PlayPanelView *--> BoardView
 PlayPanelView ..> BoardViewPrototypeRegistry
 PlayPanelView ..> BoardViewPrototypeDirector
 TurnView --> PlayController
+TurnView --> UndoCommand
+TurnView --> RedoCommand
 PlayPanelView *--> TurnView
+PlayPanelView ..> TurnViewFactory
 PlayPanelView ..> NextTurnCommand
-PlayPanelView ..> RedoMachinePlayerCommand
-PlayPanelView ..> RedoUserPlayerCommand
-PlayPanelView ..> UndoMachinePlayerCommand
-PlayPanelView ..> UndoUserPlayerCommand
+TurnViewFactory --> PlayController
+TurnViewFactory ..> RedoMachinePlayerCommand
+TurnViewFactory ..> RedoUserPlayerCommand
+TurnViewFactory ..> UndoMachinePlayerCommand
+TurnViewFactory ..> UndoUserPlayerCommand
 
 @enduml

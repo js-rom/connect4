@@ -8,7 +8,7 @@ public class RedoUserPlayerCommand extends RedoCommand {
 
     @Override
     public void execute() {
-        this.getReceiver().redo(this);
+        this.getReceiver().redo();
     }
 
 }

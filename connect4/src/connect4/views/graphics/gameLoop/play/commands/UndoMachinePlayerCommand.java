@@ -8,6 +8,9 @@ public class UndoMachinePlayerCommand extends UndoCommand {
 
     @Override
     public void execute() {
-        this.getReceiver().undo(this);
+        if (this.getReceiver().undoable()) {
+            this.getReceiver().interruptDropToken();
+            this.getReceiver().undo();
         }
     }
+}

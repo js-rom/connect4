@@ -62,47 +62,31 @@ public class PlayPanelView extends GameLoopView implements PlayPanelViewVisitor 
     }
 
     public void visit(MachinePlayerBoardView machinePlayerBoardView) {
-        this.turnView.setUndoCommand(new UndoMachinePlayerCommand(this));
-        this.turnView.setRedoComand(new RedoMachinePlayerCommand(this));
+        this.turnView = new TurnFactory().createMachineTurnView(this.playController, this);
         machinePlayerBoardView.write();
         machinePlayerBoardView.dropToken();
     }
 
     public void visit(UserPlayerBoardView userPlayerBoardView) {
-        this.turnView.setUndoCommand(new UndoUserPlayerCommand(this));
-        this.turnView.setRedoComand(new RedoUserPlayerCommand(this));
+        this.turnView = new TurnFactory().createUserTurnView(this.playController, this);
         userPlayerBoardView.write();
     }
 
-    public void undo(UndoMachinePlayerCommand undoMachinePlayerCommand) {
-        if (this.playController.undoable()) {
-            ((MachinePlayerBoardView) this.boardView).interruptDropToken();
-            this.undo();
-        }
+    public void interruptDropToken() {
+        ((MachinePlayerBoardView) this.boardView).interruptDropToken();
     }
 
-    public void undo(UndoUserPlayerCommand undoUserPlayerCommand) {
-        if (this.playController.undoable()) {
-            this.undo();
-        }
+    public boolean undoable() {
+        return this.playController.undoable();
     }
 
-    private void undo() {
+    public void undo() {
         assert this.playController.undoable();
         this.playController.undo();
         this.write();
     }
 
-    public void redo(RedoUserPlayerCommand redoUserPlayerCommand) {
-        this.redo();
-    }
-
-    public void redo(RedoMachinePlayerCommand redoMachinePlayerCommand) {
-        ((MachinePlayerBoardView) this.boardView).interruptDropToken();
-        this.redo();
-    }
-
-    private void redo() {
+    public void redo() {
         assert this.playController.redoable();
         this.playController.redo();
         this.write();

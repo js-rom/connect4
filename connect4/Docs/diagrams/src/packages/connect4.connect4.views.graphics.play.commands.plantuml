@@ -3,11 +3,11 @@
 interface commands.PlayPanelViewVisitor {
     +visit(MachinePlayerBoardView)
     +visit(UserPlayerBoardView)
-    +write();
-    +redo(RedoMachinePlayerCommand command);
-    +redo(RedoUserPlayerCommand command);
-    +undo(UndoMachinePlayerCommand command);
-    +undo(UndoUserPlayerCommand command);
+    +write()
+    +redo()
+    +undo()
+    +undoable() : bool
+    +interruptDropToken()
 }
 
 interface commands.Command {

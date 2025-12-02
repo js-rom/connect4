@@ -8,7 +8,8 @@ public class RedoMachinePlayerCommand extends RedoCommand {
 
     @Override
     public void execute() {
-        this.getReceiver().redo(this);
+        this.getReceiver().interruptDropToken();
+        this.getReceiver().redo();
     }
 
 }
