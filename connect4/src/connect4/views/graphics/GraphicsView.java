@@ -8,7 +8,6 @@ import connect4.controllers.core.ResumeController;
 import connect4.controllers.core.SaveController;
 import connect4.controllers.core.StartController;
 import connect4.views.View;
-import connect4.views.graphics.gameLoop.play.PlayPanelView;
 import connect4.views.graphics.gameLoop.start.StartPanelView;
 
 public class GraphicsView implements View, ControllerVisitor {
@@ -29,7 +28,9 @@ public class GraphicsView implements View, ControllerVisitor {
 
     @Override
     public void play(PlayController playController) {
-        this.frame.setPanel(new PlayPanelView(playController, this.latch));
+        this.frame
+                .setPanel(new connect4.views.graphics.gameLoop.play.Factory(playController, this.latch)
+                        .createPlayPanelView());
     }
 
     @Override

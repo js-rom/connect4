@@ -80,14 +80,17 @@ El conjunto de paquetes forma un Grafo Dirigído **Acíclico**
 
 ![Package_connect4.views.graphics.gameLoop](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop/connect4.connect4.views.graphics.gameLoop.svg)
 
-![Package_connect4.views.graphics.start](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.start/connect4.connect4.views.graphics.start.svg)
+![Package_connect4.views.graphics.gameLoop.start](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.start/connect4.connect4.views.graphics.start.svg)
 
-![Package_connect4.views.graphics.play](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.play/connect4.connect4.views.graphics.play.svg)
+![Package_connect4.views.graphics.gameLoop.play](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play/connect4.connect4.views.graphics.play.svg)
 
-![Package_connect4.views.graphics.play.board](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.play.board/connect4.connect4.views.graphics.board.svg)
+![Package_connect4.views.graphics.gameLoop.play](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel/connect4.connect4.views.graphics.play.panel.svg)
 
-![Package_connect4.views.graphics.play.commands](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.play.commands/connect4.connect4.views.graphics.commands.svg)
+![Package_connect4.views.graphics.gameLoop.play.board](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel.board/connect4.connect4.views.graphics.play.panel.board.svg)
 
+![Package_connect4.views.graphics.gameLoop.play.turn](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel.turn/connect4.connect4.views.graphics.play.panel.turn.svg)
+
+![Package_connect4.views.graphics.gameLoop.play.turn](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel.commands/connect4.connect4.views.graphics.commands.svg)
 
 
 ## connect4.models Package

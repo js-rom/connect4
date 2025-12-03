@@ -1,0 +1,33 @@
+@startuml connect4.connect4.views.graphics.play.panel.turn
+
+class PlayController as "controllers.\ncore.\nPlayController"
+interface Command as "panel.\ncommands.\nCommand"
+class Color as "types.\nColor"
+class Message as "views.\ngraphics.\nMessage"
+abstract class PanelView as "graphics.\ngameLoop.\nPanelView"
+
+class turn.TurnView{
+    +write()
+    +setUndoCommand(Comand)
+    +setRedoCommand(Comand)
+}
+
+class turn.TurnViewFactory{
+    +createMachineTurnView()
+    +createUserTurnView()
+    +setUndoMachinePlayerCommand(Command)
+    +setRedoMachinePlayerCommand(Command)
+    +setUndoUserPlayerCommand(Command)
+    +setRedoUserPlayerCommand(Command)
+}
+
+TurnView --> PlayController
+TurnView --> "2" Command
+TurnView o--> Color
+TurnView ..> Message
+PanelView <|-- TurnView
+TurnViewFactory --> PlayController
+TurnViewFactory --> "4"Command
+TurnViewFactory..> TurnView
+
+@enduml

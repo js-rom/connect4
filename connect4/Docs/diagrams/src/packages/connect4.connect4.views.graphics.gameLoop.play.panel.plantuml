@@ -1,0 +1,33 @@
+@startuml connect4.connect4.views.graphics.play.panel
+
+interface BoardVisitor as "panel.\nboard.\nBoardVisitor"
+class TurnView as "panel.\nturn.\nTurnView"
+class TurnViewFactory as "panel.\nturn.\nTurnViewFactory"
+
+abstract class GameLoopView as "graphics.\ngameLoop.\nGameLoopView"
+class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
+class PlayController as "controllers.\nPlayController"
+abstract class BoardView as "panel.\nboard.\nBoardView"
+class BoardViewFactory as "panel.\nboard.\nBoardViewFactory"
+
+class panel.PlayPanelView{
+    +write()
+    -removeBoard()
+    +visit(MachinePlayerBoardView)
+    +visit(UserPlayerBoardView)
+    +interruptDropToken()
+    +undoable()
+    +undo()
+    +redo()
+}
+
+PlayPanelView --> PlayController
+PlayPanelView --> CountDownLatch
+GameLoopView <|-- PlayPanelView
+BoardVisitor <|.. PlayPanelView
+PlayPanelView --> BoardView
+PlayPanelView --> TurnView
+PlayPanelView --> TurnViewFactory
+PlayPanelView --> BoardViewFactory
+
+@enduml
