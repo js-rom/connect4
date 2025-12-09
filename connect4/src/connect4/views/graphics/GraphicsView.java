@@ -46,6 +46,12 @@ public class GraphicsView implements View, ControllerVisitor {
         return isResumed;
     }
 
+    @Override
+    public void save(SaveController saveController) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
+
     public void setLatch(CountDownLatch latch) {
         this.latch = latch;
     }
@@ -71,10 +77,5 @@ public class GraphicsView implements View, ControllerVisitor {
         throw new UnsupportedOperationException("Unimplemented method 'visit'");
     }
 
-    @Override
-    public void save(SaveController saveController) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
 
 }
