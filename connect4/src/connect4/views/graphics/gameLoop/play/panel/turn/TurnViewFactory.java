@@ -10,20 +10,22 @@ public class TurnViewFactory {
     private Command redoMachinePlayerCommand;
     private Command undoUserPlayerCommand;
     private Command redoUserPlayerCommand;
+    private Command exitCommand;
 
-    public TurnViewFactory(PlayController playController) {
+    public TurnViewFactory(PlayController playController, Command exitCommand) {
         this.playController = playController;
+        this.exitCommand = exitCommand;
     }
 
     public TurnView createMachineTurnView() {
-        TurnView turnView = new TurnView(playController);
+        TurnView turnView = new TurnView(playController, this.exitCommand);
         turnView.setUndoCommand(this.undoMachinePlayerCommand);
         turnView.setRedoComand(this.redoMachinePlayerCommand);
         return turnView;
     }
 
     public TurnView createUserTurnView() {
-        TurnView turnView = new TurnView(playController);
+        TurnView turnView = new TurnView(playController, this.exitCommand);
         turnView.setUndoCommand(this.undoUserPlayerCommand);
         turnView.setRedoComand(this.redoUserPlayerCommand);
         return turnView;

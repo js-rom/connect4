@@ -19,10 +19,12 @@ public class TurnView extends PanelView {
     private Map<Color, ImageIcon> colors;
     private Command undoCommand;
     private Command redoCommand;
+    private Command exitCommand;
 
-    public TurnView(PlayController playController) {
+    public TurnView(PlayController playController, Command exitCommand) {
         assert (playController != null);
         this.playController = playController;
+        this.exitCommand = exitCommand;
         this.colors = new EnumMap<>(Color.class);
         for (Color color : Color.values()) {
             String fileNamePrefix = "connect4\\src\\connect4\\views\\graphics\\assets\\";
@@ -54,7 +56,7 @@ public class TurnView extends PanelView {
         this.add(redo);
         JButton exit = new JButton("Exit Game");
         exit.addActionListener(e -> {
-            this.playController.nextState();
+            this.exitCommand.execute();
         });
         this.add(exit);
 

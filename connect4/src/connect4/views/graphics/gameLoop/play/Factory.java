@@ -5,6 +5,7 @@ import java.util.concurrent.CountDownLatch;
 import connect4.controllers.core.PlayController;
 import connect4.views.graphics.gameLoop.play.panel.PlayPanelView;
 import connect4.views.graphics.gameLoop.play.panel.board.BoardViewFactory;
+import connect4.views.graphics.gameLoop.play.panel.commands.ExitCommand;
 import connect4.views.graphics.gameLoop.play.panel.commands.NextTurnCommand;
 import connect4.views.graphics.gameLoop.play.panel.commands.RedoMachinePlayerCommand;
 import connect4.views.graphics.gameLoop.play.panel.commands.RedoUserPlayerCommand;
@@ -38,7 +39,7 @@ public class Factory {
     }
 
     private TurnViewFactory createTurnViewFactory() {
-        TurnViewFactory turnViewFactory = new TurnViewFactory(this.playController);
+        TurnViewFactory turnViewFactory = new TurnViewFactory(this.playController, new ExitCommand(playPanelView));
         turnViewFactory.setUndoMachinePlayerCommand(new UndoMachinePlayerCommand(this.playPanelView));
         turnViewFactory.setRedoMachinePlayerCommand(new RedoMachinePlayerCommand(this.playPanelView));
         turnViewFactory.setUndoUserPlayerCommand(new UndoUserPlayerCommand(this.playPanelView));
