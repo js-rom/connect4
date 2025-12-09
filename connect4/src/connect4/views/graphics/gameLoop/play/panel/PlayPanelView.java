@@ -16,18 +16,16 @@ import connect4.views.graphics.gameLoop.play.panel.turn.TurnViewFactory;
 public class PlayPanelView extends GameLoopView implements BoardVisitor {
 
     private PlayController playController;
-    private CountDownLatch latch;
     protected BoardView boardView;
     protected BoardViewFactory boardViewFactory;
     protected TurnViewFactory turnViewFactory;
     protected TurnView turnView;
 
     public PlayPanelView(PlayController playController, CountDownLatch latch) {
+        super(latch);
         assert (playController != null);
         this.setLayout(new BorderLayout());
         this.playController = playController;
-        this.latch = latch;
-        //this.turnView = new TurnView(playController);
         this.playController.registerMemento();
     }
 
@@ -54,7 +52,7 @@ public class PlayPanelView extends GameLoopView implements BoardVisitor {
             this.getParent().repaint();
         } else {
             this.playController.nextState();
-            this.latch.countDown();
+            this.nextGameLoopView();;
         }
     }
 
@@ -93,6 +91,10 @@ public class PlayPanelView extends GameLoopView implements BoardVisitor {
         assert this.playController.redoable();
         this.playController.redo();
         this.write();
+    }
+
+    public void nextState() {
+        this.playController.nextState();
     }
 
 }

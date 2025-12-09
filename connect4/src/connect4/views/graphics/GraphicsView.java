@@ -2,6 +2,8 @@ package connect4.views.graphics;
 
 import java.util.concurrent.CountDownLatch;
 
+import javax.swing.JOptionPane;
+
 import connect4.controllers.core.ControllerVisitor;
 import connect4.controllers.core.PlayController;
 import connect4.controllers.core.ResumeController;
@@ -48,8 +50,39 @@ public class GraphicsView implements View, ControllerVisitor {
 
     @Override
     public void save(SaveController saveController) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        int result = JOptionPane.showConfirmDialog(
+                this.frame,
+                Message.SAVE_GAME.toString(),
+                "Select an Option",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+
+        if (JOptionPane.YES_OPTION == result) {
+            if (!saveController.hasName()) {
+                String name = "";
+                boolean valid = false;
+                do {
+                    name = JOptionPane.showInputDialog(
+                            this.frame,
+                            Message.ENTER_GAME_NAME.toString(),
+                            "Input",
+                            JOptionPane.QUESTION_MESSAGE);
+                    valid = !saveController.exists(name);
+                    if (!valid) {
+                        JOptionPane.showMessageDialog(
+                                this.frame,
+                                Message.NAME_ALREADY_EXISTS.toString(),
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } while (!valid);
+                saveController.setName(name);
+            }
+            saveController.save();
+            saveController.nextState();
+            this.latch.countDown();
+        }
+
     }
 
     public void setLatch(CountDownLatch latch) {
@@ -73,9 +106,7 @@ public class GraphicsView implements View, ControllerVisitor {
 
     @Override
     public void visit(SaveController saveController) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'visit'");
+        this.save(saveController);
     }
-
 
 }

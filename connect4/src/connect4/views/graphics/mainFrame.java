@@ -55,4 +55,5 @@ public class MainFrame extends JFrame {
         this.setVisible(false);
         return JOptionPane.YES_OPTION == result;
     }
+
 }

@@ -17,12 +17,11 @@ import javax.swing.JPanel;
 public class StartPanelView extends GameLoopView {
 
     private StartController startController;
-    private CountDownLatch latch;
 
     public StartPanelView(StartController startController, CountDownLatch latch) {
+        super(latch);
         assert (startController != null);
         this.startController = startController;
-        this.latch = latch;
     }
 
     public void write() {
@@ -52,7 +51,7 @@ public class StartPanelView extends GameLoopView {
                 button.addActionListener(e -> {
                     this.addPlayers();
                     StartPanelView.this.startController.nextState();
-                    StartPanelView.this.latch.countDown();
+                    StartPanelView.this.nextGameLoopView();
                 });
                 newGamePanel.add(button);
                 StartPanelView.this.add(newGamePanel);
@@ -85,7 +84,7 @@ public class StartPanelView extends GameLoopView {
             if (jComboBox.getSelectedItem() != null) {
                 String gameName = (String) jComboBox.getSelectedItem();
                 this.startController.start(gameName);
-                this.latch.countDown();
+                this.nextGameLoopView();
             }
         });
         openGamePanel.add(openGame);
