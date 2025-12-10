@@ -50,38 +50,68 @@ public class GraphicsView implements View, ControllerVisitor {
 
     @Override
     public void save(SaveController saveController) {
-        int result = JOptionPane.showConfirmDialog(
-                this.frame,
-                Message.SAVE_GAME.toString(),
-                "Select an Option",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
 
-        if (JOptionPane.YES_OPTION == result) {
-            if (!saveController.hasName()) {
-                String name = "";
-                boolean valid = false;
-                do {
-                    name = JOptionPane.showInputDialog(
-                            this.frame,
-                            Message.ENTER_GAME_NAME.toString(),
-                            "Input",
-                            JOptionPane.QUESTION_MESSAGE);
-                    valid = !saveController.exists(name);
-                    if (!valid) {
-                        JOptionPane.showMessageDialog(
-                                this.frame,
-                                Message.NAME_ALREADY_EXISTS.toString(),
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                } while (!valid);
-                saveController.setName(name);
+        class SaveDialog {
+
+            private boolean isCanceled = false;
+            String name = "";
+
+            public void interact() {
+                if (isSaveConfirmed()) {
+                    this.save();
+                }
+                saveController.nextState();
+                GraphicsView.this.latch.countDown();
             }
-            saveController.save();
+
+            private boolean isSaveConfirmed() {
+                int result = JOptionPane.showConfirmDialog(
+                        GraphicsView.this.frame,
+                        Message.SAVE_GAME.toString(),
+                        "Select an Option",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                return JOptionPane.YES_OPTION == result;
+            }
+
+            private void save() {
+                this.setName();
+                if (!isCanceled) {
+                    saveController.save();
+                }
+            }
+
+            private void setName() {
+                if (!saveController.hasName()) {
+                    boolean valid = false;
+                    do {
+                        name = JOptionPane.showInputDialog(
+                                GraphicsView.this.frame,
+                                Message.ENTER_GAME_NAME.toString(),
+                                "Input",
+                                JOptionPane.OK_OPTION);
+                        isCanceled = (name == null);
+                        valid = !saveController.exists(name) || isCanceled;
+                        if (!valid) {
+                            JOptionPane.showMessageDialog(
+                                    GraphicsView.this.frame,
+                                    Message.NAME_ALREADY_EXISTS.toString(),
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } while (!valid);
+
+                    if (!isCanceled) {
+                        saveController.setName(name);
+                    }
+                }
+            }
+
         }
-        saveController.nextState();
-        this.latch.countDown();
+
+        new SaveDialog().interact();
+      
     }
 
     public void setLatch(CountDownLatch latch) {
