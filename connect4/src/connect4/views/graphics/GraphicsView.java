@@ -79,10 +79,9 @@ public class GraphicsView implements View, ControllerVisitor {
                 saveController.setName(name);
             }
             saveController.save();
-            saveController.nextState();
-            this.latch.countDown();
         }
-
+        saveController.nextState();
+        this.latch.countDown();
     }
 
     public void setLatch(CountDownLatch latch) {
