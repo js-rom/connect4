@@ -50,7 +50,7 @@ public class StartPanelView extends GameLoopView {
                 this.button = new JButton("Play");
                 button.addActionListener(e -> {
                     this.addPlayers();
-                    StartPanelView.this.startController.nextState();
+                    StartPanelView.this.startController.start();
                     StartPanelView.this.nextGameLoopView();
                 });
                 newGamePanel.add(button);

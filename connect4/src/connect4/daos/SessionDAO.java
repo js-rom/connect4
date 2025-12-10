@@ -104,5 +104,6 @@ public class SessionDAO {
         BufferedReader bufferedReader = this.createBufferedReader(gameName);
         this.gameDAO.load(bufferedReader);
         this.closeBufferedReader(bufferedReader);
+        this.session.setName(gameName);
     }
 }

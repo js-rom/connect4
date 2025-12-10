@@ -55,6 +55,7 @@ public class Session {
     }
 
     public void reset() {
+        this.name = null;
         this.game.reset();
         this.state.reset();
         this.resetRegistry();
