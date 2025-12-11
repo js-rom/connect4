@@ -24,6 +24,12 @@ class daos.SessionDAO {
 
 }
 
+interface daos.DAO {
+    + final EOL : String
+    + save(Filewriter)
+    + load(BufferedReader)
+}
+
 class daos.GameDAO {
 
    - game : Game
@@ -66,6 +72,10 @@ class daos.PlayerDAO {
 
 SessionDAO --> Session
 SessionDAO --> GameDAO
+DAO <|.. GameDAO
+DAO <|.. BoardDAO
+DAO <|.. TurnDAO
+DAO <|.. PlayerDAO
 GameDAO --> Game
 GameDAO *--> BoardDAO
 GameDAO *--> TurnDAO
