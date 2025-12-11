@@ -32,7 +32,6 @@ public class PlayerDAO implements DAO {
     public void load(BufferedReader bufferedReader) {
         for (int i = 0; i < this.game.getNumberPlayers(); i++) {
             PlayerType playerType = null;
-            ;
             try {
                 playerType = PlayerType.valueOf(bufferedReader.readLine());
             } catch (IOException e) {
