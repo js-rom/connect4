@@ -1,17 +1,16 @@
 @startuml connect4.connect4.views.graphics.start
 
 class StartController as "controllers.\nStartController"
-class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
 abstract class GameLoopView as "graphics.\ngameLoop\nGameLoopView"
 
 class start.StartPanelView {
     +write()
     +addPlayers()
-    +actionPerformed(ActionEvent)
+    -writeNewGameMenu()
+    -writeOpenGameMenu()
 }
 
 StartPanelView --> StartController
-StartPanelView --> CountDownLatch
 GameLoopView <|-- StartPanelView
 
 @enduml

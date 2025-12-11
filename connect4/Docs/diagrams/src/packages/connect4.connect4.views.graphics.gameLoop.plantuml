@@ -2,7 +2,10 @@
 
 class JPanel as "javax.swing.\nJPanel"
 
-interface gameLoop.GameLoopView
+abstract class gameLoop.GameLoopView {
+    - latch: CountDownLatch
+    + nextGameLoopView()
+}
 
 abstract class gameLoop.PanelView {
     + {abstract} write()

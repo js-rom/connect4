@@ -22,12 +22,12 @@ class turn.TurnViewFactory{
 }
 
 TurnView --> PlayController
-TurnView --> "2" Command
+TurnView --> "3" Command
 TurnView o--> Color
 TurnView ..> Message
 PanelView <|-- TurnView
 TurnViewFactory --> PlayController
-TurnViewFactory --> "4"Command
+TurnViewFactory --> "5"Command
 TurnViewFactory..> TurnView
 
 @enduml

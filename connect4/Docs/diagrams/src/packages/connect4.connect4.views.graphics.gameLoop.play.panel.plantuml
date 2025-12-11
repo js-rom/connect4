@@ -5,7 +5,6 @@ class TurnView as "panel.\nturn.\nTurnView"
 class TurnViewFactory as "panel.\nturn.\nTurnViewFactory"
 
 abstract class GameLoopView as "graphics.\ngameLoop.\nGameLoopView"
-class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
 class PlayController as "controllers.\nPlayController"
 abstract class BoardView as "panel.\nboard.\nBoardView"
 class BoardViewFactory as "panel.\nboard.\nBoardViewFactory"
@@ -22,7 +21,6 @@ class panel.PlayPanelView{
 }
 
 PlayPanelView --> PlayController
-PlayPanelView --> CountDownLatch
 GameLoopView <|-- PlayPanelView
 BoardVisitor <|.. PlayPanelView
 PlayPanelView --> BoardView

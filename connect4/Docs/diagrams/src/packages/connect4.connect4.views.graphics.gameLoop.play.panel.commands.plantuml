@@ -15,11 +15,13 @@ class commands.RedoMachinePlayerCommand {}
 class commands.UndoMachinePlayerCommand {}
 class commands.RedoUserPlayerCommand {}
 class commands.UndoUserPlayerCommand {}
+class commands.ExitCommand
 
 Command <|-- PlayPanelViewCommand
 PlayPanelViewCommand <|-- NextTurnCommand
 PlayPanelViewCommand <|-- UndoComand
 PlayPanelViewCommand <|-- RedoComand
+PlayPanelViewCommand <|-- ExitCommand
 UndoComand <|-- UndoMachinePlayerCommand
 UndoComand <|-- UndoUserPlayerCommand
 RedoComand <|-- RedoMachinePlayerCommand
