@@ -1,6 +1,6 @@
 # Connect 4. Solution v.1.14 modelViewPresenter - presentationModel - withDAO
 
-# Requisitos 5. *Files*
+# Requisitos 6. *Files*
 
 * Funcionalidad: 
   * **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
