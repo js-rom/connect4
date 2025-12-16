@@ -1,0 +1,30 @@
+@startuml useCaseView.contextDiagram
+
+state INITIAL
+state IN_GAME
+state INITIAL_OPT_FINISHED <<choice>>
+state IN_GAME
+state IN_GAME_OPT_FINISHED <<choice>>
+state OUT_GAME
+state FINAL
+state FINAL_OPT_RESUMED <<choice>>
+state EXIT
+
+[*] --> INITIAL
+INITIAL --> IN_GAME : Start
+INITIAL --> INITIAL_OPT_FINISHED : Open
+INITIAL_OPT_FINISHED --> IN_GAME
+INITIAL_OPT_FINISHED --> FINAL : [Finished]
+
+IN_GAME --> IN_GAME_OPT_FINISHED : Play
+IN_GAME --> IN_GAME_OPT_FINISHED : Undo
+IN_GAME --> IN_GAME_OPT_FINISHED : Redo
+IN_GAME --> OUT_GAME : Exit
+IN_GAME_OPT_FINISHED --> OUT_GAME : [Finished]
+
+OUT_GAME --> FINAL : Save
+FINAL --> FINAL_OPT_RESUMED : Ask to resume
+FINAL_OPT_RESUMED --> EXIT
+FINAL_OPT_RESUMED --> INITIAL : [Resumed]
+
+@enduml
