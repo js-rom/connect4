@@ -19,7 +19,7 @@
 | distributed | modelViewPresenter - presentationModel - withoutProxy |
 | distributed | [v.1.12 modelViewPresenter - presentationModel - withProxy](https://github.com/js-rom/connect4/tree/v1.12.0-Release) |
 | files | modelViewPresenter - presentationModel - withoutDAO |
-| files | modelViewPresenter - presentationModel - withDAO |
+| files | [v.1.14 modelViewPresenter - presentationModel - withDAO](https://github.com/js-rom/connect4/tree/v1.14.0-Release) |
 | bbdd | modelViewPresenter - presentationModel - withoutPrototype |
 | bbdd | modelViewPresenter - presentationModel - withPrototype |
 | basic | modelViewPresenter - passiveView |
@@ -28,19 +28,15 @@
 
 ![secuencia de versiones](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
-# Versión v.1.12
+# Versión v.1.14
 
 ## enfoque
 
-En esta versión se añade un nuevo requisito para distribuir la aplicacion mediante comunicaciones TCP/IP. El objetivo no es solo distribuir la aplicación, sino permitir que convivan todas las combinaciones posibles de ejecución bajo un mismo proyecto reutilizando el mayor porcentaje de código posible:
-
-- Interfaz consola - standalone
-- Interfaz gráfica - standalone
-- Interfaz consola - distribuida
-- Interfaz gráfica - distribuida
+En esta versión se añaden nuevos requisitos:
+- Exit Game
+- Save Game
+- Open game
 
 ## Diseño
 
-- Patrón Proxy: para abstraer a las vistas (consola o gráfica) del tipo de arquitectura subyacente (standalone o distribuida). De esta manera, la interfaz de usuario no necesita conocer si está operando localmente o a través de la red. 
-
-- factory method: para configurar los diferentes modos de arranque evitando así hacer jerarquias de herencia paralelas
+Se hace uso del patrón DAO pora evitar el acoplamiento de los modelos a la tacnología de persistencia. De esta forma mantenemos la cohesión de los modelos al centrarse unicamente en las reglas de negocio, evitamos que crezca el tamaño de los modelos manteniendo (no empeorando) su comprensibilidad y garantizamos un enfoque open/close ya que nuevas tecnologías de persistencia no provocarán modificaciones en los modelos.

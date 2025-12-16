@@ -1,13 +1,17 @@
-# Connect 4. Solution v.1.12 modelViewPresenter - presentationModel - withProxy
+# Connect 4. Solution v.1.14 modelViewPresenter - presentationModel - withDAO
 
-# Requisitos 5. *Distribuido*
+# Requisitos 5. *Files*
 
 * Funcionalidad: 
   * **Jugador persona, máquina aleatorio y máquina con inteligencia artificial**
-  * **undo - redo**
+  * **Undo - Redo**
+  * **Salir de la partida actual**
+  * **Guardar la partida**
+  * **crear una partida o abrir una partida guardada**
+
 * Interfaz: **Gráfica y Texto**
 * Distribución: **Standalone & distributed**
-* Persistencia: **No**
+* Persistencia: **Files**
 
 # Vista de Lógica/Diseño
 
@@ -21,6 +25,7 @@
   - Técnica Doble Despacho para visitadores de vistas
   - Inversión de Control para vistas principales
   - Patrón template method para extender el comportamiento de jerarquías de herencias
+  - Patrón DAO para el acceso a datos
 
 ## Arquitectura
 
