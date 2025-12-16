@@ -26,5 +26,6 @@ OUT_GAME --> FINAL : Save
 FINAL --> FINAL_OPT_RESUMED : Ask to resume
 FINAL_OPT_RESUMED --> EXIT
 FINAL_OPT_RESUMED --> INITIAL : [Resumed]
+EXIT --> [*]
 
 @enduml
