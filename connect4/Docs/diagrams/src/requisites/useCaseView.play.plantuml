@@ -1,0 +1,32 @@
+@startuml useCaseView.start
+
+
+state IN_GAME
+state " " as BLANK
+state IN_GAME_OPT_VALID_COORDINATE <<choice>>
+state " " as BLANK_2
+state " " as BLANK_3
+state " " as BLANK_4
+state GAME_FINISHED <<choice>>
+state " " as BLANK_5
+state " " as BLANK_6
+
+[*] --> IN_GAME
+IN_GAME --> BLANK : System requests to introduce a column
+BLANK -->  IN_GAME_OPT_VALID_COORDINATE : current turn Player introduces a column
+IN_GAME_OPT_VALID_COORDINATE --> BLANK_2 : [error]
+note on link 
+  Column out of range
+  Column is full
+end note
+BLANK_2 --> BLANK_3 : System shows error message
+BLANK_3 --> [*] : System allows Play\nSystem allows Redo\nSystem allows Undo\nSystem allows Exit
+IN_GAME_OPT_VALID_COORDINATE --> BLANK_4
+BLANK_4 --> GAME_FINISHED : System shows updated board
+GAME_FINISHED --> BLANK_5 : [finished]
+GAME_FINISHED --> BLANK_3
+BLANK_5 --> BLANK_6 : System shows winner or tied message
+BLANK_6 --> [*] : System allows Save
+
+
+@enduml
