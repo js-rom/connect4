@@ -1,0 +1,19 @@
+@startuml useCaseView.start
+
+
+state IN_GAME
+state " " as BLANK
+state IN_GAME_UNDOABLE <<choice>>
+state " " as BLANK_2
+state " " as BLANK_3
+
+
+[*] --> IN_GAME
+IN_GAME --> BLANK : current turn Player requests Redo
+BLANK -->  IN_GAME_UNDOABLE : System shows updated board
+IN_GAME_UNDOABLE --> BLANK_2 : [redoable]
+BLANK_2 --> [*] : System allows Play\nSystem allows Redo\nSystem allows Undo id undoable\nSystem allows Exit
+IN_GAME_UNDOABLE --> BLANK_3
+BLANK_3 --> [*] : System allows Play\nSystem allosws Undo if undoable\nSystem allows Exit
+
+@enduml
