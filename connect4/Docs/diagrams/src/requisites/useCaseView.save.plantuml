@@ -1,0 +1,21 @@
+@startuml useCaseView.exit
+
+state OUT_GAME
+state " " as BLANK
+state " " as BLANK_2
+state OPTION_CONFIRM <<choice>>
+state " " as BLANK_3
+state OPTION_NAME_CANCELED <<choice>>
+state FINAL
+
+[*] --> OUT_GAME
+OUT_GAME --> BLANK : Player requests to Save the current game
+BLANK -->  OPTION_CONFIRM : System request to confirm
+OPTION_CONFIRM --> FINAL
+OPTION_CONFIRM --> BLANK_2 : [confirmed]
+BLANK_2 --> OPTION_NAME_CANCELED : System requests game name
+OPTION_NAME_CANCELED --> FINAL : [canceled]
+OPTION_NAME_CANCELED --> BLANK_3 : Player introduces game name
+BLANK_3 --> FINAL : System Saves the game
+FINAL --> [*]  : System allows Resume
+@enduml
