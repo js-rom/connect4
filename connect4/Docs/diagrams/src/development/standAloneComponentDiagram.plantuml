@@ -1,0 +1,43 @@
+@startuml 
+
+[connect4StandAlone.jar]
+
+package connect4
+package connect4.controllers.core
+package connect4.controllers.implementation
+package connect4.controllers.proxies
+package connect4.daos 
+package connect4.launchers.distributed.client
+package connect4.launchers.distributed.server
+package connect4.launchers.distributed.server.dispatchers
+package connect4.launchers.standalone
+package connect4.models
+package connect4.net 
+package connect4.views.console
+package connect4.views.graphics
+package connect4.types
+package utils.models
+package utils.net
+package utils.views
+
+
+connect4StandAlone.jar ..> connect4
+connect4StandAlone.jar ..> connect4.controllers.core
+connect4StandAlone.jar ..>connect4.controllers.implementation
+connect4StandAlone.jar ..> connect4.controllers.proxies
+connect4StandAlone.jar ..> connect4.daos 
+connect4StandAlone.jar ..> connect4.launchers.distributed.client
+connect4StandAlone.jar ..> connect4.launchers.distributed.server
+connect4StandAlone.jar ..> connect4.launchers.distributed.server.dispatchers
+connect4StandAlone.jar ..> connect4.launchers.standalone
+connect4StandAlone.jar ..> connect4.models
+connect4StandAlone.jar ..> connect4.net 
+connect4StandAlone.jar ..> connect4.views.console
+connect4StandAlone.jar ..> connect4.views.graphics
+connect4StandAlone.jar ..> connect4.types
+connect4StandAlone.jar ..> utils.models
+connect4StandAlone.jar ..> utils.net
+connect4StandAlone.jar ..> utils.views
+
+
+@enduml

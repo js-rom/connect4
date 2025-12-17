@@ -1,0 +1,30 @@
+@startuml 
+
+package connect4
+package connect4.controllers.core
+package connect4.controllers.implementation
+package connect4.daos 
+package connect4.launchers.distributed.server
+package connect4.launchers.distributed.server.dispatchers
+package connect4.models
+package connect4.net 
+package connect4.types
+package utils.models
+package utils.net
+
+
+[connect4Server.jar]
+connect4Server.jar ..> connect4
+connect4Server.jar ..> connect4.launchers.distributed.server
+connect4Server.jar ..> connect4.controllers.implementation
+connect4Server.jar ..> connect4.launchers.distributed.server.dispatchers
+connect4Server.jar ..> connect4.daos
+connect4Server.jar ..> connect4.types
+connect4Server.jar ..> utils.models
+connect4Server.jar ..> connect4.net
+connect4Server.jar ..> utils.net
+connect4Server.jar ..> connect4.controllers.core
+connect4Server.jar ..> connect4.models
+
+
+@enduml
