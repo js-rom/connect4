@@ -1,0 +1,17 @@
+@startuml useCaseView.exit
+
+state  OUT_GAME
+state " " as BLANK
+state OPT_CONFIRM <<choice>>
+state INITIAL
+state EXIT
+
+[*] --> OUT_GAME
+OUT_GAME --> BLANK : Player requests to Resume a new game
+BLANK --> OPT_CONFIRM : System request to confirm
+OPT_CONFIRM --> INITIAL : [confirmed]
+OPT_CONFIRM --> EXIT
+INITIAL --> [*]
+EXIT --> [*]
+
+@enduml
