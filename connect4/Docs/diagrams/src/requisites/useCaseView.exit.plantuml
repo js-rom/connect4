@@ -1,0 +1,12 @@
+@startuml useCaseView.exit
+
+state IN_GAME
+state " " as BLANK
+state  OUT_GAME
+
+[*] --> IN_GAME
+IN_GAME --> BLANK : Player requests to Exit
+BLANK -->  OUT_GAME : System allows save
+OUT_GAME --> [*]
+
+@enduml
