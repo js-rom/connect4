@@ -1,0 +1,17 @@
+@startuml useCaseView.start
+
+state INITIAL
+state " " as BLANK
+state INITIAL_OPT_FINISHED <<choice>>
+state " " as BLANK_2
+state " " as BLANK_3
+
+[*] --> INITIAL
+INITIAL --> BLANK : Player request to open a saved game
+BLANK --> INITIAL_OPT_FINISHED : System shows the saved board
+INITIAL_OPT_FINISHED --> BLANK_2
+INITIAL_OPT_FINISHED --> BLANK_3 : [Finished]
+BLANK_2 --> [*] : System allows Play
+BLANK_3 --> [*] : System allows Resume
+
+@enduml

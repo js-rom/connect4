@@ -15,11 +15,10 @@ public class CharactersTcpipSocket extends utils.net.CharactersTcpipSocket imple
     public void send(PlayerType[] playerTypes) {
         assert playerTypes != null : "Cannot send null PlayerType array";
         StringBuilder sb = new StringBuilder();
-        final String SEPARATOR = ",";
         for (int i = 0; i < playerTypes.length; i++) {
             sb.append(playerTypes[i].name());
             if (i < playerTypes.length - 1) {
-                sb.append(SEPARATOR);
+                sb.append(this.SEPARATOR);
             }
         }
         this.send(sb.toString());
@@ -35,7 +34,7 @@ public class CharactersTcpipSocket extends utils.net.CharactersTcpipSocket imple
     }
 
     public PlayerType[] receivePlayerTypes() throws IOException {
-        String[] playerTypes = this.receiveLine().split(",");
+        String[] playerTypes = this.receiveStringArray();
         PlayerType[] result = new PlayerType[playerTypes.length];
         for (int i = 0; i < playerTypes.length; i++) {
             result[i] = PlayerType.valueOf(playerTypes[i]);

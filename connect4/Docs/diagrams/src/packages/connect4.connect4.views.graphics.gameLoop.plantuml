@@ -1,0 +1,17 @@
+@startuml connect4.connect4.views.graphics.gameLoop
+
+class JPanel as "javax.swing.\nJPanel"
+
+abstract class gameLoop.GameLoopView {
+    - latch: CountDownLatch
+    + nextGameLoopView()
+}
+
+abstract class gameLoop.PanelView {
+    + {abstract} write()
+}
+
+JPanel <|-- PanelView
+PanelView <|-- GameLoopView
+
+@enduml

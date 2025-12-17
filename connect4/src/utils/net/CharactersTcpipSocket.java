@@ -9,10 +9,9 @@ import java.net.Socket;
 public class CharactersTcpipSocket implements Operations {
 
 	private Socket socket;
-
 	private PrintWriter out;
-
 	private BufferedReader in;
+	protected final String SEPARATOR = ",";
 
 	public void associate(Socket socket) throws IOException {
 		this.socket = socket;
@@ -40,6 +39,18 @@ public class CharactersTcpipSocket implements Operations {
 		this.send("" + value);
 	}
 
+	public void send(String[] strings) {
+		assert strings != null : "Cannot send null gameNames array";
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < strings.length; i++) {
+			sb.append(strings[i]);
+			if (i < strings.length - 1) {
+				sb.append(this.SEPARATOR);
+			}
+		}
+		this.send(sb.toString());
+	}
+
 	public String receiveLine() throws IOException {
 		String result = null;
 		do {
@@ -63,6 +74,11 @@ public class CharactersTcpipSocket implements Operations {
 
 	public char receiveChar() throws IOException {
 		return this.receiveLine().charAt(0);
+	}
+
+	@Override
+	public String[] receiveStringArray() throws IOException {
+		return this.receiveLine().split(this.SEPARATOR);
 	}
 
 	public void close() throws IOException {

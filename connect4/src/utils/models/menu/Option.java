@@ -19,4 +19,6 @@ public abstract class Option {
     protected String getTitle() {
         return this.title;
     }
+
+    public abstract boolean isActive();
 }

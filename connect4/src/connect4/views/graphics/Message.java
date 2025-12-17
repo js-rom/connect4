@@ -15,7 +15,10 @@ public enum Message {
     PLAYER_WIN("#colorS WIN!!! : -)"),
     PLAYERS_TIED("TIED!!!"),
     RESUME("Do you want to continue"),
-    CHOOSEN_COLUMN("#METHOD choosen column: #COLUMN");
+    CHOOSEN_COLUMN("#METHOD choosen column: #COLUMN"),
+    SAVE_GAME("Would you like to save the current game?"),
+    ENTER_GAME_NAME("Enter the name of the game: "),
+    NAME_ALREADY_EXISTS("The name already exists");
 
     private String string;
 

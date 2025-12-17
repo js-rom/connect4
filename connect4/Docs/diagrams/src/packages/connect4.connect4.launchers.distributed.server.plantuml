@@ -51,5 +51,8 @@ XxxDispatcher ..> PlayController
 XxxDispatcher ..> StartController
 XxxDispatcher ..> ResumeController
 
+class Session as "connect4.daos.Session"
+distributed.server.LogicImplementationServer ..> Session
+
 
 @enduml 

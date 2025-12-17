@@ -1,0 +1,56 @@
+@startuml connect4.connect4.console.turn
+
+class MenuOption as "connect4.views.console.shared.MenuOption"
+class SecuentialMenu as "connect4.utils\n.menu.SecuentialMenu"
+class PlayController as "controllers.core\n.PlayController"
+class StartController as "controllers.core\n.StartController"
+class PlayerViewPrototypeDirector as "connect4.views.\nconsole.turn.player.\nPlayerViewPrototypeDirector"
+class PlayerViewPrototypeRegistry as "connect4.views.\nconsole.turn.player.\nPlayerViewPrototypeRegistry"
+class PlayerView as "connect4.views.\nconsole.turn.player.\nPlayerView"
+
+package turn as "connect4.views.console.turn"{
+    
+}
+
+class turn.TurnView{
+    +selectPlayers(StartController)
+    +dropToken(PlayController)
+    +writeResult(PlayController)
+}
+
+class turn.TurnMenu{
+    +TurnMenu(Startcontroller, int)
+    +addOptions()
+    +interact()
+}
+
+class turn.SetRandomMachinePlayerOption{
+        +interact()
+        +isActive() : boolean
+}
+
+class turn.SetMinMaxMachinePlayerOption{
+        +interact()
+        +isActive() : boolean
+}
+
+class turn.SetUserPlayerOption{
+        +interact()
+        +isActive() : boolean
+}
+
+MenuOption <|-- SetRandomMachinePlayerOption
+MenuOption <|-- SetMinMaxMachinePlayerOption
+MenuOption <|-- SetUserPlayerOption
+SecuentialMenu <|-- TurnMenu
+TurnMenu *-- SetRandomMachinePlayerOption
+TurnMenu *-- SetMinMaxMachinePlayerOption
+TurnMenu *-- SetUserPlayerOption
+
+TurnView ..> StartController
+TurnView ..> PlayController
+TurnView ..> TurnMenu
+TurnView ..> PlayerViewPrototypeDirector
+TurnView ..> PlayerViewPrototypeRegistry
+TurnView ..> PlayerView
+@enduml

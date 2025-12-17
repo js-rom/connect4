@@ -48,6 +48,11 @@ public class Client implements Operations {
     }
 
     @Override
+    public void send(String[] strings) {
+        this.OperationsSocket.send(strings);
+    }
+
+    @Override
     public String receiveLine() throws IOException {
         return this.OperationsSocket.receiveLine();
     }
@@ -75,6 +80,11 @@ public class Client implements Operations {
     @Override
     public int getPort() {
         return this.OperationsSocket.getPort();
+    }
+
+    @Override
+    public String[] receiveStringArray() throws IOException {
+        return this.OperationsSocket.receiveStringArray();
     }
 
 }

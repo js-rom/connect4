@@ -4,14 +4,17 @@
 interface views.View
 class StartController as "controllers.core.StartController"
 class PlayController as "controllers.core.PlayController"
+class SaveController as "controllers.core.SaveController"
 class ResumeController as "controllers.core.ResumeController"
 
 View : +start(StartController)
 View : +play(PlayController)
+View : +save(SaveController)
 View : +resume(ResumeController)
 
 View ..> StartController
 View ..> PlayController
+View ..> SaveController
 View ..> ResumeController
 
 

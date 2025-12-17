@@ -6,7 +6,7 @@ import connect4.types.PlayerType;
 public class Turn {
     public static final int NUMBER_PLAYERS = 2;
     private Player[] players;
-    private int activePlayer;
+    private int activePlayerIndex;
     private Board board;
     private int playersSize;
 
@@ -18,7 +18,7 @@ public class Turn {
 
     public void reset() {
         this.playersSize = 0;
-        this.activePlayer = 0;
+        this.activePlayerIndex = 0;
 
     }
 
@@ -36,17 +36,31 @@ public class Turn {
         assert !this.board.isFinished();
         assert this.playersSize == Turn.NUMBER_PLAYERS;
 
-        this.activePlayer = (this.activePlayer + 1) % Turn.NUMBER_PLAYERS;
+        this.activePlayerIndex = (this.activePlayerIndex + 1) % Turn.NUMBER_PLAYERS;
 
     }
 
     public Player getActivePlayer() {
-        return this.players[this.activePlayer];
+        return this.players[this.activePlayerIndex];
     }
 
-    public void setActivePlayer(int activePlayer) {
-        assert activePlayer >= 0 && activePlayer < Turn.NUMBER_PLAYERS;
-        this.activePlayer = activePlayer;
+    public String getPlayerTypeName(int index) {
+        assert index >= 0 && index < this.playersSize;
+        return this.players[index].getType().name();
+    }
+
+    public String getPlayerColorName(int index) {
+        assert index >= 0 && index < this.playersSize;
+        return this.players[index].getColor().name();
+    }
+
+    public void setActivePlayer(int activePlayerIndex) {
+        assert activePlayerIndex >= 0 && activePlayerIndex < Turn.NUMBER_PLAYERS;
+        this.activePlayerIndex = activePlayerIndex;
+    }
+
+    public int getActivePlayerIndex() {
+        return this.activePlayerIndex;
     }
 
     public boolean isReset() {
@@ -58,7 +72,15 @@ public class Turn {
         assert players != null;
         this.board = board;
         for (Player player : players) {
-                player.setBoard(board);
+            player.setBoard(board);
         }
+    }
+
+    public int getPlayersSize() {
+        return this.playersSize;
+    }
+
+    public void setPlayersSize(int size) {
+        this.playersSize = size;
     }
 }

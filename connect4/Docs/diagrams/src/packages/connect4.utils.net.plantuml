@@ -7,10 +7,12 @@ package net as "connect4.utils.net" {
         + send(Integer)
         +send(Boolean)
         +send(char)
+        + send(String[])
         + receiveLine() : String
         + receiveInt() : Integer
         + receiveBoolean() : Boolean
         + receiveChar() : char
+        + receiveStringArray() : String[]
         + close()
     }
     class Client {

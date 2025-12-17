@@ -1,0 +1,41 @@
+@startuml connect4.connect4.console.turn.player
+
+class PlayController as "controllers.core\n.PlayController"
+enum PlayerType as "connect4.connect4.\ntypes.PlayerType"
+
+package player as "connect4.views.console.turn.player"{
+    
+}
+
+class player.PlayerViewPrototypeDirector <<Director>> {
+    get(PlayerViewPrototypeRegistry, PlayerType) : PlayerView 
+}
+
+class player.PlayerViewPrototypeRegistry <<PrototypeRegistry>> {
+    -playerViews : Map<PlayerType, PlayerView> 
+    -addPlayerView(PlayerType, PlayerView)
+    +getPlayerView(PlayerType) : PlayerView
+}
+
+abstract class player.PlayerView{
+    +getColumn(): int
+    +dropToken()
+    +setPlayer(Player player)
+    +copy() : PlayerView
+}
+
+abstract class player.MachinePlayerView
+class player.MinMaxMachinePlayerView
+class player.RandomMachinePlayerView
+class player.UserPlayerView
+
+PlayerView <|-- UserPlayerView
+PlayerView <|-- MachinePlayerView
+MachinePlayerView <|-- MinMaxMachinePlayerView
+MachinePlayerView <|-- RandomMachinePlayerView
+PlayerViewPrototypeDirector ..> PlayerViewPrototypeRegistry
+PlayerViewPrototypeRegistry o-- PlayerView
+PlayerView --> PlayController
+PlayerViewPrototypeDirector ..> PlayerType
+
+@enduml

@@ -65,4 +65,39 @@ public class StartController extends connect4.controllers.core.StartController {
         this.client.send(FrameType.START_NEXT_STATE.name());
     }
 
+    @Override
+    public void start() {
+        this.nextState();
+    }
+
+    @Override
+    public void start(String gameName) {
+        this.client.send(FrameType.START_NAME.name());
+        this.client.send(gameName);
+    }
+
+    @Override
+    public String[] getGameNames() {
+        this.client.send(FrameType.GET_GAME_NAMES.name());
+        String[] gameNames = null;
+        try {
+            gameNames = this.client.receiveStringArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return gameNames;
+    }
+
+    @Override
+    public boolean hasSavedGames() {
+        this.client.send(FrameType.HAS_SAVED_GAMES.name());
+        boolean hasSavedGames = false;
+        try {
+            hasSavedGames = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return hasSavedGames;
+    }
+
 }

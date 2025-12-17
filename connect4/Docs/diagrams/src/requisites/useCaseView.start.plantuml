@@ -1,0 +1,13 @@
+@startuml useCaseView.start
+
+state INITIAL
+state IN_GAME
+state " " as BLANK
+state " " as BLANK_2
+[*] --> INITIAL
+INITIAL --> BLANK : Player request to start a new game
+BLANK --> BLANK_2 : System shows an empty board
+BLANK_2 --> IN_GAME : System allows Play
+IN_GAME --> [*]
+
+@enduml

@@ -95,6 +95,11 @@ package "launchers" {
 launchers.Connect4 *--> Logic
 launchers.Connect4 *--> View
 
+class Session as "connect4.daos.Session"
+launchers.standalone.ConsoleConnect4 ..> Session
+launchers.standalone.GraphicsConnect4 ..> Session
+launchers.distributed.server ..> Session
+
 
 
 

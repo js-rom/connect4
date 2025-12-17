@@ -20,4 +20,9 @@ public class QuitOption extends Option {
         return this.executed;
     }
 
+    @Override
+    public boolean isActive() {
+       return true;
+    }
+
 }

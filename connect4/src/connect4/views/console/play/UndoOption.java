@@ -10,13 +10,13 @@ public class UndoOption extends PlayOption {
 
     @Override
     public void interact() {
-       this.playController.undo();
-    super.interact();
+        ((PlayController) this.acceptorController).undo();
+        super.interact();
     }
 
     @Override
     public boolean isActive() {
-       return this.playController.undoable();
+        return ((PlayController) this.acceptorController).undoable();
     }
 
 }

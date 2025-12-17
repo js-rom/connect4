@@ -10,6 +10,7 @@ public class Session {
     private State state;
     private Game game;
     private Registry registry;
+    private String name;
 
     public Session() {
         this.state = new State();
@@ -54,8 +55,13 @@ public class Session {
     }
 
     public void reset() {
+        this.name = null;
         this.game.reset();
         this.state.reset();
+        this.resetRegistry();
+    }
+
+    public void resetRegistry() {
         this.registry.reset();
     }
 
@@ -76,7 +82,7 @@ public class Session {
     }
 
     public boolean isFinished() {
-        return this.game.isFinished();
+        return this.game.isFinished() || this.state.getValueState() != StateValue.IN_GAME;
     }
 
     public void next() {
@@ -103,5 +109,25 @@ public class Session {
 
     public boolean isComplete(int column) {
         return this.game.isComplete(column);
+    }
+
+    public boolean hasName() {
+        return this.name != null;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Game getGame() {
+        return this.game;
+    }
+
+    public void setState(StateValue state) {
+        this.state.setValueState(state);
     }
 }

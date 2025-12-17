@@ -3,6 +3,7 @@ package connect4.types;
 public enum StateValue {
     INITIAL,
     IN_GAME,
-    RESUME,
+    OUT_GAME,
+    FINAL,
     EXIT
 }

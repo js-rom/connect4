@@ -26,11 +26,13 @@ Option : Option(title)
 Option : {abstract} +interact()
 Option : #showTitle(index)
 Option : #getTitle()
+Option : {abstract} +isActive(): boolean
 
 QuitOption : -executed
 QuitOption : +QuitOption()
 QuitOption : +interact() 
 QuitOption : #isExecuted()
+QuitOption : +isActive(): boolean
 
 Menu : -title
 Menu : -options

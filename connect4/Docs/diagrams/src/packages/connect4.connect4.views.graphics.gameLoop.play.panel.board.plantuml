@@ -1,0 +1,81 @@
+@startuml connect4.connect4.views.graphics.play.panel.board
+
+class PlayController as "controllers.\ncore.\nPlayController"
+abstract class PanelView as "graphics.\ngameLoop.\nPanelView"
+abstract class PlayPanelViewCommand as "graphics.\nplay.\ncommands.\nPlayPanelViewCommand"
+class PlayerType as "types.\nPlayerType"
+class Coordinate as "utils.\nmodels.\nCoordinate"
+interface Command as "panel.\ncommands.\nCommand"
+
+class board.BoardViewFactory{
+    +createMachineBoardView()
+    +createBoardView() : BoardView
+}
+
+abstract class board.BoardView {
+    + BoardView(PlayController, PanelViewCommand)
+    + write()
+    #  {abstract}  createSquare(Coordinate) : Square
+    # getColors() : Map<Color, ImageIcon>
+    # getNextTurnCommand() : PanelViewCommand
+    # getPlayController() : PlayController
+    +  {abstract}  accept(PlayPanelViewVisitor)
+}
+
+class board.BoardViewPrototypeDirector{
+    +get(BoardViewPrototypeRegistry,\n PlayerType) : BoardView
+}
+
+class board.BoardViewPrototypeRegistry{
+    -playerBoardViews : Map<PlayerType, BoardView> 
+    -addPlayerview(PlayerType, BoardView)
+    +getPlayerView(PlayerType) : BoardView
+}
+
+class board.MachinePlayerBoardView {
+    +dropToken()
+    +accept(PlayPanelViewVisitor)
+}
+
+class board.UserPlayerBoardView{
+    -actionPerformed(ActionEvent)
+    +accept(PlayPanelViewVisitor)
+}
+
+abstract class board.Square
+
+class board.ClickableSquare {
+    + getColumn() : int
+}
+
+class board.NonClickableSquare {
+    + actionPerformed(ActionEvent)
+}
+
+
+BoardViewFactory --> PlayController
+BoardViewFactory ..> BoardView
+BoardViewFactory ..> BoardViewPrototypeDirector
+BoardViewFactory ..> BoardViewPrototypeRegistry
+BoardViewFactory ..> PlayerType
+BoardViewFactory --> Command
+
+BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
+BoardViewPrototypeDirector ..> PlayerType
+BoardViewPrototypeRegistry ..> PlayController
+BoardViewPrototypeRegistry ..> PlayPanelViewCommand
+BoardViewPrototypeRegistry *--> "2"BoardView
+BoardView --> PlayController
+BoardView --> Command
+PanelView <|-- BoardView
+BoardView <|-- MachinePlayerBoardView
+BoardView <|-- UserPlayerBoardView
+MachinePlayerBoardView o--> NonClickableSquare
+UserPlayerBoardView o--> ClickableSquare
+Square <|-- ClickableSquare
+Square <|-- NonClickableSquare
+
+
+Square --> Coordinate
+
+@enduml

@@ -11,13 +11,17 @@ public class ActionOption extends PlayOption {
 
     @Override
     public void interact() {
-        new TurnView().dropToken(this.playController);
+        new TurnView().dropToken((PlayController) this.acceptorController);
         super.interact();
+        if (((PlayController) this.acceptorController).isFinished()) {
+            new TurnView().writeResult((PlayController) this.acceptorController);
+            ((PlayController) this.acceptorController).nextState();
+        }
     }
 
     @Override
     public boolean isActive() {
-       return true;
+        return true;
     }
 
 }

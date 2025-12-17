@@ -10,13 +10,13 @@ public class RedoOption extends PlayOption {
 
     @Override
     public void interact() {
-        this.playController.redo();
+        ((PlayController) this.acceptorController).redo();
         super.interact();
     }
 
     @Override
     public boolean isActive() {
-        return this.playController.redoable();
+        return ((PlayController) this.acceptorController).redoable();
     }
 
 }

@@ -1,0 +1,22 @@
+@startuml useCaseView.actorsAndUseCasesDiagram
+
+(Start)
+(Play)
+(Resume)
+(Undo)
+(Redo)
+(Exit)
+(Save)
+(Open)
+:Player: as player
+
+player --> (Start)
+player --> (Play)
+player --> (Resume)
+player --> (Undo)
+player --> (Redo)
+player --> (Exit)
+player --> (Save)
+player --> (Open)
+
+@enduml

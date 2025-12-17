@@ -1,98 +1,20 @@
 @startuml connect4.connect4.views.graphics
+
+class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
+class ResumeController as "controllers.\nResumeController"
+interface GameLoopView as "graphics.\ngameLoop.\nGameLoopView"
+
 class graphics.GraphicsView {
     +setLatch(CountDownLatch)
 }
 
-class CountDownLatch as "java.util.\nconcurrent.\nCountDownLatch"
 class graphics.MainFrame{
      +interact()
     +setPanel(GameLoopView)
     +write()
     +isResumed(ResumeController) : boolean
 }
-abstract class graphics.PanelView {
-    + {abstract} write()
-}
-interface graphics.GameLoopView
-class graphics.StartPanelView {
-    +write()
-    +addPlayers()
-    +actionPerformed(ActionEvent)
-}
 
-class graphics.PlayPanelView{
-    +write()
-    -removeBoard()
-    +visit(MachinePlayerBoardView)
-    +visit(UserPlayerBoardView)
-    +undo(UndoMachinePlayerCommand)
-    +undo(UndoUserPlayerCommand)
-    +redo(RedoMachinePlayerCommand)
-    +redo(RedoUserPlayerCommand)
-    -redo()
-}
-
-interface graphics.PlayPanelViewVisitor {
-    +visit(MachinePlayerBoardView)
-    +visit(UserPlayerBoardView)
-    +write();
-    +redo(RedoMachinePlayerCommand command);
-    +redo(RedoUserPlayerCommand command);
-    +undo(UndoMachinePlayerCommand command);
-    +undo(UndoUserPlayerCommand command);
-}
-
-abstract class graphics.BoardView {
-    + BoardView(PlayController, PanelViewCommand)
-    + write()
-    #  {abstract}  createSquare(Coordinate) : Square
-    # getColors() : Map<Color, ImageIcon>
-    # getNextTurnCommand() : PanelViewCommand
-    # getPlayController() : PlayController
-    +  {abstract}  accept(PlayPanelViewVisitor)
-}
-class graphics.BoardViewPrototypeDirector{
-    +get(BoardViewPrototypeRegistry,\n PlayerType) : BoardView
-}
-class graphics.BoardViewPrototypeRegistry{
-    -playerBoardViews : Map<PlayerType, BoardView> 
-    -addPlayerview(PlayerType, BoardView)
-    +getPlayerView(PlayerType) : BoardView
-}
-interface graphics.Command {
-    +execute()
-}
-abstract class graphics.PlayPanelViewCommand {
-    +PlayPanelViewCommand(PlayPanelView)
-    #getReceiver() : PlayPanelView
-}
-class graphics.MachinePlayerBoardView {
-    +dropToken()
-    +accept(PlayPanelViewVisitor)
-}
-class graphics.UserPlayerBoardView{
-    -actionPerformed(ActionEvent)
-    +accept(PlayPanelViewVisitor)
-}
-
-class graphics.NextTurnCommand
-abstract class graphics.Square
-class graphics.ClickableSquare {
-    + getColumn() : int
-}
-class graphics.NonClickableSquare {
-    + actionPerformed(ActionEvent)
-}
-class graphics.TurnView{
-    +write()
-    +setUndoCommand(UndoComand)
-    +setRedoCommand(RedoComand)
-}
-abstract class graphics.PanelView
-class StartController as "controllers.\nStartController"
-class PlayController as "controllers.\nPlayController"
-class ResumeController as "controllers.\nResumeController"
-class Coordinate as "utils.models.\nCoordinate"
 interface View as "views.View"{
     +start(StartController)
     +play(PlayController)
@@ -105,29 +27,15 @@ interface View as "views.View"{
 interface ControllerVisitor as "controllers.ControllerVisitor" {
     +visit(StartController)
     +visit(PlayController)
+    +visit(SaveController)
     +visit(ResumeController)
 }
-
-abstract class graphics.UndoComand
-abstract class graphics.RedoComand
-class graphics.RedoMachinePlayerCommand {}
-class graphics.UndoMachinePlayerCommand {}
-class graphics.RedoUserPlayerCommand {}
-class graphics.UndoUserPlayerCommand {}
-
 
 GraphicsView --> CountDownLatch
 class JFrame
 JFrame <|-- MainFrame
 GraphicsView *--> MainFrame
 
-
-StartPanelView --> StartController
-StartPanelView --> CountDownLatch
-PlayPanelView --> PlayController
-PlayPanelView --> CountDownLatch
-BoardView --> PlayController
-TurnView --> PlayController
 MainFrame ..> ResumeController
 
 
@@ -137,49 +45,7 @@ ControllerVisitor <|.. GraphicsView
 class JOptionPane
 MainFrame ..> JOptionPane
 
-JPanel <|-- PanelView
-PanelView <|-- GameLoopView
-GameLoopView <|-- StartPanelView
-GameLoopView <|-- PlayPanelView
-PlayPanelViewVisitor <|.. PlayPanelView
-PanelView <|-- BoardView
-PanelView <|-- TurnView
-
 GraphicsView ..> GameLoopView
 MainFrame --> GameLoopView
 
-PlayPanelView *--> BoardView
-PlayPanelView *--> TurnView
-PlayPanelView ..> BoardViewPrototypeRegistry
-PlayPanelView ..> BoardViewPrototypeDirector
-
-BoardViewPrototypeDirector --> BoardViewPrototypeRegistry
-BoardViewPrototypeDirector ..> PlayerType
-BoardViewPrototypeRegistry ..> PlayController
-BoardViewPrototypeRegistry ..> PlayPanelViewCommand
-BoardViewPrototypeRegistry *--> "2"BoardView
-
-
-PlayPanelView ..> PlayPanelViewCommand
-PlayPanelViewCommand --> PlayPanelViewVisitor
-
-Command <|-- PlayPanelViewCommand
-PlayPanelViewCommand <|-- NextTurnCommand
-PlayPanelViewCommand <|-- UndoComand
-PlayPanelViewCommand <|-- RedoComand
-UndoComand <|-- UndoMachinePlayerCommand
-UndoComand <|-- UndoUserPlayerCommand
-RedoComand <|-- RedoMachinePlayerCommand
-RedoComand <|-- RedoUserPlayerCommand
-
-
-BoardView <|-- MachinePlayerBoardView
-BoardView <|-- UserPlayerBoardView
-MachinePlayerBoardView o--> NonClickableSquare
-UserPlayerBoardView o--> ClickableSquare
-Square <|-- ClickableSquare
-Square <|-- NonClickableSquare
-BoardView --> PlayPanelViewCommand
-
-Square --> Coordinate
 @enduml

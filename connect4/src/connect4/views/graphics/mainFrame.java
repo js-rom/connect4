@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import connect4.controllers.core.ResumeController;
+import connect4.views.graphics.gameLoop.GameLoopView;
 
 public class MainFrame extends JFrame {
 
@@ -54,4 +55,5 @@ public class MainFrame extends JFrame {
         this.setVisible(false);
         return JOptionPane.YES_OPTION == result;
     }
+
 }

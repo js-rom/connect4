@@ -20,10 +20,10 @@ public class Game {
 
     public void setMemento(Memento memento) {
         assert memento != null;
-        this.board = memento.getBoard();
-        this.turn.setBoard(this.board);
+        this.board.reset();
+        this.board.setColors(memento.getBoard().toStringArray());
         this.turn.setActivePlayer(memento.getActivePlayer());
-    }
+    } 
 
     public void reset() {
         this.board.reset();
@@ -55,8 +55,24 @@ public class Game {
         return this.getActivePlayer().getType();
     }
 
+    public String getPlayerTypeName(int index) {
+        return this.turn.getPlayerTypeName(index);
+    }
+
+    public int getActivePlayerIndex() {
+        return this.turn.getActivePlayerIndex();
+    }
+
+    public void setActivePlayer(int index) {
+        this.turn.setActivePlayer(index);
+    }
+
     public Color getActiveColor() {
         return this.getActivePlayer().getColor();
+    }
+
+    public String getPlayerColorName(int index) {
+        return this.turn.getPlayerColorName(index);
     }
 
     public void next() {
@@ -76,4 +92,27 @@ public class Game {
         return this.board.isComplete(column);
     }
 
+    public String[] getBoardColors() {
+        return this.board.toStringArray();
+    }
+
+    public void setBoardColors(String[] boardColors) {
+        this.board.setColors(boardColors);
+    }
+
+    public Coordinate getLastDrop() {
+        return this.board.getLastDrop();
+    }
+
+    public void setLastDrop(Coordinate lastDrop) {
+        this.board.setLastDrop(lastDrop);
+    }
+
+    public int getPlayersSize() {
+        return this.turn.getPlayersSize();
+    }
+
+    public void setPlayersSize(int size) {
+        this.turn.setPlayersSize(size);
+    }
 }

@@ -1,0 +1,21 @@
+@startuml 
+
+[connect4Client.jar]
+
+package connect4
+package connect4.controllers.proxies
+package connect4.launchers.distributed.client
+package connect4.views.console
+package connect4.views.graphics
+package connect4.net
+package utils.net
+
+connect4Client.jar ..> connect4
+connect4Client.jar ..> connect4.launchers.distributed.client
+connect4Client.jar ..> connect4.controllers.proxies
+connect4Client.jar ..> connect4.views.console
+connect4Client.jar ..> connect4.views.graphics
+connect4Client.jar ..> connect4.net
+connect4Client.jar ..> utils.net
+
+@enduml

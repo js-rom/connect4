@@ -1,0 +1,64 @@
+@startuml connect4.connect4.console.play
+
+class TurnView as "connect4.views.\nconsole.turn.TurnView"
+class Coordinate as "connect4.Utils\n.Coordinate"
+class PlayController as "controllers.core\n.PlayController"
+class Menu as "connect4.utils\n.models.menu.Menu"
+
+package play as "connect4.views.console.play"{
+    
+}
+
+class play.PlayView{
+    +interact(PlayController)
+}
+
+class play.PlayMenu {
+    +PlayMenu(PlayController)
+    +addOptions()
+    +interact()
+}
+
+abstract class play.PlayOption {
+    +interact()
+}
+class play.UndoOption {
+    +interact()
+    +isActive() : boolean
+}
+
+class play.RedoOption {
+    +interact()
+    +isActive() : boolean
+}
+
+class play.ActionOption {
+    +interact()
+    +isActive() : boolean
+}
+
+class play.ExitOption {
+    +interact()
+    +isActive() : boolean
+}
+
+class play.BoardView {
+    +writeln()
+    +writeHorizontal()
+}
+
+Menu <|-- PlayMenu
+PlayOption --> PlayController
+PlayOption ..> BoardView
+PlayOption <|-- ActionOption
+PlayOption <|-- ExitOption
+ActionOption ..> TurnView
+PlayOption <|-- UndoOption
+PlayOption <|-- RedoOption
+PlayMenu *--> "3"PlayOption
+PlayView ..> PlayMenu
+PlayMenu --> PlayController
+BoardView --> PlayController
+BoardView ..> Coordinate
+
+@enduml
