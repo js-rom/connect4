@@ -1,18 +1,17 @@
 package connect4.controllers.implementation;
 
 import connect4.controllers.core.ControllerVisitor;
-import connect4.daos.SessionDAO;
 import connect4.models.Session;
 import connect4.types.PlayerType;
 import connect4.types.StateValue;
 
 public class StartController extends connect4.controllers.core.StartController {
 
-    private SessionDAO sessionDAO;
+    private Repository repository;
 
-    public StartController(Session session, SessionDAO sessionDAO) {
+    public StartController(Session session, Repository repository) {
         super(session);
-        this.sessionDAO = sessionDAO;
+        this.repository = repository;
     }
 
     public PlayerType[] getPlayerTypes() {
@@ -47,7 +46,7 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public void start(String gameName) {
-        this.sessionDAO.load(gameName);
+        this.repository.load(gameName);
         this.session.nextState();
         if (this.session.isFinished()) {
             this.session.setState(StateValue.FINAL);
@@ -56,12 +55,12 @@ public class StartController extends connect4.controllers.core.StartController {
 
     @Override
     public String[] getGameNames() {
-        return this.sessionDAO.getGamesNames();
+        return this.repository.getGamesNames();
     }
 
     @Override
     public boolean hasSavedGames() {
-        return this.sessionDAO.hasSavedGames();
+        return this.repository.hasSavedGames();
     }
 
 }

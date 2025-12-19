@@ -1,15 +1,14 @@
 package connect4.controllers.implementation;
 
-import connect4.daos.SessionDAO;
 import connect4.models.Session;
 
 public class SaveController extends connect4.controllers.core.SaveController {
 
-    private SessionDAO sessionDAO;
+    private Repository repository;
 
-    public SaveController(Session session, SessionDAO sessionDAO) {
+    public SaveController(Session session, Repository repository) {
         super(session);
-        this.sessionDAO = sessionDAO;
+        this.repository = repository;
     }
 
     public boolean hasName() {
@@ -17,11 +16,11 @@ public class SaveController extends connect4.controllers.core.SaveController {
     }
 
     public boolean exists(String name) {
-        return this.sessionDAO.exists(name);
+        return this.repository.exists(name);
     }
 
     public void save() {
-        this.sessionDAO.save();
+        this.repository.save();
     }
 
     @Override

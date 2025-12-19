@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import connect4.controllers.implementation.Repository;
 import connect4.models.Session;
 
-public class SessionDAO {
+public class SessionDAO implements Repository {
 
     public static final String EXTENSION = ".jsrom";
     public static final Path DIRECTORY = Paths.get("connect4", "games");
