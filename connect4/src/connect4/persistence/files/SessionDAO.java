@@ -1,4 +1,4 @@
-package connect4.files;
+package connect4.persistence.files;
 
 import java.io.BufferedReader;
 import java.io.File;
