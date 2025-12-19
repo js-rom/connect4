@@ -1,4 +1,4 @@
-package connect4.daos;
+package connect4.files;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
