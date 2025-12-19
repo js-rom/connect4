@@ -1,7 +1,7 @@
 package connect4.launchers.standalone;
 
 import connect4.controllers.implementation.Logic;
-import connect4.daos.SessionDAO;
+import connect4.persistence.files.SessionDAO;
 
 public class ConsoleConnect4 extends connect4.launchers.ConsoleConnect4 {
 

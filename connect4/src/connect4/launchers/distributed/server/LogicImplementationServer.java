@@ -1,7 +1,6 @@
 package connect4.launchers.distributed.server;
 
 import connect4.controllers.implementation.Logic;
-import connect4.daos.SessionDAO;
 import connect4.launchers.distributed.server.dispatchers.ActiveColor;
 import connect4.launchers.distributed.server.dispatchers.ActivePlayerType;
 import connect4.launchers.distributed.server.dispatchers.AddPlayer;
@@ -31,6 +30,7 @@ import connect4.launchers.distributed.server.dispatchers.StartWithName;
 import connect4.launchers.distributed.server.dispatchers.State;
 import connect4.launchers.distributed.server.dispatchers.Undo;
 import connect4.launchers.distributed.server.dispatchers.Undoable;
+import connect4.persistence.files.SessionDAO;
 import connect4.types.FrameType;
 
 public class LogicImplementationServer extends Logic {
