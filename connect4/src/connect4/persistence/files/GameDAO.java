@@ -5,17 +5,12 @@ import java.io.FileWriter;
 
 import connect4.models.Game;
 
-public class GameDAO implements DAO {
-
-    private Game game;
-    private BoardDAO boardDAO;
-    private TurnDAO turnDAO;
+public class GameDAO extends connect4.persistence.GameDAO implements DAO {
 
     public GameDAO(Game game) {
+        super(game);
         assert game != null;
-        this.game = game;
-        this.boardDAO = new BoardDAO(this.game);
-        this.turnDAO = new TurnDAO(this.game);
+
     }
 
     public void save(FileWriter fileWriter) {
@@ -28,6 +23,16 @@ public class GameDAO implements DAO {
         assert bufferedReader != null;
         this.boardDAO.load(bufferedReader);
         this.turnDAO.load(bufferedReader);
+    }
+
+    @Override
+    protected BoardDAO createBoardDAO() {
+        return new BoardDAO(this.game);
+    }
+
+    @Override
+    protected TurnDAO createTurnDAO() {
+        return new TurnDAO(this.game);
     }
 
 }

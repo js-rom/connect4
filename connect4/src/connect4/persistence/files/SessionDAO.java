@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import connect4.controllers.implementation.Repository;
-import connect4.models.Session;
+import connect4.models.Game;
 
-public class SessionDAO implements Repository {
+public class SessionDAO extends connect4.persistence.SessionDAO {
 
     public static final String EXTENSION = ".jsrom";
     public static final Path DIRECTORY = Paths.get("connect4", "games");
@@ -19,23 +18,16 @@ public class SessionDAO implements Repository {
     static {
         SessionDAO.directory = SessionDAO.DIRECTORY.toFile();
     }
-    private Session session;
-    private GameDAO gameDAO;
 
-    public void associate(Session session) {
-        this.session = session;
-        this.gameDAO = new GameDAO(this.session.getGame());
-
+    @Override
+    protected connect4.persistence.GameDAO createGameDAO(Game game) {
+        return new GameDAO(game);
     }
 
-    public void save() {
-        this.save(this.session.getName());
-    }
-
-    private void save(String name) {
+    protected void save(String name) {
         assert name != null;
         FileWriter fileWriter = this.createFileWriter(name);
-        this.gameDAO.save(fileWriter);
+        ((GameDAO) this.gameDAO).save(fileWriter);
         this.closeFileWriter(fileWriter);
     }
 
@@ -95,15 +87,12 @@ public class SessionDAO implements Repository {
         return false;
     }
 
-    public boolean hasSavedGames() {
-        return this.getGamesNames().length > 0;
-    }
-
     public void load(String gameName) {
         assert gameName != null;
         BufferedReader bufferedReader = this.createBufferedReader(gameName);
-        this.gameDAO.load(bufferedReader);
+        ((GameDAO) this.gameDAO).load(bufferedReader);
         this.closeBufferedReader(bufferedReader);
-        this.session.setName(gameName);
+        this.setName(gameName);
     }
+
 }
