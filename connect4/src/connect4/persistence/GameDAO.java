@@ -10,13 +10,8 @@ public abstract class GameDAO {
     protected BoardDAO boardDAO;
     protected TurnDAO turnDAO;
 
-    public GameDAO(Game game) {
-        assert game != null;
+    protected GameDAO(Game game) {
         this.game = game;
-        this.boardDAO = this.createBoardDAO();
-        this.turnDAO = this.createTurnDAO();
     }
 
-    protected abstract BoardDAO createBoardDAO();
-    protected abstract TurnDAO createTurnDAO();
 }

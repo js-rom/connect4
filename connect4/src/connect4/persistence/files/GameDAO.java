@@ -7,9 +7,14 @@ import connect4.models.Game;
 
 public class GameDAO extends connect4.persistence.GameDAO implements DAO {
 
+    protected BoardDAO boardDAO;
+    protected TurnDAO turnDAO;
+
     public GameDAO(Game game) {
         super(game);
         assert game != null;
+        this.boardDAO = new BoardDAO(this.game);
+        this.turnDAO = new TurnDAO(this.game);
 
     }
 
@@ -23,16 +28,6 @@ public class GameDAO extends connect4.persistence.GameDAO implements DAO {
         assert bufferedReader != null;
         this.boardDAO.load(bufferedReader);
         this.turnDAO.load(bufferedReader);
-    }
-
-    @Override
-    protected BoardDAO createBoardDAO() {
-        return new BoardDAO(this.game);
-    }
-
-    @Override
-    protected TurnDAO createTurnDAO() {
-        return new TurnDAO(this.game);
     }
 
 }
