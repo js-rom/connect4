@@ -1,8 +1,9 @@
 package com.jsrom.connect4.launchers.distributed.client;
 
 import com.jsrom.connect4.controllers.proxies.Logic;
+import com.jsrom.connect4.launchers.Connect4;
 
-public class ConsoleConnect4 extends com.jsrom.connect4.launchers.ConsoleConnect4 {
+public class ConsoleConnect4 extends Connect4 {
 
     @Override
     protected void createLogic() {
