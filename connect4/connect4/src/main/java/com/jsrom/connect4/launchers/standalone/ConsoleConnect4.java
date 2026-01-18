@@ -2,16 +2,14 @@ package com.jsrom.connect4.launchers.standalone;
 
 import com.jsrom.connect4.controllers.implementation.Logic;
 import com.jsrom.connect4.launchers.Connect4;
-import com.jsrom.connect4.persistence.files.SessionDAO;
+import com.jsrom.connect4.persistence.SessionDAO;
 
-public class ConsoleConnect4 extends Connect4 {
+public abstract class ConsoleConnect4 extends Connect4 {
 
     protected void createLogic() {
-        this.logic = new Logic(new SessionDAO());
+        this.logic = new Logic(this.createSessionDAO());
     }
 
-    public static void main(String[] args) throws Exception {
-        new ConsoleConnect4().playGames();
-    }
+    protected abstract SessionDAO createSessionDAO();
 
 }

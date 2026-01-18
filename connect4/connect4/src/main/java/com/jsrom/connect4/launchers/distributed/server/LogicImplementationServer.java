@@ -30,13 +30,13 @@ import com.jsrom.connect4.launchers.distributed.server.dispatchers.StartWithName
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.State;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.Undo;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.Undoable;
-import com.jsrom.connect4.persistence.files.SessionDAO;
+import com.jsrom.connect4.persistence.SessionDAO;
 import com.jsrom.connect4.types.FrameType;
 
 public class LogicImplementationServer extends Logic {
 
-    public LogicImplementationServer() {
-        super(new SessionDAO());
+    public LogicImplementationServer(SessionDAO sessionDAO) {
+        super(sessionDAO);
     }
 
     public void createDispatchers(DispatcherPrototype dispatcherPrototype) {

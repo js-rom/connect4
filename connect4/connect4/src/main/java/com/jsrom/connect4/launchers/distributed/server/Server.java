@@ -3,28 +3,28 @@ package com.jsrom.connect4.launchers.distributed.server;
 import java.io.IOException;
 
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
+import com.jsrom.connect4.persistence.SessionDAO;
 
-public class Server {
+public abstract class Server {
 
-    private DispatcherPrototype dispatcherPrototype;
+	private DispatcherPrototype dispatcherPrototype;
 
 	private LogicImplementationServer logic;
 
-	private Server() {
+	protected Server() {
 		try {
 			this.dispatcherPrototype = new DispatcherPrototype();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.logic = new LogicImplementationServer();
+		this.logic = new LogicImplementationServer(this.createSessionDAO());
 		this.logic.createDispatchers(this.dispatcherPrototype);
 	}
 
-	private void serve() {
+	protected abstract SessionDAO createSessionDAO();
+
+	protected void serve() {
 		this.dispatcherPrototype.serve();
 	}
 
-	public static void main(String[] args) {
-		new Server().serve();
-	}
 }
