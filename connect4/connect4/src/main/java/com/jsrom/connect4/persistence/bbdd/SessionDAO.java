@@ -15,7 +15,7 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
     private static final String URL = "jdbc:postgresql://localhost:5432/Connect4";
     private static final String USER = "postgres";
     private static final String PASSWORD = "root";
-    protected Connection connection;
+    private Connection connection;
 
     public SessionDAO() {
         try {
@@ -31,10 +31,10 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
             Statement statement = this.connection.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS games"
                     + "(game_name varchar(20) UNIQUE NOT NULL,"
-                    + "colors varchar(50),"
+                    + "colors varchar(300),"
                     + "last_drop_row INTEGER,"
                     + "last_drop_column INTEGER,"
-                    + "active_player SMALLINT CHECK (active_player IN (1, 2)),"
+                    + "active_player SMALLINT CHECK (active_player IN (0, 1)),"
                     + "first_player_type varchar(20),"
                     + "second_player_type varchar(20),"
                     + "PRIMARY KEY (game_name));";
@@ -47,7 +47,7 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
 
     @Override
     protected GameDAO createGameDAO(Game game) {
-        return new GameDAO(game);
+        return new GameDAO(game, this.connection);
     }
 
     @Override
@@ -70,25 +70,7 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
 
     @Override
     public boolean exists(String name) {
-        String sql = """
-                SELECT EXISTS (
-                    SELECT game_name
-                    FROM games
-                    WHERE game_name = ?
-                )
-                """;
-        try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
-            ps.setString(1, name);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getBoolean(1);
-                }
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return ((GameDAO) this.gameDAO).exists(name);
     }
 
     @Override
@@ -99,8 +81,8 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
 
     @Override
     protected void save(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        assert name != null;
+        ((GameDAO) this.gameDAO).save(name);
     }
 
 }
