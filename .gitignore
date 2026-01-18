@@ -5,7 +5,7 @@ games/
 
 
 # Maven
-target/*
+connect4/connect4/target
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
