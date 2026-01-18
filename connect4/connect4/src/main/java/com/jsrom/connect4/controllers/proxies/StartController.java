@@ -1,0 +1,103 @@
+package com.jsrom.connect4.controllers.proxies;
+
+import java.io.IOException;
+
+import com.jsrom.connect4.net.Client;
+import com.jsrom.connect4.types.FrameType;
+import com.jsrom.connect4.types.PlayerType;
+
+public class StartController extends com.jsrom.connect4.controllers.core.StartController {
+
+    private Client client;
+
+    public StartController(Client client) {
+        this.client = client;
+    }
+
+    @Override
+    public PlayerType[] getPlayerTypes() {
+        this.client.send(FrameType.PLAYER_TYPES.name());
+        PlayerType[] playerTypes = null;
+        try {
+            playerTypes = this.client.receivePlayerTypes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return playerTypes;
+    }
+
+    @Override
+    public int getNumberPlayers() {
+        this.client.send(FrameType.NUMBRE_PPLAYERS.name());
+        int numberPlayers = 0;
+        try {
+            numberPlayers = this.client.receiveInt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return numberPlayers;
+    }
+
+    @Override
+    public void reset() {
+        this.client.send(FrameType.RESET.name());
+    }
+
+    @Override
+    public boolean isReset() {
+        this.client.send(FrameType.IS_RESET.name());
+        boolean isReset = false;
+        try {
+            isReset = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return isReset;
+    }
+
+    @Override
+    public void addPlayer(PlayerType playerType) {
+        this.client.send(FrameType.ADD_PLAYER.name());
+        this.client.send(playerType);
+    }
+
+    public void nextState() {
+        this.client.send(FrameType.START_NEXT_STATE.name());
+    }
+
+    @Override
+    public void start() {
+        this.nextState();
+    }
+
+    @Override
+    public void start(String gameName) {
+        this.client.send(FrameType.START_NAME.name());
+        this.client.send(gameName);
+    }
+
+    @Override
+    public String[] getGameNames() {
+        this.client.send(FrameType.GET_GAME_NAMES.name());
+        String[] gameNames = null;
+        try {
+            gameNames = this.client.receiveStringArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return gameNames;
+    }
+
+    @Override
+    public boolean hasSavedGames() {
+        this.client.send(FrameType.HAS_SAVED_GAMES.name());
+        boolean hasSavedGames = false;
+        try {
+            hasSavedGames = this.client.receiveBoolean();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return hasSavedGames;
+    }
+
+}
