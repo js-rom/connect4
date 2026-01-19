@@ -2,7 +2,6 @@ package com.jsrom.connect4.persistence.bbdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,21 +22,45 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.createtableIfNotExists();
+        this.createTables();
     }
 
-    private void createtableIfNotExists() {
+    private void createTables() {
+        this.createGamesTableIfNotExists();
+        this.createColorsTableIfNotExists();
+    }
+
+    private void createGamesTableIfNotExists() {
+        String sql = """
+                CREATE TABLE IF NOT EXISTS games (
+                game_name varchar(255) UNIQUE NOT NULL,
+                last_drop_row INTEGER,
+                last_drop_column INTEGER,
+                active_player SMALLINT CHECK (active_player IN (0, 1)),
+                first_player_type varchar(255),
+                second_player_type varchar(255),
+                PRIMARY KEY (game_name)
+                );
+                """;
         try {
             Statement statement = this.connection.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS games"
-                    + "(game_name varchar(20) UNIQUE NOT NULL,"
-                    + "colors varchar(300),"
-                    + "last_drop_row INTEGER,"
-                    + "last_drop_column INTEGER,"
-                    + "active_player SMALLINT CHECK (active_player IN (0, 1)),"
-                    + "first_player_type varchar(20),"
-                    + "second_player_type varchar(20),"
-                    + "PRIMARY KEY (game_name));";
+            statement.executeUpdate(sql);
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void createColorsTableIfNotExists() {
+        String sql = """
+                CREATE TABLE IF NOT EXISTS colors (
+                game_name VARCHAR(255) NOT NULL,
+                index INTEGER NOT NULL,
+                color VARCHAR(255) NOT NULL,
+                PRIMARY KEY (game_name, index),
+                FOREIGN KEY (game_name) REFERENCES games(game_name));
+                """;
+        try {
+            Statement statement = this.connection.createStatement();
             statement.executeUpdate(sql);
             statement.close();
         } catch (Exception e) {
@@ -74,9 +97,9 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
     }
 
     @Override
-    public void load(String gameName) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'load'");
+    public void load(String name) {
+        assert name != null;
+        ((GameDAO) this.gameDAO).load(name);
     }
 
     @Override
