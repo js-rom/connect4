@@ -50,6 +50,7 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
             e.printStackTrace();
         }
     }
+    
     private void createColorsTableIfNotExists() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS colors (
@@ -100,6 +101,7 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
     public void load(String name) {
         assert name != null;
         ((GameDAO) this.gameDAO).load(name);
+        this.setName(name);
     }
 
     @Override
