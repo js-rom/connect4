@@ -1,6 +1,6 @@
-package com.jsrom.connect4.controllers.core;
+package main.java.com.jsrom.connect4.controllers.core;
 
-import com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.models.Session;
 
 public abstract class SaveController extends Controller implements AcceptorController {
 

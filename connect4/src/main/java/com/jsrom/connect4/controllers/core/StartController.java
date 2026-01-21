@@ -1,7 +1,7 @@
-package com.jsrom.connect4.controllers.core;
+package main.java.com.jsrom.connect4.controllers.core;
 
-import com.jsrom.connect4.models.Session;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
 public abstract class StartController extends Controller implements AcceptorController {
 

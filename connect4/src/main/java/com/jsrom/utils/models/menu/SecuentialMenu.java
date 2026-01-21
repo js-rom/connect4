@@ -1,4 +1,4 @@
-package com.jsrom.utils.models.menu;
+package main.java.com.jsrom.utils.models.menu;
 
 public abstract class SecuentialMenu extends Menu{
     private int maxSecuences;

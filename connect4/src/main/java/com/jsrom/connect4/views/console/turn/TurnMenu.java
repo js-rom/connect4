@@ -1,8 +1,8 @@
-package com.jsrom.connect4.views.console.turn;
+package main.java.com.jsrom.connect4.views.console.turn;
 
-import com.jsrom.connect4.controllers.core.StartController;
+import main.java.com.jsrom.connect4.controllers.core.StartController;
 
-import com.jsrom.utils.models.menu.SecuentialMenu;
+import main.java.com.jsrom.utils.models.menu.SecuentialMenu;
 
 public class TurnMenu extends SecuentialMenu {
 

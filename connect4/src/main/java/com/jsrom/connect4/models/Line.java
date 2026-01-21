@@ -1,7 +1,7 @@
-package com.jsrom.connect4.models;
+package main.java.com.jsrom.connect4.models;
 
-import com.jsrom.utils.models.Coordinate;
-import com.jsrom.utils.models.Direction;
+import main.java.com.jsrom.utils.models.Coordinate;
+import main.java.com.jsrom.utils.models.Direction;
 
 public class Line {
 

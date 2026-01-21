@@ -1,4 +1,4 @@
-package com.jsrom.connect4.models;
+package main.java.com.jsrom.connect4.models;
 
 public class Memento {
 

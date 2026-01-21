@@ -1,8 +1,8 @@
-package com.jsrom.connect4.launchers;
+package main.java.com.jsrom.connect4.launchers;
 
-import com.jsrom.connect4.controllers.core.Logic;
-import com.jsrom.connect4.views.View;
-import com.jsrom.connect4.views.console.ConsoleView;
+import main.java.com.jsrom.connect4.controllers.core.Logic;
+import main.java.com.jsrom.connect4.views.View;
+import main.java.com.jsrom.connect4.views.console.ConsoleView;
 
 public abstract class Connect4 {
 

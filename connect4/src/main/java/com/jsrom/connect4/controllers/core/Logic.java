@@ -1,9 +1,9 @@
-package com.jsrom.connect4.controllers.core;
+package main.java.com.jsrom.connect4.controllers.core;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import com.jsrom.connect4.types.StateValue;
+import main.java.com.jsrom.connect4.types.StateValue;
 
 public abstract class Logic {
 

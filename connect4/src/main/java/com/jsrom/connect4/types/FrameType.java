@@ -1,4 +1,4 @@
-package com.jsrom.connect4.types;
+package main.java.com.jsrom.connect4.types;
 
 public enum FrameType {
     PLAYER_TYPES,

@@ -1,11 +1,11 @@
-package com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jsrom.connect4.net.Server;
-import com.jsrom.connect4.types.FrameType;
+import main.java.com.jsrom.connect4.net.Server;
+import main.java.com.jsrom.connect4.types.FrameType;
 
 public class DispatcherPrototype {
 

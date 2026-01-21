@@ -1,10 +1,10 @@
-package com.jsrom.connect4.controllers.core;
+package main.java.com.jsrom.connect4.controllers.core;
 
-import com.jsrom.connect4.models.Session;
-import com.jsrom.connect4.types.Color;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.types.Color;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
-import com.jsrom.utils.models.Coordinate;
+import main.java.com.jsrom.utils.models.Coordinate;
 
 public abstract class PlayController extends Controller implements AcceptorController {
 

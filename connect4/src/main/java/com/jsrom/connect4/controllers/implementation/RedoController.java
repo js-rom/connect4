@@ -1,7 +1,7 @@
-package com.jsrom.connect4.controllers.implementation;
+package main.java.com.jsrom.connect4.controllers.implementation;
 
-import com.jsrom.connect4.controllers.core.Controller;
-import com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.controllers.core.Controller;
+import main.java.com.jsrom.connect4.models.Session;
 
 public class RedoController extends Controller {
 

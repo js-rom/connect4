@@ -1,6 +1,6 @@
-package com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
-import com.jsrom.connect4.controllers.core.StartController;
+import main.java.com.jsrom.connect4.controllers.core.StartController;
 
 public class IsReset extends Dispatcher {
 

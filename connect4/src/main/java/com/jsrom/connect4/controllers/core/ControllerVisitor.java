@@ -1,4 +1,4 @@
-package com.jsrom.connect4.controllers.core;
+package main.java.com.jsrom.connect4.controllers.core;
 
 public interface ControllerVisitor {
     

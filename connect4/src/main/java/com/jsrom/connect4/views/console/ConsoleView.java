@@ -1,13 +1,13 @@
-package com.jsrom.connect4.views.console;
+package main.java.com.jsrom.connect4.views.console;
 
-import com.jsrom.connect4.controllers.core.ControllerVisitor;
-import com.jsrom.connect4.controllers.core.PlayController;
-import com.jsrom.connect4.controllers.core.ResumeController;
-import com.jsrom.connect4.controllers.core.SaveController;
-import com.jsrom.connect4.controllers.core.StartController;
-import com.jsrom.connect4.views.View;
-import com.jsrom.connect4.views.console.play.PlayView;
-import com.jsrom.connect4.views.console.start.StartView;
+import main.java.com.jsrom.connect4.controllers.core.ControllerVisitor;
+import main.java.com.jsrom.connect4.controllers.core.PlayController;
+import main.java.com.jsrom.connect4.controllers.core.ResumeController;
+import main.java.com.jsrom.connect4.controllers.core.SaveController;
+import main.java.com.jsrom.connect4.controllers.core.StartController;
+import main.java.com.jsrom.connect4.views.View;
+import main.java.com.jsrom.connect4.views.console.play.PlayView;
+import main.java.com.jsrom.connect4.views.console.start.StartView;
 
 public class ConsoleView implements View, ControllerVisitor {
 

@@ -1,7 +1,7 @@
-package com.jsrom.connect4.launchers.distributed.client;
+package main.java.com.jsrom.connect4.launchers.distributed.client;
 
-import com.jsrom.connect4.controllers.proxies.Logic;
-import com.jsrom.connect4.launchers.Connect4;
+import main.java.com.jsrom.connect4.controllers.proxies.Logic;
+import main.java.com.jsrom.connect4.launchers.Connect4;
 
 public class ConsoleConnect4 extends Connect4 {
 

@@ -1,10 +1,10 @@
-package com.jsrom.connect4.controllers.implementation;
+package main.java.com.jsrom.connect4.controllers.implementation;
 
-import com.jsrom.connect4.controllers.core.AcceptorController;
-import com.jsrom.connect4.models.Session;
-import com.jsrom.connect4.types.StateValue;
+import main.java.com.jsrom.connect4.controllers.core.AcceptorController;
+import main.java.com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.types.StateValue;
 
-public class Logic extends com.jsrom.connect4.controllers.core.Logic {
+public class Logic extends main.java.com.jsrom.connect4.controllers.core.Logic {
 
     private Session session;
     private Repository repository;

@@ -1,9 +1,9 @@
-package com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
 import java.io.IOException;
 
-import com.jsrom.connect4.controllers.core.AcceptorController;
-import com.jsrom.connect4.controllers.implementation.StartController;
+import main.java.com.jsrom.connect4.controllers.core.AcceptorController;
+import main.java.com.jsrom.connect4.controllers.implementation.StartController;
 
 public class StartWithName extends Dispatcher {
 

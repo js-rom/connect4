@@ -1,9 +1,9 @@
-package com.jsrom.connect4.views.console;
+package main.java.com.jsrom.connect4.views.console;
 
-import com.jsrom.connect4.controllers.core.ResumeController;
-import com.jsrom.connect4.views.console.shared.Message;
+import main.java.com.jsrom.connect4.controllers.core.ResumeController;
+import main.java.com.jsrom.connect4.views.console.shared.Message;
 
-import com.jsrom.utils.views.YesNoDialog;
+import main.java.com.jsrom.utils.views.YesNoDialog;
 
 public class ResumeView {
 

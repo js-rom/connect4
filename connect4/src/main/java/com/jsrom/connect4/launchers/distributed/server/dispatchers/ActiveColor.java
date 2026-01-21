@@ -1,7 +1,7 @@
-package com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
-import com.jsrom.connect4.controllers.implementation.PlayController;
-import com.jsrom.connect4.types.Color;
+import main.java.com.jsrom.connect4.controllers.implementation.PlayController;
+import main.java.com.jsrom.connect4.types.Color;
 
 public class ActiveColor extends Dispatcher {
 

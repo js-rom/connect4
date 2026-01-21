@@ -1,4 +1,4 @@
-package com.jsrom.connect4.persistence.files;
+package main.java.com.jsrom.connect4.persistence.files;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.jsrom.connect4.models.Game;
+import main.java.com.jsrom.connect4.models.Game;
 
-public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
+public class SessionDAO extends main.java.com.jsrom.connect4.persistence.SessionDAO {
 
     public static final String EXTENSION = ".jsrom";
     public static final Path DIRECTORY = Paths.get("connect4", "games");
@@ -20,7 +20,7 @@ public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
     }
 
     @Override
-    protected com.jsrom.connect4.persistence.GameDAO createGameDAO(Game game) {
+    protected main.java.com.jsrom.connect4.persistence.GameDAO createGameDAO(Game game) {
         return new GameDAO(game);
     }
 

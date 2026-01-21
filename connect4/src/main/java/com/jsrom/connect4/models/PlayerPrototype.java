@@ -1,8 +1,8 @@
-package com.jsrom.connect4.models;
+package main.java.com.jsrom.connect4.models;
 
 import java.util.HashMap;
 
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
 public class PlayerPrototype {
 

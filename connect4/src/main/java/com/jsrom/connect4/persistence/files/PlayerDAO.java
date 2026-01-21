@@ -1,11 +1,11 @@
-package com.jsrom.connect4.persistence.files;
+package main.java.com.jsrom.connect4.persistence.files;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.jsrom.connect4.models.Game;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.models.Game;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
 public class PlayerDAO implements DAO {
 

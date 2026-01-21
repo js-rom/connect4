@@ -1,4 +1,4 @@
-package com.jsrom.connect4.persistence.files;
+package main.java.com.jsrom.connect4.persistence.files;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;

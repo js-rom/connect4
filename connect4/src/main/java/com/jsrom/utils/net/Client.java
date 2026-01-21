@@ -1,4 +1,4 @@
-package com.jsrom.utils.net;
+package main.java.com.jsrom.utils.net;
 
 import java.io.IOException;
 import java.net.Socket;

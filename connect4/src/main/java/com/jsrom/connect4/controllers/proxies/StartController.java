@@ -1,12 +1,12 @@
-package com.jsrom.connect4.controllers.proxies;
+package main.java.com.jsrom.connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import com.jsrom.connect4.net.Client;
-import com.jsrom.connect4.types.FrameType;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.net.Client;
+import main.java.com.jsrom.connect4.types.FrameType;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
-public class StartController extends com.jsrom.connect4.controllers.core.StartController {
+public class StartController extends main.java.com.jsrom.connect4.controllers.core.StartController {
 
     private Client client;
 

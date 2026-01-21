@@ -1,6 +1,6 @@
-package com.jsrom.connect4.views.console.shared;
+package main.java.com.jsrom.connect4.views.console.shared;
 
-import com.jsrom.utils.views.Console;
+import main.java.com.jsrom.utils.views.Console;
 
 public enum Message {
 

@@ -1,6 +1,6 @@
-package com.jsrom.connect4.views.console.turn.player;
+package main.java.com.jsrom.connect4.views.console.turn.player;
 
-import com.jsrom.connect4.controllers.core.PlayController;
+import main.java.com.jsrom.connect4.controllers.core.PlayController;
 
 public abstract class PlayerView {
 

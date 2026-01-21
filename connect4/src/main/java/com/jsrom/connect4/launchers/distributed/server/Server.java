@@ -1,9 +1,9 @@
-package com.jsrom.connect4.launchers.distributed.server;
+package main.java.com.jsrom.connect4.launchers.distributed.server;
 
 import java.io.IOException;
 
-import com.jsrom.connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
-import com.jsrom.connect4.persistence.SessionDAO;
+import main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers.DispatcherPrototype;
+import main.java.com.jsrom.connect4.persistence.SessionDAO;
 
 public abstract class Server {
 

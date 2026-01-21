@@ -1,7 +1,7 @@
-package com.jsrom.connect4.views.console.play;
+package main.java.com.jsrom.connect4.views.console.play;
 
-import com.jsrom.connect4.controllers.core.PlayController;
-import com.jsrom.connect4.views.console.shared.Message;
+import main.java.com.jsrom.connect4.controllers.core.PlayController;
+import main.java.com.jsrom.connect4.views.console.shared.Message;
 
 public class PlayView {
 

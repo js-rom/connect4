@@ -1,7 +1,7 @@
-package com.jsrom.connect4.models;
+package main.java.com.jsrom.connect4.models;
 
-import com.jsrom.connect4.types.Color;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.types.Color;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
 public class UserPlayer extends Player {
 

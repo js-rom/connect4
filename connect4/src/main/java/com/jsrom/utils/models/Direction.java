@@ -1,4 +1,4 @@
-package com.jsrom.utils.models;
+package main.java.com.jsrom.utils.models;
 
 public enum Direction {
 

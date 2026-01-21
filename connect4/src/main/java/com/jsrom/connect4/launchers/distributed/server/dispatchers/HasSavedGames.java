@@ -1,10 +1,10 @@
-package com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
-import com.jsrom.connect4.controllers.implementation.StartController;
+import main.java.com.jsrom.connect4.controllers.implementation.StartController;
 
 public class HasSavedGames extends Dispatcher {
 
-    public HasSavedGames(com.jsrom.connect4.controllers.core.AcceptorController acceptorController) {
+    public HasSavedGames(main.java.com.jsrom.connect4.controllers.core.AcceptorController acceptorController) {
         super(acceptorController);
     }
 

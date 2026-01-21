@@ -1,12 +1,12 @@
-package com.jsrom.connect4.controllers.implementation;
+package main.java.com.jsrom.connect4.controllers.implementation;
 
-import com.jsrom.connect4.controllers.core.Controller;
-import com.jsrom.connect4.models.Player;
-import com.jsrom.connect4.models.Session;
-import com.jsrom.connect4.types.Color;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.controllers.core.Controller;
+import main.java.com.jsrom.connect4.models.Player;
+import main.java.com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.types.Color;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
-import com.jsrom.utils.models.Coordinate;
+import main.java.com.jsrom.utils.models.Coordinate;
 
 public class ActionContoller extends Controller {
 

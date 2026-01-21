@@ -1,11 +1,11 @@
-package com.jsrom.connect4.launchers.distributed.server;
+package main.java.com.jsrom.connect4.launchers.distributed.server;
 
-import com.jsrom.connect4.persistence.files.SessionDAO;
+import main.java.com.jsrom.connect4.persistence.files.SessionDAO;
 
 public class ServerFiles extends Server {
 
     @Override
-    protected com.jsrom.connect4.persistence.SessionDAO createSessionDAO() {
+    protected main.java.com.jsrom.connect4.persistence.SessionDAO createSessionDAO() {
         return new SessionDAO();
     }
 

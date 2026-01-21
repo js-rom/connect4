@@ -1,4 +1,4 @@
-package com.jsrom.utils.views;
+package main.java.com.jsrom.utils.views;
 
 public class YesNoDialog {
 

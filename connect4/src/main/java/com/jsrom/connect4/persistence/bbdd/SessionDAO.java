@@ -1,4 +1,4 @@
-package com.jsrom.connect4.persistence.bbdd;
+package main.java.com.jsrom.connect4.persistence.bbdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.jsrom.connect4.models.Game;
+import main.java.com.jsrom.connect4.models.Game;
 
-public class SessionDAO extends com.jsrom.connect4.persistence.SessionDAO {
+public class SessionDAO extends main.java.com.jsrom.connect4.persistence.SessionDAO {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/Connect4";
     private static final String USER = "postgres";

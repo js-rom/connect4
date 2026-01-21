@@ -1,11 +1,11 @@
-package com.jsrom.connect4.controllers.proxies;
+package main.java.com.jsrom.connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import com.jsrom.connect4.net.Client;
-import com.jsrom.connect4.types.FrameType;
+import main.java.com.jsrom.connect4.net.Client;
+import main.java.com.jsrom.connect4.types.FrameType;
 
-public class SaveController extends com.jsrom.connect4.controllers.core.SaveController {
+public class SaveController extends main.java.com.jsrom.connect4.controllers.core.SaveController {
 
 	private Client client;
 

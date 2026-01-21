@@ -1,6 +1,6 @@
-package com.jsrom.utils.models.menu;
+package main.java.com.jsrom.utils.models.menu;
 
-import com.jsrom.utils.views.Console;
+import main.java.com.jsrom.utils.views.Console;
 
 public abstract class Option {
 

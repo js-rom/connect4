@@ -1,8 +1,8 @@
-package com.jsrom.connect4.persistence;
+package main.java.com.jsrom.connect4.persistence;
 
-import com.jsrom.connect4.controllers.implementation.Repository;
-import com.jsrom.connect4.models.Game;
-import com.jsrom.connect4.models.Session;
+import main.java.com.jsrom.connect4.controllers.implementation.Repository;
+import main.java.com.jsrom.connect4.models.Game;
+import main.java.com.jsrom.connect4.models.Session;
 
 public abstract class SessionDAO implements Repository {
 

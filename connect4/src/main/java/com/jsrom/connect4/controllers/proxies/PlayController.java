@@ -1,15 +1,15 @@
-package com.jsrom.connect4.controllers.proxies;
+package main.java.com.jsrom.connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import com.jsrom.connect4.net.Client;
-import com.jsrom.connect4.types.Color;
-import com.jsrom.connect4.types.FrameType;
-import com.jsrom.connect4.types.PlayerType;
+import main.java.com.jsrom.connect4.net.Client;
+import main.java.com.jsrom.connect4.types.Color;
+import main.java.com.jsrom.connect4.types.FrameType;
+import main.java.com.jsrom.connect4.types.PlayerType;
 
-import com.jsrom.utils.models.Coordinate;
+import main.java.com.jsrom.utils.models.Coordinate;
 
-public class PlayController extends com.jsrom.connect4.controllers.core.PlayController {
+public class PlayController extends main.java.com.jsrom.connect4.controllers.core.PlayController {
 
     private Client client;
 
