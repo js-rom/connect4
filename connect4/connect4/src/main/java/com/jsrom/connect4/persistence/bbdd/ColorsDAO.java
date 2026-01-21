@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import com.jsrom.connect4.models.Game;
 
-public class ColorsDAO implements DAO {
+public class ColorsDAO{
 
     private Game game;
     private Connection connection;
@@ -17,13 +17,6 @@ public class ColorsDAO implements DAO {
         this.connection = connection;
     }
 
-    @Override
-    public void save(String name) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void load(String name) {
         String sql = """
                 SELECT color

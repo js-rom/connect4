@@ -9,7 +9,7 @@ import com.jsrom.connect4.models.Game;
 import com.jsrom.connect4.types.PlayerType;
 import com.jsrom.utils.models.Coordinate;
 
-public class GameDAO extends com.jsrom.connect4.persistence.GameDAO implements DAO {
+public class GameDAO extends com.jsrom.connect4.persistence.GameDAO {
 
     private Connection connection;
     private ColorsDAO colorsDAO;
@@ -101,7 +101,6 @@ public class GameDAO extends com.jsrom.connect4.persistence.GameDAO implements D
         return false;
     }
 
-    @Override
     public void load(String name) {
         String sql = "SELECT * FROM games WHERE game_name = ?";
         try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
