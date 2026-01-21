@@ -57,17 +57,14 @@ public class ColorsDAO implements DAO {
     private void update(String name, int index, String color) {
         String sql = """
                 UPDATE colors
-                SET game_name = ?,
-                index = ?,
-                color = ?
-                WHERE game_name = ? AND index = ?
+                SET color = ?
+                WHERE game_name = ? AND index = ?;
                 """;
         try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
-            ps.setString(1, name);
-            ps.setInt(2, index);
-            ps.setString(3, color);
-            ps.setInt(4, index);
-
+            ps.setString(1, color);
+            ps.setString(2, name);
+            ps.setInt(3, index);
+            ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,7 +84,7 @@ public class ColorsDAO implements DAO {
                 game_name,
                 index,
                 color)
-                VALUES (?, ?, ?)
+                VALUES (?, ?, ?);
                 """;
         try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
             ps.setString(1, name);
