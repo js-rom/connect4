@@ -1,4 +1,4 @@
-package main.java.com.jsrom.utils.models;
+package com.jsrom.utils.models;
 
 public class Coordinate {
 

@@ -1,4 +1,4 @@
-package main.java.com.jsrom.utils.models.menu;
+package com.jsrom.utils.models.menu;
 
 public abstract class DynamicMenu extends IterativeMenu {
 

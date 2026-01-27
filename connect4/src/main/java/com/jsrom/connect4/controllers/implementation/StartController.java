@@ -1,11 +1,11 @@
-package main.java.com.jsrom.connect4.controllers.implementation;
+package com.jsrom.connect4.controllers.implementation;
 
-import main.java.com.jsrom.connect4.controllers.core.ControllerVisitor;
-import main.java.com.jsrom.connect4.models.Session;
-import main.java.com.jsrom.connect4.types.PlayerType;
-import main.java.com.jsrom.connect4.types.StateValue;
+import com.jsrom.connect4.controllers.core.ControllerVisitor;
+import com.jsrom.connect4.models.Session;
+import com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.types.StateValue;
 
-public class StartController extends main.java.com.jsrom.connect4.controllers.core.StartController {
+public class StartController extends com.jsrom.connect4.controllers.core.StartController {
 
     private Repository repository;
 

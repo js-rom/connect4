@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.views.console.start;
+package com.jsrom.connect4.views.console.start;
 
-import main.java.com.jsrom.connect4.controllers.core.StartController;
+import com.jsrom.connect4.controllers.core.StartController;
 
 public class StartView {
 

@@ -1,7 +1,7 @@
-package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
-import main.java.com.jsrom.connect4.controllers.implementation.PlayController;
-import main.java.com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.controllers.implementation.PlayController;
+import com.jsrom.connect4.types.PlayerType;
 
 public class ActivePlayerType extends Dispatcher {
 

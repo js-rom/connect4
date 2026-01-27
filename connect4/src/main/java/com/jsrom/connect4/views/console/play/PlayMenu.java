@@ -1,10 +1,10 @@
-package main.java.com.jsrom.connect4.views.console.play;
+package com.jsrom.connect4.views.console.play;
 
 import java.util.List;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.controllers.core.PlayController;
 
-import main.java.com.jsrom.utils.models.menu.Menu;
+import com.jsrom.utils.models.menu.Menu;
 
 public class PlayMenu extends Menu {
 

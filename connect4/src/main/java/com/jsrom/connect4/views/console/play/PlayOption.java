@@ -1,7 +1,7 @@
-package main.java.com.jsrom.connect4.views.console.play;
+package com.jsrom.connect4.views.console.play;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
-import main.java.com.jsrom.connect4.views.console.shared.MenuOption;
+import com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.views.console.shared.MenuOption;
 
 public abstract class PlayOption extends MenuOption {
 

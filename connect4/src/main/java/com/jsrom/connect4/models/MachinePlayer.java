@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.models;
+package com.jsrom.connect4.models;
 
-import main.java.com.jsrom.connect4.types.Color;
+import com.jsrom.connect4.types.Color;
 
 public abstract class MachinePlayer extends Player {
 

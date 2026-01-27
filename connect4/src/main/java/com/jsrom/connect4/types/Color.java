@@ -1,4 +1,4 @@
-package main.java.com.jsrom.connect4.types;
+package com.jsrom.connect4.types;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.controllers.implementation;
+package com.jsrom.connect4.controllers.implementation;
 
-import main.java.com.jsrom.connect4.models.Session;
+import com.jsrom.connect4.models.Session;
 
 public interface Repository {
 

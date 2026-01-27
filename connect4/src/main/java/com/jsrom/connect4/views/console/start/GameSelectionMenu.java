@@ -1,8 +1,8 @@
-package main.java.com.jsrom.connect4.views.console.start;
+package com.jsrom.connect4.views.console.start;
 
-import main.java.com.jsrom.connect4.controllers.core.StartController;
+import com.jsrom.connect4.controllers.core.StartController;
 
-import main.java.com.jsrom.utils.models.menu.Menu;
+import com.jsrom.utils.models.menu.Menu;
 
 public class GameSelectionMenu extends Menu {
 

@@ -1,10 +1,10 @@
-package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.controllers.implementation.PlayController;
+import com.jsrom.connect4.controllers.implementation.PlayController;
 
-import main.java.com.jsrom.utils.models.Coordinate;
+import com.jsrom.utils.models.Coordinate;
 
 public class Color extends Dispatcher {
 
@@ -23,7 +23,7 @@ public class Color extends Dispatcher {
             e.printStackTrace();
         }
         Coordinate coordinate = new Coordinate(row, column);
-        main.java.com.jsrom.connect4.types.Color color = ((PlayController) this.acceptorController).getColor(coordinate);
+        com.jsrom.connect4.types.Color color = ((PlayController) this.acceptorController).getColor(coordinate);
         this.server.send(color);
     }
 

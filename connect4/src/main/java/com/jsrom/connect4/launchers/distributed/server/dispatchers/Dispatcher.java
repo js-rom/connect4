@@ -1,7 +1,7 @@
-package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
-import main.java.com.jsrom.connect4.controllers.core.AcceptorController;
-import main.java.com.jsrom.connect4.net.Server;
+import com.jsrom.connect4.controllers.core.AcceptorController;
+import com.jsrom.connect4.net.Server;
 
 public abstract class Dispatcher {
 

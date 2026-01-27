@@ -1,9 +1,9 @@
-package main.java.com.jsrom.connect4.views.console.turn.player;
+package com.jsrom.connect4.views.console.turn.player;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
-import main.java.com.jsrom.connect4.views.console.shared.Message;
+import com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.views.console.shared.Message;
 
-import main.java.com.jsrom.utils.views.Console;
+import com.jsrom.utils.views.Console;
 
 public abstract class MachinePlayerView extends PlayerView {
     private String title;

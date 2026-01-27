@@ -1,12 +1,12 @@
-package main.java.com.jsrom.connect4.controllers.proxies;
+package com.jsrom.connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.controllers.core.AcceptorController;
-import main.java.com.jsrom.connect4.net.Client;
-import main.java.com.jsrom.connect4.types.StateValue;
+import com.jsrom.connect4.controllers.core.AcceptorController;
+import com.jsrom.connect4.net.Client;
+import com.jsrom.connect4.types.StateValue;
 
-public class Logic extends main.java.com.jsrom.connect4.controllers.core.Logic {
+public class Logic extends com.jsrom.connect4.controllers.core.Logic {
 
     private Session session;
     private Client client;

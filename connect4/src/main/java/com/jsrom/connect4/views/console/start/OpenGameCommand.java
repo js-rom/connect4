@@ -1,7 +1,7 @@
-package main.java.com.jsrom.connect4.views.console.start;
+package com.jsrom.connect4.views.console.start;
 
-import main.java.com.jsrom.connect4.controllers.core.StartController;
-import main.java.com.jsrom.connect4.views.console.shared.MenuOption;
+import com.jsrom.connect4.controllers.core.StartController;
+import com.jsrom.connect4.views.console.shared.MenuOption;
 
 public class OpenGameCommand extends MenuOption {
 

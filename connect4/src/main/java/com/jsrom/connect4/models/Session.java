@@ -1,10 +1,10 @@
-package main.java.com.jsrom.connect4.models;
+package com.jsrom.connect4.models;
 
-import main.java.com.jsrom.connect4.types.Color;
-import main.java.com.jsrom.connect4.types.PlayerType;
-import main.java.com.jsrom.connect4.types.StateValue;
+import com.jsrom.connect4.types.Color;
+import com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.types.StateValue;
 
-import main.java.com.jsrom.utils.models.Coordinate;
+import com.jsrom.utils.models.Coordinate;
 
 public class Session {
 

@@ -1,10 +1,10 @@
-package main.java.com.jsrom.connect4.views.console.turn.player;
+package com.jsrom.connect4.views.console.turn.player;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
-import main.java.com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.types.PlayerType;
 
 public class PlayerViewPrototypeRegistry {
 

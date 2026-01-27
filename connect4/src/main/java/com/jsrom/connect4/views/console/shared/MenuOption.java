@@ -1,8 +1,8 @@
-package main.java.com.jsrom.connect4.views.console.shared;
+package com.jsrom.connect4.views.console.shared;
 
-import main.java.com.jsrom.connect4.controllers.core.AcceptorController;
+import com.jsrom.connect4.controllers.core.AcceptorController;
 
-import main.java.com.jsrom.utils.models.menu.Option;
+import com.jsrom.utils.models.menu.Option;
 
 public abstract class MenuOption extends Option {
 

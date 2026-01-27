@@ -1,6 +1,6 @@
-package main.java.com.jsrom.utils.models.menu;
+package com.jsrom.utils.models.menu;
 
-import main.java.com.jsrom.utils.views.Console;
+import com.jsrom.utils.views.Console;
 
 public class QuitOption extends Option {
 

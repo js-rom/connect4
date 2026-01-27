@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.launchers.standalone;
+package com.jsrom.connect4.launchers.standalone;
 
-import main.java.com.jsrom.connect4.persistence.bbdd.SessionDAO;
+import com.jsrom.connect4.persistence.bbdd.SessionDAO;
 
 public class ConsoleConnect4bbdd extends ConsoleConnect4 {
 

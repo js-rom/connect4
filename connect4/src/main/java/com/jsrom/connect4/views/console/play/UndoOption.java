@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.views.console.play;
+package com.jsrom.connect4.views.console.play;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.controllers.core.PlayController;
 
 public class UndoOption extends PlayOption {
 

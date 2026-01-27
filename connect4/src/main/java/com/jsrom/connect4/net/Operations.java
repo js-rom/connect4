@@ -1,11 +1,11 @@
-package main.java.com.jsrom.connect4.net;
+package com.jsrom.connect4.net;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.types.Color;
-import main.java.com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.types.Color;
+import com.jsrom.connect4.types.PlayerType;
 
-public interface Operations extends main.java.com.jsrom.utils.net.Operations {
+public interface Operations extends com.jsrom.utils.net.Operations {
 
     public void send(PlayerType playerType);
 

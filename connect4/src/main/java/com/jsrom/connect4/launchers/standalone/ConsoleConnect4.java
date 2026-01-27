@@ -1,8 +1,8 @@
-package main.java.com.jsrom.connect4.launchers.standalone;
+package com.jsrom.connect4.launchers.standalone;
 
-import main.java.com.jsrom.connect4.controllers.implementation.Logic;
-import main.java.com.jsrom.connect4.launchers.Connect4;
-import main.java.com.jsrom.connect4.persistence.SessionDAO;
+import com.jsrom.connect4.controllers.implementation.Logic;
+import com.jsrom.connect4.launchers.Connect4;
+import com.jsrom.connect4.persistence.SessionDAO;
 
 public abstract class ConsoleConnect4 extends Connect4 {
 

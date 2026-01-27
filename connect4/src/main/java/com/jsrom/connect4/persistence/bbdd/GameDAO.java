@@ -1,15 +1,15 @@
-package main.java.com.jsrom.connect4.persistence.bbdd;
+package com.jsrom.connect4.persistence.bbdd;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import main.java.com.jsrom.connect4.models.Game;
-import main.java.com.jsrom.connect4.types.PlayerType;
-import main.java.com.jsrom.utils.models.Coordinate;
+import com.jsrom.connect4.models.Game;
+import com.jsrom.connect4.types.PlayerType;
+import com.jsrom.utils.models.Coordinate;
 
-public class GameDAO extends main.java.com.jsrom.connect4.persistence.GameDAO {
+public class GameDAO extends com.jsrom.connect4.persistence.GameDAO {
 
     private Connection connection;
     private ColorsDAO colorsDAO;

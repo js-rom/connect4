@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.launchers.standalone;
+package com.jsrom.connect4.launchers.standalone;
 
-import main.java.com.jsrom.connect4.persistence.files.SessionDAO;
+import com.jsrom.connect4.persistence.files.SessionDAO;
 
 public class ConsoleConnect4Files extends ConsoleConnect4 {
 

@@ -1,10 +1,10 @@
-package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
-import main.java.com.jsrom.connect4.controllers.implementation.StartController;
+import com.jsrom.connect4.controllers.implementation.StartController;
 
 public class GetGameNames extends Dispatcher {
 
-    public GetGameNames(main.java.com.jsrom.connect4.controllers.core.AcceptorController acceptorController) {
+    public GetGameNames(com.jsrom.connect4.controllers.core.AcceptorController acceptorController) {
         super(acceptorController);
     }
 

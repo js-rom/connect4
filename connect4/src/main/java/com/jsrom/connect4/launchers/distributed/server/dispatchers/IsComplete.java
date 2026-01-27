@@ -1,8 +1,8 @@
-package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.controllers.implementation.PlayController;
+import com.jsrom.connect4.controllers.implementation.PlayController;
 
 public class IsComplete extends Dispatcher {
 

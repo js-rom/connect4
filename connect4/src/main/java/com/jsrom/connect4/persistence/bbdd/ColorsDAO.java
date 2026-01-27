@@ -1,10 +1,10 @@
-package main.java.com.jsrom.connect4.persistence.bbdd;
+package com.jsrom.connect4.persistence.bbdd;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import main.java.com.jsrom.connect4.models.Game;
+import com.jsrom.connect4.models.Game;
 
 public class ColorsDAO{
 

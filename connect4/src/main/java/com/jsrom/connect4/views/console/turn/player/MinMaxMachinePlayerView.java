@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.views.console.turn.player;
+package com.jsrom.connect4.views.console.turn.player;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.controllers.core.PlayController;
 
 public class MinMaxMachinePlayerView extends MachinePlayerView {
 

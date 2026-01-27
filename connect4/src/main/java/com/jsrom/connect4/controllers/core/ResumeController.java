@@ -1,6 +1,6 @@
-package main.java.com.jsrom.connect4.controllers.core;
+package com.jsrom.connect4.controllers.core;
 
-import main.java.com.jsrom.connect4.models.Session;
+import com.jsrom.connect4.models.Session;
 
 public abstract class ResumeController extends Controller implements AcceptorController {
 

@@ -1,4 +1,4 @@
-package main.java.com.jsrom.utils.views;
+package com.jsrom.utils.views;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -1,8 +1,8 @@
-package main.java.com.jsrom.connect4.views.console.turn;
+package com.jsrom.connect4.views.console.turn;
 
-import main.java.com.jsrom.connect4.controllers.core.StartController;
-import main.java.com.jsrom.connect4.types.PlayerType;
-import main.java.com.jsrom.connect4.views.console.shared.MenuOption;
+import com.jsrom.connect4.controllers.core.StartController;
+import com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.views.console.shared.MenuOption;
 
 public class SetUserPlayerOption extends MenuOption {
 

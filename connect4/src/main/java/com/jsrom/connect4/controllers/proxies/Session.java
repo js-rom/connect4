@@ -1,11 +1,11 @@
-package main.java.com.jsrom.connect4.controllers.proxies;
+package com.jsrom.connect4.controllers.proxies;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.types.FrameType;
-import main.java.com.jsrom.connect4.types.StateValue;
+import com.jsrom.connect4.types.FrameType;
+import com.jsrom.connect4.types.StateValue;
 
-import main.java.com.jsrom.utils.net.Client;
+import com.jsrom.utils.net.Client;
 
 public class Session {
 

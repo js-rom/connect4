@@ -1,12 +1,12 @@
-package main.java.com.jsrom.connect4.net;
+package com.jsrom.connect4.net;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.types.Color;
-import main.java.com.jsrom.connect4.types.FrameType;
-import main.java.com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.types.Color;
+import com.jsrom.connect4.types.FrameType;
+import com.jsrom.connect4.types.PlayerType;
 
-public class Client extends main.java.com.jsrom.utils.net.Client implements Operations {
+public class Client extends com.jsrom.utils.net.Client implements Operations {
 
     public Client(String host, int port) throws IOException {
         super(host, port);

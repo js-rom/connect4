@@ -1,9 +1,9 @@
-package main.java.com.jsrom.connect4.launchers.distributed.server.dispatchers;
+package com.jsrom.connect4.launchers.distributed.server.dispatchers;
 
 import java.io.IOException;
 
-import main.java.com.jsrom.connect4.controllers.implementation.StartController;
-import main.java.com.jsrom.connect4.types.PlayerType;
+import com.jsrom.connect4.controllers.implementation.StartController;
+import com.jsrom.connect4.types.PlayerType;
 
 public class AddPlayer extends Dispatcher {
 

@@ -1,13 +1,13 @@
-package main.java.com.jsrom.connect4.views.console.turn;
+package com.jsrom.connect4.views.console.turn;
 
-import main.java.com.jsrom.connect4.controllers.core.PlayController;
-import main.java.com.jsrom.connect4.controllers.core.StartController;
-import main.java.com.jsrom.connect4.views.console.shared.Message;
-import main.java.com.jsrom.connect4.views.console.turn.player.PlayerView;
-import main.java.com.jsrom.connect4.views.console.turn.player.PlayerViewPrototypeDirector;
-import main.java.com.jsrom.connect4.views.console.turn.player.PlayerViewPrototypeRegistry;
+import com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.controllers.core.StartController;
+import com.jsrom.connect4.views.console.shared.Message;
+import com.jsrom.connect4.views.console.turn.player.PlayerView;
+import com.jsrom.connect4.views.console.turn.player.PlayerViewPrototypeDirector;
+import com.jsrom.connect4.views.console.turn.player.PlayerViewPrototypeRegistry;
 
-import main.java.com.jsrom.utils.views.Console;
+import com.jsrom.utils.views.Console;
 
 public class TurnView {
 
