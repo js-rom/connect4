@@ -6,7 +6,7 @@
 
     <groupId>com.jsrom</groupId>
     <artifactId>connect4</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.16-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
