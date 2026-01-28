@@ -5,7 +5,6 @@ abstract class PlayController as "controllers.core.\nPlayController"
 abstract class SaveController as "controllers.core.\nSaveController"
 abstract class ResumeController as "controllers.core.\nResumeController"
 class Session as "models.Session"
-class SessionDAO as "daos.SessionDAO"
 class StateValue as "types.StateValue"
 abstract class coreLogic as "controllers.core.Logic"
 
@@ -21,9 +20,17 @@ class implementation.Logic {
     +getController() : AceptorController
 }
 
+interface implementation.Repository {
+  public void associate(Session session);
+    + save();
+    +  getGamesNames() : String[];
+    + exists(String name) : boolean;
+    + hasSavedGames() : boolean;
+    + load(String gameName);
+}
 
 class implementation.StartController {
-  - sessionDAO : SessionDAO
+  - repository : Repository
   + SaveController(Session, SessionDAO)
 }
 
@@ -45,7 +52,7 @@ class implementation.RedoController{
 }
 
 class implementation.SaveController{
-  - sessionDAO : SessionDAO
+  - repository : Repository
   + SaveController(Session, SessionDAO)
 }
 
@@ -62,7 +69,7 @@ AcceptorController <|.. ResumeController
 
 coreLogic <|-- implementation.Logic
 implementation.Logic *--> Session
-implementation.Logic --> SessionDAO
+implementation.Logic --> Repository
 implementation.Logic *--> implementation.StartController
 implementation.Logic *--> implementation.PlayController
 implementation.Logic *--> implementation.SaveController
@@ -84,7 +91,8 @@ implementation.StartController --> Session
 implementation.SaveController --> Session
 implementation.PlayController --> Session
 implementation.ResumeController --> Session
-implementation.SaveController --> SessionDAO
-implementation.StartController --> SessionDAO
+implementation.SaveController --> Repository
+implementation.StartController --> Repository
+Repository --> Session
 
 @enduml

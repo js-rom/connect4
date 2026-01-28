@@ -1,0 +1,38 @@
+package com.jsrom.connect4.views.console.play;
+
+import com.jsrom.connect4.controllers.core.PlayController;
+import com.jsrom.connect4.views.console.shared.Message;
+
+import com.jsrom.utils.models.Coordinate;
+import com.jsrom.utils.views.Console;
+
+public class BoardView {
+
+    private PlayController playController;
+
+    public BoardView(PlayController playController) {
+        assert playController != null;
+        this.playController = playController;
+    }
+
+    public void writeln() {
+        this.writeHorizontal();
+        for (int i = Coordinate.NUMBER_ROWS - 1; i >= 0; i--) {
+            Message.VERTICAL_LINE.write();
+            for (int j = 0; j < Coordinate.NUMBER_COLUMNS; j++) {
+                Console.getInstance()
+                        .write(" " + this.playController.getColor(new Coordinate(i, j)).toString().charAt(0) + " ");
+                Message.VERTICAL_LINE.write();
+            }
+            Console.getInstance().writeln();
+        }
+        this.writeHorizontal();
+    }
+
+    private void writeHorizontal() {
+        for (int i = 0; i < 4 * Coordinate.NUMBER_COLUMNS; i++) {
+            Message.HORIZONTAL_LINE.write();
+        }
+        Message.HORIZONTAL_LINE.writeln();
+    }
+}

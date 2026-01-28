@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.14 modelViewPresenter - presentationModel - withDAO
+# Connect 4. Solution v.1.15 modelViewPresenter - presentationModel - withoutPrototype
 
 ## Índice
 
@@ -22,7 +22,6 @@
   - [connect4.controllers Package](#connect4controllers-package)
   - [connect4.views.views Package](#connect4viewsviews-package)
   - [connect4.views.console Package](#connect4viewsconsole-package)
-  - [connect4.views.graphics Package](#connect4viewsgraphics-package)
   - [connect4.models Package](#connect4models-package)
   - [connect4.daos Package](#connect4daos-package)
   - [connect4.net Package](#connect4net-package)
@@ -44,9 +43,9 @@
   * **Guardar la partida**
   * **crear una partida o abrir una partida guardada**
 
-* Interfaz: **Gráfica y Texto**
+* Interfaz: **Texto**
 * Distribución: **Standalone & distributed**
-* Persistencia: **Files**
+* Persistencia: **Files & bbdd**
 
 # Vista de Casos de Uso
 
@@ -103,6 +102,7 @@
   - Inversión de Control para vistas principales
   - Patrón template method para extender el comportamiento de jerarquías de herencias
   - Patrón DAO para el acceso a datos
+  - Patrón repository para desacoplar la lógica de la persistencia
 
 ## Arquitectura
 
@@ -156,34 +156,17 @@
 ![Package_connect4.views.console](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.console.turn.player/connect4.connect4.console.turn.player.svg)
 
 
-## connect4.views.graphics Package
-
-![Package_connect4.views.graphics](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics-pkg/connect4.connect4.views.graphics-pkg.svg)
-
-![Package_connect4.views.graphics](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics/connect4.connect4.views.graphics.svg)
-
-![Package_connect4.views.graphics.gameLoop](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop/connect4.connect4.views.graphics.gameLoop.svg)
-
-![Package_connect4.views.graphics.gameLoop.start](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.start/connect4.connect4.views.graphics.start.svg)
-
-![Package_connect4.views.graphics.gameLoop.play](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play/connect4.connect4.views.graphics.play.svg)
-
-![Package_connect4.views.graphics.gameLoop.play](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel/connect4.connect4.views.graphics.play.panel.svg)
-
-![Package_connect4.views.graphics.gameLoop.play.board](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel.board/connect4.connect4.views.graphics.play.panel.board.svg)
-
-![Package_connect4.views.graphics.gameLoop.play.turn](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel.turn/connect4.connect4.views.graphics.play.panel.turn.svg)
-
-![Package_connect4.views.graphics.gameLoop.play.turn](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.views.graphics.gameLoop.play.panel.commands/connect4.connect4.views.graphics.commands.svg)
-
-
 ## connect4.models Package
 
 ![Package_connect4.models](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.models/connect4.connect4.models.svg)
 
-## connect4.daos Package
+## connect4.persistence Package
 
-![Package_connect4.daos](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.daos/connect4.connect4.daos.svg)
+![Package_connect4.persistence](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.persistence/connect4.connect4.daos.svg)
+
+![Package_connect4.persistence](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.persistence.files/connect4.connect4.persistence.files.svg)
+
+![Package_connect4.persistence](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.persistence.bbdd/connect4.connect4.persistence.bbdd.svg)
 
 ## connect4.net Package
 

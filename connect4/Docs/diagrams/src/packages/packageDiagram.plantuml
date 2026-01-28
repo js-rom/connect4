@@ -32,18 +32,18 @@ connect4.launchers.distributed.server.dispatchers ..> utils.models
 connect4.launchers.distributed.server.dispatchers ..> connect4.controllers.core
 package connect4.net
 connect4.launchers.distributed.server.dispatchers ..> connect4.net
-package connect4.daos
-connect4.launchers.distributed.server ..> connect4.daos
-connect4.launchers.standalone ..> connect4.daos
-connect4.controllers.implementation ..> connect4.daos
+package connect4.persistence
+connect4.launchers.distributed.server ..> connect4.persistence
+connect4.launchers.standalone ..> connect4.persistence
+connect4.persistence ..> connect4.controllers.implementation 
 
 
 package connect4.models
 connect4.models ..> connect4.types
 connect4.models ..> utils.models
 
-connect4.daos ..> utils.models
-connect4.daos ..> connect4.models
+connect4.persistence ..> utils.models
+connect4.persistence ..> connect4.models
 
 
 connect4.net ..> connect4.types

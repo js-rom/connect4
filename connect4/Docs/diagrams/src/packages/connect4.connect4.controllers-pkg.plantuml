@@ -8,9 +8,6 @@ package connect4.connect4.controllers {
     proxies ..> core
 }
 
-package connect4.connect4.daos
-implementation ..> connect4.connect4.daos
-
 package connect4.connect4.models
 package connect4.connect4.types
 package connect4.utils

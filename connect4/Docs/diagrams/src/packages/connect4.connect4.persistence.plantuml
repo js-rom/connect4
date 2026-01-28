@@ -1,0 +1,27 @@
+@startuml connect4.connect4.daos
+
+interface Repository as "controllers.\nimplementation.\nRepository"
+class Session as "models.Session"
+class Game as "models.Game"
+
+abstract class persistence.SessionDAO {
+    + associate(Session)
+    # {abstract} createGameDAO(Game) : GameDAO
+    + save()
+    # {abstract} save(name : String)
+    # getName() : String
+    + hasSavedGames() : boolean
+    # setName(name : String)
+}
+
+abstract class persistence.GameDAO {
+
+    }
+
+Repository <|.. SessionDAO  
+SessionDAO --> GameDAO
+SessionDAO --> Session
+SessionDAO ..> Game
+GameDAO --> Game
+
+@enduml

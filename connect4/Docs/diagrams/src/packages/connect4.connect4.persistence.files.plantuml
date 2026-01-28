@@ -1,0 +1,89 @@
+@startuml connect4.connect4.persistence.files
+
+class Session as "models.Session"
+class Game as "models.Game"
+class Coordinate as "utils.models.Coordinate"
+abstract class SessionDAO as "persistence.SessionDAO"
+
+class files.SessionDAO {
+
++ {static} EXTENSION : String
++ {static} DIRECTORY : Path
++ {static} directory : File
+- session : SessionDAO
+- gameDAO : GameDAO
+# createGameDAO(game : Game) : GameDAO
++ save(name: String)
+- createFilewriter(name: String) : FileWriter
+- createBufferedReader(name: String) : BufferedReader
+- closeFilewriter(fileWriter: FileWriter)
+- closeBufferedReader(BufferedReader)
++ getGamesNames() : String[]
++ exists(name: String) : boolean
++ load(name: String)
+
+}
+
+interface files.DAO {
+    + final EOL : String
+    + save(Filewriter)
+    + load(BufferedReader)
+}
+
+class files.GameDAO {
+
+   - game : Game
+   - boardDAO : BoardDAO
+   - turnDAO : TurnDAO
+   + save(Filewriter)
+   + load(BufferedReader)
+}
+
+
+class files.BoardDAO {
+
+    - game : Game
+    + save(Filewriter)
+    - saveBoard(Filewriter)
+    - saveLastDrop(Filewriter)
+    + load(BufferedReader)
+    - loadBoard(BufferedReader)
+    - loadLastDrop(BufferedReader)
+}
+
+
+class files.TurnDAO {
+
+    - game : Game
+    + save(Filewriter)
+    - saveActivePlayer(Filewriter)
+    - savePlayersSize(Filewriter)
+    - savePlayers(Filewriter)
+    + load(BufferedReader)
+    - loadActivePlayer(BufferedReader)
+}
+
+class files.PlayerDAO {
+
+    - game : Game
+    + save(Filewriter)
+    + load(BufferedReader)
+}
+
+files.SessionDAO --> Session
+files.SessionDAO --> GameDAO
+SessionDAO <|.. files.SessionDAO
+DAO <|.. GameDAO
+DAO <|.. BoardDAO
+DAO <|.. TurnDAO
+DAO <|.. PlayerDAO
+GameDAO --> Game
+GameDAO *--> BoardDAO
+GameDAO *--> TurnDAO
+BoardDAO ..> Coordinate
+TurnDAO ..> PlayerDAO
+BoardDAO --> Game
+TurnDAO --> Game
+PlayerDAO --> Game
+
+@enduml

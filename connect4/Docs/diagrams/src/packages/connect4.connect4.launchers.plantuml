@@ -1,106 +1,109 @@
 @startuml connect4.connect4.launchers
 
-interface Logic as "controllers\n.core\n.Logic" <<abstractProduct>> 
+interface Logic as "controllers\n.core\n.Logic" <<abstractProduct>>
 class LogicImplementation as "controllers\n.implementation\n.LogicImplementation" <<concreteProduct>>
 Logic <|.. LogicImplementation
 class LogicProxy as "controllers\n.proxy\n.LogicProxy" <<concreteProduct>>
 Logic <|.. LogicProxy
 
 class ConsoleView as "views.ConsoleView" <<ConcreteProduct>>
-class GraphicsView as "views.GraphicsView" <<ConcreteProduct>>
 interface View as "views.View" <<abstractProduct>>
 View <|.. ConsoleView
-View <|.. GraphicsView
+
+class SessionDAOFiles as "persistence.files.SessionDAO"
+class SessionDAObbdd as "persistence.bbdd.SessionDAO"
 
 package "launchers" {
 
     abstract class launchers.Connect4 <<creator>> {
         # logic: Logic
         # view: View
-        + Connect4()
+        # Connect4()
         # {abstract}createLogic()
         # {abstract}createView()
-        # {abstract} PlayGames()
-    }
+        # {abstract}PlayGames()
 
-    abstract class launchers.ConsoleConnect4  {
-        # createView()
-        # PlayGames()
     }
-    
-    abstract class launchers.GraphicsConnect4 {
-        # createView()
-        # PlayGames()
-    }
-
-    Connect4 <|-- ConsoleConnect4
-    Connect4 <|-- GraphicsConnect4
 
     package standalone {
-    
-        class ConsoleConnect4 <<concreteCreator>> {
-            # logic: LogicImplementation
-            # view: ConsoleView
+
+        abstract class ConsoleConnect4  {
             # createLogic()
+            # createView()
+            # PlayGames()
+            # {abstract}createSessionDAO() : SessionDAO
+        }
+
+        class ConsoleConnect4Files <<concreteCreator>> {
+            # createSessionDAO()
             {static}+main(String[])
         }
-        
-        class GraphicsConnect4 <<concreteCreator>> {
-            # logic: LogicImplementation
-            # view: GraphicsView
-            # createLogic()
+
+        class ConsoleConnect4bbdd <<concreteCreator>> {
+            # createSessionDAO()
             {static}+main(String[])
         }
-    
+
     }
 
-    launchers.ConsoleConnect4 <|-- standalone.ConsoleConnect4
-    launchers.GraphicsConnect4 <|-- standalone.GraphicsConnect4
-    
-    
-        package distributed {
-        
-            package client {
-                class ConsoleConnect4 <<concreteCreator>> {
-                    # logic: LogicProxy
-                    # view: ConsoleView
-                    # createLogic()
-                    {static}+main(String[])
-                }
-        
-                class GraphicsConnect4 <<concreteCreator>> {
-                    # logic: LogicProxy
-                    # view: GraphicsView
-                    # createLogic()
-                    {static}+main(String[])
-                }
-                
-               
+    Connect4 <|-- standalone.ConsoleConnect4
+    standalone.ConsoleConnect4 <|-- standalone.ConsoleConnect4Files
+    standalone.ConsoleConnect4 <|-- standalone.ConsoleConnect4bbdd
+
+
+
+    package distributed {
+
+        package client {
+            class ConsoleConnect4 <<concreteCreator>> {
+                # createLogic()
+                # createView()
+                # PlayGames()
+                {static}+main(String[])
             }
-            package server {
-                class Connect4Server {
-                    - logic: LogicImplementation
-                    - serve()
-                    {static}+main(String[])
-                }
+
+
+
+        }
+
+        package server {
+
+            class Server {
+                - logic: LogicImplementation
+                # {abstract}createSessionDAO() : SessionDAO
+                - serve()
+                {static}+main(String[])
             }
-    
+
+            class ServerFiles {
+                # createSessionDAO() : SessionDAO
+                {static}+main(String[])
+            }
+
+            class ServerBbdd {
+                # createSessionDAO() : SessionDAO
+                - serve()
+                {static}+main(String[])
+            }
+        }
+
+        
     }
 
-    launchers.ConsoleConnect4 <|-- distributed.client.ConsoleConnect4
-    launchers.GraphicsConnect4 <|-- distributed.client.GraphicsConnect4
-    
+    launchers.Connect4 <|-- distributed.client.ConsoleConnect4
+
 }
 
 launchers.Connect4 *--> Logic
 launchers.Connect4 *--> View
 
-class Session as "connect4.daos.Session"
-launchers.standalone.ConsoleConnect4 ..> Session
-launchers.standalone.GraphicsConnect4 ..> Session
-launchers.distributed.server ..> Session
 
-
+launchers.standalone.ConsoleConnect4Files ..> SessionDAOFiles
+launchers.standalone.ConsoleConnect4bbdd ..> SessionDAObbdd
+launchers.distributed.server.Server <|-- launchers.distributed.server.ServerFiles
+launchers.distributed.server.Server <|-- launchers.distributed.server.ServerBbdd
+launchers.distributed.server.ServerFiles ..> SessionDAOFiles
+launchers.distributed.server.ServerBbdd ..> SessionDAObbdd
 
 
 @enduml
