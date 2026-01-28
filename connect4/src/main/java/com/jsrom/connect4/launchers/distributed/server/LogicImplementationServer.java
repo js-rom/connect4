@@ -1,6 +1,7 @@
 package com.jsrom.connect4.launchers.distributed.server;
 
 import com.jsrom.connect4.controllers.implementation.Logic;
+import com.jsrom.connect4.controllers.implementation.Repository;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.ActiveColor;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.ActivePlayerType;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.AddPlayer;
@@ -30,13 +31,12 @@ import com.jsrom.connect4.launchers.distributed.server.dispatchers.StartWithName
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.State;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.Undo;
 import com.jsrom.connect4.launchers.distributed.server.dispatchers.Undoable;
-import com.jsrom.connect4.persistence.SessionDAO;
 import com.jsrom.connect4.types.FrameType;
 
 public class LogicImplementationServer extends Logic {
 
-    public LogicImplementationServer(SessionDAO sessionDAO) {
-        super(sessionDAO);
+    public LogicImplementationServer(Repository repository) {
+        super(repository);
     }
 
     public void createDispatchers(DispatcherPrototype dispatcherPrototype) {
