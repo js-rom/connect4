@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.14 modelViewPresenter - presentationModel - withDAO
+# Connect 4. Solution v.1.15 modelViewPresenter - presentationModel - withoutPrototype
 
 ## Índice
 
@@ -102,6 +102,7 @@
   - Inversión de Control para vistas principales
   - Patrón template method para extender el comportamiento de jerarquías de herencias
   - Patrón DAO para el acceso a datos
+  - Patrón repository para desacoplar la lógica de la persistencia
 
 ## Arquitectura
 
@@ -159,9 +160,13 @@
 
 ![Package_connect4.models](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.models/connect4.connect4.models.svg)
 
-## connect4.daos Package
+## connect4.persistence Package
 
-![Package_connect4.daos](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.daos/connect4.connect4.daos.svg)
+![Package_connect4.persistence](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.persistence/connect4.connect4.daos.svg)
+
+![Package_connect4.persistence](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.persistence.files/connect4.connect4.persistence.files.svg)
+
+![Package_connect4.persistence](../out/connect4/Docs/diagrams/src/packages/connect4.connect4.persistence.bbdd/connect4.connect4.persistence.bbdd.svg)
 
 ## connect4.net Package
 

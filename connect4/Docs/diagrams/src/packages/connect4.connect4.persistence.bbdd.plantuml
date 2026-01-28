@@ -1,0 +1,45 @@
+@startuml connect4.connect4.persistence.bbdd
+
+class Session as "models.Session"
+class Game as "models.Game"
+abstract class SessionDAO as "persistence.SessionDAO"
+
+class bbdd.SessionDAO {
+
+- {static} URL : String
+- {static} USER : Path
+- {static} PASSWORD : File
+- connection : Connection 
+- session : SessionDAO
+- gameDAO : GameDAO
+# createGameDAO(game : Game) : GameDAO
+- createTables()
+- createGamesTableIfNotExists()
+- createColorsTableIfNotExists()
++ save(name: String)
++ getGamesNames() : String[]
++ exists(name: String) : boolean
++ load(name: String)
+
+}
+
+class bbdd.GameDAO {
+
+}
+
+class bbdd.ColorsDAO {
+
+}
+
+bbdd.SessionDAO --> Session
+bbdd.SessionDAO --> GameDAO
+bbdd.SessionDAO --> Connection
+SessionDAO <|.. bbdd.SessionDAO
+GameDAO --> Game
+GameDAO --> Connection
+GameDAO *--> ColorsDAO
+ColorsDAO --> Game
+ColorsDAO --> Connection
+
+
+@enduml

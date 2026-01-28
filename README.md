@@ -20,7 +20,7 @@
 | distributed | [v.1.12 modelViewPresenter - presentationModel - withProxy](https://github.com/js-rom/connect4/tree/v1.12.0-Release) |
 | files | modelViewPresenter - presentationModel - withoutDAO |
 | files | [v.1.14 modelViewPresenter - presentationModel - withDAO](https://github.com/js-rom/connect4/tree/v1.14.0-Release) |
-| bbdd | modelViewPresenter - presentationModel - withoutPrototype |
+| bbdd | [v.1.15 modelViewPresenter - presentationModel - withoutPrototype](https://github.com/js-rom/connect4/tree/v1.15.0-Release) |
 | bbdd | modelViewPresenter - presentationModel - withPrototype |
 | basic | modelViewPresenter - passiveView |
 | basic | modelViewPresenter - supervisorController |
@@ -28,15 +28,16 @@
 
 ![secuencia de versiones](./out/connect4/Docs/diagrams/TicTacToe.svg)
 
-# Versión v.1.14
+# Versión v.1.15
 
 ## enfoque
 
-En esta versión se añaden nuevos requisitos:
-- Exit Game
-- Save Game
-- Open game
+En esta versión se añade una nueva tecnología de persistencia RDBMS ala anteriores de ficheros.
+
+En la iteración anterior hicimos uso del patrón DAO pora evitar el acoplamiento de los modelos a la tacnología de persistencia. De esta forma mantenemos la cohesión de los modelos al centrarse unicamente en las reglas de negocio, evitamos que crezca el tamaño de los modelos manteniendo (no empeorando) su comprensibilidad y garantizamos un enfoque open/close ya que nuevas tecnologías de persistencia no provocarán modificaciones en los modelos.
+
+Aunque la lógica conocía directamente a la tecnología de persistencia, lo que aumentará el acoplamiento a medida que añadimos diferentes tecnologías.
 
 ## Diseño
 
-Se hace uso del patrón DAO pora evitar el acoplamiento de los modelos a la tacnología de persistencia. De esta forma mantenemos la cohesión de los modelos al centrarse unicamente en las reglas de negocio, evitamos que crezca el tamaño de los modelos manteniendo (no empeorando) su comprensibilidad y garantizamos un enfoque open/close ya que nuevas tecnologías de persistencia no provocarán modificaciones en los modelos.
+Se introduce el patrón repository que se responsabiliza de ofrecer a la lógica una interfaz común para que este pueda hablar con cualquier tecnología sin que la lógica tenga que conocer a cada una de ellas.
