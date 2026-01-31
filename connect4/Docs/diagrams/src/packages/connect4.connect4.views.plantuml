@@ -6,6 +6,7 @@ class StartController as "controllers.core.StartController"
 class PlayController as "controllers.core.PlayController"
 class SaveController as "controllers.core.SaveController"
 class ResumeController as "controllers.core.ResumeController"
+interface ControllerVisitor as "controllers.core.ControllerVisitor"
 
 View : +start(StartController)
 View : +play(PlayController)
@@ -16,6 +17,8 @@ View ..> StartController
 View ..> PlayController
 View ..> SaveController
 View ..> ResumeController
+
+ControllerVisitor <|-- View
 
 
 @enduml

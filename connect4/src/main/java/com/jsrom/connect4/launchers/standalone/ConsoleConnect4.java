@@ -20,7 +20,7 @@ public abstract class ConsoleConnect4 extends Connect4 {
     protected void playGames() {
         do {
             if (this.logic.getController() != null) {
-                this.logic.getController().accept((ConsoleView) this.view);
+                this.logic.getController().accept(this.view);
             }
         } while (this.logic.getController() != null);
     }
