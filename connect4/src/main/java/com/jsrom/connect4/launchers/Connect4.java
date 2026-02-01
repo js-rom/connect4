@@ -6,7 +6,7 @@ import com.jsrom.connect4.controllers.core.Logic;
 import com.jsrom.connect4.views.View;
 import com.jsrom.connect4.views.console.ConsoleView;
 
-public class Connect4 {
+public abstract class Connect4 {
 
     protected Logic logic; // la configura la subclase
     protected View view;
