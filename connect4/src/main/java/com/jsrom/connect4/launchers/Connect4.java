@@ -1,22 +1,45 @@
 package com.jsrom.connect4.launchers;
 
+import java.util.Map;
+
 import com.jsrom.connect4.controllers.core.Logic;
 import com.jsrom.connect4.views.View;
+import com.jsrom.connect4.views.console.ConsoleView;
 
 public abstract class Connect4 {
 
-    protected Logic logic;
+    protected Logic logic; // la configura la subclase
     protected View view;
+    private Map<String, View> viewsMap;
+    protected String usageMsg = "Usage: java ...Connect4 <view: console> ";
 
     protected Connect4() {
-        this.createLogic();
-        this.createView();
+        this.viewsMap = Map.of("console", new ConsoleView());
     }
 
-    protected abstract void createLogic();
+    protected void play(String[] config) {
+        this.configure(config);
+        this.playGames();
+    }
 
-    protected abstract void createView();
+    protected void configure(String[] config) {
+        if (config.length == 0) {
+            System.out.println(this.usageMsg);
+            System.exit(1);
+        }
+        this.view = this.viewsMap.get(config[0]);
+        if (this.view == null) {
+            System.out.println("Unknown view: " + config[0]);
+            System.exit(1);
+        }
+    }
 
-    protected abstract void playGames();
+    protected void playGames() {
+        do {
+            if (this.logic.getController() != null) {
+                this.logic.getController().accept(this.view);
+            }
+        } while (this.logic.getController() != null);
+    }
 
 }

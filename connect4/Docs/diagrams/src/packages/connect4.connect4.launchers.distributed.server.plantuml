@@ -1,7 +1,13 @@
 @startuml connect4.connect4.launchers.distributed.server
 
+class SessionDAOFiles as "persistence.files.SessionDAO"
+class SessionDAObbdd as "persistence.bbdd.SessionDAO"
+
 class distributed.server.Server {
+    - sessionDAO : SessionDAO
+    - sessionDAOMap : Map<String, SessionDAO>
     - serve()
+    - configure()
     + main(String[])
 }
 class distributed.server.DispatcherProtoype {
@@ -16,7 +22,7 @@ abstract class distributed.server.Dispatcher {
     # acceptorController : AcceptorController
     # server : net.Server
     + {abstract} dispatch()
-    + associate(net.Server) 
+    + associate(net.Server)
 }
 class distributed.server.ActiveColorDispatcher
 class distributed.server.ActivePlayerTypeDispatcher
@@ -37,7 +43,7 @@ DispatcherProtoype *--> "*" Dispatcher
 
 Dispatcher --> NetServer
 class AcceptorController as "connect4.controllers.\ncore.AcceptorController"
-Dispatcher *--> AcceptorController 
+Dispatcher *--> AcceptorController
 
 
 Dispatcher <|-- ActiveColorDispatcher
@@ -53,6 +59,8 @@ XxxDispatcher ..> ResumeController
 
 class Repository as "connect4.controllers.\nimplementation.Repository"
 distributed.server.LogicImplementationServer ..> Repository
+distributed.server.Server --> SessionDAOFiles
+distributed.server.Server --> SessionDAObbdd
 
 
-@enduml 
+@enduml

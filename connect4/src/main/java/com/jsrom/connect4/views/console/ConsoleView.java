@@ -1,6 +1,5 @@
 package com.jsrom.connect4.views.console;
 
-import com.jsrom.connect4.controllers.core.ControllerVisitor;
 import com.jsrom.connect4.controllers.core.PlayController;
 import com.jsrom.connect4.controllers.core.ResumeController;
 import com.jsrom.connect4.controllers.core.SaveController;
@@ -9,7 +8,7 @@ import com.jsrom.connect4.views.View;
 import com.jsrom.connect4.views.console.play.PlayView;
 import com.jsrom.connect4.views.console.start.StartView;
 
-public class ConsoleView implements View, ControllerVisitor {
+public class ConsoleView implements View {
 
     private StartView startView;
     private PlayView playView;
@@ -62,6 +61,5 @@ public class ConsoleView implements View, ControllerVisitor {
     public void visit(SaveController saveController) {
         this.save(saveController);
     }
-
 
 }

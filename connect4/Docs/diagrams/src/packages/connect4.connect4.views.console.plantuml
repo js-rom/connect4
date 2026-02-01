@@ -8,7 +8,6 @@ class SaveController as "controllers.core\n.SaveController"
 class StartView as "connect4.views.\nconsole.start.StartView"
 class PlayView as "connect4.views.\nconsole.play.PlayView"
 interface View as "connect4.views.View"
-interface ControllerVisitor as "controllers.core.\nControllerVisitor"
 class Console as "utils.views.Console"
 class YesNoDialog as "utils.views.YesNoDialog"
 enum Message as "connect4.views.console.\nshared.Message"
@@ -37,7 +36,6 @@ class console.SaveView {
 }
 
 View <|.. Consoleview 
-ControllerVisitor <|.. Consoleview 
 Consoleview *--> StartView
 Consoleview *--> PlayView
 Consoleview *--> ResumeView

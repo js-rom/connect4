@@ -3,21 +3,21 @@
 package connect4.launchers
 package connect4.controllers.core
 package connect4.views
-package connect4.views.graphics
 package connect4.views.console
 
 connect4.launchers ..> connect4.controllers.core
 connect4.launchers ..> connect4.views
 connect4.launchers ..> connect4.views.console
-connect4.launchers ..> connect4.views.graphics
 
 package connect4.launchers.standalone
 package connect4.controllers.implementation
 connect4.launchers.standalone ..> connect4.controllers.implementation
+connect4.launchers.standalone ..> connect4.launchers
 
 package connect4.launchers.distributed.client
 package connect4.controllers.proxies
 connect4.launchers.distributed.client ..> connect4.controllers.proxies
+connect4.launchers.distributed.client ..> connect4.launchers
 
 package connect4.launchers.distributed.server
 package connect4.launchers.distributed.server.dispatchers
@@ -63,7 +63,7 @@ connect4.controllers.implementation ..> utils.models
 connect4.controllers.proxies ..> connect4.types
 connect4.controllers.proxies ..> connect4.net
 connect4.controllers.proxies ..> utils.models
-
+connect4.controllers.proxies ..> connect4.controllers.core
 connect4.views ..> connect4.controllers.core
 connect4.views.console ..> connect4.controllers.core
 connect4.views.console ..> connect4.views
@@ -74,11 +74,6 @@ connect4.views.console ..> utils.models
 package utils.models.menu
 connect4.views.console ..> utils.models.menu
 
-connect4.views.graphics ..> connect4.controllers.core
-connect4.views.graphics ..> connect4.types
-connect4.views.graphics ..> utils.models
-connect4.views.graphics ..> connect4.views
-connect4.views.graphics ..> utils.views
 
 
 @enduml
