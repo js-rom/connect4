@@ -18,79 +18,52 @@ package "launchers" {
     abstract class launchers.Connect4 <<creator>> {
         # logic: Logic
         # view: View
+        - viewsMap : Map<String, View>
+        # usageMsg : String
         # Connect4()
-        # {abstract}createLogic()
-        # {abstract}createView()
-        # {abstract}PlayGames()
+        # play()
+        # configure()
+        # PlayGames()
 
     }
 
     package standalone {
 
-        abstract class ConsoleConnect4  {
-            # createLogic()
-            # createView()
-            # PlayGames()
-            # {abstract}createSessionDAO() : SessionDAO
-        }
-
-        class ConsoleConnect4Files <<concreteCreator>> {
-            # createSessionDAO()
-            {static}+main(String[])
-        }
-
-        class ConsoleConnect4bbdd <<concreteCreator>> {
-            # createSessionDAO()
+        class Connect4  {
+            - sessionDAOMap : Map<String, SessionDAO>
+            {override} configure()
             {static}+main(String[])
         }
 
     }
 
-    Connect4 <|-- standalone.ConsoleConnect4
-    standalone.ConsoleConnect4 <|-- standalone.ConsoleConnect4Files
-    standalone.ConsoleConnect4 <|-- standalone.ConsoleConnect4bbdd
-
-
+    Connect4 <|-- standalone.Connect4
 
     package distributed {
 
         package client {
-            class ConsoleConnect4 <<concreteCreator>> {
-                # createLogic()
-                # createView()
-                # PlayGames()
+            class Connect4{
                 {static}+main(String[])
             }
-
-
-
         }
 
         package server {
 
             class Server {
                 - logic: LogicImplementation
-                # {abstract}createSessionDAO() : SessionDAO
-                - serve()
-                {static}+main(String[])
-            }
-
-            class ServerFiles {
-                # createSessionDAO() : SessionDAO
-                {static}+main(String[])
-            }
-
-            class ServerBbdd {
-                # createSessionDAO() : SessionDAO
+                - sessionDAO : SessionDAO
+                - sessionDAOMap : Map<String, SessionDAO>
+                - configure()
                 - serve()
                 {static}+main(String[])
             }
         }
 
-        
+
     }
 
-    launchers.Connect4 <|-- distributed.client.ConsoleConnect4
+    launchers.Connect4 <|-- distributed.client.Connect4
+    
 
 }
 
@@ -98,12 +71,12 @@ launchers.Connect4 *--> Logic
 launchers.Connect4 *--> View
 
 
-launchers.standalone.ConsoleConnect4Files ..> SessionDAOFiles
-launchers.standalone.ConsoleConnect4bbdd ..> SessionDAObbdd
-launchers.distributed.server.Server <|-- launchers.distributed.server.ServerFiles
-launchers.distributed.server.Server <|-- launchers.distributed.server.ServerBbdd
-launchers.distributed.server.ServerFiles ..> SessionDAOFiles
-launchers.distributed.server.ServerBbdd ..> SessionDAObbdd
+launchers.standalone.Connect4 --> SessionDAOFiles
+launchers.standalone.Connect4 --> SessionDAObbdd
+launchers.distributed.server.Server --> SessionDAOFiles
+launchers.distributed.server.Server --> SessionDAObbdd
+launchers.distributed.client.Connect4 --> LogicProxy
+launchers.standalone.Connect4 --> LogicImplementation
 
 
 @enduml
