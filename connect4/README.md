@@ -1,4 +1,4 @@
-# Connect 4. Solution v.1.15 modelViewPresenter - presentationModel - withoutPrototype
+# Connect 4. Solution v.1.16 modelViewPresenter - presentationModel - withPrototype
 
 ## Índice
 
@@ -103,6 +103,7 @@
   - Patrón template method para extender el comportamiento de jerarquías de herencias
   - Patrón DAO para el acceso a datos
   - Patrón repository para desacoplar la lógica de la persistencia
+  - Patrón prototype y Bridse para los launchers para evitar jerarquías de herencias paralelas.
 
 ## Arquitectura
 
