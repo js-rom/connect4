@@ -28,13 +28,20 @@ public class BoardTest {
     @Test
     public void testGivenNotEmptyBoardWhenResetThenIsEmpty() {
         Board board = this.board
-                .rows("R YRYRY",
+                .rowsFromBoardTopToBottom("       ",
+                        "       ",
+                        "       ",
+                        "       ",
                         "Y RYRYR",
-                        "       ",
-                        "       ",
-                        "       ",
-                        "       ")
+                        "R YRYRY")
                 .build();
+        board.reset();
+        assertThat(board.isEmpty(), is(true));
+    }
+
+    @Test
+    public void testGivenEmptyBoardWhenResetThenIsEmprty() {
+        Board board = this.board.build();
         board.reset();
         assertThat(board.isEmpty(), is(true));
     }
@@ -48,33 +55,61 @@ public class BoardTest {
     }
 
     @Test
-    public void testGivenBoardWhenPutTokenCompletedColumnAssertionError() {
+    public void testGivenNewBoardWhenDropNullTokenThenIsNotOccupied() {
+        Board board = this.board.build();
+        board.dropToken(0, Color.RED);
+        boolean isOccupied = board.isOccupied(new Coordinate(0, 0), Color.NULL);
+        assertThat(isOccupied, is(false));
+    }
+
+    @Test
+    public void testGivenBoardWhenDropTokenCompletedColumnThenAssertionError() {
         Board board = this.board
-                .rows("R YRYRY",
-                        "Y RYRYR",
+                .rowsFromBoardTopToBottom("Y      ",
                         "R      ",
                         "Y      ",
                         "R      ",
-                        "Y      ")
+                        "Y RYRYR",
+                        "R YRYRY")
                 .build();
         Assertions.assertThrows(AssertionError.class, () -> board.dropToken(0, Color.RED));
     }
 
     @Test
-    public void testGivenNewBoardWhenIsCompletedThenFalse() {
-        Board board = this.board.build();
+    public void testGivenBoardWhenDropNullTokenCompletedColumnThenAssertionError() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom("Y      ",
+                        "R      ",
+                        "Y      ",
+                        "R      ",
+                        "Y RYRYR",
+                        "R YRYRY")
+                .build();
+        Assertions.assertThrows(AssertionError.class, () -> board.dropToken(0, Color.NULL));
+    }
+
+    @Test
+    public void testGivenUncompletedBoardWhenIsCompletedThenFalse() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom(" YRYRYR",
+                        "RRYRYRY",
+                        "YYRYRYR",
+                        "RRYRYRY",
+                        "YYRYRYR",
+                        "RRYRYRY")
+                .build();
         assertThat(board.isComplete(), is(false));
     }
 
     @Test
     public void testGivenCompletedBoardWhenIsCompletedThenTrue() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "YYRYRYR",
+                .rowsFromBoardTopToBottom("YYRYRYR",
                         "RRYRYRY",
                         "YYRYRYR",
                         "RRYRYRY",
-                        "YYRYRYR")
+                        "YYRYRYR",
+                        "RRYRYRY")
                 .build();
         assertThat(board.isComplete(), is(true));
     }
@@ -82,12 +117,12 @@ public class BoardTest {
     @Test
     public void testGivenCompletedNotWinnerBoardWhenIsFinishedThenTrue() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "YYRYRYR",
+                .rowsFromBoardTopToBottom("YYRYRYR",
                         "RRYRYRY",
                         "YYRYRYR",
                         "RRYRYRY",
-                        "YYRYRYR")
+                        "YYRYRYR",
+                        "RRYRYRY")
                 .build();
         assertThat(board.isFinished(), is(true));
     }
@@ -95,12 +130,12 @@ public class BoardTest {
     @Test
     public void testGivenWinnerCompletedBoardWhenIsFinishedThenTrue() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "YYRYRYR",
+                .rowsFromBoardTopToBottom("YYRYRYR",
                         "RYRRYRY",
                         "YYRYRYR",
                         "RYRRYRY",
-                        "YYRYRYR")
+                        "YYRYRYR",
+                        "RRYRYRY")
                 .build();
         assertThat(board.isFinished(), is(true));
     }
@@ -108,51 +143,56 @@ public class BoardTest {
     @Test
     public void testGivenWinnerNotCompletedBoardWhenIsFinishedThenTrue() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "RRYRYRY",
-                        "RRYRYRY",
-                        "R      ",
+                .rowsFromBoardTopToBottom("       ",
                         "       ",
-                        "       ")
+                        "R      ",
+                        "R      ",
+                        "RRYRYRY",
+                        "RRYRYRY")
                 .build();
         assertThat(board.isFinished(), is(true));
     }
 
     @Test
+    public void testGivenNotCompletedBoardWhenIsFinishedThenFalse() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom("       ",
+                        "       ",
+                        "       ",
+                        "       ",
+                        "RRYRYRY",
+                        "RRYRYRY")
+                .build();
+        assertThat(board.isFinished(), is(false));
+    }
+
+    @Test
     public void testGivenWinnerBoardWhenIsWinnerThenTrue() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "RRYRYRY",
-                        "RRYRYRY",
-                        "R      ",
+                .rowsFromBoardTopToBottom("       ",
                         "       ",
-                        "       ")
+                        "R      ",
+                        "R      ",
+                        "RRYRYRY",
+                        "RRYRYRY")
                 .build();
-        board.dropToken(0, Color.RED);
         assertThat(board.isWinner(), is(true));
     }
 
     @Test
-    public void testGivenWinnerBoardWhenWinnerCoordinatesAreOcuppiedThenTrue() {
+    public void testGivenNotWinnerBoardWhenIsWinnerThenFalse() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "RRYRYRY",
-                        "RRYRYRY",
-                        "R      ",
+                .rowsFromBoardTopToBottom("       ",
                         "       ",
-                        "       ")
+                        "       ",
+                        "       ",
+                        "RRYRYRY",
+                        "RRYRYRY")
                 .build();
-        assertThat(board.isOccupied(new Coordinate(0, 0), Color.RED), is(true));
-        assertThat(board.isOccupied(new Coordinate(1, 0), Color.RED), is(true));
-        assertThat(board.isOccupied(new Coordinate(2, 0), Color.RED), is(true));
-        assertThat(board.isOccupied(new Coordinate(3, 0), Color.RED), is(true));
-    }
-
-    @Test
-    public void testGivenEmptyBoardWhenIsWinnerThenFalse() {
-        Board board = this.board.build();
         assertThat(board.isWinner(), is(false));
     }
+
+    // TODO test winner combinations
 
     @Test
     public void testGivenBoardWhenDropTokenOutboundMaxThenThrowsAssertionError() {
@@ -181,12 +221,12 @@ public class BoardTest {
     @Test
     public void testGivenNotEptyBoardWhenResetThenIsEmpty() {
         Board board = this.board
-                .rows("R YRYRY",
-                        "Y RYRYR",
+                .rowsFromBoardTopToBottom("Y      ",
                         "R      ",
                         "Y      ",
                         "R      ",
-                        "Y      ")
+                        "Y RYRYR",
+                        "R YRYRY")
                 .build();
         board.reset();
         assertThat(board.isEmpty(), is(true));
@@ -195,12 +235,12 @@ public class BoardTest {
     @Test
     public void testGivenNotEptyBoardWhenResetThenIsReset() {
         Board board = this.board
-                .rows("R YRYRY",
-                        "Y RYRYR",
+                .rowsFromBoardTopToBottom("Y      ",
                         "R      ",
                         "Y      ",
                         "R      ",
-                        "Y      ")
+                        "Y RYRYR",
+                        "R YRYRY")
                 .build();
         board.reset();
         assertThat(board.isReset(), is(true));
@@ -221,12 +261,12 @@ public class BoardTest {
     @Test
     public void testGivenComletedBoardWhenGetUncompleteColumnsThenAssertionError() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "YYRYRYR",
+                .rowsFromBoardTopToBottom("YYRYRYR",
                         "RRYRYRY",
                         "YYRYRYR",
                         "RRYRYRY",
-                        "YYRYRYR")
+                        "YYRYRYR",
+                        "RRYRYRY")
                 .build();
         Assertions.assertThrows(AssertionError.class, () -> board.getUncompletedColumns());
     }
@@ -234,12 +274,12 @@ public class BoardTest {
     @Test
     public void testGivenUncompletedBoardWhenGetUncompletedColumnsThenReturnsExpectedColumns() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "YYRYRYR",
+                .rowsFromBoardTopToBottom("Y Y R R",
                         "RRYRYRY",
                         "YYRYRYR",
                         "RRYRYRY",
-                        "Y Y R R")
+                        "YYRYRYR",
+                        "RRYRYRY")
                 .build();
         assertThat(board.getUncompletedColumns(), is(new int[] { 1, 3, 5 }));
     }
@@ -247,12 +287,12 @@ public class BoardTest {
     @Test
     public void testGivenBoardWhenRemoveTopThenTopIsRemoved() {
         Board board = this.board
-                .rows("RRYRYRY",
-                        "YYRYRYR",
+                .rowsFromBoardTopToBottom("Y Y R R",
                         "RRYRYRY",
                         "YYRYRYR",
                         "RRYRYRY",
-                        "Y Y R R")
+                        "YYRYRYR",
+                        "RRYRYRY")
                 .build();
         board.removeTop(0);
         assertThat(board.isEmpty(new Coordinate(5, 0)), is(true));
@@ -261,12 +301,12 @@ public class BoardTest {
     @Test
     public void testGivenBoardWhenGetTopThenReturnsTop() {
         Board board = this.board
-                .rows("R R Y  ",
+                .rowsFromBoardTopToBottom("       ",
                         "       ",
                         "       ",
                         "       ",
                         "       ",
-                        "       ")
+                        "R R Y  ")
                 .build();
         board.removeTop(0);
         assertThat(board.isEmpty(new Coordinate(0, 0)), is(true));
@@ -275,12 +315,12 @@ public class BoardTest {
     @Test
     public void testGivenBoardWhenToStringArrayThenReturnsExpectedStringArray() {
         Board board = this.board
-                .rows("R R Y  ",
+                .rowsFromBoardTopToBottom("       ",
                         "       ",
                         "       ",
                         "       ",
                         "       ",
-                        "       ")
+                        "R R Y  ")
                 .build();
         String[] expectedStringArray = new String[] { "Red", " ", "Red", " ", "Yellow", " ", " ",
                 " ", " ", " ", " ", " ", " ", " ",
