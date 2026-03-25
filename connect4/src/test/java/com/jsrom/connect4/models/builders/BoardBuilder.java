@@ -17,7 +17,7 @@ public class BoardBuilder {
         this.rows = new ArrayList<>();
     }
 
-    public BoardBuilder rows(String... rows) {
+    public BoardBuilder rowsFromBoardTopToBottom(String... rows) {
         assert rows.length == Coordinate.NUMBER_ROWS;
 
         for (String row : rows) {
@@ -27,19 +27,23 @@ public class BoardBuilder {
         return this;
     }
 
-    public Board build() {
+    private Board boardFromRows() {
         Board board = new Board();
         Map<Character, Color> charToColor = Map.of('R', Color.RED, 'Y', Color.YELLOW, ' ', Color.NULL);
         for (int i = 0; i < this.rows.size(); i++) {
-            String row = this.rows.get(i);
+            int reverseRowIndex = Coordinate.NUMBER_ROWS - 1 - i;
+            String row = this.rows.get(reverseRowIndex);
             for (int j = 0; j < row.length(); j++) {
                 Color color = charToColor.get(row.charAt(j));
                 if (color != Color.NULL) {
-                    board.dropToken(j, color);                    
+                    board.dropToken(j, color);
                 }
-
             }
         }
         return board;
+    }
+
+    public Board build() {
+        return this.boardFromRows();
     }
 }
