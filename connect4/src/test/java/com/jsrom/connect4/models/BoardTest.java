@@ -167,19 +167,6 @@ public class BoardTest {
     }
 
     @Test
-    public void testGivenWinnerBoardWhenIsWinnerThenTrue() {
-        Board board = this.board
-                .rowsFromBoardTopToBottom("       ",
-                        "       ",
-                        "R      ",
-                        "R      ",
-                        "RRYRYRY",
-                        "RRYRYRY")
-                .build();
-        assertThat(board.isWinner(), is(true));
-    }
-
-    @Test
     public void testGivenNotWinnerBoardWhenIsWinnerThenFalse() {
         Board board = this.board
                 .rowsFromBoardTopToBottom("       ",
@@ -193,6 +180,57 @@ public class BoardTest {
     }
 
     // TODO test winner combinations
+    @Test
+    public void testGivenWinnerVerticalLineWhenIsWinnerThenTrue() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom("       ",
+                        "       ",
+                        "R      ",
+                        "R      ",
+                        "RRYRYRY",
+                        "RRYRYRY")
+                .build();
+        assertThat(board.isWinner(), is(true));
+    }
+
+    @Test
+    public void testGivenWinnerHorizontalLineWhenIsWinnerThenTrue() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom("RRRYYYY",
+                        "RRYRYRY",
+                        "YYRYRYR",
+                        "RRYRYRY",
+                        "YYRYRYR",
+                        "RRYRYRY")
+                .build();
+        assertThat(board.isWinner(), is(true));
+    }
+
+    @Test
+    public void testGivenWinnerDiagonalLineWhenIsWinnerThenTrue() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom("      Y",
+                        "RRYRYYR",
+                        "YYRYYRR",
+                        "RRYYRRY",
+                        "YYRYRYR",
+                        "RRYRYRY")
+                .build();
+        assertThat(board.isWinner(), is(true));
+    }
+
+    @Test
+    public void testGivenWinnerDiagonalReversedLineWhenIsWinnerThenTrue() {
+        Board board = this.board
+                .rowsFromBoardTopToBottom("       ",
+                        "       ",
+                        "   Y   ",
+                        "RRYRYRY",
+                        "YYRYRYR",
+                        "RRYRYRY")
+                .build();
+        assertThat(board.isWinner(), is(true));
+    }
 
     @Test
     public void testGivenBoardWhenDropTokenOutboundMaxThenThrowsAssertionError() {
